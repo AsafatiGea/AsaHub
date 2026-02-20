@@ -4,81 +4,186 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AsaHub - Pusat Harapan</title>
-
-    <!-- Favicon dan ikon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="logo.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="logo.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="logo.png">
-
-    <!-- Manifest untuk PWA -->
-    <link rel="manifest" href="manifest.json">
-
-    <!-- Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-    <!-- CSS eksternal -->
+    <link rel="icon" type="image/png" href="logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-    <h1>AsaHub</h1>
-    <p>Pusat Harapan - Membangun Masa Depan, Berdaya Lewat Bisnis</p>
-</header>
-
-<nav>
-    <a href="#story">Perjalanan</a>
-    <a href="#vision">Visi & Misi</a>
-    <a href="#marketplace">Marketplace</a>
+<!-- NAVBAR -->
+<nav class="navbar">
+    <a href="index.html" class="nav-logo">Asa<span>Hub</span></a>
+    <div class="nav-links">
+        <a href="#tentang">Tentang</a>
+        <a href="marketplace.html">Marketplace</a>
+        <a href="jasa.html">Jasa</a>
+        <a href="edukasi.html">Edukasi</a>
+    </div>
+    <div class="nav-auth">
+        <a href="login.html" class="btn-outline">Masuk</a>
+        <a href="daftar.html" class="btn-solid">Daftar</a>
+    </div>
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
 </nav>
 
-<section id="story">
-    <h2>Perjalanan Saya</h2>
-    <div class="story">
-        <p>Sejak SD saya sudah mulai berjualan. Dari kecil saya memiliki semangat untuk mandiri dan membangun masa depan sendiri.</p>
-        <p>Saat SMA saya mengambil jurusan IPS Ekonomi untuk memahami dunia bisnis lebih dalam. Kemudian saya melanjutkan S1 Sistem Informasi dan saat ini berada di semester 6.</p>
-        <p>Rencana saya selanjutnya adalah melanjutkan S2 Magister Manajemen untuk memperkuat kemampuan bisnis dan kepemimpinan.</p>
-        <p>AsaHub lahir dari mimpi kecil yang ingin menjadi besar. Asa berarti Harapan, Hub berarti Pusat — AsaHub adalah Pusat Harapan.</p>
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+    <a href="#tentang" onclick="toggleMenu()">Tentang</a>
+    <a href="marketplace.html" onclick="toggleMenu()">Marketplace</a>
+    <a href="jasa.html" onclick="toggleMenu()">Jasa</a>
+    <a href="edukasi.html" onclick="toggleMenu()">Edukasi</a>
+    <a href="login.html" onclick="toggleMenu()">Masuk</a>
+    <a href="daftar.html" onclick="toggleMenu()">Daftar</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-badge">🌟 Platform Ekosistem Bisnis Indonesia</div>
+    <h1 class="hero-title">Pusat <span class="highlight">Harapan</span><br>untuk Bisnis Anda</h1>
+    <p class="hero-sub">AsaHub menyatukan marketplace, jasa, teknologi, dan edukasi dalam satu ekosistem terpadu — membantu individu dan brand bertumbuh bersama.</p>
+    <div class="hero-btns">
+        <a href="daftar.html" class="btn-solid big">Mulai Gratis</a>
+        <a href="marketplace.html" class="btn-ghost big">Jelajahi Marketplace →</a>
+    </div>
+    <div class="hero-stats">
+        <div class="stat"><span class="stat-num">500+</span><span class="stat-label">Penjual Aktif</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">2.000+</span><span class="stat-label">Produk</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">10rb+</span><span class="stat-label">Pengguna</span></div>
     </div>
 </section>
 
-<section id="vision">
-    <h2>Visi & Misi</h2>
-    <div class="vision-mission">
-        <div class="card">
-            <h3>Visi</h3>
-            <p>Membangun masa depan melalui ekosistem bisnis yang berkelanjutan dan berdampak.</p>
+<!-- FITUR UTAMA -->
+<section class="features" id="tentang">
+    <div class="section-label">Apa itu AsaHub?</div>
+    <h2 class="section-title">Semua yang Kamu Butuhkan,<br>Dalam Satu Tempat</h2>
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon">🛒</div>
+            <h3>Marketplace</h3>
+            <p>Jual dan beli produk dari berbagai kategori — fashion, otomotif, properti, dan lebih banyak lagi.</p>
+            <a href="marketplace.html" class="feature-link">Lihat Marketplace →</a>
         </div>
-        <div class="card">
-            <h3>Misi</h3>
-            <p>Memberdayakan individu dan brand melalui sistem marketplace yang adil dan profesional.</p>
+        <div class="feature-card">
+            <div class="feature-icon">🔧</div>
+            <h3>Platform Jasa</h3>
+            <p>Temukan tukang, mekanik, desainer, dan profesional lainnya. Atau tawarkan keahlianmu sendiri.</p>
+            <a href="jasa.html" class="feature-link">Lihat Jasa →</a>
         </div>
-        <div class="card">
-            <h3>Model Bisnis</h3>
-            <p>Setiap penjual dapat menjual produknya di AsaHub dengan sistem komisi yang mendukung pertumbuhan bersama.</p>
+        <div class="feature-card">
+            <div class="feature-icon">💻</div>
+            <h3>Teknologi UMKM</h3>
+            <p>Solusi website, sistem stok, dan aplikasi sederhana untuk membantu UMKM go digital.</p>
+            <a href="#" class="feature-link">Pelajari Lebih →</a>
         </div>
-    </div>
-</section>
-
-<section id="marketplace">
-    <h2>Marketplace AsaHub</h2>
-    <div class="marketplace">
-        <div class="product">
-            <h3>Brand Mangkas</h3>
-            <p>Produk usaha pribadi saya.</p>
-            <button>Beli Sekarang</button>
-        </div>
-        <div class="product">
-            <h3>Brand Partner</h3>
-            <p>Produk dari mitra yang bergabung di AsaHub.</p>
-            <button>Gabung & Jual</button>
+        <div class="feature-card">
+            <div class="feature-icon">📚</div>
+            <h3>Edukasi & Mentoring</h3>
+            <p>Podcast, pelatihan bisnis, dan mentoring langsung dari pelaku usaha berpengalaman.</p>
+            <a href="edukasi.html" class="feature-link">Mulai Belajar →</a>
         </div>
     </div>
 </section>
 
-<footer>
-    <p>© 2026 AsaHub - Pusat Harapan</p>
+<!-- STORY PENDIRI -->
+<section class="founder">
+    <div class="founder-img">
+        <div class="founder-avatar">AG</div>
+    </div>
+    <div class="founder-text">
+        <div class="section-label">Kisah Pendiri</div>
+        <h2>Dari Anak Desa Nias<br>ke Ekosistem Digital</h2>
+        <p>Saya, <strong>Asafati Gea</strong>, lahir di Sihare'o, Afulu, Nias. Sejak SD sudah mulai berjualan, SMP mengangkut barang, SMA membuka warung. Saya percaya bahwa setiap orang berhak mendapat akses ke peluang bisnis yang adil.</p>
+        <p>AsaHub lahir dari pengalaman itu — <em>Asa</em> berarti harapan, <em>Hub</em> berarti pusat. Ini bukan sekadar website, ini adalah gerakan pemberdayaan.</p>
+        <div class="founder-values">
+            <span>💬 Public Speaking</span>
+            <span>🤝 Relasi Kuat</span>
+            <span>💪 Mental Tangguh</span>
+            <span>📈 Jiwa Wirausaha</span>
+        </div>
+    </div>
+</section>
+
+<!-- CARA KERJA -->
+<section class="how-it-works">
+    <div class="section-label">Cara Kerja</div>
+    <h2 class="section-title">Mulai Berjualan di AsaHub</h2>
+    <div class="steps">
+        <div class="step">
+            <div class="step-num">01</div>
+            <h3>Daftar Akun</h3>
+            <p>Buat akun penjual gratis dengan verifikasi identitas sederhana.</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step">
+            <div class="step-num">02</div>
+            <h3>Tambah Produk</h3>
+            <p>Upload produk lengkap dengan foto, deskripsi, dan harga.</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step">
+            <div class="step-num">03</div>
+            <h3>Daftarkan Rekening</h3>
+            <p>Tambahkan rekening bank atau dompet digital untuk menerima pembayaran.</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step">
+            <div class="step-num">04</div>
+            <h3>Mulai Berjualan</h3>
+            <p>Produk langsung tampil di marketplace dan siap dibeli.</p>
+        </div>
+    </div>
+    <div style="text-align:center; margin-top: 50px;">
+        <a href="daftar.html" class="btn-solid big">Daftar Sekarang — Gratis</a>
+    </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+    <h2>Bergabung dengan Ribuan Penjual di AsaHub</h2>
+    <p>Mulai perjalanan bisnismu hari ini. Gratis untuk semua.</p>
+    <a href="daftar.html" class="btn-white big">Mulai Sekarang</a>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-top">
+        <div class="footer-brand">
+            <div class="nav-logo" style="font-size:24px;">Asa<span>Hub</span></div>
+            <p>Pusat Harapan — Menyatukan individu dan brand dalam ekosistem bisnis yang stabil dan berkembang.</p>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col">
+                <h4>Platform</h4>
+                <a href="marketplace.html">Marketplace</a>
+                <a href="jasa.html">Jasa & Kerja</a>
+                <a href="edukasi.html">Edukasi</a>
+            </div>
+            <div class="footer-col">
+                <h4>Akun</h4>
+                <a href="daftar.html">Daftar Penjual</a>
+                <a href="login.html">Masuk</a>
+                <a href="dashboard.html">Dashboard</a>
+            </div>
+            <div class="footer-col">
+                <h4>AsaHub</h4>
+                <a href="#tentang">Tentang Kami</a>
+                <a href="#">Kontak</a>
+                <a href="#">Kebijakan Privasi</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 AsaHub · asahub.site · Dibuat dengan ❤️ oleh Asafati Gea</p>
+    </div>
 </footer>
 
+<script>
+function toggleMenu() {
+    const m = document.getElementById('mobileMenu');
+    m.classList.toggle('open');
+}
+</script>
 </body>
 </html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edukasi - AsaHub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="index.html" class="nav-logo">Asa<span>Hub</span></a>
+    <div class="nav-links">
+        <a href="index.html">Beranda</a>
+        <a href="marketplace.html">Marketplace</a>
+        <a href="jasa.html">Jasa</a>
+        <a href="edukasi.html" style="color:var(--blue); font-weight:700;">Edukasi</a>
+    </div>
+    <div class="nav-auth">
+        <a href="login.html" class="btn-outline">Masuk</a>
+        <a href="daftar.html" class="btn-solid">Daftar</a>
+    </div>
+    <button class="hamburger" onclick="document.getElementById('mm').classList.toggle('open')">☰</button>
+</nav>
+<div class="mobile-menu" id="mm">
+    <a href="index.html">Beranda</a>
+    <a href="marketplace.html">Marketplace</a>
+    <a href="edukasi.html">Edukasi</a>
+    <a href="login.html">Masuk</a>
+</div>
+
+<div class="page-header">
+    <h1>Edukasi & Mentoring</h1>
+    <p>Podcast, pelatihan bisnis, dan mentoring dari pelaku usaha nyata</p>
+</div>
+
+<!-- STATS -->
+<div style="max-width:900px; margin: 0 auto; padding: 40px 24px 0; display:flex; gap:32px; justify-content:center; flex-wrap:wrap; text-align:center;">
+    <div><div class="stat-num" style="font-family:'Syne',sans-serif; font-size:32px; font-weight:800; color:var(--blue);">25+</div><div style="color:var(--muted); font-size:14px;">Materi Tersedia</div></div>
+    <div style="width:1px; background:var(--border);"></div>
+    <div><div class="stat-num" style="font-family:'Syne',sans-serif; font-size:32px; font-weight:800; color:var(--blue);">1.200+</div><div style="color:var(--muted); font-size:14px;">Pelajar Aktif</div></div>
+    <div style="width:1px; background:var(--border);"></div>
+    <div><div class="stat-num" style="font-family:'Syne',sans-serif; font-size:32px; font-weight:800; color:var(--blue);">100%</div><div style="color:var(--muted); font-size:14px;">Gratis</div></div>
+</div>
+
+<div class="edukasi-grid">
+    <div class="edu-card">
+        <div class="edu-banner edu-banner-blue">🎙️</div>
+        <div class="edu-body">
+            <div class="edu-type">Podcast</div>
+            <h3>Dari Nol ke Omset Pertama</h3>
+            <p>Perjalanan memulai bisnis dari nol tanpa modal besar. Kisah nyata dari Asafati Gea.</p>
+            <div class="edu-meta">⏱ 45 menit · Pemula</div>
+            <button class="btn-solid" style="margin-top:14px; width:100%; text-align:center; padding:10px; font-size:14px;">▶ Dengarkan</button>
+        </div>
+    </div>
+    <div class="edu-card">
+        <div class="edu-banner edu-banner-yellow">📈</div>
+        <div class="edu-body">
+            <div class="edu-type">Workshop</div>
+            <h3>Cara Jualan di Marketplace</h3>
+            <p>Panduan lengkap berjualan di AsaHub dan marketplace lainnya. Dari foto produk hingga strategi harga.</p>
+            <div class="edu-meta">⏱ 90 menit · Pemula-Menengah</div>
+            <button class="btn-solid" style="margin-top:14px; width:100%; text-align:center; padding:10px; font-size:14px;">▶ Mulai</button>
+        </div>
+    </div>
+    <div class="edu-card">
+        <div class="edu-banner edu-banner-green">💻</div>
+        <div class="edu-body">
+            <div class="edu-type">Tutorial</div>
+            <h3>Bikin Website Bisnis Sendiri</h3>
+            <p>Panduan membuat website bisnis sederhana menggunakan tools gratis. Tidak perlu bisa coding.</p>
+            <div class="edu-meta">⏱ 2 jam · Semua Level</div>
+            <button class="btn-solid" style="margin-top:14px; width:100%; text-align:center; padding:10px; font-size:14px;">▶ Mulai</button>
+        </div>
+    </div>
+    <div class="edu-card">
+        <div class="edu-banner edu-banner-blue">🤝</div>
+        <div class="edu-body">
+            <div class="edu-type">Mentoring</div>
+            <h3>1-on-1 Konsultasi Bisnis</h3>
+            <p>Sesi mentoring langsung dengan Asafati Gea atau mentor berpengalaman AsaHub untuk membahas bisnismu.</p>
+            <div class="edu-meta">⏱ 60 menit · Semua Level</div>
+            <button class="btn-yellow" style="margin-top:14px; width:100%; text-align:center; padding:10px; font-size:14px;">📅 Jadwalkan</button>
+        </div>
+    </div>
+    <div class="edu-card">
+        <div class="edu-banner edu-banner-yellow">📊</div>
+        <div class="edu-body">
+            <div class="edu-type">E-Book</div>
+            <h3>Manajemen Stok untuk UMKM</h3>
+            <p>Panduan mengelola stok barang dengan Excel. Template siap pakai, gratis untuk semua pengguna.</p>
+            <div class="edu-meta">📄 PDF · 32 halaman</div>
+            <button class="btn-outline" style="margin-top:14px; width:100%; text-align:center; padding:10px; font-size:14px;">⬇ Unduh Gratis</button>
+        </div>
+    </div>
+    <div class="edu-card">
+        <div class="edu-banner edu-banner-green">💬</div>
+        <div class="edu-body">
+            <div class="edu-type">Komunitas</div>
+            <h3>Grup WhatsApp UMKM AsaHub</h3>
+            <p>Bergabung dengan komunitas pebisnis AsaHub. Berbagi pengalaman, tips, dan peluang kerja sama.</p>
+            <div class="edu-meta">👥 850+ anggota aktif</div>
+            <button class="btn-solid" style="margin-top:14px; width:100%; text-align:center; padding:10px; font-size:14px; background:#25d366;">💬 Gabung WhatsApp</button>
+        </div>
+    </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-banner" style="margin-top:0;">
+    <h2>Mau Jadi Mentor di AsaHub?</h2>
+    <p>Bagikan keahlian dan pengalamanmu kepada ribuan pebisnis muda Indonesia.</p>
+    <a href="daftar.html" class="btn-white big">Daftar sebagai Mentor</a>
+</div>
+
+<footer class="footer">
+    <div class="footer-bottom"><p>© 2026 AsaHub · asahub.site · Dibuat dengan ❤️ oleh Asafati Gea</p></div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - AsaHub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .tab-nav {
+            display: flex; gap: 4px;
+            background: var(--bg);
+            border-radius: 10px; padding: 4px;
+            margin-bottom: 24px;
+        }
+        .tab-btn {
+            padding: 9px 18px; border: none; border-radius: 8px;
+            font-family: 'DM Sans', sans-serif; font-size: 14px;
+            font-weight: 500; cursor: pointer;
+            background: transparent; color: var(--muted);
+            transition: 0.2s;
+        }
+        .tab-btn.active { background: white; color: var(--blue); font-weight: 700; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .tab-panel { display: none; }
+        .tab-panel.active { display: block; }
+        .rekening-card {
+            background: var(--bg); border-radius: 12px;
+            padding: 18px 20px; margin-bottom: 12px;
+            border: 1.5px solid var(--border);
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 12px;
+        }
+        .rekening-info h4 { font-size: 15px; font-weight: 700; color: var(--text); }
+        .rekening-info p { font-size: 13px; color: var(--muted); margin-top: 2px; }
+        .rekening-del {
+            background: none; border: none; color: #b91c1c;
+            cursor: pointer; font-size: 14px; font-weight: 600;
+            padding: 6px 12px; border-radius: 8px;
+            transition: 0.2s;
+        }
+        .rekening-del:hover { background: #fde8e8; }
+        .produk-mini {
+            display: flex; align-items: center; gap: 14px;
+            background: var(--bg); border-radius: 10px;
+            padding: 14px 16px; margin-bottom: 10px;
+            border: 1px solid var(--border);
+            flex-wrap: wrap;
+        }
+        .produk-mini-icon {
+            width: 50px; height: 50px;
+            background: white; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px; flex-shrink: 0;
+            border: 1px solid var(--border);
+        }
+        .produk-mini-info { flex: 1; min-width: 120px; }
+        .produk-mini-info h4 { font-size: 14px; font-weight: 700; color: var(--text); }
+        .produk-mini-info p { font-size: 12px; color: var(--muted); }
+        .produk-mini-price {
+            font-family: 'Syne', sans-serif; font-weight: 800;
+            color: var(--blue); font-size: 15px;
+        }
+        .produk-del {
+            background: none; border: none; color: #b91c1c;
+            cursor: pointer; font-size: 18px; padding: 4px 8px;
+        }
+        .notif-dot {
+            width: 8px; height: 8px; background: #ef4444;
+            border-radius: 50%; display: inline-block; margin-left: 6px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="dashboard-sidebar">
+        <a href="index.html" class="nav-logo">Asa<span style="color:var(--yellow)">Hub</span></a>
+
+        <div class="dash-link active" onclick="showTab('overview')">
+            <span class="icon">📊</span> Overview
+        </div>
+        <div class="dash-link" onclick="showTab('produk')">
+            <span class="icon">📦</span> Produk Saya
+        </div>
+        <div class="dash-link" onclick="showTab('pesanan')">
+            <span class="icon">🛒</span> Pesanan <span class="notif-dot"></span>
+        </div>
+        <div class="dash-link" onclick="showTab('rekening')">
+            <span class="icon">🏦</span> Rekening
+        </div>
+        <div class="dash-link" onclick="showTab('profil')">
+            <span class="icon">👤</span> Profil
+        </div>
+        <div style="margin-top: auto; padding-top: 32px;">
+            <div class="dash-link" onclick="doLogout()" style="color: rgba(255,100,100,0.8);">
+                <span class="icon">🚪</span> Keluar
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN -->
+    <div class="dashboard-main">
+        <div class="dashboard-topbar">
+            <h2 id="pageTitle">Overview</h2>
+            <div class="user-badge">
+                <div class="user-avatar" id="userInitials">?</div>
+                <div>
+                    <div class="user-name" id="userName">Loading...</div>
+                    <div style="font-size:12px; color:var(--muted);" id="userRole">-</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-content">
+
+            <!-- OVERVIEW -->
+            <div class="tab-panel active" id="tab-overview">
+                <div class="stats-row">
+                    <div class="stat-card">
+                        <div class="stat-icon">📦</div>
+                        <div class="stat-val" id="totalProduk">0</div>
+                        <div class="stat-label">Total Produk</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🛒</div>
+                        <div class="stat-val">3</div>
+                        <div class="stat-label">Pesanan Masuk</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">💰</div>
+                        <div class="stat-val">Rp 450rb</div>
+                        <div class="stat-label">Pendapatan Bulan Ini</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⭐</div>
+                        <div class="stat-val">4.8</div>
+                        <div class="stat-label">Rating Toko</div>
+                    </div>
+                </div>
+
+                <div class="section-box">
+                    <div class="section-box-header">
+                        <h3>Pesanan Terbaru</h3>
+                        <button class="btn-outline" onclick="showTab('pesanan')" style="padding: 8px 16px; font-size: 13px;">Lihat Semua</button>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr><th>ID</th><th>Produk</th><th>Pembeli</th><th>Total</th><th>Status</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>#001</td><td>Kemeja Batik</td><td>Budi S.</td><td>Rp 120.000</td><td><span class="badge badge-yellow">Menunggu</span></td></tr>
+                            <tr><td>#002</td><td>Kopi Nias</td><td>Rina A.</td><td>Rp 75.000</td><td><span class="badge badge-green">Selesai</span></td></tr>
+                            <tr><td>#003</td><td>Tas Rotan</td><td>Dedi K.</td><td>Rp 255.000</td><td><span class="badge badge-green">Selesai</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="section-box">
+                    <div class="section-box-header">
+                        <h3>Tips untuk Penjual</h3>
+                    </div>
+                    <ul style="padding-left: 20px; color: var(--muted); font-size: 14px; line-height: 2;">
+                        <li>Tambahkan foto produk yang jelas dan menarik untuk meningkatkan penjualan hingga 3x.</li>
+                        <li>Daftarkan rekening bank untuk mempermudah proses pembayaran dari pembeli.</li>
+                        <li>Respon cepat pertanyaan pembeli meningkatkan kepercayaan dan rating toko.</li>
+                        <li>Gunakan deskripsi produk yang lengkap dengan kata kunci yang relevan.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- PRODUK -->
+            <div class="tab-panel" id="tab-produk">
+                <div class="section-box">
+                    <div class="section-box-header">
+                        <h3>Produk Saya</h3>
+                        <button class="btn-solid" style="padding: 10px 20px; font-size:13px;" onclick="openModal('modalTambahProduk')">+ Tambah Produk</button>
+                    </div>
+                    <div id="listProduk">
+                        <p style="color:var(--muted); font-size:14px; text-align:center; padding: 40px 0;">
+                            Belum ada produk. Klik "+ Tambah Produk" untuk memulai.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PESANAN -->
+            <div class="tab-panel" id="tab-pesanan">
+                <div class="section-box">
+                    <div class="section-box-header"><h3>Daftar Pesanan</h3></div>
+                    <table class="table">
+                        <thead>
+                            <tr><th>ID</th><th>Produk</th><th>Pembeli</th><th>Total</th><th>Tgl</th><th>Status</th><th>Aksi</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#001</td><td>Kemeja Batik</td><td>Budi Santoso</td><td>Rp 120.000</td><td>20 Feb 2026</td>
+                                <td><span class="badge badge-yellow">Menunggu</span></td>
+                                <td><button class="btn-solid" style="padding:6px 12px;font-size:12px;" onclick="konfirmPesanan(this)">Konfirmasi</button></td>
+                            </tr>
+                            <tr>
+                                <td>#002</td><td>Kopi Nias</td><td>Rina Amalia</td><td>Rp 75.000</td><td>18 Feb 2026</td>
+                                <td><span class="badge badge-green">Selesai</span></td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>#003</td><td>Tas Rotan</td><td>Dedi Kurnia</td><td>Rp 255.000</td><td>15 Feb 2026</td>
+                                <td><span class="badge badge-green">Selesai</span></td>
+                                <td>-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- REKENING -->
+            <div class="tab-panel" id="tab-rekening">
+                <div class="section-box">
+                    <div class="section-box-header">
+                        <h3>Rekening Pembayaran</h3>
+                        <button class="btn-solid" style="padding: 10px 20px; font-size:13px;" onclick="openModal('modalTambahRekening')">+ Tambah Rekening</button>
+                    </div>
+                    <p style="font-size:14px; color:var(--muted); margin-bottom: 20px;">
+                        Pembeli akan melihat rekening ini saat melakukan pembayaran ke tokomu.
+                    </p>
+                    <div id="listRekening">
+                        <p style="color:var(--muted); font-size:14px; text-align:center; padding: 30px 0;">
+                            Belum ada rekening. Tambahkan rekening bank atau dompet digital.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="section-box">
+                    <div class="section-box-header"><h3>Info Pembayaran</h3></div>
+                    <div style="font-size:14px; color:var(--muted); line-height: 2;">
+                        <p>✅ Saat ini pembayaran dilakukan langsung ke penjual via transfer bank / dompet digital.</p>
+                        <p>✅ Setelah transfer, pembeli upload bukti pembayaran kepada penjual.</p>
+                        <p>🔜 Sistem escrow (dana ditahan oleh AsaHub) akan segera hadir.</p>
+                        <p>🔜 Integrasi QRIS dan payment gateway sedang dalam proses.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROFIL -->
+            <div class="tab-panel" id="tab-profil">
+                <div class="section-box" style="max-width: 560px;">
+                    <div class="section-box-header"><h3>Profil Toko</h3></div>
+                    <div class="alert alert-success" id="profilSaved">Profil berhasil disimpan!</div>
+                    <div class="form-group">
+                        <label>Nama Toko</label>
+                        <input type="text" id="namaToko" placeholder="Nama toko kamu">
+                    </div>
+                    <div class="form-group">
+                        <label>Deskripsi Toko</label>
+                        <textarea id="deskriSi" placeholder="Ceritakan tentang tokomu..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>WhatsApp / Kontak</label>
+                        <input type="tel" id="kontakToko" placeholder="0812-xxxx-xxxx">
+                    </div>
+                    <div class="form-group">
+                        <label>Kota / Lokasi</label>
+                        <input type="text" id="kotaToko" placeholder="Cth: Medan, Sumatera Utara">
+                    </div>
+                    <button class="btn-solid" onclick="saveProfil()">Simpan Profil</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- MODAL TAMBAH PRODUK -->
+<div class="modal-overlay" id="modalTambahProduk">
+    <div class="modal">
+        <button class="modal-close" onclick="closeModal('modalTambahProduk')">✕</button>
+        <h3>Tambah Produk Baru</h3>
+        <div class="alert alert-error" id="produkError"></div>
+        <div class="form-group">
+            <label>Nama Produk</label>
+            <input type="text" id="produkNama" placeholder="Cth: Kemeja Batik Nias">
+        </div>
+        <div class="form-group">
+            <label>Kategori</label>
+            <select id="produkKategori">
+                <option>Fashion</option>
+                <option>Makanan & Minuman</option>
+                <option>Otomotif</option>
+                <option>Elektronik</option>
+                <option>Kerajinan</option>
+                <option>Properti</option>
+                <option>Lainnya</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Harga (Rp)</label>
+            <input type="number" id="produkHarga" placeholder="Cth: 150000">
+        </div>
+        <div class="form-group">
+            <label>Stok</label>
+            <input type="number" id="produkStok" placeholder="Jumlah stok" value="1">
+        </div>
+        <div class="form-group">
+            <label>Deskripsi Produk</label>
+            <textarea id="produkDeskripsi" placeholder="Jelaskan detail produkmu..."></textarea>
+        </div>
+        <div class="form-group">
+            <label>Emoji / Ikon Produk</label>
+            <select id="produkEmoji">
+                <option value="👕">👕 Pakaian</option>
+                <option value="☕">☕ Minuman</option>
+                <option value="🍱">🍱 Makanan</option>
+                <option value="🚗">🚗 Otomotif</option>
+                <option value="📱">📱 Elektronik</option>
+                <option value="🎁">🎁 Kerajinan</option>
+                <option value="🏠">🏠 Properti</option>
+                <option value="📦">📦 Lainnya</option>
+            </select>
+        </div>
+        <button class="form-btn" onclick="tambahProduk()">Simpan Produk</button>
+    </div>
+</div>
+
+<!-- MODAL TAMBAH REKENING -->
+<div class="modal-overlay" id="modalTambahRekening">
+    <div class="modal">
+        <button class="modal-close" onclick="closeModal('modalTambahRekening')">✕</button>
+        <h3>Tambah Rekening</h3>
+        <div class="form-group">
+            <label>Jenis</label>
+            <select id="rekJenis">
+                <option>Bank BCA</option>
+                <option>Bank BRI</option>
+                <option>Bank BNI</option>
+                <option>Bank Mandiri</option>
+                <option>Bank BSI</option>
+                <option>GoPay</option>
+                <option>OVO</option>
+                <option>DANA</option>
+                <option>ShopeePay</option>
+                <option>QRIS</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Nomor Rekening / No. HP</label>
+            <input type="text" id="rekNomor" placeholder="Cth: 1234567890">
+        </div>
+        <div class="form-group">
+            <label>Nama Pemilik</label>
+            <input type="text" id="rekNama" placeholder="Nama sesuai rekening">
+        </div>
+        <button class="form-btn" onclick="tambahRekening()">Simpan Rekening</button>
+    </div>
+</div>
+
+<script>
+// Cek login
+const user = JSON.parse(localStorage.getItem('asahub_current_user') || 'null');
+if (!user) { window.location.href = 'login.html'; }
+
+// Set user info
+document.getElementById('userName').textContent = user?.name || '-';
+document.getElementById('userRole').textContent = user?.role || '-';
+document.getElementById('userInitials').textContent = (user?.name || '?').split(' ').map(w => w[0]).join('').toUpperCase().slice(0,2);
+
+// Tab system
+function showTab(name) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.dash-link').forEach(l => l.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    
+    const titles = { overview: 'Overview', produk: 'Produk Saya', pesanan: 'Pesanan', rekening: 'Rekening', profil: 'Profil' };
+    document.getElementById('pageTitle').textContent = titles[name] || name;
+    
+    event.currentTarget.classList.add('active');
+    renderProduk(); renderRekening();
+}
+
+// Modal
+function openModal(id) { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+document.querySelectorAll('.modal-overlay').forEach(m => {
+    m.addEventListener('click', function(e) { if (e.target === m) m.classList.remove('open'); });
+});
+
+// Produk
+function getProducts() {
+    const key = 'asahub_products_' + user.email;
+    return JSON.parse(localStorage.getItem(key) || '[]');
+}
+function saveProducts(arr) {
+    localStorage.setItem('asahub_products_' + user.email, JSON.stringify(arr));
+}
+
+function tambahProduk() {
+    const nama = document.getElementById('produkNama').value.trim();
+    const harga = document.getElementById('produkHarga').value;
+    const stok = document.getElementById('produkStok').value;
+    const kategori = document.getElementById('produkKategori').value;
+    const deskripsi = document.getElementById('produkDeskripsi').value.trim();
+    const emoji = document.getElementById('produkEmoji').value;
+    const errEl = document.getElementById('produkError');
+
+    errEl.classList.remove('show');
+    if (!nama || !harga) { errEl.textContent = 'Nama dan harga wajib diisi.'; errEl.classList.add('show'); return; }
+
+    const products = getProducts();
+    products.push({ id: Date.now(), nama, harga: parseInt(harga), stok: parseInt(stok), kategori, deskripsi, emoji, penjual: user.name, email: user.email });
+    saveProducts(products);
+
+    // Juga simpan ke global marketplace
+    const globalProds = JSON.parse(localStorage.getItem('asahub_marketplace') || '[]');
+    globalProds.push({ id: Date.now() + 1, nama, harga: parseInt(harga), stok: parseInt(stok), kategori, deskripsi, emoji, penjual: user.name, email: user.email });
+    localStorage.setItem('asahub_marketplace', JSON.stringify(globalProds));
+
+    closeModal('modalTambahProduk');
+    document.getElementById('produkNama').value = '';
+    document.getElementById('produkHarga').value = '';
+    document.getElementById('produkDeskripsi').value = '';
+    renderProduk();
+    document.getElementById('totalProduk').textContent = getProducts().length;
+}
+
+function renderProduk() {
+    const products = getProducts();
+    const el = document.getElementById('listProduk');
+    document.getElementById('totalProduk').textContent = products.length;
+    if (!products.length) {
+        el.innerHTML = '<p style="color:var(--muted); font-size:14px; text-align:center; padding:40px 0;">Belum ada produk. Klik "+ Tambah Produk" untuk memulai.</p>';
+        return;
+    }
+    el.innerHTML = products.map((p, i) => `
+        <div class="produk-mini">
+            <div class="produk-mini-icon">${p.emoji}</div>
+            <div class="produk-mini-info">
+                <h4>${p.nama}</h4>
+                <p>${p.kategori} · Stok: ${p.stok}</p>
+            </div>
+            <div class="produk-mini-price">Rp ${p.harga.toLocaleString('id-ID')}</div>
+            <button class="produk-del" onclick="hapusProduk(${i})" title="Hapus">🗑️</button>
+        </div>
+    `).join('');
+}
+
+function hapusProduk(i) {
+    if (!confirm('Hapus produk ini?')) return;
+    const products = getProducts();
+    products.splice(i, 1);
+    saveProducts(products);
+    renderProduk();
+}
+
+// Rekening
+function getRekening() {
+    return JSON.parse(localStorage.getItem('asahub_rekening_' + user.email) || '[]');
+}
+function saveRekening(arr) {
+    localStorage.setItem('asahub_rekening_' + user.email, JSON.stringify(arr));
+}
+
+function tambahRekening() {
+    const jenis = document.getElementById('rekJenis').value;
+    const nomor = document.getElementById('rekNomor').value.trim();
+    const nama = document.getElementById('rekNama').value.trim();
+    if (!nomor || !nama) { alert('Nomor dan nama wajib diisi.'); return; }
+    const arr = getRekening();
+    arr.push({ jenis, nomor, nama });
+    saveRekening(arr);
+    closeModal('modalTambahRekening');
+    document.getElementById('rekNomor').value = '';
+    document.getElementById('rekNama').value = '';
+    renderRekening();
+}
+
+function renderRekening() {
+    const arr = getRekening();
+    const el = document.getElementById('listRekening');
+    if (!arr.length) {
+        el.innerHTML = '<p style="color:var(--muted); font-size:14px; text-align:center; padding:30px 0;">Belum ada rekening. Tambahkan rekening bank atau dompet digital.</p>';
+        return;
+    }
+    const icons = { 'Bank BCA': '🏦', 'Bank BRI': '🏦', 'Bank BNI': '🏦', 'Bank Mandiri': '🏦', 'Bank BSI': '🏦', GoPay: '💚', OVO: '💜', DANA: '💙', ShopeePay: '🧡', QRIS: '🔲' };
+    el.innerHTML = arr.map((r, i) => `
+        <div class="rekening-card">
+            <div class="rekening-info">
+                <h4>${icons[r.jenis] || '🏦'} ${r.jenis}</h4>
+                <p>${r.nomor} · a.n. ${r.nama}</p>
+            </div>
+            <button class="rekening-del" onclick="hapusRekening(${i})">Hapus</button>
+        </div>
+    `).join('');
+}
+
+function hapusRekening(i) {
+    if (!confirm('Hapus rekening ini?')) return;
+    const arr = getRekening();
+    arr.splice(i, 1);
+    saveRekening(arr);
+    renderRekening();
+}
+
+// Profil
+function saveProfil() {
+    const data = {
+        namaToko: document.getElementById('namaToko').value,
+        deskripsi: document.getElementById('deskriSi').value,
+        kontak: document.getElementById('kontakToko').value,
+        kota: document.getElementById('kotaToko').value,
+    };
+    localStorage.setItem('asahub_profil_' + user.email, JSON.stringify(data));
+    document.getElementById('profilSaved').classList.add('show');
+    setTimeout(() => document.getElementById('profilSaved').classList.remove('show'), 2500);
+}
+
+function loadProfil() {
+    const data = JSON.parse(localStorage.getItem('asahub_profil_' + user.email) || '{}');
+    if (data.namaToko) document.getElementById('namaToko').value = data.namaToko;
+    if (data.deskripsi) document.getElementById('deskriSi').value = data.deskripsi;
+    if (data.kontak) document.getElementById('kontakToko').value = data.kontak;
+    if (data.kota) document.getElementById('kotaToko').value = data.kota;
+}
+
+function konfirmPesanan(btn) {
+    btn.closest('tr').querySelector('.badge').textContent = 'Diproses';
+    btn.closest('tr').querySelector('.badge').className = 'badge badge-green';
+    btn.remove();
+}
+
+function doLogout() {
+    localStorage.removeItem('asahub_current_user');
+    window.location.href = 'index.html';
+}
+
+// Init
+renderProduk();
+renderRekening();
+loadProfil();
+</script>
+</body>
+</html>

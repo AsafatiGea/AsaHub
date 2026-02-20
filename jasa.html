@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jasa & Pekerjaan - AsaHub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="index.html" class="nav-logo">Asa<span>Hub</span></a>
+    <div class="nav-links">
+        <a href="index.html">Beranda</a>
+        <a href="marketplace.html">Marketplace</a>
+        <a href="jasa.html" style="color:var(--blue); font-weight:700;">Jasa</a>
+        <a href="edukasi.html">Edukasi</a>
+    </div>
+    <div class="nav-auth">
+        <a href="login.html" class="btn-outline">Masuk</a>
+        <a href="daftar.html" class="btn-solid">Daftar</a>
+    </div>
+    <button class="hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')">☰</button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Beranda</a>
+    <a href="marketplace.html">Marketplace</a>
+    <a href="jasa.html">Jasa</a>
+    <a href="login.html">Masuk</a>
+</div>
+
+<div class="page-header">
+    <h1>Platform Jasa & Pekerjaan</h1>
+    <p>Temukan tenaga ahli dan profesional, atau tawarkan keahlianmu sendiri</p>
+</div>
+
+<div style="max-width:1100px; margin:0 auto; padding: 32px 24px 0;">
+    <div style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom: 28px;">
+        <button class="btn-solid" onclick="filterJasa('semua', this)">Semua</button>
+        <button class="btn-outline" onclick="filterJasa('Otomotif', this)">🔧 Otomotif</button>
+        <button class="btn-outline" onclick="filterJasa('Konstruksi', this)">🏗️ Konstruksi</button>
+        <button class="btn-outline" onclick="filterJasa('Teknologi', this)">💻 Teknologi</button>
+        <button class="btn-outline" onclick="filterJasa('Kreatif', this)">🎨 Kreatif</button>
+        <button class="btn-outline" onclick="filterJasa('Rumah Tangga', this)">🏠 Rumah Tangga</button>
+        <button class="btn-outline" onclick="filterJasa('Pendidikan', this)">📚 Pendidikan</button>
+    </div>
+</div>
+
+<div class="jasa-grid" id="jasaGrid"></div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalJasa">
+    <div class="modal">
+        <button class="modal-close" onclick="document.getElementById('modalJasa').classList.remove('open')">✕</button>
+        <div style="font-size:52px; margin-bottom:12px;" id="jEmoji"></div>
+        <div class="jasa-category" id="jKat"></div>
+        <h3 id="jNama"></h3>
+        <p style="font-size:14px; color:var(--muted); margin: 12px 0;" id="jDesc"></p>
+        <div style="display:flex; justify-content:space-between; margin-bottom:16px; font-size:14px;">
+            <span>👤 <strong id="jPenyedia"></strong></span>
+            <span>📍 <span id="jLokasi"></span></span>
+        </div>
+        <div style="background:var(--bg); border-radius:10px; padding:12px; margin-bottom:20px;">
+            <strong style="color:var(--blue);">Mulai dari <span id="jHarga"></span></strong>
+        </div>
+        <button class="form-btn">💬 Hubungi via WhatsApp</button>
+    </div>
+</div>
+
+<footer class="footer" style="margin-top:60px;">
+    <div class="footer-bottom"><p>© 2026 AsaHub · asahub.site</p></div>
+</footer>
+
+<script>
+const jasaData = [
+    { id:1, nama:'Montir Panggilan', kat:'Otomotif', emoji:'🔧', desc:'Perbaikan kendaraan roda 2 dan 4 di lokasi kamu. Berpengalaman 8 tahun.', penyedia:'Rudi Mekanik', lokasi:'Medan', harga:'Rp 50.000/jam' },
+    { id:2, nama:'Tukang Bangunan Harian', kat:'Konstruksi', emoji:'🏗️', desc:'Pengecatan, pemasangan keramik, renovasi rumah. Berpengalaman dan rapi.', penyedia:'Tim Bangunan Pak Hendra', lokasi:'Padang', harga:'Rp 150.000/hari' },
+    { id:3, nama:'Pembuatan Website', kat:'Teknologi', emoji:'💻', desc:'Website bisnis, landing page, toko online. Pengerjaan 3-7 hari kerja.', penyedia:'AsaHub IT Team', lokasi:'Online', harga:'Rp 500.000' },
+    { id:4, nama:'Desain Logo & Branding', kat:'Kreatif', emoji:'🎨', desc:'Desain logo profesional, brand identity, sosial media kit.', penyedia:'Studio Kreatif Nias', lokasi:'Online', harga:'Rp 200.000' },
+    { id:5, nama:'Jasa Cuci AC', kat:'Rumah Tangga', emoji:'❄️', desc:'Cuci, service, dan isi freon AC segala merk. Bergaransi.', penyedia:'AC Bersih Pro', lokasi:'Gunungsitoli', harga:'Rp 80.000/unit' },
+    { id:6, nama:'Les Privat SD-SMA', kat:'Pendidikan', emoji:'📚', desc:'Guru privat Matematika, IPA, Bahasa Inggris. Datang ke rumah.', penyedia:'Tutor Pintar', lokasi:'Teluk Dalam', harga:'Rp 75.000/sesi' },
+    { id:7, nama:'Sistem Stok & Kasir UMKM', kat:'Teknologi', emoji:'📊', desc:'Setup sistem manajemen stok dan kasir berbasis Excel/Google Sheets.', penyedia:'AsaHub IT Team', lokasi:'Online', harga:'Rp 250.000' },
+    { id:8, nama:'Foto & Video Produk', kat:'Kreatif', emoji:'📸', desc:'Foto produk profesional untuk marketplace dan media sosial.', penyedia:'Lens & Light Studio', lokasi:'Medan', harga:'Rp 300.000/sesi' },
+    { id:9, nama:'Perawatan Taman', kat:'Rumah Tangga', emoji:'🌿', desc:'Perawatan tanaman, potong rumput, dekorasi taman rumah/kantor.', penyedia:'Green Garden', lokasi:'Padang Sidimpuan', harga:'Rp 100.000/kunjungan' },
+];
+
+let filtered = [...jasaData];
+
+function renderJasa(list) {
+    const el = document.getElementById('jasaGrid');
+    el.innerHTML = list.map(j => `
+        <div class="jasa-card" onclick="showJasa(${j.id})">
+            <div class="jasa-category">${j.kat}</div>
+            <h3>${j.emoji} ${j.nama}</h3>
+            <p>${j.desc}</p>
+            <div class="jasa-meta">
+                <span>👤 ${j.penyedia}</span>
+                <span>📍 ${j.lokasi}</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <div class="jasa-price">${j.harga}</div>
+                <button class="btn-solid" style="padding:8px 16px; font-size:13px;" onclick="event.stopPropagation(); showJasa(${j.id})">Pesan</button>
+            </div>
+        </div>
+    `).join('');
+}
+
+function filterJasa(kat, btn) {
+    document.querySelectorAll('.navbar ~ div .btn-solid, .navbar ~ div .btn-outline').forEach(b => {
+        b.className = 'btn-outline'; 
+    });
+    btn.className = 'btn-solid';
+    filtered = kat === 'semua' ? jasaData : jasaData.filter(j => j.kat === kat);
+    renderJasa(filtered);
+}
+
+function showJasa(id) {
+    const j = jasaData.find(x => x.id === id);
+    document.getElementById('jEmoji').textContent = j.emoji;
+    document.getElementById('jKat').textContent = j.kat;
+    document.getElementById('jNama').textContent = j.nama;
+    document.getElementById('jDesc').textContent = j.desc;
+    document.getElementById('jPenyedia').textContent = j.penyedia;
+    document.getElementById('jLokasi').textContent = j.lokasi;
+    document.getElementById('jHarga').textContent = j.harga;
+    document.getElementById('modalJasa').classList.add('open');
+}
+
+document.getElementById('modalJasa').addEventListener('click', function(e) {
+    if (e.target === this) this.classList.remove('open');
+});
+
+renderJasa(jasaData);
+</script>
+</body>
+</html>
