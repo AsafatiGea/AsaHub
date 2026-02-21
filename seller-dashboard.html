@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seller Dashboard - AsaHub Marketplace</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="dashboard-wrapper">
+    <div class="sidebar-overlay" aria-hidden="true"></div>
+
+    <!-- ========== SIDEBAR ========== -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="sidebar-logo">
+          <span class="icon" aria-hidden="true">🛒</span>
+          <span>AsaHub</span>
+        </a>
+        <button type="button" class="sidebar-collapse-btn" aria-label="Ciutkan sidebar">«</button>
+        <button type="button" class="sidebar-close" aria-label="Tutup menu">&times;</button>
+      </div>
+      <nav class="sidebar-nav">
+        <ul>
+          <li><a href="#" data-section="section-dashboard" class="active"><span class="icon">📊</span><span>Dashboard</span></a></li>
+          <li><a href="#" data-section="section-my-products"><span class="icon">📦</span><span>Produk Saya</span></a></li>
+          <li><a href="#" data-section="section-add-product"><span class="icon">➕</span><span>Tambah Produk</span></a></li>
+          <li><a href="#" data-section="section-orders"><span class="icon">📋</span><span>Pesanan Masuk</span></a></li>
+          <li><a href="#" data-section="section-history"><span class="icon">📜</span><span>Riwayat Transaksi</span></a></li>
+          <li><a href="#" data-section="section-store"><span class="icon">🏪</span><span>Profil Toko</span></a></li>
+        </ul>
+      </nav>
+      <div class="sidebar-footer">
+        <a href="login.html" class="logout-btn"><span class="icon">🚪</span><span>Logout</span></a>
+      </div>
+    </aside>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main class="main-content">
+      <header class="top-navbar">
+        <div class="navbar-left">
+          <button type="button" class="sidebar-toggle" aria-label="Buka menu">☰</button>
+          <h1 class="page-title">Seller Dashboard</h1>
+        </div>
+        <div class="navbar-right">
+          <div class="user-badge">
+            <span class="avatar">S</span>
+            <span>Seller</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="content-area">
+        <!-- ---------- Section: Dashboard ---------- -->
+        <section id="section-dashboard" class="dashboard-section active">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <h3>Total Produk</h3>
+              <p class="value" id="seller-stat-products">0</p>
+            </div>
+            <div class="stat-card blue">
+              <h3>Total Penjualan</h3>
+              <p class="value" id="seller-stat-sales">0</p>
+            </div>
+            <div class="stat-card green">
+              <h3>Pendapatan Bulanan</h3>
+              <p class="value" id="seller-stat-income">Rp 0</p>
+            </div>
+          </div>
+          <div class="card">
+            <h2 class="card-title">Daftar Produk Saya</h2>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Nama Produk</th>
+                    <th>Harga</th>
+                    <th>Stok</th>
+                    <th>Terjual</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="seller-dashboard-products">
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---------- Section: Produk Saya ---------- -->
+        <section id="section-my-products" class="dashboard-section">
+          <div class="card">
+            <h2 class="card-title">Produk Saya</h2>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Nama Produk</th>
+                    <th>Harga</th>
+                    <th>Stok</th>
+                    <th>Terjual</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="seller-my-products-tbody">
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---------- Section: Tambah Produk (Form UI) ---------- -->
+        <section id="section-add-product" class="dashboard-section">
+          <div class="card">
+            <h2 class="card-title">Tambah Produk Baru</h2>
+            <p class="text-muted mb-0 mt-1">Form UI saja — siap dihubungkan backend.</p>
+            <form id="form-add-product" class="mt-1" style="max-width: 560px;">
+              <div class="form-group">
+                <label for="product-name">Nama Produk</label>
+                <input type="text" id="product-name" class="form-control" placeholder="Contoh: Laptop Gaming 15 inch" required>
+              </div>
+              <div class="form-group">
+                <label for="product-desc">Deskripsi</label>
+                <textarea id="product-desc" class="form-control" placeholder="Deskripsi produk..." rows="4"></textarea>
+              </div>
+              <div class="grid-2">
+                <div class="form-group">
+                  <label for="product-price">Harga (Rp)</label>
+                  <input type="number" id="product-price" class="form-control" placeholder="0" min="0" required>
+                </div>
+                <div class="form-group">
+                  <label for="product-stock">Stok</label>
+                  <input type="number" id="product-stock" class="form-control" placeholder="0" min="0" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="product-category">Kategori</label>
+                <select id="product-category" class="form-control">
+                  <option value="">Pilih kategori</option>
+                  <option value="elektronik">Elektronik</option>
+                  <option value="fashion">Fashion</option>
+                  <option value="olahraga">Olahraga</option>
+                  <option value="lainnya">Lainnya</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Foto Produk</label>
+                <input type="file" id="product-photo" class="form-control" accept="image/*">
+              </div>
+              <button type="submit" class="btn btn-primary">Simpan Produk</button>
+            </form>
+          </div>
+        </section>
+
+        <!-- ---------- Section: Pesanan Masuk ---------- -->
+        <section id="section-orders" class="dashboard-section">
+          <div class="card">
+            <h2 class="card-title">Pesanan Masuk</h2>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID Order</th>
+                    <th>Pembeli</th>
+                    <th>Produk</th>
+                    <th>Qty</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="seller-orders-tbody">
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---------- Section: Riwayat Transaksi ---------- -->
+        <section id="section-history" class="dashboard-section">
+          <div class="card">
+            <h2 class="card-title">Riwayat Transaksi</h2>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Pembeli</th>
+                    <th>Produk</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="seller-history-tbody">
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---------- Section: Profil Toko ---------- -->
+        <section id="section-store" class="dashboard-section">
+          <div class="card">
+            <h2 class="card-title">Profil Toko</h2>
+            <div class="profile-header">
+              <div class="profile-avatar" id="store-avatar">T</div>
+              <div class="profile-info">
+                <h2 id="store-name">Nama Toko</h2>
+                <p id="store-email" class="text-muted">email@toko.com</p>
+              </div>
+            </div>
+            <form id="form-store-profile" style="max-width: 560px;">
+              <div class="form-group">
+                <label for="store-name-input">Nama Toko</label>
+                <input type="text" id="store-name-input" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="store-desc">Deskripsi Toko</label>
+                <textarea id="store-desc" class="form-control" rows="4" placeholder="Deskripsi toko..."></textarea>
+              </div>
+              <div class="form-group">
+                <label for="store-address">Alamat</label>
+                <input type="text" id="store-address" class="form-control" placeholder="Alamat lengkap">
+              </div>
+              <div class="grid-2">
+                <div class="form-group">
+                  <label for="store-phone">Nomor Kontak</label>
+                  <input type="tel" id="store-phone" class="form-control" placeholder="08xxxxxxxxxx">
+                </div>
+                <div class="form-group">
+                  <label for="store-email-input">Email</label>
+                  <input type="email" id="store-email-input" class="form-control" placeholder="toko@email.com">
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Foto Profil Toko</label>
+                <input type="file" id="store-photo" class="form-control" accept="image/*">
+              </div>
+              <button type="submit" class="btn btn-primary">Simpan Profil</button>
+            </form>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="dashboard.js"></script>
+  <script>
+    (function () {
+      var DUMMY = window.AsaHubDashboard.DUMMY;
+      var formatRupiah = window.AsaHubDashboard.formatRupiah;
+
+      // Stats
+      var products = DUMMY.sellerProducts;
+      var orders = DUMMY.sellerOrders;
+      document.getElementById('seller-stat-products').textContent = products.length;
+      document.getElementById('seller-stat-sales').textContent = products.reduce(function (sum, p) { return sum + p.sold; }, 0);
+      document.getElementById('seller-stat-income').textContent = formatRupiah(13400000);
+
+      // Tabel produk (Dashboard + Produk Saya)
+      function productRow(p, i) {
+        return '<tr><td>' + (i + 1) + '</td><td>' + p.name + '</td><td>' + formatRupiah(p.price) +
+          '</td><td>' + p.stock + '</td><td>' + p.sold + '</td><td>' +
+          '<button type="button" class="btn btn-secondary btn-sm">Edit</button> ' +
+          '<button type="button" class="btn btn-danger btn-sm">Hapus</button></td></tr>';
+      }
+      var productsHtml = products.map(productRow).join('');
+      document.getElementById('seller-dashboard-products').innerHTML = productsHtml;
+      document.getElementById('seller-my-products-tbody').innerHTML = productsHtml;
+
+      // Pesanan masuk
+      var ordersHtml = orders.map(function (o) {
+        var c = o.status === 'Dikirim' ? 'badge-info' : 'badge-warning';
+        return '<tr><td>' + o.id + '</td><td>' + o.buyer + '</td><td>' + o.product + '</td><td>' + o.qty +
+          '</td><td>' + formatRupiah(o.total) + '</td><td><span class="badge ' + c + '">' + o.status + '</span></td></tr>';
+      }).join('');
+      document.getElementById('seller-orders-tbody').innerHTML = ordersHtml;
+      document.getElementById('seller-history-tbody').innerHTML = ordersHtml;
+
+      // Profil toko (isi dari dummy)
+      var store = DUMMY.storeProfile;
+      document.getElementById('store-name').textContent = store.name;
+      document.getElementById('store-email').textContent = store.email;
+      document.getElementById('store-name-input').value = store.name;
+      document.getElementById('store-desc').value = store.description;
+      document.getElementById('store-address').value = store.address;
+      document.getElementById('store-phone').value = store.phone;
+      document.getElementById('store-email-input').value = store.email;
+      document.getElementById('store-avatar').textContent = store.name.charAt(0);
+
+      // Form submit (prevent default, UI only)
+      document.getElementById('form-add-product').addEventListener('submit', function (e) {
+        e.preventDefault();
+        alert('Simpan produk — siap dihubungkan backend.');
+      });
+      document.getElementById('form-store-profile').addEventListener('submit', function (e) {
+        e.preventDefault();
+        document.getElementById('store-name').textContent = document.getElementById('store-name-input').value;
+        document.getElementById('store-email').textContent = document.getElementById('store-email-input').value;
+        document.getElementById('store-avatar').textContent = document.getElementById('store-name-input').value.charAt(0);
+        alert('Profil toko disimpan (dummy).');
+      });
+    })();
+  </script>
+</body>
+</html>

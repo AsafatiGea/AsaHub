@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - AsaHub Marketplace</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="dashboard-wrapper">
+    <!-- Overlay untuk menutup sidebar di mobile -->
+    <div class="sidebar-overlay" aria-hidden="true"></div>
+
+    <!-- ========== SIDEBAR ========== -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="sidebar-logo">
+          <span class="icon" aria-hidden="true">🛒</span>
+          <span>AsaHub</span>
+        </a>
+        <button type="button" class="sidebar-collapse-btn" aria-label="Ciutkan sidebar">«</button>
+        <button type="button" class="sidebar-close" aria-label="Tutup menu">&times;</button>
+      </div>
+      <nav class="sidebar-nav">
+        <ul>
+          <li><a href="#" data-section="section-dashboard" class="active"><span class="icon">📊</span><span>Dashboard</span></a></li>
+          <li><a href="#" data-section="section-users"><span class="icon">👥</span><span>Kelola User</span></a></li>
+          <li><a href="#" data-section="section-products"><span class="icon">📦</span><span>Kelola Produk</span></a></li>
+          <li><a href="#" data-section="section-orders"><span class="icon">📋</span><span>Kelola Order</span></a></li>
+          <li><a href="#" data-section="section-reports"><span class="icon">📈</span><span>Laporan</span></a></li>
+        </ul>
+      </nav>
+      <div class="sidebar-footer">
+        <a href="login.html" class="logout-btn"><span class="icon">🚪</span><span>Logout</span></a>
+      </div>
+    </aside>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main class="main-content">
+      <header class="top-navbar">
+        <div class="navbar-left">
+          <button type="button" class="sidebar-toggle" aria-label="Buka menu">☰</button>
+          <h1 class="page-title">Admin Dashboard</h1>
+        </div>
+        <div class="navbar-right">
+          <div class="user-badge">
+            <span class="avatar">A</span>
+            <span>Admin</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="content-area">
+        <!-- ---------- Section: Dashboard (utama) ---------- -->
+        <section id="section-dashboard" class="dashboard-section active">
+          <!-- Stat cards -->
+          <div class="stats-grid">
+            <div class="stat-card">
+              <h3>Total Users</h3>
+              <p class="value">1.248</p>
+            </div>
+            <div class="stat-card blue">
+              <h3>Total Sellers</h3>
+              <p class="value">89</p>
+            </div>
+            <div class="stat-card green">
+              <h3>Total Products</h3>
+              <p class="value">3.456</p>
+            </div>
+            <div class="stat-card purple">
+              <h3>Total Orders</h3>
+              <p class="value">12.890</p>
+            </div>
+          </div>
+
+          <!-- Grafik dummy -->
+          <div class="card">
+            <h2 class="card-title">Statistik Bulanan</h2>
+            <div class="chart-placeholder">
+              Grafik statistik (dummy) — siap dihubungkan chart library (Chart.js / ApexCharts)
+            </div>
+          </div>
+
+          <!-- Tabel daftar user -->
+          <div class="card">
+            <h2 class="card-title">Daftar User Terbaru</h2>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th>Bergabung</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-users-table">
+                  <!-- Diisi oleh JS atau static dummy -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---------- Section: Kelola User ---------- -->
+        <section id="section-users" class="dashboard-section">
+          <div class="card">
+            <h2 class="card-title">Kelola User</h2>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th>Bergabung</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="section-users-tbody">
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---------- Section: Kelola Produk ---------- -->
+        <section id="section-products" class="dashboard-section">
+          <div class="card">
+            <h2 class="card-title">Kelola Produk</h2>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Nama Produk</th>
+                    <th>Seller</th>
+                    <th>Harga</th>
+                    <th>Stok</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="section-products-tbody">
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---------- Section: Kelola Order ---------- -->
+        <section id="section-orders" class="dashboard-section">
+          <div class="card">
+            <h2 class="card-title">Kelola Order</h2>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID Order</th>
+                    <th>Customer</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Tanggal</th>
+                  </tr>
+                </thead>
+                <tbody id="section-orders-tbody">
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---------- Section: Laporan ---------- -->
+        <section id="section-reports" class="dashboard-section">
+          <div class="card">
+            <h2 class="card-title">Laporan</h2>
+            <p class="text-muted mb-0">Ringkasan laporan penjualan, user, dan produk. (Dummy — siap integrasi export PDF/Excel.)</p>
+            <div class="stats-grid mt-1">
+              <div class="stat-card"><h3>Penjualan Bulan Ini</h3><p class="value">Rp 245 Jt</p></div>
+              <div class="stat-card blue"><h3>User Baru</h3><p class="value">42</p></div>
+              <div class="stat-card green"><h3>Produk Baru</h3><p class="value">128</p></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="dashboard.js"></script>
+  <script>
+    // ---------- Render tabel Admin (dummy data dari dashboard.js) ----------
+    (function () {
+      var users = window.AsaHubDashboard.DUMMY.users;
+      var products = window.AsaHubDashboard.DUMMY.products;
+      var orders = window.AsaHubDashboard.DUMMY.orders;
+      var formatRupiah = window.AsaHubDashboard.formatRupiah;
+
+      // User table (dashboard + section users)
+      function renderUserRow(u, i) {
+        var statusClass = u.status === 'Aktif' ? 'badge-success' : 'badge-warning';
+        return '<tr>' +
+          '<td>' + (i + 1) + '</td>' +
+          '<td>' + u.name + '</td>' +
+          '<td>' + u.email + '</td>' +
+          '<td>' + u.role + '</td>' +
+          '<td><span class="badge ' + statusClass + '">' + u.status + '</span></td>' +
+          '<td>' + u.joinDate + '</td>' +
+          '<td>' +
+            '<button type="button" class="btn btn-warning btn-sm">Suspend</button> ' +
+            '<button type="button" class="btn btn-danger btn-sm">Hapus</button>' +
+          '</td></tr>';
+      }
+
+      var usersHtml = users.map(renderUserRow).join('');
+      var tbodyDashboard = document.getElementById('admin-users-table');
+      var tbodyUsers = document.getElementById('section-users-tbody');
+      if (tbodyDashboard) tbodyDashboard.innerHTML = usersHtml;
+      if (tbodyUsers) tbodyUsers.innerHTML = usersHtml;
+
+      // Products table
+      var productsHtml = products.map(function (p, i) {
+        var statusClass = p.status === 'Aktif' ? 'badge-success' : 'badge-danger';
+        return '<tr><td>' + (i + 1) + '</td><td>' + p.name + '</td><td>' + p.seller + '</td><td>' +
+          formatRupiah(p.price) + '</td><td>' + p.stock + '</td><td><span class="badge ' + statusClass + '">' + p.status + '</span></td></tr>';
+      }).join('');
+      var productsTbody = document.getElementById('section-products-tbody');
+      if (productsTbody) productsTbody.innerHTML = productsHtml;
+
+      // Orders table
+      var ordersHtml = orders.map(function (o) {
+        var statusClass = o.status === 'Selesai' ? 'badge-success' : (o.status === 'Dikirim' ? 'badge-info' : 'badge-warning');
+        return '<tr><td>' + o.id + '</td><td>' + o.customer + '</td><td>' + formatRupiah(o.total) +
+          '</td><td><span class="badge ' + statusClass + '">' + o.status + '</span></td><td>' + o.date + '</td></tr>';
+      }).join('');
+      var ordersTbody = document.getElementById('section-orders-tbody');
+      if (ordersTbody) ordersTbody.innerHTML = ordersHtml;
+    })();
+  </script>
+</body>
+</html>
