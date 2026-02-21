@@ -22,7 +22,7 @@
         <a href="login.html" class="btn-outline">Masuk</a>
         <a href="daftar.html" class="btn-solid">Daftar</a>
     </div>
-    <button class="hamburger" onclick="toggleMenu()">☰</button>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Buka menu">☰</button>
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
@@ -117,8 +117,8 @@
             <div class="footer-col">
                 <h4>AsaHub</h4>
                 <a href="tentang.html">Tentang Kami</a>
-                <a href="#">Kontak</a>
-                <a href="#">Kebijakan Privasi</a>
+                <a href="#" title="Segera hadir">Kontak</a>
+                <a href="#" title="Segera hadir">Kebijakan Privasi</a>
             </div>
         </div>
     </div>
@@ -182,11 +182,15 @@ function filterProducts() {
     var search = document.getElementById('searchInput').value.toLowerCase();
     var min = parseInt(document.getElementById('priceMin').value, 10) || 0;
     var max = parseInt(document.getElementById('priceMax').value, 10) || 999999999;
+    var katMap = { f2: 'Fashion', f3: 'Makanan & Minuman', f4: 'Otomotif', f5: 'Elektronik', f6: 'Kerajinan' };
+    var categories = [];
+    for (var key in katMap) { if (document.getElementById(key).checked) categories.push(katMap[key]); }
     allProducts = getAllProducts();
     var filtered = allProducts.filter(function(p) {
         var matchSearch = p.nama.toLowerCase().indexOf(search) !== -1 || p.penjual.toLowerCase().indexOf(search) !== -1;
         var matchPrice = p.harga >= min && p.harga <= max;
-        return matchSearch && matchPrice;
+        var matchCat = categories.length === 0 || categories.indexOf(p.kategori) !== -1;
+        return matchSearch && matchPrice && matchCat;
     });
     renderProducts(filtered);
 }

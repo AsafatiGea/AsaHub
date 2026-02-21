@@ -29,11 +29,12 @@ html { scroll-behavior: smooth; }
 
 body {
     font-family: 'DM Sans', sans-serif;
-    background: yellow;
+    background: var(--bg);
     color: var(--text);
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
 }
 
 h1, h2, h3, h4 { font-family: 'Syne', sans-serif; }

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Komunitas & Ulasan - AsaHub</title>
+    <link rel="icon" type="image/png" href="img/logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
@@ -374,9 +375,9 @@
         <a href="login.html" class="btn-outline">Masuk</a>
         <a href="daftar.html" class="btn-solid">Daftar</a>
     </div>
-    <button class="hamburger" onclick="document.getElementById('mm').classList.toggle('open')">☰</button>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Buka menu">☰</button>
 </nav>
-<div class="mobile-menu" id="mm">
+<div class="mobile-menu" id="mobileMenu">
     <a href="index.html">Marketplace</a>
     <a href="jasa.html">Jasa</a>
     <a href="edukasi.html">Edukasi</a>
@@ -559,6 +560,9 @@
 </footer>
 
 <script>
+function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+}
 // ===== STORAGE KEYS =====
 const REVIEWS_KEY = 'asahub_reviews';
 const VISITORS_KEY = 'asahub_total_visitors';

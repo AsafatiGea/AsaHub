@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edukasi - AsaHub</title>
+    <link rel="icon" type="image/png" href="img/logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -21,9 +22,9 @@
         <a href="login.html" class="btn-outline">Masuk</a>
         <a href="daftar.html" class="btn-solid">Daftar</a>
     </div>
-    <button class="hamburger" onclick="document.getElementById('mm').classList.toggle('open')">☰</button>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Buka menu">☰</button>
 </nav>
-<div class="mobile-menu" id="mm">
+<div class="mobile-menu" id="mobileMenu">
     <a href="index.html">Marketplace</a>
     <a href="jasa.html">Jasa</a>
     <a href="edukasi.html">Edukasi</a>
@@ -119,15 +120,45 @@
 </div>
 
 <footer class="footer">
-    <div class="footer-bottom"><p>© 2026 AsaHub · asahub.site · Dibuat dengan ❤️ oleh Asafati Gea</p></div>
+    <div class="footer-top">
+        <div class="footer-brand">
+            <div class="nav-logo" style="font-size:24px;">Asa<span>Hub</span></div>
+            <p>Pusat Harapan — Menyatukan individu dan brand dalam ekosistem bisnis yang stabil dan berkembang.</p>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col">
+                <h4>Platform</h4>
+                <a href="index.html">Marketplace</a>
+                <a href="jasa.html">Jasa & Kerja</a>
+                <a href="edukasi.html">Edukasi</a>
+            </div>
+            <div class="footer-col">
+                <h4>Akun</h4>
+                <a href="daftar.html">Daftar Penjual</a>
+                <a href="login.html">Masuk</a>
+                <a href="dasboard.html">Dashboard</a>
+            </div>
+            <div class="footer-col">
+                <h4>AsaHub</h4>
+                <a href="tentang.html">Tentang Kami</a>
+                <a href="komunitas.html">Komunitas</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 AsaHub · asahub.site · Dibuat dengan ❤️ oleh Asafati Gea</p>
+    </div>
 </footer>
 
 <script>
 // Jika sudah login, tampilkan link Dashboard
 const userEdu = JSON.parse(localStorage.getItem('asahub_current_user') || 'null');
+function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+}
 if (userEdu) {
     document.getElementById('navAuth').innerHTML = '<a href="dasboard.html" class="btn-solid">Dashboard</a>';
-    var mm = document.getElementById('mm');
+    var mm = document.getElementById('mobileMenu');
     if (mm) {
         var links = mm.querySelectorAll('a[href="login.html"], a[href="daftar.html"]');
         links.forEach(function(a) { a.style.display = 'none'; });
