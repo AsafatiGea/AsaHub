@@ -14,7 +14,7 @@
     <a href="index.html" class="nav-logo">Asa<span>Hub</span></a>
     <div class="nav-links">
         <a href="index.html">Marketplace</a>
-        <a href="jasa.html" style="color:var(--blue); font-weight:700;">Jasa</a>
+        <a href="jasa.html" style="color:var(--primary); font-weight:700;">Jasa</a>
         <a href="edukasi.html">Edukasi</a>
         <a href="tentang.html">Tentang</a>
     </div>
@@ -65,8 +65,8 @@
             <span>👤 <strong id="jPenyedia"></strong></span>
             <span>📍 <span id="jLokasi"></span></span>
         </div>
-        <div style="background:var(--bg); border-radius:10px; padding:12px; margin-bottom:20px;">
-            <strong style="color:var(--blue);">Mulai dari <span id="jHarga"></span></strong>
+        <div style="background:var(--gray-100); border-radius:10px; padding:12px; margin-bottom:20px;">
+            <strong style="color:var(--primary);">Mulai dari <span id="jHarga"></span></strong>
         </div>
         <a href="https://wa.me/6282165713526" id="btnWaJasa" target="_blank" class="form-btn" style="display:block; text-align:center; text-decoration:none; color:white;">💬 Hubungi via WhatsApp</a>
     </div>
@@ -99,18 +99,25 @@
         </div>
     </div>
     <div class="footer-bottom">
-        <p>© 2026 AsaHub · asahub.site · Dibuat dengan ❤️ oleh Asafati Gea</p>
+        <p> 2026 AsaHub · asahub.site · Dibuat dengan oleh Asafati Gea</p>
     </div>
 </footer>
 
 <script>
+// Fungsi toggleMenu untuk mobile menu
+function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+}
+
 // Jika sudah login, tampilkan link Dashboard
 const userJasa = JSON.parse(localStorage.getItem('asahub_current_user') || 'null');
 if (userJasa) {
     document.getElementById('navAuth').innerHTML = '<a href="dasboard.html" class="btn-solid">Dashboard</a>';
-    document.querySelector('#mobileMenu a[href="login.html"]').style.display = 'none';
-    document.querySelector('#mobileMenu a[href="daftar.html"]').style.display = 'none';
-    var dashJasa = document.getElementById('mobileDashboardJasa');
+    const loginLink = document.querySelector('#mobileMenu a[href="login.html"]');
+    const daftarLink = document.querySelector('#mobileMenu a[href="daftar.html"]');
+    if (loginLink) loginLink.style.display = 'none';
+    if (daftarLink) daftarLink.style.display = 'none';
+    const dashJasa = document.getElementById('mobileDashboardJasa');
     if (dashJasa) dashJasa.style.display = 'block';
 }
 
