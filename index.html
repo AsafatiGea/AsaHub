@@ -3,22 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AsaHub - Pusat Harapan</title>
+    <title>AsaHub - Marketplace</title>
     <link rel="icon" type="image/png" href="img/logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- NAVBAR -->
 <nav class="navbar">
     <a href="index.html" class="nav-logo">Asa<span>Hub</span></a>
     <div class="nav-links">
-        <a href="#tentang">Tentang</a>
-        <a href="marketplace.html">Marketplace</a>
+        <a href="index.html" style="color:var(--blue); font-weight:700;">Marketplace</a>
         <a href="jasa.html">Jasa</a>
         <a href="edukasi.html">Edukasi</a>
-        <a href="komunitas.html">Komunitas ⭐</a>
+        <a href="tentang.html">Tentang</a>
     </div>
     <div class="nav-auth" id="navAuth">
         <a href="login.html" class="btn-outline">Masuk</a>
@@ -27,129 +25,76 @@
     <button class="hamburger" onclick="toggleMenu()">☰</button>
 </nav>
 
-<!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
-    <a href="#tentang" onclick="toggleMenu()">Tentang</a>
-    <a href="marketplace.html" onclick="toggleMenu()">Marketplace</a>
+    <a href="index.html" onclick="toggleMenu()">Marketplace</a>
     <a href="jasa.html" onclick="toggleMenu()">Jasa</a>
     <a href="edukasi.html" onclick="toggleMenu()">Edukasi</a>
-    <a href="komunitas.html" onclick="toggleMenu()">Komunitas ⭐</a>
+    <a href="tentang.html" onclick="toggleMenu()">Tentang</a>
     <a href="login.html" onclick="toggleMenu()">Masuk</a>
     <a href="daftar.html" onclick="toggleMenu()">Daftar</a>
     <a href="dasboard.html" onclick="toggleMenu()" id="mobileDashboard" style="display:none;">Dashboard</a>
 </div>
 
-<!-- HERO -->
-<section class="hero">
-    <div class="hero-badge">🌟 Platform Ekosistem Bisnis Indonesia</div>
-    <h1 class="hero-title">Pusat <span class="highlight">Harapan</span><br>untuk Bisnis Anda</h1>
-    <p class="hero-sub">AsaHub menyatukan marketplace, jasa, teknologi, dan edukasi dalam satu ekosistem terpadu — membantu individu dan brand bertumbuh bersama.</p>
-    <div class="hero-btns">
-        <a href="daftar.html" class="btn-solid big">Mulai Gratis</a>
-        <a href="marketplace.html" class="btn-ghost big">Jelajahi Marketplace →</a>
-    </div>
-    <div class="hero-stats">
-        <div class="stat"><span class="stat-num">500+</span><span class="stat-label">Penjual Aktif</span></div>
-        <div class="stat-divider"></div>
-        <div class="stat"><span class="stat-num">2.000+</span><span class="stat-label">Produk</span></div>
-        <div class="stat-divider"></div>
-        <div class="stat"><span class="stat-num">10rb+</span><span class="stat-label">Pengguna</span></div>
-    </div>
-</section>
+<div class="page-header">
+    <h1>Marketplace AsaHub</h1>
+    <p>Temukan ribuan produk dari penjual terpercaya di seluruh Indonesia</p>
+</div>
 
-<!-- FITUR UTAMA -->
-<section class="features" id="tentang">
-    <div class="section-label">Apa itu AsaHub?</div>
-    <h2 class="section-title">Semua yang Kamu Butuhkan,<br>Dalam Satu Tempat</h2>
-    <div class="features-grid">
-        <div class="feature-card">
-            <div class="feature-icon">🛒</div>
-            <h3>Marketplace</h3>
-            <p>Jual dan beli produk dari berbagai kategori — fashion, otomotif, properti, dan lebih banyak lagi.</p>
-            <a href="marketplace.html" class="feature-link">Lihat Marketplace →</a>
+<div class="marketplace-layout">
+    <aside class="sidebar">
+        <div class="sidebar-box">
+            <h3>Kategori</h3>
+            <div class="filter-item"><input type="checkbox" id="f1" checked onchange="filterProducts()"><label for="f1">Semua</label></div>
+            <div class="filter-item"><input type="checkbox" id="f2" onchange="filterProducts()"><label for="f2">👕 Fashion</label></div>
+            <div class="filter-item"><input type="checkbox" id="f3" onchange="filterProducts()"><label for="f3">☕ Makanan & Minuman</label></div>
+            <div class="filter-item"><input type="checkbox" id="f4" onchange="filterProducts()"><label for="f4">🚗 Otomotif</label></div>
+            <div class="filter-item"><input type="checkbox" id="f5" onchange="filterProducts()"><label for="f5">📱 Elektronik</label></div>
+            <div class="filter-item"><input type="checkbox" id="f6" onchange="filterProducts()"><label for="f6">🎁 Kerajinan</label></div>
         </div>
-        <div class="feature-card">
-            <div class="feature-icon">🔧</div>
-            <h3>Platform Jasa</h3>
-            <p>Temukan tukang, mekanik, desainer, dan profesional lainnya. Atau tawarkan keahlianmu sendiri.</p>
-            <a href="jasa.html" class="feature-link">Lihat Jasa →</a>
+        <div class="sidebar-box">
+            <h3>Rentang Harga</h3>
+            <div class="form-group">
+                <label>Min (Rp)</label>
+                <input type="number" id="priceMin" placeholder="0" oninput="filterProducts()" style="font-size:13px; padding: 8px 12px;">
+            </div>
+            <div class="form-group">
+                <label>Max (Rp)</label>
+                <input type="number" id="priceMax" placeholder="10.000.000" oninput="filterProducts()" style="font-size:13px; padding: 8px 12px;">
+            </div>
         </div>
-        <div class="feature-card">
-            <div class="feature-icon">💻</div>
-            <h3>Teknologi UMKM</h3>
-            <p>Solusi website, sistem stok, dan aplikasi sederhana untuk membantu UMKM go digital.</p>
-            <a href="#" class="feature-link">Pelajari Lebih →</a>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon">📚</div>
-            <h3>Edukasi & Mentoring</h3>
-            <p>Podcast, pelatihan bisnis, dan mentoring langsung dari pelaku usaha berpengalaman.</p>
-            <a href="edukasi.html" class="feature-link">Mulai Belajar →</a>
-        </div>
-    </div>
-</section>
+        <a href="dasboard.html" class="btn-solid" style="display:block; text-align:center;">+ Jual Produk</a>
+    </aside>
 
-<!-- STORY PENDIRI -->
-<section class="founder">
-    <div class="founder-img">
-         <img src="img/pendiri.jpg" alt="Foto Asafati Gea" class="founder-avatar">
-    </div>
-    <div class="founder-text">
-        <div class="section-label">Kisah Pendiri</div>
-        <h2>Dari Anak Desa Nias<br>ke Ekosistem Digital</h2>
-        <p>Saya, <strong>Asafati Gea</strong>, lahir di Sihare'o, Afulu, Nias. Sejak SD sudah mulai berjualan, SMP mengangkut barang, SMA membuka warung. Saya percaya bahwa setiap orang berhak mendapat akses ke peluang bisnis yang adil.</p>
-        <p>AsaHub lahir dari pengalaman itu — <em>Asa</em> berarti harapan, <em>Hub</em> berarti pusat. Ini bukan sekadar website, ini adalah gerakan pemberdayaan.</p>
-        <div class="founder-values">
-            <span>💬 Public Speaking</span>
-            <span>🤝 Relasi Kuat</span>
-            <span>💪 Mental Tangguh</span>
-            <span>📈 Jiwa Wirausaha</span>
+    <div class="products-area">
+        <div class="products-toolbar">
+            <span id="produkCount">Menampilkan semua produk</span>
+            <div class="search-bar">
+                <span>🔍</span>
+                <input type="text" placeholder="Cari produk..." id="searchInput" oninput="filterProducts()">
+            </div>
         </div>
+        <div class="products-grid" id="productsGrid"></div>
     </div>
-</section>
+</div>
 
-<!-- CARA KERJA -->
-<section class="how-it-works">
-    <div class="section-label">Cara Kerja</div>
-    <h2 class="section-title">Mulai Berjualan di AsaHub</h2>
-    <div class="steps">
-        <div class="step">
-            <div class="step-num">01</div>
-            <h3>Daftar Akun</h3>
-            <p>Buat akun penjual gratis dengan verifikasi identitas sederhana.</p>
+<div class="modal-overlay" id="modalDetail">
+    <div class="modal">
+        <button class="modal-close" onclick="closeModal('modalDetail')">✕</button>
+        <div style="text-align:center; font-size: 64px; margin-bottom: 16px;" id="detailEmoji">📦</div>
+        <h3 id="detailNama">-</h3>
+        <p style="font-size:13px; color:var(--muted); margin-bottom: 4px;" id="detailKategori">-</p>
+        <p style="font-family:'Syne',sans-serif; font-size:26px; font-weight:800; color:var(--blue); margin: 12px 0;" id="detailHarga">-</p>
+        <p style="font-size:14px; color:var(--muted); margin-bottom: 16px;" id="detailDeskripsi">-</p>
+        <div style="font-size:13px; color:var(--muted); margin-bottom: 20px;">
+            👤 Dijual oleh: <strong id="detailPenjual">-</strong> · Stok: <strong id="detailStok">-</strong>
         </div>
-        <div class="step-arrow">→</div>
-        <div class="step">
-            <div class="step-num">02</div>
-            <h3>Tambah Produk</h3>
-            <p>Upload produk lengkap dengan foto, deskripsi, dan harga.</p>
-        </div>
-        <div class="step-arrow">→</div>
-        <div class="step">
-            <div class="step-num">03</div>
-            <h3>Daftarkan Rekening</h3>
-            <p>Tambahkan rekening bank atau dompet digital untuk menerima pembayaran.</p>
-        </div>
-        <div class="step-arrow">→</div>
-        <div class="step">
-            <div class="step-num">04</div>
-            <h3>Mulai Berjualan</h3>
-            <p>Produk langsung tampil di marketplace dan siap dibeli.</p>
-        </div>
+        <div id="detailRekening" style="background:var(--bg); border-radius:10px; padding:14px; margin-bottom:20px; font-size:14px;"></div>
+        <a href="https://wa.me/6282165713526" id="btnBeli" target="_blank" class="form-btn" style="display:block; text-align:center; text-decoration:none; color:white;">
+            💬 Hubungi Penjual via WhatsApp
+        </a>
     </div>
-    <div style="text-align:center; margin-top: 50px;">
-        <a href="daftar.html" class="btn-solid big">Daftar Sekarang — Gratis</a>
-    </div>
-</section>
+</div>
 
-<!-- CTA BANNER -->
-<section class="cta-banner">
-    <h2>Bergabung dengan Ribuan Penjual di AsaHub</h2>
-    <p>Mulai perjalanan bisnismu hari ini. Gratis untuk semua.</p>
-    <a href="daftar.html" class="btn-white big">Mulai Sekarang</a>
-</section>
-
-<!-- FOOTER -->
 <footer class="footer">
     <div class="footer-top">
         <div class="footer-brand">
@@ -159,7 +104,7 @@
         <div class="footer-links">
             <div class="footer-col">
                 <h4>Platform</h4>
-                <a href="marketplace.html">Marketplace</a>
+                <a href="index.html">Marketplace</a>
                 <a href="jasa.html">Jasa & Kerja</a>
                 <a href="edukasi.html">Edukasi</a>
             </div>
@@ -171,7 +116,7 @@
             </div>
             <div class="footer-col">
                 <h4>AsaHub</h4>
-                <a href="#tentang">Tentang Kami</a>
+                <a href="tentang.html">Tentang Kami</a>
                 <a href="#">Kontak</a>
                 <a href="#">Kebijakan Privasi</a>
             </div>
@@ -183,18 +128,92 @@
 </footer>
 
 <script>
-function toggleMenu() {
-    const m = document.getElementById('mobileMenu');
-    m.classList.toggle('open');
-}
-// Jika sudah login, tampilkan link Dashboard
-const user = JSON.parse(localStorage.getItem('asahub_current_user') || 'null');
+function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+document.getElementById('modalDetail').addEventListener('click', function(e) {
+    if (e.target === this) closeModal('modalDetail');
+});
+
+var user = JSON.parse(localStorage.getItem('asahub_current_user') || 'null');
 if (user) {
     document.getElementById('navAuth').innerHTML = '<a href="dasboard.html" class="btn-solid">Dashboard</a>';
-    document.querySelector('#mobileMenu a[href="login.html"]').style.display = 'none';
-    document.querySelector('#mobileMenu a[href="daftar.html"]').style.display = 'none';
-    document.getElementById('mobileDashboard').style.display = 'block';
+    var ml = document.querySelectorAll('#mobileMenu a[href="login.html"], #mobileMenu a[href="daftar.html"]');
+    ml.forEach(function(a) { a.style.display = 'none'; });
+    var md = document.getElementById('mobileDashboard');
+    if (md) md.style.display = 'block';
 }
+
+var defaultProducts = [
+    { id: 1, nama: 'Kemeja Batik Nias', harga: 120000, stok: 10, kategori: 'Fashion', emoji: '👕', penjual: 'Toko Asafati', email: 'demo@asahub.site', deskripsi: 'Kemeja batik motif khas Nias, bahan katun premium, tersedia berbagai ukuran.' },
+    { id: 2, nama: 'Kopi Nias Premium', harga: 75000, stok: 50, kategori: 'Makanan & Minuman', emoji: '☕', penjual: 'Toko Asafati', email: 'demo@asahub.site', deskripsi: 'Kopi arabika pilihan dari dataran tinggi Nias, diproses dengan metode honey.' },
+    { id: 3, nama: 'Tas Rotan Anyaman', harga: 255000, stok: 5, kategori: 'Kerajinan', emoji: '🎁', penjual: 'Kerajinan Nusantara', email: 'nusantara@asahub.site', deskripsi: 'Tas rotan anyaman tangan, kuat dan estetis. Cocok untuk kasual maupun formal.' },
+    { id: 4, nama: 'Minyak Kelapa Murni', harga: 45000, stok: 30, kategori: 'Makanan & Minuman', emoji: '🍱', penjual: 'UMKM Nias Barat', email: 'nias@asahub.site', deskripsi: 'Minyak kelapa murni cold-pressed, tanpa bahan kimia.' },
+    { id: 5, nama: 'Aksesori HP Lokal', harga: 35000, stok: 100, kategori: 'Elektronik', emoji: '📱', penjual: 'TechHub Store', email: 'tech@asahub.site', deskripsi: 'Case, charger, dan aksesori smartphone berbagai merk.' },
+    { id: 6, nama: 'Sarung Tenun NTT', harga: 185000, stok: 8, kategori: 'Fashion', emoji: '👕', penjual: 'Tenun Nusantara', email: 'tenun@asahub.site', deskripsi: 'Sarung tenun tangan motif NTT, kualitas premium.' },
+];
+
+function getAllProducts() {
+    var market = JSON.parse(localStorage.getItem('asahub_marketplace') || '[]');
+    return defaultProducts.concat(market);
+}
+
+var allProducts = getAllProducts();
+
+function renderProducts(list) {
+    var grid = document.getElementById('productsGrid');
+    document.getElementById('produkCount').textContent = 'Menampilkan ' + list.length + ' produk';
+    if (!list.length) {
+        grid.innerHTML = '<p style="color:var(--muted); grid-column:1/-1; text-align:center; padding:60px 0;">Tidak ada produk yang sesuai.</p>';
+        return;
+    }
+    grid.innerHTML = list.map(function(p) {
+        return '<div class="product-card" onclick="showDetail(' + p.id + ')">' +
+            '<div class="product-img">' + p.emoji + '</div>' +
+            '<div class="product-info">' +
+            '<h4>' + p.nama + '</h4>' +
+            '<div class="product-seller">oleh ' + p.penjual + '</div>' +
+            '<div class="product-price">Rp ' + p.harga.toLocaleString('id-ID') + '</div>' +
+            '<button class="btn-solid" onclick="event.stopPropagation(); showDetail(' + p.id + ')">Lihat Detail</button>' +
+            '</div></div>';
+    }).join('');
+}
+
+function filterProducts() {
+    var search = document.getElementById('searchInput').value.toLowerCase();
+    var min = parseInt(document.getElementById('priceMin').value, 10) || 0;
+    var max = parseInt(document.getElementById('priceMax').value, 10) || 999999999;
+    allProducts = getAllProducts();
+    var filtered = allProducts.filter(function(p) {
+        var matchSearch = p.nama.toLowerCase().indexOf(search) !== -1 || p.penjual.toLowerCase().indexOf(search) !== -1;
+        var matchPrice = p.harga >= min && p.harga <= max;
+        return matchSearch && matchPrice;
+    });
+    renderProducts(filtered);
+}
+
+function showDetail(id) {
+    var p = getAllProducts().find(function(x) { return x.id === id; });
+    if (!p) return;
+    document.getElementById('detailEmoji').textContent = p.emoji;
+    document.getElementById('detailNama').textContent = p.nama;
+    document.getElementById('detailKategori').textContent = p.kategori;
+    document.getElementById('detailHarga').textContent = 'Rp ' + p.harga.toLocaleString('id-ID');
+    document.getElementById('detailDeskripsi').textContent = p.deskripsi || 'Tidak ada deskripsi.';
+    document.getElementById('detailPenjual').textContent = p.penjual;
+    document.getElementById('detailStok').textContent = p.stok;
+    var rek = JSON.parse(localStorage.getItem('asahub_rekening_' + p.email) || '[]');
+    var rekEl = document.getElementById('detailRekening');
+    if (rek.length) {
+        rekEl.innerHTML = '<strong>💳 Cara Bayar:</strong><br>' + rek.map(function(r) { return '🏦 ' + r.jenis + ' · ' + r.nomor + ' · a.n. ' + r.nama; }).join('<br>');
+    } else {
+        rekEl.innerHTML = '💬 Hubungi penjual untuk info pembayaran.';
+    }
+    var waText = encodeURIComponent('Halo, saya tertarik dengan produk: ' + p.nama + '\n\n*' + p.nama + '* - Rp ' + p.harga.toLocaleString('id-ID'));
+    document.getElementById('btnBeli').href = 'https://wa.me/6282165713526?text=' + waText;
+    document.getElementById('modalDetail').classList.add('open');
+}
+
+renderProducts(allProducts);
 </script>
 </body>
 </html>

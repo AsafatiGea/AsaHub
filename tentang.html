@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang - AsaHub</title>
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="index.html" class="nav-logo">Asa<span>Hub</span></a>
+    <div class="nav-links">
+        <a href="index.html">Marketplace</a>
+        <a href="jasa.html">Jasa</a>
+        <a href="edukasi.html">Edukasi</a>
+        <a href="tentang.html" style="color:var(--blue); font-weight:700;">Tentang</a>
+    </div>
+    <div class="nav-auth" id="navAuth">
+        <a href="login.html" class="btn-outline">Masuk</a>
+        <a href="daftar.html" class="btn-solid">Daftar</a>
+    </div>
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+    <a href="index.html" onclick="toggleMenu()">Marketplace</a>
+    <a href="jasa.html" onclick="toggleMenu()">Jasa</a>
+    <a href="edukasi.html" onclick="toggleMenu()">Edukasi</a>
+    <a href="tentang.html" onclick="toggleMenu()">Tentang</a>
+    <a href="login.html" onclick="toggleMenu()">Masuk</a>
+    <a href="daftar.html" onclick="toggleMenu()">Daftar</a>
+    <a href="dasboard.html" onclick="toggleMenu()" id="mobileDashboard" style="display:none;">Dashboard</a>
+</div>
+
+<section class="features" id="tentang">
+    <div class="section-label">Tentang AsaHub</div>
+    <h2 class="section-title">Semua yang Kamu Butuhkan,<br>Dalam Satu Tempat</h2>
+    <p style="text-align:center; max-width:600px; margin:0 auto 40px; color:var(--muted); font-size:16px;">AsaHub menyatukan marketplace, jasa, teknologi, dan edukasi dalam satu ekosistem terpadu — membantu individu dan brand bertumbuh bersama.</p>
+</section>
+
+<section class="founder">
+    <div class="founder-img">
+        <img src="img/pendiri.jpg" alt="Foto Asafati Gea" class="founder-avatar">
+    </div>
+    <div class="founder-text">
+        <div class="section-label">Kisah Pendiri</div>
+        <h2>Dari Anak Desa Nias<br>ke Ekosistem Digital</h2>
+        <p>Saya, <strong>Asafati Gea</strong>, lahir di Sihare'o, Afulu, Nias. Sejak SD sudah mulai berjualan, SMP mengangkut barang, SMA membuka warung. Saya percaya bahwa setiap orang berhak mendapat akses ke peluang bisnis yang adil.</p>
+        <p>AsaHub lahir dari pengalaman itu — <em>Asa</em> berarti harapan, <em>Hub</em> berarti pusat. Ini bukan sekadar website, ini adalah gerakan pemberdayaan.</p>
+        <div class="founder-values">
+            <span>💬 Public Speaking</span>
+            <span>🤝 Relasi Kuat</span>
+            <span>💪 Mental Tangguh</span>
+            <span>📈 Jiwa Wirausaha</span>
+        </div>
+    </div>
+</section>
+
+<section class="how-it-works">
+    <div class="section-label">Cara Kerja</div>
+    <h2 class="section-title">Mulai Berjualan di AsaHub</h2>
+    <div class="steps">
+        <div class="step">
+            <div class="step-num">01</div>
+            <h3>Daftar Akun</h3>
+            <p>Buat akun penjual gratis dengan verifikasi identitas sederhana.</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step">
+            <div class="step-num">02</div>
+            <h3>Tambah Produk</h3>
+            <p>Upload produk lengkap dengan foto, deskripsi, dan harga.</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step">
+            <div class="step-num">03</div>
+            <h3>Daftarkan Rekening</h3>
+            <p>Tambahkan rekening bank atau dompet digital untuk menerima pembayaran.</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step">
+            <div class="step-num">04</div>
+            <h3>Mulai Berjualan</h3>
+            <p>Produk langsung tampil di marketplace dan siap dibeli.</p>
+        </div>
+    </div>
+    <div style="text-align:center; margin-top: 50px;">
+        <a href="daftar.html" class="btn-solid big">Daftar Sekarang — Gratis</a>
+    </div>
+</section>
+
+<section class="cta-banner">
+    <h2>Bergabung dengan Ribuan Penjual di AsaHub</h2>
+    <p>Mulai perjalanan bisnismu hari ini. Gratis untuk semua.</p>
+    <a href="daftar.html" class="btn-white big">Mulai Sekarang</a>
+</section>
+
+<footer class="footer">
+    <div class="footer-top">
+        <div class="footer-brand">
+            <div class="nav-logo" style="font-size:24px;">Asa<span>Hub</span></div>
+            <p>Pusat Harapan — Menyatukan individu dan brand dalam ekosistem bisnis yang stabil dan berkembang.</p>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col">
+                <h4>Platform</h4>
+                <a href="index.html">Marketplace</a>
+                <a href="jasa.html">Jasa & Kerja</a>
+                <a href="edukasi.html">Edukasi</a>
+            </div>
+            <div class="footer-col">
+                <h4>Akun</h4>
+                <a href="daftar.html">Daftar Penjual</a>
+                <a href="login.html">Masuk</a>
+                <a href="dasboard.html">Dashboard</a>
+            </div>
+            <div class="footer-col">
+                <h4>AsaHub</h4>
+                <a href="tentang.html">Tentang Kami</a>
+                <a href="#">Kontak</a>
+                <a href="#">Kebijakan Privasi</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 AsaHub · asahub.site · Dibuat dengan ❤️ oleh Asafati Gea</p>
+    </div>
+</footer>
+
+<script>
+function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+}
+var user = JSON.parse(localStorage.getItem('asahub_current_user') || 'null');
+if (user) {
+    document.getElementById('navAuth').innerHTML = '<a href="dasboard.html" class="btn-solid">Dashboard</a>';
+    var ml = document.querySelectorAll('#mobileMenu a[href="login.html"], #mobileMenu a[href="daftar.html"]');
+    ml.forEach(function(a) { a.style.display = 'none'; });
+    var md = document.getElementById('mobileDashboard');
+    if (md) md.style.display = 'block';
+}
+</script>
+</body>
+</html>
