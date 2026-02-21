@@ -7,6 +7,8 @@
     <link rel="icon" type="image/png" href="img/logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <!-- Supabase JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
@@ -46,29 +48,29 @@
     <div class="mobile-search-container">
         <div class="mobile-search-bar">
             <span class="search-icon">🔍</span>
-            <input type="text" placeholder="Cari produk di AsaHub..." id="mobileSearchInput" oninput="filterProducts()">
+            <input type="text" placeholder="Cari produk di AsaHub..." id="mobileSearchInput">
         </div>
     </div>
 
     <!-- Mobile Categories -->
     <div class="mobile-categories">
-        <div class="category-item" onclick="filterByCategory('all')">
+        <div class="category-item" onclick="marketplaceManager.filterByCategory('all')">
             <div class="category-icon">📦</div>
             <span>Semua</span>
         </div>
-        <div class="category-item" onclick="filterByCategory('Fashion')">
+        <div class="category-item" onclick="marketplaceManager.filterByCategory('Fashion')">
             <div class="category-icon">👕</div>
             <span>Fashion</span>
         </div>
-        <div class="category-item" onclick="filterByCategory('Makanan & Minuman')">
+        <div class="category-item" onclick="marketplaceManager.filterByCategory('Makanan & Minuman')">
             <div class="category-icon">☕</div>
             <span>Makanan</span>
         </div>
-        <div class="category-item" onclick="filterByCategory('Elektronik')">
+        <div class="category-item" onclick="marketplaceManager.filterByCategory('Elektronik')">
             <div class="category-icon">📱</div>
             <span>Elektronik</span>
         </div>
-        <div class="category-item" onclick="filterByCategory('Kerajinan')">
+        <div class="category-item" onclick="marketplaceManager.filterByCategory('Kerajinan')">
             <div class="category-icon">🎁</div>
             <span>Kerajinan</span>
         </div>
@@ -107,37 +109,58 @@
     <aside class="sidebar">
         <div class="sidebar-box">
             <h3>Kategori</h3>
-            <div class="filter-item"><input type="checkbox" id="f1" checked onchange="filterProducts()"><label for="f1">Semua</label></div>
-            <div class="filter-item"><input type="checkbox" id="f2" onchange="filterProducts()"><label for="f2">👕 Fashion</label></div>
-            <div class="filter-item"><input type="checkbox" id="f3" onchange="filterProducts()"><label for="f3">☕ Makanan & Minuman</label></div>
-            <div class="filter-item"><input type="checkbox" id="f4" onchange="filterProducts()"><label for="f4">🚗 Otomotif</label></div>
-            <div class="filter-item"><input type="checkbox" id="f5" onchange="filterProducts()"><label for="f5">📱 Elektronik</label></div>
-            <div class="filter-item"><input type="checkbox" id="f6" onchange="filterProducts()"><label for="f6">🎁 Kerajinan</label></div>
+            <div class="filter-item">
+                <input type="radio" id="f1" name="category" checked onchange="marketplaceManager.filterByCategory('all')">
+                <label for="f1">Semua</label>
+            </div>
+            <div class="filter-item">
+                <input type="radio" id="f2" name="category" onchange="marketplaceManager.filterByCategory('Fashion')">
+                <label for="f2">👕 Fashion</label>
+            </div>
+            <div class="filter-item">
+                <input type="radio" id="f3" name="category" onchange="marketplaceManager.filterByCategory('Makanan & Minuman')">
+                <label for="f3">☕ Makanan & Minuman</label>
+            </div>
+            <div class="filter-item">
+                <input type="radio" id="f4" name="category" onchange="marketplaceManager.filterByCategory('Otomotif')">
+                <label for="f4">🚗 Otomotif</label>
+            </div>
+            <div class="filter-item">
+                <input type="radio" id="f5" name="category" onchange="marketplaceManager.filterByCategory('Elektronik')">
+                <label for="f5">📱 Elektronik</label>
+            </div>
+            <div class="filter-item">
+                <input type="radio" id="f6" name="category" onchange="marketplaceManager.filterByCategory('Kerajinan')">
+                <label for="f6">🎁 Kerajinan</label>
+            </div>
         </div>
         <div class="sidebar-box">
             <h3>Rentang Harga</h3>
             <div class="form-group">
                 <label>Min (Rp)</label>
-                <input type="number" id="priceMin" placeholder="0" oninput="filterProducts()" style="font-size:13px; padding: 8px 12px;">
+                <input type="number" id="priceMin" placeholder="0" oninput="marketplaceManager.filterProducts()" style="font-size:13px; padding: 8px 12px;">
             </div>
             <div class="form-group">
                 <label>Max (Rp)</label>
-                <input type="number" id="priceMax" placeholder="10.000.000" oninput="filterProducts()" style="font-size:13px; padding: 8px 12px;">
+                <input type="number" id="priceMax" placeholder="10.000.000" oninput="marketplaceManager.filterProducts()" style="font-size:13px; padding: 8px 12px;">
             </div>
         </div>
         <a href="dasboard.html" class="btn-solid" style="display:block; text-align:center;">+ Jual Produk</a>
     </aside>
 
-    <div class="products-area">
-        <div class="products-toolbar">
+    <main class="main-content">
+        <div class="content-header">
+            <h2 id="pageTitle">Marketplace</h2>
             <span id="produkCount">Menampilkan semua produk</span>
             <div class="search-bar">
                 <span>🔍</span>
-                <input type="text" placeholder="Cari produk..." id="searchInput" oninput="filterProducts()">
+                <input type="text" placeholder="Cari produk..." id="searchInput">
             </div>
         </div>
-        <div class="products-grid" id="productsGrid"></div>
-    </div>
+        <div class="products-grid" id="productsGrid">
+            <!-- Products will be inserted here -->
+        </div>
+    </main>
 </div>
 
 <!-- Mobile Bottom Navigation -->
@@ -155,15 +178,16 @@
         <span>Keranjang</span>
         <div class="cart-badge" id="cartBadge">0</div>
     </a>
-    <a href="dasboard.html" class="nav-item">
+    <a href="#" class="nav-item" onclick="window.location.href='login.html'">
         <div class="nav-icon">👤</div>
         <span>Akun</span>
     </a>
 </div>
 
+<!-- Product Detail Modal -->
 <div class="modal-overlay" id="modalDetail">
     <div class="modal">
-        <button class="modal-close" onclick="closeModal('modalDetail')">✕</button>
+        <button class="modal-close" onclick="document.getElementById('modalDetail').classList.remove('open')">✕</button>
         <div style="text-align:center; font-size: 64px; margin-bottom: 16px;" id="detailEmoji">📦</div>
         <h3 id="detailNama">-</h3>
         <p style="font-size:13px; color:var(--muted); margin-bottom: 4px;" id="detailKategori">-</p>
@@ -172,181 +196,22 @@
         <div style="font-size:13px; color:var(--muted); margin-bottom: 20px;">
             👤 Dijual oleh: <strong id="detailPenjual">-</strong> · Stok: <strong id="detailStok">-</strong>
         </div>
-        <div id="detailRekening" style="background:var(--bg); border-radius:10px; padding:14px; margin-bottom:20px; font-size:14px;"></div>
-        <a href="https://wa.me/6282165713526" id="btnBeli" target="_blank" class="form-btn" style="display:block; text-align:center; text-decoration:none; color:white;">
-            💬 Hubungi Penjual via WhatsApp
-        </a>
+        <div id="rekProduk" style="margin-bottom:20px;"></div>
+        <a href="https://wa.me/6282165713526" id="btnBeli" target="_blank" class="form-btn" style="display:block; text-align:center; text-decoration:none; color:white;">💬 Hubungi Penjual</a>
     </div>
 </div>
 
-<footer class="footer">
-    <div class="footer-top">
-        <div class="footer-brand">
-            <div class="nav-logo" style="font-size:24px;">Asa<span>Hub</span></div>
-            <p>Pusat Harapan — Menyatukan individu dan brand dalam ekosistem bisnis yang stabil dan berkembang.</p>
-        </div>
-        <div class="footer-links">
-            <div class="footer-col">
-                <h4>Platform</h4>
-                <a href="index.html">Marketplace</a>
-                <a href="jasa.html">Jasa & Kerja</a>
-                <a href="edukasi.html">Edukasi</a>
-            </div>
-            <div class="footer-col">
-                <h4>Akun</h4>
-                <a href="daftar.html">Daftar Penjual</a>
-                <a href="login.html">Masuk</a>
-                <a href="dasboard.html">Dashboard</a>
-            </div>
-            <div class="footer-col">
-                <h4>AsaHub</h4>
-                <a href="tentang.html">Tentang Kami</a>
-                <a href="#" title="Segera hadir">Kontak</a>
-                <a href="#" title="Segera hadir">Kebijakan Privasi</a>
-            </div>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <p>© 2026 AsaHub · asahub.site · Dibuat dengan ❤️ oleh Asafati Gea</p>
-    </div>
-</footer>
+<!-- Scripts -->
+<script src="js/supabase.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/marketplace.js"></script>
 
 <script>
-function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
-function closeModal(id) { document.getElementById(id).classList.remove('open'); }
-document.getElementById('modalDetail').addEventListener('click', function(e) {
-    if (e.target === this) closeModal('modalDetail');
-});
-
-var user = JSON.parse(localStorage.getItem('asahub_current_user') || 'null');
-if (user) {
-    document.getElementById('navAuth').innerHTML = '<a href="dasboard.html" class="btn-solid">Dashboard</a>';
-    var ml = document.querySelectorAll('#mobileMenu a[href="login.html"], #mobileMenu a[href="daftar.html"]');
-    ml.forEach(function(a) { a.style.display = 'none'; });
-    var md = document.getElementById('mobileDashboard');
-    if (md) md.style.display = 'block';
-}
-
-var defaultProducts = [
-    { id: 1, nama: 'Kemeja Batik Nias', harga: 120000, stok: 10, kategori: 'Fashion', emoji: '👕', penjual: 'Toko Asafati', email: 'demo@asahub.site', deskripsi: 'Kemeja batik motif khas Nias, bahan katun premium, tersedia berbagai ukuran.' },
-    { id: 2, nama: 'Kopi Nias Premium', harga: 75000, stok: 50, kategori: 'Makanan & Minuman', emoji: '☕', penjual: 'Toko Asafati', email: 'demo@asahub.site', deskripsi: 'Kopi arabika pilihan dari dataran tinggi Nias, diproses dengan metode honey.' },
-    { id: 3, nama: 'Tas Rotan Anyaman', harga: 255000, stok: 5, kategori: 'Kerajinan', emoji: '🎁', penjual: 'Kerajinan Nusantara', email: 'nusantara@asahub.site', deskripsi: 'Tas rotan anyaman tangan, kuat dan estetis. Cocok untuk kasual maupun formal.' },
-    { id: 4, nama: 'Minyak Kelapa Murni', harga: 45000, stok: 30, kategori: 'Makanan & Minuman', emoji: '🍱', penjual: 'UMKM Nias Barat', email: 'nias@asahub.site', deskripsi: 'Minyak kelapa murni cold-pressed, tanpa bahan kimia.' },
-    { id: 5, nama: 'Aksesori HP Lokal', harga: 35000, stok: 100, kategori: 'Elektronik', emoji: '📱', penjual: 'TechHub Store', email: 'tech@asahub.site', deskripsi: 'Case, charger, dan aksesori smartphone berbagai merk.' },
-    { id: 6, nama: 'Sarung Tenun NTT', harga: 185000, stok: 8, kategori: 'Fashion', emoji: '👕', penjual: 'Tenun Nusantara', email: 'tenun@asahub.site', deskripsi: 'Sarung tenun tangan motif NTT, kualitas premium.' },
-];
-
-function getAllProducts() {
-    var market = JSON.parse(localStorage.getItem('asahub_marketplace') || '[]');
-    return defaultProducts.concat(market);
-}
-
-var allProducts = getAllProducts();
-
-function renderProducts(list) {
-    var grid = document.getElementById('productsGrid');
-    document.getElementById('produkCount').textContent = 'Menampilkan ' + list.length + ' produk';
-    if (!list.length) {
-        grid.innerHTML = '<p style="color:var(--muted); grid-column:1/-1; text-align:center; padding:60px 0;">Tidak ada produk yang sesuai.</p>';
-        return;
-    }
-    grid.innerHTML = list.map(function(p) {
-        return '<div class="product-card" onclick="showDetail(' + p.id + ')">' +
-            '<div class="product-img">' + p.emoji + '</div>' +
-            '<div class="product-info">' +
-            '<h4>' + p.nama + '</h4>' +
-            '<div class="product-seller">oleh ' + p.penjual + '</div>' +
-            '<div class="product-price">Rp ' + p.harga.toLocaleString('id-ID') + '</div>' +
-            '<button class="btn-solid" onclick="event.stopPropagation(); showDetail(' + p.id + ')">Lihat Detail</button>' +
-            '</div></div>';
-    }).join('');
-}
-
-function filterProducts() {
-    var search = document.getElementById('searchInput').value.toLowerCase();
-    var min = parseInt(document.getElementById('priceMin').value, 10) || 0;
-    var max = parseInt(document.getElementById('priceMax').value, 10) || 999999999;
-    var katMap = { f2: 'Fashion', f3: 'Makanan & Minuman', f4: 'Otomotif', f5: 'Elektronik', f6: 'Kerajinan' };
-    var categories = [];
-    for (var key in katMap) { if (document.getElementById(key).checked) categories.push(katMap[key]); }
-    allProducts = getAllProducts();
-    var filtered = allProducts.filter(function(p) {
-        var matchSearch = p.nama.toLowerCase().indexOf(search) !== -1 || p.penjual.toLowerCase().indexOf(search) !== -1;
-        var matchPrice = p.harga >= min && p.harga <= max;
-        var matchCat = categories.length === 0 || categories.indexOf(p.kategori) !== -1;
-        return matchSearch && matchPrice && matchCat;
-    });
-    renderProducts(filtered);
-}
-
-function showDetail(id) {
-    var p = getAllProducts().find(function(x) { return x.id === id; });
-    if (!p) return;
-    document.getElementById('detailEmoji').textContent = p.emoji;
-    document.getElementById('detailNama').textContent = p.nama;
-    document.getElementById('detailKategori').textContent = p.kategori;
-    document.getElementById('detailHarga').textContent = 'Rp ' + p.harga.toLocaleString('id-ID');
-    document.getElementById('detailDeskripsi').textContent = p.deskripsi || 'Tidak ada deskripsi.';
-    document.getElementById('detailPenjual').textContent = p.penjual;
-    document.getElementById('detailStok').textContent = p.stok;
-    var rek = JSON.parse(localStorage.getItem('asahub_rekening_' + p.email) || '[]');
-    var rekEl = document.getElementById('detailRekening');
-    if (rek.length) {
-        rekEl.innerHTML = '<strong>💳 Cara Bayar:</strong><br>' + rek.map(function(r) { return '🏦 ' + r.jenis + ' · ' + r.nomor + ' · a.n. ' + r.nama; }).join('<br>');
-    } else {
-        rekEl.innerHTML = '💬 Hubungi penjual untuk info pembayaran.';
-    }
-    var waText = encodeURIComponent('Halo, saya tertarik dengan produk: ' + p.nama + '\n\n*' + p.nama + '* - Rp ' + p.harga.toLocaleString('id-ID'));
-    document.getElementById('btnBeli').href = 'https://wa.me/6282165713526?text=' + waText;
-    document.getElementById('modalDetail').classList.add('open');
-}
-
-// Mobile-specific functions
-function filterByCategory(category) {
-    // Reset all checkboxes
-    document.querySelectorAll('.filter-item input').forEach(cb => cb.checked = false);
-    
-    // Set active category
-    if (category === 'all') {
-        document.getElementById('f1').checked = true;
-    } else {
-        const categoryMap = {
-            'Fashion': 'f2',
-            'Makanan & Minuman': 'f3',
-            'Otomotif': 'f4',
-            'Elektronik': 'f5',
-            'Kerajinan': 'f6'
-        };
-        const checkboxId = categoryMap[category];
-        if (checkboxId) {
-            document.getElementById(checkboxId).checked = true;
-        }
-    }
-    
-    filterProducts();
-}
-
-function showCategories() {
-    // Scroll to categories section
-    document.querySelector('.mobile-categories').scrollIntoView({ behavior: 'smooth' });
-}
-
-function showCart() {
-    // Show cart modal or navigate to cart page
-    alert('Keranjang belanja Anda kosong');
-}
-
-function updateCartBadge() {
-    const cart = JSON.parse(localStorage.getItem('asahub_cart') || '[]');
-    document.getElementById('cartBadge').textContent = cart.length;
-}
-
 // Flash Sale Timer
 function startFlashSaleTimer() {
     let hours = 2;
     let minutes = 45;
     let seconds = 30;
-    
     setInterval(() => {
         seconds--;
         if (seconds < 0) {
@@ -360,155 +225,26 @@ function startFlashSaleTimer() {
                 }
             }
         }
-        
         document.getElementById('flashHours').textContent = String(hours).padStart(2, '0');
         document.getElementById('flashMinutes').textContent = String(minutes).padStart(2, '0');
         document.getElementById('flashSeconds').textContent = String(seconds).padStart(2, '0');
     }, 1000);
 }
 
-// Render mobile products
-function renderMobileProducts() {
-    const allProducts = getAllProducts();
-    const grid = document.getElementById('mobileProductsGrid');
-    const count = document.getElementById('mobileProductCount');
-    
-    count.textContent = `${allProducts.length} produk`;
-    
-    grid.innerHTML = allProducts.map(p => `
-        <div class="mobile-product-card" onclick="showDetail(${p.id})">
-            <div class="mobile-product-image">
-                ${p.emoji}
-                ${p.stok < 5 ? '<div class="stock-badge">Stok Terbatas</div>' : ''}
-            </div>
-            <div class="mobile-product-info">
-                <h4>${p.nama}</h4>
-                <div class="mobile-product-meta">
-                    <span class="mobile-seller">${p.penjual}</span>
-                    <span class="mobile-sold">Terjual ${Math.floor(Math.random() * 100) + 10}</span>
-                </div>
-                <div class="mobile-product-price">
-                    <span class="current-price">Rp ${p.harga.toLocaleString('id-ID')}</span>
-                    ${Math.random() > 0.5 ? `<span class="original-price">Rp ${(p.harga * 1.3).toLocaleString('id-ID')}</span>` : ''}
-                    ${Math.random() > 0.5 ? '<span class="discount-badge">30%</span>' : ''}
-                </div>
-            </div>
-        </div>
-    `).join('');
+// Helper functions
+function showCategories() {
+    document.querySelector('.mobile-categories').scrollIntoView({ behavior: 'smooth' });
 }
 
-// Render flash sale products
-function renderFlashSaleProducts() {
-    const allProducts = getAllProducts();
-    const flashProducts = allProducts.slice(0, 3); // Take first 3 products for flash sale
-    
-    const container = document.getElementById('flashProducts');
-    container.innerHTML = flashProducts.map(p => `
-        <div class="flash-product-card" onclick="showDetail(${p.id})">
-            <div class="flash-product-image">
-                ${p.emoji}
-                <div class="flash-discount">-30%</div>
-            </div>
-            <div class="flash-product-info">
-                <h4>${p.nama}</h4>
-                <div class="flash-price">
-                    <span class="flash-current">Rp ${p.harga.toLocaleString('id-ID')}</span>
-                    <span class="flash-original">Rp ${(p.harga * 1.3).toLocaleString('id-ID')}</span>
-                </div>
-            </div>
-        </div>
-    `).join('');
+function showCart() {
+    alert('Keranjang belanja Anda kosong');
 }
 
-// Check if mobile and render accordingly
-function isMobile() {
-    return window.innerWidth <= 480;
-}
-
-function initializeLayout() {
-    if (isMobile()) {
-        document.querySelector('.mobile-layout').style.display = 'block';
-        document.querySelector('.marketplace-layout').style.display = 'none';
-        document.querySelector('.page-header').style.display = 'none';
-        document.querySelector('.navbar').style.display = 'none';
-        
-        renderMobileProducts();
-        renderFlashSaleProducts();
-        startFlashSaleTimer();
-        updateCartBadge();
-    } else {
-        document.querySelector('.mobile-layout').style.display = 'none';
-        document.querySelector('.marketplace-layout').style.display = 'flex';
-        document.querySelector('.page-header').style.display = 'block';
-        document.querySelector('.navbar').style.display = 'flex';
-    }
-}
-
-// Enhanced filterProducts for mobile
-const originalFilterProducts = filterProducts;
-filterProducts = function() {
-    if (isMobile()) {
-        const mobileSearch = document.getElementById('mobileSearchInput').value.toLowerCase();
-        const allProducts = getAllProducts();
-        
-        let filtered = allProducts;
-        if (mobileSearch) {
-            filtered = allProducts.filter(p => 
-                p.nama.toLowerCase().includes(mobileSearch) || 
-                p.penjual.toLowerCase().includes(mobileSearch)
-            );
-        }
-        
-        // Apply category filter
-        const checkedCategories = [];
-        document.querySelectorAll('.filter-item input:checked').forEach(cb => {
-            if (cb.id !== 'f1') checkedCategories.push(cb.nextElementSibling.textContent.trim());
-        });
-        
-        if (checkedCategories.length > 0) {
-            filtered = filtered.filter(p => checkedCategories.includes(p.kategori));
-        }
-        
-        // Re-render mobile products
-        const grid = document.getElementById('mobileProductsGrid');
-        const count = document.getElementById('mobileProductCount');
-        
-        count.textContent = `${filtered.length} produk`;
-        
-        if (filtered.length === 0) {
-            grid.innerHTML = '<div class="no-products">Produk tidak ditemukan</div>';
-        } else {
-            grid.innerHTML = filtered.map(p => `
-                <div class="mobile-product-card" onclick="showDetail(${p.id})">
-                    <div class="mobile-product-image">
-                        ${p.emoji}
-                        ${p.stok < 5 ? '<div class="stock-badge">Stok Terbatas</div>' : ''}
-                    </div>
-                    <div class="mobile-product-info">
-                        <h4>${p.nama}</h4>
-                        <div class="mobile-product-meta">
-                            <span class="mobile-seller">${p.penjual}</span>
-                            <span class="mobile-sold">Terjual ${Math.floor(Math.random() * 100) + 10}</span>
-                        </div>
-                        <div class="mobile-product-price">
-                            <span class="current-price">Rp ${p.harga.toLocaleString('id-ID')}</span>
-                            ${Math.random() > 0.5 ? `<span class="original-price">Rp ${(p.harga * 1.3).toLocaleString('id-ID')}</span>` : ''}
-                            ${Math.random() > 0.5 ? '<span class="discount-badge">30%</span>' : ''}
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
-    } else {
-        originalFilterProducts();
-    }
-};
-
-// Initialize on load
-window.addEventListener('load', initializeLayout);
-window.addEventListener('resize', initializeLayout);
-
-renderProducts(allProducts);
+// Initialize flash sale timer
+document.addEventListener('DOMContentLoaded', () => {
+    startFlashSaleTimer();
+});
 </script>
+
 </body>
 </html>

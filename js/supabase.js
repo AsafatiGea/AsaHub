@@ -1,6 +1,6 @@
 // Supabase Configuration
-const SUPABASE_URL = 'https://btkmlkpspcsoozdbvsvp.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ0a21sa3BzcHNvb3pkYnZ2c3AiLCJyb2xlIjoiYW5vbiIsImlhdCI6MTczOTY0NjQ1MSwiZXhwIjoyMDU1MjIyNDUxfQ.8QJhLzM2s5qJ5hFmY2vKqXhO5v9z8aY7b3mK9oLq7E';
+const SUPABASE_URL = 'https://btkmlkpspcsoozdbvsvp.supabase.com';
+const SUPABASE_ANON_KEY = 'sb_publishable_N5V-6_jyvq5THYB4peU5Jw_Af5ot066';
 
 // Initialize Supabase
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
