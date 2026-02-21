@@ -17,7 +17,7 @@
         <a href="jasa.html" style="color:var(--blue); font-weight:700;">Jasa</a>
         <a href="edukasi.html">Edukasi</a>
     </div>
-    <div class="nav-auth">
+    <div class="nav-auth" id="navAuth">
         <a href="login.html" class="btn-outline">Masuk</a>
         <a href="daftar.html" class="btn-solid">Daftar</a>
     </div>
@@ -27,7 +27,10 @@
     <a href="index.html">Beranda</a>
     <a href="marketplace.html">Marketplace</a>
     <a href="jasa.html">Jasa</a>
+    <a href="edukasi.html">Edukasi</a>
     <a href="login.html">Masuk</a>
+    <a href="daftar.html">Daftar</a>
+    <a href="dasboard.html" id="mobileDashboardJasa" style="display:none;">Dashboard</a>
 </div>
 
 <div class="page-header">
@@ -73,6 +76,16 @@
 </footer>
 
 <script>
+// Jika sudah login, tampilkan link Dashboard
+const userJasa = JSON.parse(localStorage.getItem('asahub_current_user') || 'null');
+if (userJasa) {
+    document.getElementById('navAuth').innerHTML = '<a href="dasboard.html" class="btn-solid">Dashboard</a>';
+    document.querySelector('#mobileMenu a[href="login.html"]').style.display = 'none';
+    document.querySelector('#mobileMenu a[href="daftar.html"]').style.display = 'none';
+    var dashJasa = document.getElementById('mobileDashboardJasa');
+    if (dashJasa) dashJasa.style.display = 'block';
+}
+
 const jasaData = [
     { id:1, nama:'Montir Panggilan', kat:'Otomotif', emoji:'🔧', desc:'Perbaikan kendaraan roda 2 dan 4 di lokasi kamu. Berpengalaman 8 tahun.', penyedia:'Rudi Mekanik', lokasi:'Medan', harga:'Rp 50.000/jam' },
     { id:2, nama:'Tukang Bangunan Harian', kat:'Konstruksi', emoji:'🏗️', desc:'Pengecatan, pemasangan keramik, renovasi rumah. Berpengalaman dan rapi.', penyedia:'Tim Bangunan Pak Hendra', lokasi:'Padang', harga:'Rp 150.000/hari' },

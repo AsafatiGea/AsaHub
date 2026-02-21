@@ -545,7 +545,7 @@
                 <h4>Akun</h4>
                 <a href="daftar.html">Daftar</a>
                 <a href="login.html">Masuk</a>
-                <a href="dashboard.html">Dashboard</a>
+                <a href="dasboard.html">Dashboard</a>
             </div>
         </div>
     </div>
@@ -884,7 +884,7 @@ setInterval(() => {
 // Auth state
 const user = JSON.parse(localStorage.getItem('asahub_current_user') || 'null');
 if (user) {
-    document.getElementById('navAuth').innerHTML = `<a href="dashboard.html" class="btn-solid">Dashboard</a>`;
+    document.getElementById('navAuth').innerHTML = `<a href="dasboard.html" class="btn-solid">Dashboard</a>`;
     document.getElementById('inpNama').value = user.name;
 }
 </script>

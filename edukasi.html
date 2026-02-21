@@ -17,7 +17,7 @@
         <a href="jasa.html">Jasa</a>
         <a href="edukasi.html" style="color:var(--blue); font-weight:700;">Edukasi</a>
     </div>
-    <div class="nav-auth">
+    <div class="nav-auth" id="navAuth">
         <a href="login.html" class="btn-outline">Masuk</a>
         <a href="daftar.html" class="btn-solid">Daftar</a>
     </div>
@@ -26,8 +26,12 @@
 <div class="mobile-menu" id="mm">
     <a href="index.html">Beranda</a>
     <a href="marketplace.html">Marketplace</a>
+    <a href="jasa.html">Jasa</a>
     <a href="edukasi.html">Edukasi</a>
+    <a href="komunitas.html">Komunitas</a>
     <a href="login.html">Masuk</a>
+    <a href="daftar.html">Daftar</a>
+    <a href="dasboard.html" id="mobileDashboardEdu" style="display:none;">Dashboard</a>
 </div>
 
 <div class="page-header">
@@ -118,5 +122,19 @@
     <div class="footer-bottom"><p>© 2026 AsaHub · asahub.site · Dibuat dengan ❤️ oleh Asafati Gea</p></div>
 </footer>
 
+<script>
+// Jika sudah login, tampilkan link Dashboard
+const userEdu = JSON.parse(localStorage.getItem('asahub_current_user') || 'null');
+if (userEdu) {
+    document.getElementById('navAuth').innerHTML = '<a href="dasboard.html" class="btn-solid">Dashboard</a>';
+    var mm = document.getElementById('mm');
+    if (mm) {
+        var links = mm.querySelectorAll('a[href="login.html"], a[href="daftar.html"]');
+        links.forEach(function(a) { a.style.display = 'none'; });
+        var dash = document.getElementById('mobileDashboardEdu');
+        if (dash) dash.style.display = 'block';
+    }
+}
+</script>
 </body>
 </html>

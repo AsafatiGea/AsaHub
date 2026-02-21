@@ -20,7 +20,7 @@
         <a href="edukasi.html">Edukasi</a>
         <a href="komunitas.html">Komunitas ⭐</a>
     </div>
-    <div class="nav-auth">
+    <div class="nav-auth" id="navAuth">
         <a href="login.html" class="btn-outline">Masuk</a>
         <a href="daftar.html" class="btn-solid">Daftar</a>
     </div>
@@ -36,6 +36,7 @@
     <a href="komunitas.html" onclick="toggleMenu()">Komunitas ⭐</a>
     <a href="login.html" onclick="toggleMenu()">Masuk</a>
     <a href="daftar.html" onclick="toggleMenu()">Daftar</a>
+    <a href="dasboard.html" onclick="toggleMenu()" id="mobileDashboard" style="display:none;">Dashboard</a>
 </div>
 
 <!-- HERO -->
@@ -166,7 +167,7 @@
                 <h4>Akun</h4>
                 <a href="daftar.html">Daftar Penjual</a>
                 <a href="login.html">Masuk</a>
-                <a href="dashboard.html">Dashboard</a>
+                <a href="dasboard.html">Dashboard</a>
             </div>
             <div class="footer-col">
                 <h4>AsaHub</h4>
@@ -185,6 +186,14 @@
 function toggleMenu() {
     const m = document.getElementById('mobileMenu');
     m.classList.toggle('open');
+}
+// Jika sudah login, tampilkan link Dashboard
+const user = JSON.parse(localStorage.getItem('asahub_current_user') || 'null');
+if (user) {
+    document.getElementById('navAuth').innerHTML = '<a href="dasboard.html" class="btn-solid">Dashboard</a>';
+    document.querySelector('#mobileMenu a[href="login.html"]').style.display = 'none';
+    document.querySelector('#mobileMenu a[href="daftar.html"]').style.display = 'none';
+    document.getElementById('mobileDashboard').style.display = 'block';
 }
 </script>
 </body>

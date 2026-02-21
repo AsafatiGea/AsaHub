@@ -58,7 +58,7 @@ function doLogin() {
         localStorage.setItem('asahub_current_user', JSON.stringify(user));
         document.getElementById('alertSuccess').classList.add('show');
         document.getElementById('alertError').classList.remove('show');
-        setTimeout(() => { window.location.href = 'dashboard.html'; }, 1200);
+        setTimeout(() => { window.location.href = 'dasboard.html'; }, 1200);
     } else {
         document.getElementById('alertError').classList.add('show');
         document.getElementById('alertSuccess').classList.remove('show');

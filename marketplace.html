@@ -59,7 +59,7 @@
                 <input type="number" id="priceMax" placeholder="10.000.000" oninput="filterProducts()" style="font-size:13px; padding: 8px 12px;">
             </div>
         </div>
-        <a href="dashboard.html" class="btn-solid" style="display:block; text-align:center;">+ Jual Produk</a>
+        <a href="dasboard.html" class="btn-solid" style="display:block; text-align:center;">+ Jual Produk</a>
     </aside>
 
     <!-- PRODUCTS -->
@@ -110,7 +110,7 @@ document.getElementById('modalDetail').addEventListener('click', function(e) {
 // Check login
 const user = JSON.parse(localStorage.getItem('asahub_current_user') || 'null');
 if (user) {
-    document.getElementById('navAuth').innerHTML = `<a href="dashboard.html" class="btn-solid">Dashboard</a>`;
+    document.getElementById('navAuth').innerHTML = `<a href="dasboard.html" class="btn-solid">Dashboard</a>`;
 }
 
 // Default products (contoh)
