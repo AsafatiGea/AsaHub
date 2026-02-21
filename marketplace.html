@@ -88,9 +88,9 @@
             👤 Dijual oleh: <strong id="detailPenjual">-</strong> · Stok: <strong id="detailStok">-</strong>
         </div>
         <div id="detailRekening" style="background:var(--bg); border-radius:10px; padding:14px; margin-bottom:20px; font-size:14px;"></div>
-        <button class="form-btn" id="btnBeli" onclick="window.open('https://wa.me/', '_blank')">
+        <a href="https://wa.me/6282165713526" id="btnBeli" target="_blank" class="form-btn" style="display:block; text-align:center; text-decoration:none; color:white;">
             💬 Hubungi Penjual via WhatsApp
-        </button>
+        </a>
     </div>
 </div>
 
@@ -183,6 +183,10 @@ function showDetail(id) {
     } else {
         rekEl.innerHTML = '💬 Hubungi penjual untuk info pembayaran.';
     }
+    
+    // Link WA ke nomor kamu dengan pesan berisi nama produk
+    const waText = encodeURIComponent('Halo, saya tertarik dengan produk: ' + p.nama + '\n\n*' + p.nama + '* - Rp ' + p.harga.toLocaleString('id-ID'));
+    document.getElementById('btnBeli').href = 'https://wa.me/6282165713526?text=' + waText;
     
     document.getElementById('modalDetail').classList.add('open');
 }
