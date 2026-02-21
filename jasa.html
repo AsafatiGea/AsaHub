@@ -39,6 +39,69 @@
     <p>Temukan tenaga ahli dan profesional, atau tawarkan keahlianmu sendiri</p>
 </div>
 
+<!-- Mobile Layout (Hidden on Desktop) -->
+<div class="mobile-layout">
+    <!-- Mobile Search Bar -->
+    <div class="mobile-search-container">
+        <div class="mobile-search-bar">
+            <span class="search-icon">🔍</span>
+            <input type="text" placeholder="Cari jasa di AsaHub..." id="mobileSearchInput" oninput="filterJasaMobile()">
+        </div>
+    </div>
+
+    <!-- Mobile Categories -->
+    <div class="mobile-categories">
+        <div class="category-item" onclick="filterByCategoryJasa('all')">
+            <div class="category-icon">📦</div>
+            <span>Semua</span>
+        </div>
+        <div class="category-item" onclick="filterByCategoryJasa('Otomotif')">
+            <div class="category-icon">🔧</div>
+            <span>Otomotif</span>
+        </div>
+        <div class="category-item" onclick="filterByCategoryJasa('Konstruksi')">
+            <div class="category-icon">🏗️</div>
+            <span>Konstruksi</span>
+        </div>
+        <div class="category-item" onclick="filterByCategoryJasa('Teknologi')">
+            <div class="category-icon">💻</div>
+            <span>Teknologi</span>
+        </div>
+        <div class="category-item" onclick="filterByCategoryJasa('Kreatif')">
+            <div class="category-icon">🎨</div>
+            <span>Kreatif</span>
+        </div>
+    </div>
+
+    <!-- Flash Sale Section for Services -->
+    <div class="mobile-flash-sale">
+        <div class="flash-sale-header">
+            <div class="flash-title">
+                <span class="flash-icon">⚡</span>
+                <span>Jasa Promo</span>
+            </div>
+            <div class="flash-timer">
+                <span id="flashHours">02</span>:<span id="flashMinutes">45</span>:<span id="flashSeconds">30</span>
+            </div>
+        </div>
+        <div class="flash-products" id="flashJasa">
+            <!-- Flash sale services will be inserted here -->
+        </div>
+    </div>
+
+    <!-- Mobile Services Grid -->
+    <div class="mobile-products-container">
+        <div class="mobile-products-header">
+            <h2>Jasa Terpopuler</h2>
+            <span class="product-count" id="mobileJasaCount">0 jasa</span>
+        </div>
+        <div class="mobile-products-grid" id="mobileJasaGrid">
+            <!-- Services will be inserted here -->
+        </div>
+    </div>
+</div>
+
+<!-- Desktop Layout (Hidden on Mobile) -->
 <div style="max-width:1100px; margin:0 auto; padding: 32px 24px 0;">
     <div style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom: 28px;">
         <button class="btn-solid" onclick="filterJasa('semua', this)">Semua</button>
@@ -52,6 +115,27 @@
 </div>
 
 <div class="jasa-grid" id="jasaGrid"></div>
+
+<!-- Mobile Bottom Navigation -->
+<div class="mobile-bottom-nav">
+    <a href="index.html" class="nav-item">
+        <div class="nav-icon">🏠</div>
+        <span>Home</span>
+    </a>
+    <a href="jasa.html" class="nav-item active">
+        <div class="nav-icon">🔧</div>
+        <span>Jasa</span>
+    </a>
+    <a href="#" class="nav-item" onclick="showCart()">
+        <div class="nav-icon">🛒</div>
+        <span>Keranjang</span>
+        <div class="cart-badge" id="cartBadge">0</div>
+    </a>
+    <a href="dasboard.html" class="nav-item">
+        <div class="nav-icon">👤</div>
+        <span>Akun</span>
+    </a>
+</div>
 
 <!-- MODAL -->
 <div class="modal-overlay" id="modalJasa">
@@ -181,6 +265,114 @@ function showJasa(id) {
 document.getElementById('modalJasa').addEventListener('click', function(e) {
     if (e.target === this) this.classList.remove('open');
 });
+
+// Mobile-specific functions for services
+function filterByCategoryJasa(category) {
+    let filtered = jasaData;
+    
+    if (category !== 'all') {
+        filtered = jasaData.filter(j => j.kat === category);
+    }
+    
+    renderMobileJasa(filtered);
+}
+
+function filterJasaMobile() {
+    const mobileSearch = document.getElementById('mobileSearchInput').value.toLowerCase();
+    let filtered = jasaData;
+    
+    if (mobileSearch) {
+        filtered = jasaData.filter(j => 
+            j.nama.toLowerCase().includes(mobileSearch) || 
+            j.desc.toLowerCase().includes(mobileSearch) ||
+            j.penyedia.toLowerCase().includes(mobileSearch)
+        );
+    }
+    
+    renderMobileJasa(filtered);
+}
+
+function renderMobileJasa(list) {
+    const grid = document.getElementById('mobileJasaGrid');
+    const count = document.getElementById('mobileJasaCount');
+    
+    count.textContent = `${list.length} jasa`;
+    
+    if (list.length === 0) {
+        grid.innerHTML = '<div class="no-products">Jasa tidak ditemukan</div>';
+        return;
+    }
+    
+    grid.innerHTML = list.map(j => `
+        <div class="mobile-product-card" onclick="showJasa(${j.id})">
+            <div class="mobile-product-image">
+                ${j.emoji}
+                ${Math.random() > 0.7 ? '<div class="stock-badge">Promo</div>' : ''}
+            </div>
+            <div class="mobile-product-info">
+                <h4>${j.nama}</h4>
+                <div class="mobile-product-meta">
+                    <span class="mobile-seller">${j.penyedia}</span>
+                    <span class="mobile-sold">⭐ ${Math.floor(Math.random() * 2) + 4}.0</span>
+                </div>
+                <div class="mobile-product-price">
+                    <span class="current-price">${j.harga}</span>
+                    ${Math.random() > 0.6 ? '<span class="discount-badge">20%</span>' : ''}
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+function renderFlashJasa() {
+    const flashServices = jasaData.slice(0, 3);
+    const container = document.getElementById('flashJasa');
+    
+    container.innerHTML = flashServices.map(j => `
+        <div class="flash-product-card" onclick="showJasa(${j.id})">
+            <div class="flash-product-image">
+                ${j.emoji}
+                <div class="flash-discount">-20%</div>
+            </div>
+            <div class="flash-product-info">
+                <h4>${j.nama}</h4>
+                <div class="flash-price">
+                    <span class="flash-current">${j.harga}</span>
+                    <span class="flash-original">${j.harga}</span>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Check if mobile and render accordingly
+function isMobile() {
+    return window.innerWidth <= 480;
+}
+
+function initializeJasaLayout() {
+    if (isMobile()) {
+        document.querySelector('.mobile-layout').style.display = 'block';
+        document.querySelector('.page-header').style.display = 'none';
+        document.querySelector('.navbar').style.display = 'none';
+        document.querySelector('.jasa-grid').style.display = 'none';
+        document.querySelector('footer').style.display = 'none';
+        
+        renderMobileJasa(jasaData);
+        renderFlashJasa();
+        startFlashSaleTimer();
+    } else {
+        document.querySelector('.mobile-layout').style.display = 'none';
+        document.querySelector('.page-header').style.display = 'block';
+        document.querySelector('.navbar').style.display = 'flex';
+        document.querySelector('.jasa-grid').style.display = 'grid';
+        document.querySelector('footer').style.display = 'block';
+    }
+}
+
+// Initialize on load and resize
+window.addEventListener('load', initializeJasaLayout);
+window.addEventListener('resize', initializeJasaLayout);
 
 renderJasa(jasaData);
 </script>

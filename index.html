@@ -40,6 +40,69 @@
     <p>Temukan ribuan produk dari penjual terpercaya di seluruh Indonesia</p>
 </div>
 
+<!-- Mobile Layout (Hidden on Desktop) -->
+<div class="mobile-layout">
+    <!-- Mobile Search Bar -->
+    <div class="mobile-search-container">
+        <div class="mobile-search-bar">
+            <span class="search-icon">🔍</span>
+            <input type="text" placeholder="Cari produk di AsaHub..." id="mobileSearchInput" oninput="filterProducts()">
+        </div>
+    </div>
+
+    <!-- Mobile Categories -->
+    <div class="mobile-categories">
+        <div class="category-item" onclick="filterByCategory('all')">
+            <div class="category-icon">📦</div>
+            <span>Semua</span>
+        </div>
+        <div class="category-item" onclick="filterByCategory('Fashion')">
+            <div class="category-icon">👕</div>
+            <span>Fashion</span>
+        </div>
+        <div class="category-item" onclick="filterByCategory('Makanan & Minuman')">
+            <div class="category-icon">☕</div>
+            <span>Makanan</span>
+        </div>
+        <div class="category-item" onclick="filterByCategory('Elektronik')">
+            <div class="category-icon">📱</div>
+            <span>Elektronik</span>
+        </div>
+        <div class="category-item" onclick="filterByCategory('Kerajinan')">
+            <div class="category-icon">🎁</div>
+            <span>Kerajinan</span>
+        </div>
+    </div>
+
+    <!-- Flash Sale Section -->
+    <div class="mobile-flash-sale">
+        <div class="flash-sale-header">
+            <div class="flash-title">
+                <span class="flash-icon">⚡</span>
+                <span>Flash Sale</span>
+            </div>
+            <div class="flash-timer">
+                <span id="flashHours">02</span>:<span id="flashMinutes">45</span>:<span id="flashSeconds">30</span>
+            </div>
+        </div>
+        <div class="flash-products" id="flashProducts">
+            <!-- Flash sale products will be inserted here -->
+        </div>
+    </div>
+
+    <!-- Mobile Products Grid -->
+    <div class="mobile-products-container">
+        <div class="mobile-products-header">
+            <h2>Produk Terlaris</h2>
+            <span class="product-count" id="mobileProductCount">0 produk</span>
+        </div>
+        <div class="mobile-products-grid" id="mobileProductsGrid">
+            <!-- Products will be inserted here -->
+        </div>
+    </div>
+</div>
+
+<!-- Desktop Layout (Hidden on Mobile) -->
 <div class="marketplace-layout">
     <aside class="sidebar">
         <div class="sidebar-box">
@@ -75,6 +138,27 @@
         </div>
         <div class="products-grid" id="productsGrid"></div>
     </div>
+</div>
+
+<!-- Mobile Bottom Navigation -->
+<div class="mobile-bottom-nav">
+    <a href="index.html" class="nav-item active">
+        <div class="nav-icon">🏠</div>
+        <span>Home</span>
+    </a>
+    <a href="#" class="nav-item" onclick="showCategories()">
+        <div class="nav-icon">🗂️</div>
+        <span>Kategori</span>
+    </a>
+    <a href="#" class="nav-item" onclick="showCart()">
+        <div class="nav-icon">🛒</div>
+        <span>Keranjang</span>
+        <div class="cart-badge" id="cartBadge">0</div>
+    </a>
+    <a href="dasboard.html" class="nav-item">
+        <div class="nav-icon">👤</div>
+        <span>Akun</span>
+    </a>
 </div>
 
 <div class="modal-overlay" id="modalDetail">
@@ -216,6 +300,213 @@ function showDetail(id) {
     document.getElementById('btnBeli').href = 'https://wa.me/6282165713526?text=' + waText;
     document.getElementById('modalDetail').classList.add('open');
 }
+
+// Mobile-specific functions
+function filterByCategory(category) {
+    // Reset all checkboxes
+    document.querySelectorAll('.filter-item input').forEach(cb => cb.checked = false);
+    
+    // Set active category
+    if (category === 'all') {
+        document.getElementById('f1').checked = true;
+    } else {
+        const categoryMap = {
+            'Fashion': 'f2',
+            'Makanan & Minuman': 'f3',
+            'Otomotif': 'f4',
+            'Elektronik': 'f5',
+            'Kerajinan': 'f6'
+        };
+        const checkboxId = categoryMap[category];
+        if (checkboxId) {
+            document.getElementById(checkboxId).checked = true;
+        }
+    }
+    
+    filterProducts();
+}
+
+function showCategories() {
+    // Scroll to categories section
+    document.querySelector('.mobile-categories').scrollIntoView({ behavior: 'smooth' });
+}
+
+function showCart() {
+    // Show cart modal or navigate to cart page
+    alert('Keranjang belanja Anda kosong');
+}
+
+function updateCartBadge() {
+    const cart = JSON.parse(localStorage.getItem('asahub_cart') || '[]');
+    document.getElementById('cartBadge').textContent = cart.length;
+}
+
+// Flash Sale Timer
+function startFlashSaleTimer() {
+    let hours = 2;
+    let minutes = 45;
+    let seconds = 30;
+    
+    setInterval(() => {
+        seconds--;
+        if (seconds < 0) {
+            seconds = 59;
+            minutes--;
+            if (minutes < 0) {
+                minutes = 59;
+                hours--;
+                if (hours < 0) {
+                    hours = 23;
+                }
+            }
+        }
+        
+        document.getElementById('flashHours').textContent = String(hours).padStart(2, '0');
+        document.getElementById('flashMinutes').textContent = String(minutes).padStart(2, '0');
+        document.getElementById('flashSeconds').textContent = String(seconds).padStart(2, '0');
+    }, 1000);
+}
+
+// Render mobile products
+function renderMobileProducts() {
+    const allProducts = getAllProducts();
+    const grid = document.getElementById('mobileProductsGrid');
+    const count = document.getElementById('mobileProductCount');
+    
+    count.textContent = `${allProducts.length} produk`;
+    
+    grid.innerHTML = allProducts.map(p => `
+        <div class="mobile-product-card" onclick="showDetail(${p.id})">
+            <div class="mobile-product-image">
+                ${p.emoji}
+                ${p.stok < 5 ? '<div class="stock-badge">Stok Terbatas</div>' : ''}
+            </div>
+            <div class="mobile-product-info">
+                <h4>${p.nama}</h4>
+                <div class="mobile-product-meta">
+                    <span class="mobile-seller">${p.penjual}</span>
+                    <span class="mobile-sold">Terjual ${Math.floor(Math.random() * 100) + 10}</span>
+                </div>
+                <div class="mobile-product-price">
+                    <span class="current-price">Rp ${p.harga.toLocaleString('id-ID')}</span>
+                    ${Math.random() > 0.5 ? `<span class="original-price">Rp ${(p.harga * 1.3).toLocaleString('id-ID')}</span>` : ''}
+                    ${Math.random() > 0.5 ? '<span class="discount-badge">30%</span>' : ''}
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Render flash sale products
+function renderFlashSaleProducts() {
+    const allProducts = getAllProducts();
+    const flashProducts = allProducts.slice(0, 3); // Take first 3 products for flash sale
+    
+    const container = document.getElementById('flashProducts');
+    container.innerHTML = flashProducts.map(p => `
+        <div class="flash-product-card" onclick="showDetail(${p.id})">
+            <div class="flash-product-image">
+                ${p.emoji}
+                <div class="flash-discount">-30%</div>
+            </div>
+            <div class="flash-product-info">
+                <h4>${p.nama}</h4>
+                <div class="flash-price">
+                    <span class="flash-current">Rp ${p.harga.toLocaleString('id-ID')}</span>
+                    <span class="flash-original">Rp ${(p.harga * 1.3).toLocaleString('id-ID')}</span>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Check if mobile and render accordingly
+function isMobile() {
+    return window.innerWidth <= 480;
+}
+
+function initializeLayout() {
+    if (isMobile()) {
+        document.querySelector('.mobile-layout').style.display = 'block';
+        document.querySelector('.marketplace-layout').style.display = 'none';
+        document.querySelector('.page-header').style.display = 'none';
+        document.querySelector('.navbar').style.display = 'none';
+        
+        renderMobileProducts();
+        renderFlashSaleProducts();
+        startFlashSaleTimer();
+        updateCartBadge();
+    } else {
+        document.querySelector('.mobile-layout').style.display = 'none';
+        document.querySelector('.marketplace-layout').style.display = 'flex';
+        document.querySelector('.page-header').style.display = 'block';
+        document.querySelector('.navbar').style.display = 'flex';
+    }
+}
+
+// Enhanced filterProducts for mobile
+const originalFilterProducts = filterProducts;
+filterProducts = function() {
+    if (isMobile()) {
+        const mobileSearch = document.getElementById('mobileSearchInput').value.toLowerCase();
+        const allProducts = getAllProducts();
+        
+        let filtered = allProducts;
+        if (mobileSearch) {
+            filtered = allProducts.filter(p => 
+                p.nama.toLowerCase().includes(mobileSearch) || 
+                p.penjual.toLowerCase().includes(mobileSearch)
+            );
+        }
+        
+        // Apply category filter
+        const checkedCategories = [];
+        document.querySelectorAll('.filter-item input:checked').forEach(cb => {
+            if (cb.id !== 'f1') checkedCategories.push(cb.nextElementSibling.textContent.trim());
+        });
+        
+        if (checkedCategories.length > 0) {
+            filtered = filtered.filter(p => checkedCategories.includes(p.kategori));
+        }
+        
+        // Re-render mobile products
+        const grid = document.getElementById('mobileProductsGrid');
+        const count = document.getElementById('mobileProductCount');
+        
+        count.textContent = `${filtered.length} produk`;
+        
+        if (filtered.length === 0) {
+            grid.innerHTML = '<div class="no-products">Produk tidak ditemukan</div>';
+        } else {
+            grid.innerHTML = filtered.map(p => `
+                <div class="mobile-product-card" onclick="showDetail(${p.id})">
+                    <div class="mobile-product-image">
+                        ${p.emoji}
+                        ${p.stok < 5 ? '<div class="stock-badge">Stok Terbatas</div>' : ''}
+                    </div>
+                    <div class="mobile-product-info">
+                        <h4>${p.nama}</h4>
+                        <div class="mobile-product-meta">
+                            <span class="mobile-seller">${p.penjual}</span>
+                            <span class="mobile-sold">Terjual ${Math.floor(Math.random() * 100) + 10}</span>
+                        </div>
+                        <div class="mobile-product-price">
+                            <span class="current-price">Rp ${p.harga.toLocaleString('id-ID')}</span>
+                            ${Math.random() > 0.5 ? `<span class="original-price">Rp ${(p.harga * 1.3).toLocaleString('id-ID')}</span>` : ''}
+                            ${Math.random() > 0.5 ? '<span class="discount-badge">30%</span>' : ''}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+    } else {
+        originalFilterProducts();
+    }
+};
+
+// Initialize on load
+window.addEventListener('load', initializeLayout);
+window.addEventListener('resize', initializeLayout);
 
 renderProducts(allProducts);
 </script>
