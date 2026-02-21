@@ -1,9 +1,3 @@
-const supabaseUrl = "'https://btkmlkpspcsoozdbvsvp.supabase.com"
-const supabaseKey = "sb_publishable_..."
-
-// Gunakan client global dari supabase.js
-const supabase = window.SupabaseClient;
-
 // Marketplace functionality - Database driven
 class MarketplaceManager {
     constructor() {

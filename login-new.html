@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - AsaHub</title>
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Supabase JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="auth-header">
+            <div class="auth-logo">Asa<span>Hub</span></div>
+            <h1>Masuk ke Akun</h1>
+            <p>Selamat datang kembali! Masuk untuk melanjutkan</p>
+        </div>
+
+        <form id="loginForm" class="auth-form">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="nama@email.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Masukkan password" required>
+            </div>
+
+            <div class="form-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="remember" name="remember">
+                    <span class="checkmark"></span>
+                    Ingat saya
+                </label>
+            </div>
+
+            <button type="submit" class="auth-btn">
+                <span id="loginBtnText">Masuk</span>
+                <div id="loginSpinner" class="spinner" style="display: none;"></div>
+            </button>
+        </form>
+
+        <div class="auth-footer">
+            <p>Belum punya akun? <a href="daftar.html">Daftar sekarang</a></p>
+            <p><a href="#" onclick="showForgotPassword()">Lupa password?</a></p>
+        </div>
+
+        <div id="loginError" class="auth-error" style="display: none;"></div>
+        <div id="loginSuccess" class="auth-success" style="display: none;"></div>
+    </div>
+</div>
+
+<!-- Forgot Password Modal -->
+<div class="modal-overlay" id="forgotPasswordModal">
+    <div class="modal">
+        <button class="modal-close" onclick="closeForgotPassword()">✕</button>
+        <h3>Reset Password</h3>
+        <p>Masukkan email Anda untuk menerima link reset password</p>
+        
+        <form id="forgotPasswordForm" class="auth-form">
+            <div class="form-group">
+                <label for="resetEmail">Email</label>
+                <input type="email" id="resetEmail" placeholder="nama@email.com" required>
+            </div>
+            <button type="submit" class="auth-btn">
+                <span id="resetBtnText">Kirim Link Reset</span>
+                <div id="resetSpinner" class="spinner" style="display: none;"></div>
+            </button>
+        </form>
+        
+        <div id="resetError" class="auth-error" style="display: none;"></div>
+        <div id="resetSuccess" class="auth-success" style="display: none;"></div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="js/supabase.js"></script>
+<script src="js/auth.js"></script>
+
+<script>
+// Login functionality
+document.addEventListener('DOMContentLoaded', async () => {
+    const loginForm = document.getElementById('loginForm');
+    const forgotPasswordForm = document.getElementById('forgotPasswordForm');
+    
+    // Check if user is already logged in
+    if (window.authManager.isAuthenticated()) {
+        const userProfile = window.authManager.getUserProfile();
+        if (userProfile) {
+            // Redirect based on role
+            switch (userProfile.role) {
+                case 'admin':
+                    window.location.href = 'admin.html';
+                    break;
+                case 'seller':
+                    window.location.href = 'seller.html';
+                    break;
+                case 'buyer':
+                    window.location.href = 'index.html';
+                    break;
+                default:
+                    window.location.href = 'index.html';
+            }
+        }
+        return;
+    }
+
+    // Handle login form submission
+    if (loginForm) {
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            await handleLogin();
+        });
+    }
+
+    // Handle forgot password form submission
+    if (forgotPasswordForm) {
+        forgotPasswordForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            await handleForgotPassword();
+        });
+    }
+});
+
+// Handle login
+async function handleLogin() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const remember = document.getElementById('remember').checked;
+    
+    // Show loading state
+    showLoginLoading(true);
+    hideMessages();
+    
+    try {
+        // Attempt to sign in
+        const result = await window.authManager.signIn(email, password);
+        
+        if (result.success) {
+            showLoginSuccess('Login berhasil! Mengarahkan...');
+            
+            // Wait for auth manager to handle redirect
+            setTimeout(() => {
+                // Auth manager will handle redirect based on role
+            }, 1500);
+        } else {
+            showLoginError(result.error);
+        }
+    } catch (error) {
+        showLoginError('Terjadi kesalahan. Silakan coba lagi.');
+    } finally {
+        showLoginLoading(false);
+    }
+}
+
+// Handle forgot password
+async function handleForgotPassword() {
+    const email = document.getElementById('resetEmail').value;
+    
+    // Show loading state
+    showResetLoading(true);
+    hideResetMessages();
+    
+    try {
+        const { error } = await window.SupabaseClient.auth.resetPasswordForEmail(email);
+        
+        if (error) {
+            showResetError('Gagal mengirim link reset. Periksa email Anda.');
+        } else {
+            showResetSuccess('Link reset password telah dikirim ke email Anda.');
+            // Close modal after 3 seconds
+            setTimeout(() => {
+                closeForgotPassword();
+            }, 3000);
+        }
+    } catch (error) {
+        showResetError('Terjadi kesalahan. Silakan coba lagi.');
+    } finally {
+        showResetLoading(false);
+    }
+}
+
+// Show forgot password modal
+function showForgotPassword() {
+    document.getElementById('forgotPasswordModal').classList.add('open');
+}
+
+// Close forgot password modal
+function closeForgotPassword() {
+    document.getElementById('forgotPasswordModal').classList.remove('open');
+    document.getElementById('resetEmail').value = '';
+    hideResetMessages();
+}
+
+// Loading states
+function showLoginLoading(show) {
+    const btnText = document.getElementById('loginBtnText');
+    const spinner = document.getElementById('loginSpinner');
+    const submitBtn = document.querySelector('#loginForm button[type="submit"]');
+    
+    if (show) {
+        btnText.style.display = 'none';
+        spinner.style.display = 'inline-block';
+        submitBtn.disabled = true;
+    } else {
+        btnText.style.display = 'inline';
+        spinner.style.display = 'none';
+        submitBtn.disabled = false;
+    }
+}
+
+function showResetLoading(show) {
+    const btnText = document.getElementById('resetBtnText');
+    const spinner = document.getElementById('resetSpinner');
+    const submitBtn = document.querySelector('#forgotPasswordForm button[type="submit"]');
+    
+    if (show) {
+        btnText.style.display = 'none';
+        spinner.style.display = 'inline-block';
+        submitBtn.disabled = true;
+    } else {
+        btnText.style.display = 'inline';
+        spinner.style.display = 'none';
+        submitBtn.disabled = false;
+    }
+}
+
+// Message handling
+function showLoginError(message) {
+    const errorEl = document.getElementById('loginError');
+    errorEl.textContent = message;
+    errorEl.style.display = 'block';
+}
+
+function showLoginSuccess(message) {
+    const successEl = document.getElementById('loginSuccess');
+    successEl.textContent = message;
+    successEl.style.display = 'block';
+}
+
+function hideMessages() {
+    document.getElementById('loginError').style.display = 'none';
+    document.getElementById('loginSuccess').style.display = 'none';
+}
+
+function showResetError(message) {
+    const errorEl = document.getElementById('resetError');
+    errorEl.textContent = message;
+    errorEl.style.display = 'block';
+}
+
+function showResetSuccess(message) {
+    const successEl = document.getElementById('resetSuccess');
+    successEl.textContent = message;
+    successEl.style.display = 'block';
+}
+
+function hideResetMessages() {
+    document.getElementById('resetError').style.display = 'none';
+    document.getElementById('resetSuccess').style.display = 'none';
+}
+
+// Demo accounts for testing
+function loadDemoAccounts() {
+    // You can remove this in production
+    console.log('Demo Accounts Available:');
+    console.log('Admin: admin@asahub.com / admin123');
+    console.log('Seller: seller@asahub.com / seller123');
+    console.log('Buyer: buyer@asahub.com / buyer123');
+}
+
+// Load demo accounts in development
+if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    loadDemoAccounts();
+}
+</script>
+
+</body>
+</html>
