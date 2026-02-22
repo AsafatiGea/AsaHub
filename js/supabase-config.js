@@ -22,6 +22,7 @@ if (typeof window.supabase !== 'undefined') {
     );
     
     // Export untuk digunakan di file lain
+    window.supabase = supabase;
     window.SupabaseClient = supabase;
 } else {
     console.error('Supabase library not loaded!');

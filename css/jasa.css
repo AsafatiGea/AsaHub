@@ -282,6 +282,32 @@
   overflow: hidden;
 }
 
+.service-instructor {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing);
+}
+
+.instructor-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--sky-blue);
+  color: var(--light-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: var(--font-sm);
+}
+
+.instructor-name {
+  font-size: var(--font-sm);
+  color: var(--gray-600);
+  font-weight: 500;
+}
+
 .service-features {
   margin-bottom: var(--spacing);
 }
@@ -342,6 +368,17 @@
   text-align: center;
 }
 
+.btn-secondary-service {
+  background: var(--gray-100);
+  color: var(--gray-700);
+  border: 1px solid var(--gray-200);
+}
+
+.btn-secondary-service:hover {
+  background: var(--gray-200);
+  color: var(--dark);
+}
+
 .btn-primary-service {
   background: var(--sky-blue);
   color: var(--light-white);
@@ -351,6 +388,8 @@
   background: #1976D2;
   transform: translateY(-1px);
 }
+
+/* Modal Styles */
 
 .btn-secondary-service {
   background: var(--gray-100);

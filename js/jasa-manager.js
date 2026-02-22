@@ -15,7 +15,7 @@ class JasaManager {
         this.currentSort = 'newest';
         this.isLoading = false;
         
-        this.init();
+        // Don't call init here, let it be called after DOM is ready
     }
 
     async init() {
@@ -35,6 +35,13 @@ class JasaManager {
         this.showLoading(true);
         
         try {
+            // Check if supabase is available
+            if (!window.supabase) {
+                console.warn('Supabase not available, using fallback data');
+                this.loadFallbackData();
+                return;
+            }
+
             const { data, error } = await window.supabase
                 .from('services')
                 .select(`
@@ -47,22 +54,112 @@ class JasaManager {
 
             if (error) {
                 console.error('Error loading services:', error);
-                // Fallback ke empty array jika database belum ada
-                this.services = [];
+                // Fallback ke sample data jika database belum ada
+                this.loadFallbackData();
             } else {
                 this.services = data || [];
+                // If no data from database, use fallback
+                if (this.services.length === 0) {
+                    console.warn('No services in database, using fallback data');
+                    this.loadFallbackData();
+                }
             }
             
             this.filteredServices = [...this.services];
             
         } catch (error) {
             console.error('Database error:', error);
-            // Fallback ke empty array
-            this.services = [];
-            this.filteredServices = [];
+            this.loadFallbackData();
+        } finally {
+            this.showLoading(false);
         }
-        
-        this.showLoading(false);
+    }
+
+    // Load fallback sample data
+    loadFallbackData() {
+        console.log('Loading fallback data...');
+        this.services = [
+            {
+                id: '1',
+                title: 'Service Mobil Panggilan',
+                description: 'Perbaikan mobil di rumah Anda. Ganti oli, tune-up, dan perbaikan umum.',
+                price: 500000,
+                price_type: 'fixed',
+                location: 'Medan',
+                is_online: false,
+                experience_years: 5,
+                status: 'active',
+                category: { name: 'Otomotif', slug: 'otomotif' },
+                provider: { name: 'Bengkel Maju Jaya', email: 'bengkel@example.com', phone: '08123456789', location: 'Medan' }
+            },
+            {
+                id: '2',
+                title: 'Web Development',
+                description: 'Pembuatan website profesional untuk bisnis Anda.',
+                price: 5000000,
+                price_type: 'project',
+                location: 'Online',
+                is_online: true,
+                experience_years: 7,
+                status: 'active',
+                category: { name: 'Teknologi', slug: 'teknologi' },
+                provider: { name: 'Tech Solution', email: 'tech@example.com', phone: '08123456788', location: 'Online' }
+            },
+            {
+                id: '3',
+                title: 'Logo Design',
+                description: 'Desain logo profesional untuk brand Anda.',
+                price: 750000,
+                price_type: 'fixed',
+                location: 'Online',
+                is_online: true,
+                experience_years: 4,
+                status: 'active',
+                category: { name: 'Kreatif', slug: 'kreatif' },
+                provider: { name: 'Creative Studio', email: 'creative@example.com', phone: '08123456787', location: 'Online' }
+            },
+            {
+                id: '4',
+                title: 'Renovasi Rumah',
+                description: 'Renovasi rumah minimalis dengan desain modern.',
+                price: 15000000,
+                price_type: 'project',
+                location: 'Medan',
+                is_online: false,
+                experience_years: 8,
+                status: 'active',
+                category: { name: 'Konstruksi', slug: 'konstruksi' },
+                provider: { name: 'Kontraktor Sejahtera', email: 'kontraktor@example.com', phone: '08123456786', location: 'Medan' }
+            },
+            {
+                id: '5',
+                title: 'Private Math Tutor',
+                description: 'Les privat matematika untuk SD, SMP, SMA.',
+                price: 100000,
+                price_type: 'hourly',
+                location: 'Online',
+                is_online: true,
+                experience_years: 5,
+                status: 'active',
+                category: { name: 'Pendidikan', slug: 'pendidikan' },
+                provider: { name: 'EduCenter', email: 'edu@example.com', phone: '08123456785', location: 'Online' }
+            },
+            {
+                id: '6',
+                title: 'Cleaning Service',
+                description: 'Membersihkan rumah atau kantor dengan peralatan lengkap.',
+                price: 200000,
+                price_type: 'fixed',
+                location: 'Medan',
+                is_online: false,
+                experience_years: 2,
+                status: 'active',
+                category: { name: 'Rumah Tangga', slug: 'rumah-tangga' },
+                provider: { name: 'CleanPro', email: 'clean@example.com', phone: '08123456784', location: 'Medan' }
+            }
+        ];
+        this.filteredServices = [...this.services];
+        console.log('Fallback data loaded, services count:', this.services.length);
     }
 
     // Setup event listeners
@@ -208,12 +305,20 @@ class JasaManager {
 
     // Render services
     renderServices() {
+        console.log('renderServices called, services count:', this.filteredServices.length);
         const grid = document.getElementById('servicesGrid');
         const noServices = document.getElementById('noServices');
         
-        if (!grid) return;
+        console.log('grid element:', grid);
+        console.log('noServices element:', noServices);
+        
+        if (!grid) {
+            console.error('servicesGrid element not found!');
+            return;
+        }
 
         if (this.filteredServices.length === 0) {
+            console.log('No services to display');
             grid.innerHTML = '';
             if (noServices) {
                 noServices.style.display = 'block';
@@ -225,7 +330,11 @@ class JasaManager {
             noServices.style.display = 'none';
         }
 
-        grid.innerHTML = this.filteredServices.map(service => this.createServiceCard(service)).join('');
+        console.log('Rendering services:', this.filteredServices.length);
+        const html = this.filteredServices.map(service => this.createServiceCard(service)).join('');
+        console.log('Generated HTML length:', html.length);
+        grid.innerHTML = html;
+        console.log('Services rendered successfully');
     }
 
     // Create service card HTML
@@ -531,21 +640,22 @@ function closeServiceModal() {
 
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
-    // Check if Supabase is available
-    if (typeof window.supabase !== 'undefined') {
-        window.jasaManager = new JasaManager();
-    } else {
-        console.error('Supabase not loaded. Please check supabase.js');
-        // Fallback: show empty state
-        const servicesGrid = document.getElementById('servicesGrid');
-        if (servicesGrid) {
-            servicesGrid.innerHTML = `
-                <div class="no-services">
-                    <div class="no-services-icon">🛠️</div>
-                    <h3 class="no-services-title">Sedang Dalam Pengembangan</h3>
-                    <p class="no-services-text">Sistem jasa sedang dalam pengembangan. Silakan kembali lagi nanti.</p>
-                </div>
-            `;
-        }
+    console.log('Jasa page loaded...');
+    
+    // Always create JasaManager instance, regardless of Supabase availability
+    window.jasaManager = new JasaManager();
+    
+    // Initialize the manager after DOM is ready
+    window.jasaManager.init().then(() => {
+        console.log('JasaManager initialized successfully');
+    }).catch(error => {
+        console.error('Failed to initialize JasaManager:', error);
+    });
+    
+    // Initialize auth if available
+    if (window.authService) {
+        window.authService.init();
+        // Update navigation based on auth status
+        setTimeout(updateNavigationUI, 500);
     }
 });

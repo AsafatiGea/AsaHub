@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jasa & Pekerjaan - AsaHub</title>
+    <title>Jasa & Pekerjaan - AsaHub (DEBUG)</title>
     <link rel="icon" type="image/png" href="img/logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome Icons -->
@@ -37,30 +37,6 @@
         <div class="nav-auth desktop-only" id="navAuth">
             <a href="login.html" class="btn btn-outline">Masuk</a>
             <a href="daftar.html" class="btn btn-primary">Daftar</a>
-            
-            <!-- Desktop Dropdown Menu -->
-            <div class="desktop-dropdown">
-                <button class="desktop-dropdown-toggle" id="desktopDropdownToggle">
-                    <i class="fas fa-th"></i>
-                    <span>Menu</span>
-                    <i class="fas fa-chevron-down"></i>
-                </button>
-                <div class="desktop-dropdown-menu" id="desktopDropdownMenu">
-                    <a href="buyer-dashboard.html" class="desktop-dropdown-item">
-                        <i class="fas fa-user"></i>
-                        <span>Dashboard User</span>
-                    </a>
-                    <a href="seller-dashboard.html" class="desktop-dropdown-item">
-                        <i class="fas fa-store"></i>
-                        <span>Dashboard Seller</span>
-                    </a>
-                    <div class="desktop-dropdown-divider"></div>
-                    <button class="desktop-dropdown-item" id="desktopDropdownExit">
-                        <i class="fas fa-sign-out-alt"></i>
-                        <span>Keluar</span>
-                    </button>
-                </div>
-            </div>
         </div>
         
         <!-- Mobile Menu Toggle -->
@@ -70,90 +46,17 @@
     </div>
 </nav>
 
-<!-- Mobile Navigation Menu -->
-<div class="mobile-nav-menu" id="mobileNavMenu">
-    <div class="mobile-nav-header">
-        <div class="mobile-nav-logo">Asa<span>Hub</span></div>
-        <div class="mobile-nav-header-buttons">
-            <button class="mobile-nav-exit" id="mobileNavExit" title="Keluar dari Situs">
-                <i class="fas fa-sign-out-alt"></i>
-            </button>
-            <button class="mobile-nav-close" id="mobileNavClose">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-    </div>
-    
-    <!-- Menu Content - Will be dynamically updated -->
-    <div class="mobile-nav-content" id="mobileNavContent">
-        <!-- Default menu for non-logged users -->
-        <div class="mobile-nav-section" id="guestMenu">
-            <h4 class="mobile-nav-title">Selamat Datang!</h4>
-            <a href="login.html?role=seller" class="mobile-nav-item">
-                <i class="fas fa-store"></i>
-                <span>Masuk sebagai Seller</span>
-            </a>
-            <a href="login.html?role=buyer" class="mobile-nav-item">
-                <i class="fas fa-user"></i>
-                <span>Masuk sebagai User/Pembeli</span>
-            </a>
-        </div>
-        
-        <!-- Menu for logged in users - hidden by default -->
-        <div class="mobile-nav-section" id="userMenu" style="display: none;">
-            <div class="mobile-user-info">
-                <div class="mobile-user-avatar">
-                    <i class="fas fa-user-circle"></i>
-                </div>
-                <div class="mobile-user-details">
-                    <div class="mobile-user-name" id="mobileUserName">User Name</div>
-                    <div class="mobile-user-role" id="mobileUserRole">Role</div>
-                </div>
-            </div>
-            
-            <!-- Buyer Menu -->
-            <div class="mobile-nav-subsection" id="buyerMenuItems" style="display: none;">
-                <a href="buyer-dashboard.html" class="mobile-nav-item">
-                    <i class="fas fa-tachometer-alt"></i>
-                    <span>Dashboard User</span>
-                </a>
-                <a href="buyer-dashboard.html#section-profile" class="mobile-nav-item">
-                    <i class="fas fa-user"></i>
-                    <span>Profil</span>
-                </a>
-            </div>
-            
-            <!-- Seller Menu -->
-            <div class="mobile-nav-subsection" id="sellerMenuItems" style="display: none;">
-                <a href="seller-dashboard.html" class="mobile-nav-item">
-                    <i class="fas fa-tachometer-alt"></i>
-                    <span>Dashboard Seller</span>
-                </a>
-                <a href="seller-dashboard.html#section-profile" class="mobile-nav-item">
-                    <i class="fas fa-store"></i>
-                    <span>Profil Toko</span>
-                </a>
-            </div>
-            
-            <!-- Common Menu Items -->
-            <div class="mobile-nav-subsection">
-                <a href="index.html" class="mobile-nav-item">
-                    <i class="fas fa-home"></i>
-                    <span>Marketplace</span>
-                </a>
-                <a href="#" class="mobile-nav-item" onclick="authService.logout()">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span>Logout</span>
-                </a>
-            </div>
-        </div>
-</div>
-
-<!-- Mobile Navigation Overlay -->
-<div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
-
 <!-- Desktop Section Divider -->
 <div class="desktop-section-divider desktop-only"></div>
+
+<!-- Hero Section -->
+<section class="jasa-hero">
+    <div class="jasa-hero-content">
+        <h1 class="jasa-title">Platform Jasa & Pekerjaan</h1>
+        <p class="jasa-subtitle">Temukan tenaga ahli dan profesional, atau tawarkan keahlianmu sendiri</p>
+        <a href="daftar.html" class="jasa-cta">Daftar Sebagai Penyedia Jasa</a>
+    </div>
+</section>
 
 <!-- Categories Section -->
 <section class="jasa-categories">
@@ -162,37 +65,37 @@
             <div class="jasa-category-card active" onclick="filterByCategory('all')">
                 <div class="jasa-category-icon">🛠️</div>
                 <div class="jasa-category-name">Semua Jasa</div>
-                <div class="jasa-category-count" id="countAll">0</div>
+                <div class="jasa-category-count" id="countAll">6</div>
             </div>
             <div class="jasa-category-card" onclick="filterByCategory('otomotif')">
                 <div class="jasa-category-icon">🔧</div>
                 <div class="jasa-category-name">Otomotif</div>
-                <div class="jasa-category-count" id="countOtomotif">0</div>
+                <div class="jasa-category-count" id="countOtomotif">1</div>
             </div>
             <div class="jasa-category-card" onclick="filterByCategory('konstruksi')">
                 <div class="jasa-category-icon">🏗️</div>
                 <div class="jasa-category-name">Konstruksi</div>
-                <div class="jasa-category-count" id="countKonstruksi">0</div>
+                <div class="jasa-category-count" id="countKonstruksi">1</div>
             </div>
             <div class="jasa-category-card" onclick="filterByCategory('teknologi')">
                 <div class="jasa-category-icon">💻</div>
                 <div class="jasa-category-name">Teknologi</div>
-                <div class="jasa-category-count" id="countTeknologi">0</div>
+                <div class="jasa-category-count" id="countTeknologi">1</div>
             </div>
             <div class="jasa-category-card" onclick="filterByCategory('kreatif')">
                 <div class="jasa-category-icon">🎨</div>
                 <div class="jasa-category-name">Kreatif</div>
-                <div class="jasa-category-count" id="countKreatif">0</div>
+                <div class="jasa-category-count" id="countKreatif">1</div>
             </div>
             <div class="jasa-category-card" onclick="filterByCategory('rumah-tangga')">
                 <div class="jasa-category-icon">🏠</div>
                 <div class="jasa-category-name">Rumah Tangga</div>
-                <div class="jasa-category-count" id="countRumahTangga">0</div>
+                <div class="jasa-category-count" id="countRumahTangga">1</div>
             </div>
             <div class="jasa-category-card" onclick="filterByCategory('pendidikan')">
                 <div class="jasa-category-icon">📚</div>
                 <div class="jasa-category-name">Pendidikan</div>
-                <div class="jasa-category-count" id="countPendidikan">0</div>
+                <div class="jasa-category-count" id="countPendidikan">1</div>
             </div>
             <div class="jasa-category-card" onclick="filterByCategory('lainnya')">
                 <div class="jasa-category-icon">📦</div>
@@ -269,51 +172,229 @@
 
         <!-- Services Grid -->
         <div class="services-grid" id="servicesGrid">
-            <!-- Services will be loaded dynamically from Supabase -->
-        </div>
-
-        <!-- Loading State -->
-        <div class="services-loading" id="loadingState" style="display: none;">
-            <div class="service-skeleton">
+            <!-- Service 1 -->
+            <div class="service-card" data-category="otomotif">
                 <div class="service-header">
-                    <div class="service-icon">🛠️</div>
-                    <div class="service-type">Loading...</div>
+                    <div class="service-icon">🔧</div>
+                    <div class="service-type">Otomotif</div>
                 </div>
                 <div class="service-body">
-                    <div class="service-title">Loading...</div>
-                    <div class="service-description">Loading...</div>
+                    <h3 class="service-title">Service Mobil Panggilan</h3>
+                    <div class="service-instructor">
+                        <div class="instructor-avatar">B</div>
+                        <div class="instructor-name">Bengkel Maju Jaya</div>
+                    </div>
+                    <p class="service-description">Perbaikan mobil di rumah Anda. Ganti oli, tune-up, dan perbaikan umum.</p>
+                    <div class="service-features">
+                        <div class="service-feature">
+                            <span class="service-feature-icon">✓</span>
+                            <span>Profesional</span>
+                        </div>
+                        <div class="service-feature">
+                            <span class="service-feature-icon">✓</span>
+                            <span>Bergaransi</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="service-footer">
-                    <div class="service-price">Loading...</div>
+                    <div class="service-price">Rp 500.000</div>
+                    <div class="service-rating">
+                        <span>⭐</span>
+                        <span>4.5</span>
+                    </div>
+                </div>
+                <div class="service-actions">
+                    <button class="service-button btn-secondary-service">Detail</button>
+                    <a href="https://wa.me/628123456789?text=Halo, saya tertarik dengan Service Mobil Panggilan" class="service-button btn-primary-service" target="_blank">Hubungi</a>
+                </div>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="service-card" data-category="teknologi">
+                <div class="service-header">
+                    <div class="service-icon">💻</div>
+                    <div class="service-type">Teknologi</div>
+                </div>
+                <div class="service-body">
+                    <h3 class="service-title">Web Development</h3>
+                    <div class="service-instructor">
+                        <div class="instructor-avatar">T</div>
+                        <div class="instructor-name">Tech Solution</div>
+                    </div>
+                    <p class="service-description">Pembuatan website profesional untuk bisnis Anda dengan desain modern.</p>
+                    <div class="service-features">
+                        <div class="service-feature">
+                            <span class="service-feature-icon">✓</span>
+                            <span>Profesional</span>
+                        </div>
+                        <div class="service-feature">
+                            <span class="service-feature-icon">✓</span>
+                            <span>Bergaransi</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-footer">
+                    <div class="service-price">Rp 5.000.000</div>
+                    <div class="service-rating">
+                        <span>⭐</span>
+                        <span>4.8</span>
+                    </div>
+                </div>
+                <div class="service-actions">
+                    <button class="service-button btn-secondary-service">Detail</button>
+                    <a href="https://wa.me/628123456788?text=Halo, saya tertarik dengan Web Development" class="service-button btn-primary-service" target="_blank">Hubungi</a>
+                </div>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="service-card" data-category="kreatif">
+                <div class="service-header">
+                    <div class="service-icon">🎨</div>
+                    <div class="service-type">Kreatif</div>
+                </div>
+                <div class="service-body">
+                    <h3 class="service-title">Logo Design</h3>
+                    <div class="service-instructor">
+                        <div class="instructor-avatar">C</div>
+                        <div class="instructor-name">Creative Studio</div>
+                    </div>
+                    <p class="service-description">Desain logo profesional untuk brand Anda dengan konsep yang unik dan menarik.</p>
+                    <div class="service-features">
+                        <div class="service-feature">
+                            <span class="service-feature-icon">✓</span>
+                            <span>Profesional</span>
+                        </div>
+                        <div class="service-feature">
+                            <span class="service-feature-icon">✓</span>
+                            <span>Bergaransi</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-footer">
+                    <div class="service-price">Rp 750.000</div>
+                    <div class="service-rating">
+                        <span>⭐</span>
+                        <span>4.7</span>
+                    </div>
+                </div>
+                <div class="service-actions">
+                    <button class="service-button btn-secondary-service">Detail</button>
+                    <a href="https://wa.me/628123456787?text=Halo, saya tertarik dengan Logo Design" class="service-button btn-primary-service" target="_blank">Hubungi</a>
+                </div>
+            </div>
+
+            <!-- Service 4 -->
+            <div class="service-card" data-category="konstruksi">
+                <div class="service-header">
+                    <div class="service-icon">🏗️</div>
+                    <div class="service-type">Konstruksi</div>
+                </div>
+                <div class="service-body">
+                    <h3 class="service-title">Renovasi Rumah</h3>
+                    <div class="service-instructor">
+                        <div class="instructor-avatar">K</div>
+                        <div class="instructor-name">Kontraktor Sejahtera</div>
+                    </div>
+                    <p class="service-description">Renovasi rumah minimalis dengan desain modern dan kualitas terbaik.</p>
+                    <div class="service-features">
+                        <div class="service-feature">
+                            <span class="service-feature-icon">✓</span>
+                            <span>Profesional</span>
+                        </div>
+                        <div class="service-feature">
+                            <span class="service-feature-icon">✓</span>
+                            <span>Bergaransi</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-footer">
+                    <div class="service-price">Rp 15.000.000</div>
+                    <div class="service-rating">
+                        <span>⭐</span>
+                        <span>4.9</span>
+                    </div>
+                </div>
+                <div class="service-actions">
+                    <button class="service-button btn-secondary-service">Detail</button>
+                    <a href="https://wa.me/628123456786?text=Halo, saya tertarik dengan Renovasi Rumah" class="service-button btn-primary-service" target="_blank">Hubungi</a>
+                </div>
+            </div>
+
+            <!-- Service 5 -->
+            <div class="service-card" data-category="pendidikan">
+                <div class="service-header">
+                    <div class="service-icon">📚</div>
+                    <div class="service-type">Pendidikan</div>
+                </div>
+                <div class="service-body">
+                    <h3 class="service-title">Private Math Tutor</h3>
+                    <div class="service-instructor">
+                        <div class="instructor-avatar">E</div>
+                        <div class="instructor-name">EduCenter</div>
+                    </div>
+                    <p class="service-description">Les privat matematika untuk SD, SMP, SMA dengan metode yang efektif.</p>
+                    <div class="service-features">
+                        <div class="service-feature">
+                            <span class="service-feature-icon">✓</span>
+                            <span>Profesional</span>
+                        </div>
+                        <div class="service-feature">
+                            <span class="service-feature-icon">✓</span>
+                            <span>Bergaransi</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-footer">
+                    <div class="service-price">Rp 100.000/jam</div>
+                    <div class="service-rating">
+                        <span>⭐</span>
+                        <span>4.6</span>
+                    </div>
+                </div>
+                <div class="service-actions">
+                    <button class="service-button btn-secondary-service">Detail</button>
+                    <a href="https://wa.me/628123456785?text=Halo, saya tertarik dengan Private Math Tutor" class="service-button btn-primary-service" target="_blank">Hubungi</a>
+                </div>
+            </div>
+
+            <!-- Service 6 -->
+            <div class="service-card" data-category="rumah-tangga">
+                <div class="service-header">
+                    <div class="service-icon">🏠</div>
+                    <div class="service-type">Rumah Tangga</div>
+                </div>
+                <div class="service-body">
+                    <h3 class="service-title">Cleaning Service</h3>
+                    <div class="service-instructor">
+                        <div class="instructor-avatar">C</div>
+                        <div class="instructor-name">CleanPro</div>
+                    </div>
+                    <p class="service-description">Membersihkan rumah atau kantor dengan peralatan lengkap dan profesional.</p>
+                    <div class="service-features">
+                        <div class="service-feature">
+                            <span class="service-feature-icon">✓</span>
+                            <span>Profesional</span>
+                        </div>
+                        <div class="service-feature">
+                            <span class="service-feature-icon">✓</span>
+                            <span>Bergaransi</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-footer">
+                    <div class="service-price">Rp 200.000</div>
+                    <div class="service-rating">
+                        <span>⭐</span>
+                        <span>4.4</span>
+                    </div>
+                </div>
+                <div class="service-actions">
+                    <button class="service-button btn-secondary-service">Detail</button>
+                    <a href="https://wa.me/628123456784?text=Halo, saya tertarik dengan Cleaning Service" class="service-button btn-primary-service" target="_blank">Hubungi</a>
                 </div>
             </div>
         </div>
-
-        <!-- No Services -->
-        <div class="no-services" id="noServices" style="display: none;">
-            <div class="no-services-icon">🛠️</div>
-            <h3 class="no-services-title">Belum Ada Jasa Tersedia</h3>
-            <p class="no-services-text">Admin atau penyedia jasa belum menambahkan jasa apa pun. Silakan kembali lagi nanti atau daftar sebagai penyedia jasa.</p>
-            <a href="daftar.html" class="no-services-action">Daftar Sebagai Penyedia Jasa</a>
-        </div>
     </main>
-</div>
-
-<!-- Service Detail Modal -->
-<div class="modal" id="serviceModal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h3 class="modal-title" id="modalTitle">Detail Jasa</h3>
-            <button class="modal-close" onclick="closeServiceModal()">&times;</button>
-        </div>
-        <div class="modal-body" id="modalBody">
-            <!-- Service details will be loaded here -->
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-secondary" onclick="closeServiceModal()">Tutup</button>
-            <a href="#" class="btn btn-primary" id="modalContactButton" target="_blank">Hubungi Penyedia</a>
-        </div>
-    </div>
 </div>
 
 <!-- Mobile Bottom Navigation -->
@@ -371,279 +452,49 @@
     </div>
 </footer>
 
-<!-- Scripts -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.7"></script>
-<script src="js/supabase-config.js"></script>
-<script src="js/auth-service.js"></script>
-<script src="js/jasa-manager.js"></script>
-
+<!-- Simple JavaScript -->
 <script>
-// Initialize when DOM is ready
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('Jasa page loaded...');
-    
-    // Initialize auth
-    if (window.authService) {
-        window.authService.init();
-        // Update navigation based on auth status
-        setTimeout(updateNavigationUI, 500);
-    }
-    
-    // Setup mobile navigation
-    setupMobileNavigation();
-    
-    // Initialize jasa manager
-    if (window.jasaManager) {
-        window.jasaManager.init();
-    }
-});
-
-// Mobile Navigation Setup
-function setupMobileNavigation() {
-    const menuToggle = document.getElementById('mobileMenuToggle');
-    const menuClose = document.getElementById('mobileNavClose');
-    const menuExit = document.getElementById('mobileNavExit');
-    const mobileMenu = document.getElementById('mobileNavMenu');
-    const overlay = document.getElementById('mobileNavOverlay');
-    
-    // Open menu
-    if (menuToggle) {
-        menuToggle.addEventListener('click', function() {
-            mobileMenu.classList.add('active');
-            overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            
-            // Animate menu items
-            const menuItems = mobileMenu.querySelectorAll('.mobile-nav-item');
-            menuItems.forEach((item, index) => {
-                item.style.setProperty('--item-delay', `${index * 0.05}s`);
-            });
-        });
-    }
-    
-    // Close menu
-    function closeMobileMenu() {
-        mobileMenu.classList.remove('active');
-        overlay.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-    
-    if (menuClose) {
-        menuClose.addEventListener('click', closeMobileMenu);
-    }
-    
-    // Exit from site
-    if (menuExit) {
-        menuExit.addEventListener('click', function() {
-            if (confirm('Apakah Anda yakin ingin keluar dari situs AsaHub?')) {
-                // Close the mobile menu first
-                closeMobileMenu();
-                
-                // Try to close window directly first
-                if (window.history.length > 1) {
-                    // If there's history, go back to previous page
-                    window.history.back();
-                } else {
-                    // If no history, try to close the window
-                    window.close();
-                    
-                    // Only redirect to about:blank if window.close() fails and no history
-                    setTimeout(() => {
-                        if (!window.closed) {
-                            window.location.href = 'about:blank';
-                        }
-                    }, 100);
-                }
-            }
-        });
-    }
-    
-    if (overlay) {
-        overlay.addEventListener('click', closeMobileMenu);
-    }
-    
-    // Close menu when clicking on menu items (except logout)
-    const menuItems = mobileMenu.querySelectorAll('.mobile-nav-item:not([onclick*="logout"])');
-    menuItems.forEach(item => {
-        item.addEventListener('click', function() {
-            setTimeout(closeMobileMenu, 300);
-        });
-    });
-}
-
-// Update Navigation UI based on auth status
-function updateNavigationUI() {
-    const isAuth = window.authService && window.authService.isAuthenticated();
-    const user = window.authService ? window.authService.getCurrentUser() : null;
-    const userProfile = user ? user.profile : null;
-    
-    // Update desktop navigation
-    const navAuth = document.getElementById('navAuth');
-    if (navAuth) {
-        if (isAuth && userProfile) {
-            navAuth.innerHTML = `
-                <a href="${userProfile.role === 'seller' ? 'seller-dashboard.html' : 'buyer-dashboard.html'}" class="btn btn-outline">
-                    <i class="fas fa-user"></i> ${userProfile.full_name || 'Dashboard'}
-                </a>
-                <button class="btn btn-primary" onclick="authService.logout()">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </button>
-            `;
-        } else {
-            navAuth.innerHTML = `
-                <a href="login.html" class="btn btn-outline">Masuk</a>
-                <a href="daftar.html" class="btn btn-primary">Daftar</a>
-            `;
-        }
-    }
-    
-    // Update mobile navigation
-    const guestMenu = document.getElementById('guestMenu');
-    const userMenu = document.getElementById('userMenu');
-    const buyerMenuItems = document.getElementById('buyerMenuItems');
-    const sellerMenuItems = document.getElementById('sellerMenuItems');
-    const mobileUserName = document.getElementById('mobileUserName');
-    const mobileUserRole = document.getElementById('mobileUserRole');
-    
-    if (isAuth && userProfile) {
-        // Show user menu
-        if (guestMenu) guestMenu.style.display = 'none';
-        if (userMenu) userMenu.style.display = 'block';
-        
-        // Update user info
-        if (mobileUserName) mobileUserName.textContent = userProfile.full_name || 'User';
-        if (mobileUserRole) mobileUserRole.textContent = userProfile.role || 'user';
-        
-        // Show role-specific menu items
-        if (userProfile.role === 'seller') {
-            if (buyerMenuItems) buyerMenuItems.style.display = 'none';
-            if (sellerMenuItems) sellerMenuItems.style.display = 'block';
-        } else {
-            if (buyerMenuItems) buyerMenuItems.style.display = 'block';
-            if (sellerMenuItems) sellerMenuItems.style.display = 'none';
-        }
-    } else {
-        // Show guest menu
-        if (guestMenu) guestMenu.style.display = 'block';
-        if (userMenu) userMenu.style.display = 'none';
-    }
-}
-
-// Listen for auth state changes
-document.addEventListener('authStateChanged', function() {
-    updateNavigationUI();
-});
-
-// Desktop Exit Button Logic
-const desktopExitBtn = document.getElementById('desktopExitBtn');
-if (desktopExitBtn) {
-    desktopExitBtn.addEventListener('click', function() {
-        if (confirm('Apakah Anda yakin ingin keluar dari situs AsaHub?')) {
-            // Try to close window directly first
-            if (window.history.length > 1) {
-                // If there's history, go back to previous page
-                window.history.back();
-            } else {
-                // If no history, try to close the window
-                window.close();
-                
-                // Only redirect to about:blank if window.close() fails and no history
-                setTimeout(() => {
-                    if (!window.closed) {
-                        window.location.href = 'about:blank';
-                    }
-                }, 100);
-            }
-        }
-    });
-}
-
-// Desktop Dropdown Menu Logic
-const desktopDropdownToggle = document.getElementById('desktopDropdownToggle');
-const desktopDropdownMenu = document.getElementById('desktopDropdownMenu');
-const desktopDropdownExit = document.getElementById('desktopDropdownExit');
-
-// Toggle dropdown menu
-if (desktopDropdownToggle && desktopDropdownMenu) {
-    desktopDropdownToggle.addEventListener('click', function(e) {
-        e.stopPropagation();
-        desktopDropdownMenu.classList.toggle('active');
-    });
-}
-
-// Close dropdown when clicking outside
-document.addEventListener('click', function() {
-    if (desktopDropdownMenu) {
-        desktopDropdownMenu.classList.remove('active');
-    }
-});
-
-// Prevent dropdown from closing when clicking inside
-if (desktopDropdownMenu) {
-    desktopDropdownMenu.addEventListener('click', function(e) {
-        e.stopPropagation();
-    });
-}
-
-// Exit button in dropdown
-if (desktopDropdownExit) {
-    desktopDropdownExit.addEventListener('click', function() {
-        if (confirm('Apakah Anda yakin ingin keluar dari situs AsaHub?')) {
-            // Close dropdown first
-            if (desktopDropdownMenu) {
-                desktopDropdownMenu.classList.remove('active');
-            }
-            
-            // Try to close window directly first
-            if (window.history.length > 1) {
-                // If there's history, go back to previous page
-                window.history.back();
-            } else {
-                // If no history, try to close the window
-                window.close();
-                
-                // Only redirect to about:blank if window.close() fails and no history
-                setTimeout(() => {
-                    if (!window.closed) {
-                        window.location.href = 'about:blank';
-                    }
-                }, 100);
-            }
-        }
-    });
-}
-
-// Service filtering functions (placeholder - will be implemented by jasa-manager.js)
+// Simple filter function
 function filterByCategory(category) {
-    if (window.jasaManager) {
-        window.jasaManager.filterByCategory(category);
-    }
-}
-
-function clearFilters() {
-    if (window.jasaManager) {
-        window.jasaManager.clearFilters();
-    }
+    const cards = document.querySelectorAll('.service-card');
+    
+    cards.forEach(card => {
+        if (category === 'all') {
+            card.style.display = 'block';
+        } else {
+            if (card.dataset.category === category) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        }
+    });
+    
+    // Update active category
+    document.querySelectorAll('.jasa-category-card').forEach(cat => {
+        cat.classList.remove('active');
+    });
+    
+    event.target.closest('.jasa-category-card').classList.add('active');
 }
 
 function filterServices() {
-    if (window.jasaManager) {
-        window.jasaManager.filterServices();
-    }
+    console.log('Filter services called');
 }
 
 function sortServices() {
-    if (window.jasaManager) {
-        window.jasaManager.sortServices();
-    }
+    console.log('Sort services called');
 }
 
-function closeServiceModal() {
-    const modal = document.getElementById('serviceModal');
-    if (modal) {
-        modal.style.display = 'none';
-    }
+function clearFilters() {
+    console.log('Clear filters called');
 }
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Jasa DEBUG page loaded successfully!');
+    console.log('Total service cards:', document.querySelectorAll('.service-card').length);
+});
 </script>
 
 </body>
