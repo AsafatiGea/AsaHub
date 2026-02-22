@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test AsaHub New Connection</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .result { margin: 10px 0; padding: 10px; border-radius: 5px; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .warning { background: #fff3cd; color: #856404; }
+        button { padding: 10px 20px; margin: 5px; }
+    </style>
+</head>
+<body>
+    <h1>🚀 Test AsaHub New Connection</h1>
+    
+    <button onclick="testConnection()">Test Connection</button>
+    <button onclick="testDatabase()">Test Database</button>
+    <button onclick="testAuth()">Test Auth</button>
+    
+    <div id="result"></div>
+
+    <!-- Load Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.7"></script>
+    <script src="js/supabase-config.js"></script>
+    <script>
+        console.log('Testing with new config:', window.SUPABASE_CONFIG);
+        console.log('Supabase client:', window.SupabaseClient);
+        
+        async function testConnection() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<div class="warning">⏳ Testing connection...</div>';
+            
+            try {
+                // Test basic connection
+                const { data, error } = await window.SupabaseClient.from('users').select('count').single();
+                
+                if (error) {
+                    resultDiv.innerHTML = `<div class="error">❌ Connection Error: ${error.message}</div>`;
+                    console.error('Connection error:', error);
+                } else {
+                    resultDiv.innerHTML = `<div class="success">✅ Connection successful! Database accessible.</div>`;
+                    console.log('Connection success:', data);
+                }
+            } catch (err) {
+                resultDiv.innerHTML = `<div class="error">❌ Exception: ${err.message}</div>`;
+                console.error('Exception:', err);
+            }
+        }
+        
+        async function testDatabase() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<div class="warning">⏳ Testing database tables...</div>';
+            
+            try {
+                // Test if tables exist
+                const tables = ['users', 'categories', 'products'];
+                let results = [];
+                
+                for (const table of tables) {
+                    const { data, error } = await window.SupabaseClient.from(table).select('count').single();
+                    if (error) {
+                        results.push(`${table}: ❌ ${error.message}`);
+                    } else {
+                        results.push(`${table}: ✅ Accessible`);
+                    }
+                }
+                
+                resultDiv.innerHTML = `<div class="success">📊 Database Tables:<br>${results.join('<br>')}</div>`;
+            } catch (err) {
+                resultDiv.innerHTML = `<div class="error">❌ Database test error: ${err.message}</div>`;
+            }
+        }
+        
+        async function testAuth() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<div class="warning">⏳ Testing authentication...</div>';
+            
+            try {
+                const { data: { session }, error } = await window.SupabaseClient.auth.getSession();
+                
+                if (error) {
+                    resultDiv.innerHTML = `<div class="error">❌ Auth error: ${error.message}</div>`;
+                } else {
+                    resultDiv.innerHTML = `<div class="success">✅ Auth system working! No active session (this is normal).</div>`;
+                }
+            } catch (err) {
+                resultDiv.innerHTML = `<div class="error">❌ Auth test error: ${err.message}</div>`;
+            }
+        }
+        
+        // Auto test on load
+        window.addEventListener('load', () => {
+            console.log('Page loaded, starting auto test...');
+            setTimeout(testConnection, 1000);
+        });
+    </script>
+</body>
+</html>

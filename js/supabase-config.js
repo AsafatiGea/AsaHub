@@ -1,7 +1,7 @@
 // Supabase Configuration
 const SUPABASE_CONFIG = {
-    url: 'https://btkmlkpspcsoozdbvsvp.supabase.co',
-    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ0a21sa3BzcGNzb296ZGJ2c3ZwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE2ODcyMzIsImV4cCI6MjA4NzI2MzIzMn0.sMpQs0EhD2OuIRmBKEXODuEmahijHj9MXUGgVsVP5Do',
+    url: 'https://mnpagvtulkzavffvhwxz.supabase.co',
+    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ucGFndnR1bGt6YXZmZnZod3h6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE3NzM1OTgsImV4cCI6MjA4NzM0OTU5OH0.eT5OGn1xPyv3fOt42Cczo9RoWEgyL-OuGlMmUZV-6dQ',
     
     // Konfigurasi tambahan
     options: {
