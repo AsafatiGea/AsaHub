@@ -50,33 +50,31 @@ class AuthService {
         try {
             console.log('Login attempt for:', email);
             
-            // Try Supabase Auth first
+            // First check database users (for users registered via our form)
+            try {
+                const { data: user, error: userError } = await this.supabase
+                    .from('users')
+                    .select('*')
+                    .eq('email', email)
+                    .single();
+
+                if (!userError && user) {
+                    console.log('Found user in database, checking password');
+                    return this.handlePasswordCheck(user, password);
+                }
+            } catch (dbError) {
+                console.log('Database check failed, trying Supabase Auth');
+            }
+            
+            // Try Supabase Auth (for users created via Supabase Auth system)
             const { data: authData, error: authError } = await this.supabase.auth.signInWithPassword({
                 email: email,
                 password: password
             });
 
             if (authError) {
-                console.log('Supabase auth failed, checking database users:', authError.message);
-                
-                try {
-                    // Check database users
-                    const { data: user, error: userError } = await this.supabase
-                        .from('users')
-                        .select('*')
-                        .eq('email', email)
-                        .single();
-
-                    if (userError || !user) {
-                        console.log('Database user not found, checking localStorage');
-                        return this.handleLocalStorageLogin(email, password);
-                    }
-
-                    return this.handlePasswordCheck(user, password);
-                } catch (dbError) {
-                    console.log('Database failed, checking localStorage:', dbError.message);
-                    return this.handleLocalStorageLogin(email, password);
-                }
+                console.log('Supabase auth failed, checking localStorage:', authError.message);
+                return this.handleLocalStorageLogin(email, password);
             }
 
             // If Supabase Auth succeeds, load user profile
@@ -169,35 +167,17 @@ class AuthService {
     }
 
     handlePasswordCheck(user, password) {
+        console.log('Checking password for user:', user.email);
+        console.log('Stored password hash:', user.password_hash);
+        console.log('Input password:', password);
+        
         // Demo password check for existing database users
         if ((password === 'admin123' && user.role === 'admin') ||
             (password === 'seller123' && user.role === 'penjual') ||
             (password === 'buyer123' && user.role === 'pembeli') ||
             (user.password_hash === password + '_hash')) {
             
-            const mockSession = {
-                user: {
-                    id: user.id,
-                    email: user.email
-                }
-            };
-            
-            this.currentUser = mockSession.user;
-            this.currentUser.profile = user;
-            localStorage.setItem('userProfile', JSON.stringify(user));
-            
-            this.redirectBasedOnRole(user.role);
-            return { success: true, user };
-        } else {
-            return { success: false, error: 'Invalid credentials' };
-        }
-    }
-
-    handlePasswordCheck(user, password) {
-        // Demo password check
-        if ((password === 'admin123' && user.role === 'admin') ||
-            (password === 'seller123' && user.role === 'penjual') ||
-            (password === 'buyer123' && user.role === 'pembeli')) {
+            console.log('Password match! Creating session...');
             
             const mockSession = {
                 user: {
@@ -210,9 +190,11 @@ class AuthService {
             this.currentUser.profile = user;
             localStorage.setItem('userProfile', JSON.stringify(user));
             
+            console.log('Session created, redirecting to:', user.role);
             this.redirectBasedOnRole(user.role);
             return { success: true, user };
         } else {
+            console.log('Password mismatch!');
             return { success: false, error: 'Invalid credentials' };
         }
     }

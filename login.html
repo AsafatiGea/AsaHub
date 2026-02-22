@@ -110,38 +110,6 @@ document.addEventListener('DOMContentLoaded', async function() {
         return;
     }
 
-    loginForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-        const submitBtn = loginForm.querySelector('button[type="submit"]');
-        
-        // Show loading state
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Masuk...';
-        errorMessage.style.display = 'none';
-        
-        try {
-            const result = await window.authService.login(email, password);
-            
-            if (result.success) {
-                // Redirect will be handled by auth service
-                console.log('Login successful:', result.user);
-            } else {
-                errorMessage.textContent = result.error || 'Login gagal. Silakan coba lagi.';
-                errorMessage.style.display = 'block';
-            }
-        } catch (error) {
-            errorMessage.textContent = 'Terjadi kesalahan. Silakan coba lagi.';
-            errorMessage.style.display = 'block';
-        } finally {
-            // Reset button state
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = 'Masuk';
-        }
-    });
-
     // Demo credentials helper
     const showDemoBtn = document.createElement('button');
     showDemoBtn.type = 'button';
