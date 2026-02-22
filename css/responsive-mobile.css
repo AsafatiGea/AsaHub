@@ -52,6 +52,8 @@
   
   .mobile-nav-item.active {
     color: var(--primary);
+    background: rgba(26, 82, 118, 0.1);
+    border-radius: 8px;
   }
   
   .mobile-nav-item:hover {
