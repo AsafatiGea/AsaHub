@@ -1,652 +1,645 @@
-/* ---------- MOBILE RESPONSIVE DESIGN ---------- */
-/* Efisiensi layar maksimal untuk device kecil */
+/* ============================================================
+   AsaHub – responsive-mobile.css
+   Perbaikan responsif menyeluruh untuk semua perangkat HP
+   ============================================================ */
 
+/* ── Utilities ── */
+.mobile-only  { display: none !important; }
+.desktop-only { display: block !important; }
+
+/* ─────────────────────────────────────────
+   BREAKPOINT UTAMA: max-width 768px (HP)
+───────────────────────────────────────── */
 @media (max-width: 768px) {
-  /* Navigation - HIDE HAMBURGER MENU */
+
+  /* Utilities */
+  .mobile-only  { display: block !important; }
+  .desktop-only { display: none  !important; }
+
+  /* ── Body & Global ── */
+  body {
+    font-size: 15px;
+    overflow-x: hidden;
+  }
+
+  /* ── NAVBAR ── */
   .navbar {
-    display: none;
+    padding: 0 16px;
+    height: 56px;
   }
-  
-  .desktop-only {
-    display: none;
+  .nav-container {
+    height: 56px;
+    padding: 0;
   }
-  
-  .mobile-only {
-    display: block;
+  .nav-links {
+    display: none !important;
   }
-  
-  /* Mobile Bottom Navigation - PRIORITAS UTAMA */
+  .nav-auth {
+    gap: 8px;
+  }
+  .nav-auth .btn {
+    padding: 7px 14px;
+    font-size: 13px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 80px 20px 48px;
+    min-height: unset;
+  }
+  .hero-content h1 {
+    font-size: clamp(24px, 7vw, 36px);
+    line-height: 1.2;
+  }
+  .hero-content p {
+    font-size: 14px;
+    margin-top: 12px;
+  }
+  .hero-actions {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .hero-cta,
+  .hero-secondary {
+    width: 100%;
+    text-align: center;
+    padding: 14px 20px;
+    font-size: 15px;
+  }
+
+  /* ── MARKETPLACE LAYOUT ── */
+  .marketplace-layout {
+    flex-direction: column;
+    padding: 12px 12px 80px;
+    gap: 0;
+  }
+  .marketplace-sidebar { display: none !important; }
+  .marketplace-main {
+    width: 100%;
+    padding: 0;
+  }
+  .marketplace-controls { display: none; }
+
+  /* Products Grid */
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px;
+  }
+  .product-card {
+    border-radius: 12px;
+  }
+  .product-image {
+    height: 140px;
+  }
+  .product-title {
+    font-size: 13px;
+  }
+  .product-price {
+    font-size: 14px;
+  }
+  .product-actions {
+    flex-direction: column;
+    gap: 6px;
+  }
+  .product-actions .btn {
+    width: 100%;
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  /* Results header */
+  .results-header {
+    padding: 8px 0;
+    font-size: 13px;
+  }
+
+  /* ── JASA HERO ── */
+  .jasa-hero,
+  .edukasi-hero,
+  .komunitas-hero,
+  .tentang-hero {
+    padding: 80px 20px 40px;
+    min-height: unset;
+  }
+  .jasa-title,
+  .edukasi-title,
+  .komunitas-title,
+  .tentang-title {
+    font-size: clamp(22px, 6.5vw, 32px);
+    line-height: 1.2;
+  }
+  .jasa-subtitle,
+  .edukasi-subtitle,
+  .komunitas-subtitle,
+  .tentang-subtitle {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  .jasa-cta,
+  .edukasi-cta,
+  .komunitas-cta {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 12px 24px;
+    font-size: 14px;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  /* ── JASA CATEGORIES ── */
+  .jasa-categories,
+  .course-categories,
+  .community-categories {
+    padding: 20px 12px;
+  }
+  .jasa-categories-grid,
+  .course-categories-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 8px;
+  }
+  .jasa-category-card,
+  .course-category-card {
+    padding: 10px 6px;
+    border-radius: 10px;
+  }
+  .jasa-category-icon,
+  .course-category-icon {
+    font-size: 20px;
+  }
+  .jasa-category-name,
+  .course-category-name {
+    font-size: 11px;
+    margin-top: 4px;
+  }
+  .jasa-category-count,
+  .course-category-count {
+    font-size: 11px;
+  }
+
+  /* ── SERVICES / COURSES LAYOUT ── */
+  .services-layout,
+  .courses-layout {
+    flex-direction: column;
+    padding: 12px 12px 80px;
+    gap: 0;
+  }
+  .services-sidebar,
+  .courses-sidebar { display: none !important; }
+  .services-main,
+  .courses-main {
+    width: 100%;
+    padding: 0;
+  }
+
+  /* Services Grid */
+  .services-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+  }
+  .service-card {
+    border-radius: 12px;
+  }
+
+  /* Courses Grid */
+  .courses-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+  }
+  .course-card {
+    border-radius: 12px;
+  }
+
+  /* ── SERVICES / COURSES HEADER ── */
+  .services-header,
+  .courses-header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+  .services-controls,
+  .courses-controls {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .services-search,
+  .courses-search {
+    width: 100%;
+  }
+  .search-bar {
+    width: 100%;
+  }
+  .services-sort,
+  .courses-sort {
+    width: 100%;
+  }
+
+  /* ── KOMUNITAS ── */
+  .community-stats-content {
+    padding: 20px 16px;
+  }
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px;
+  }
+  .stat-number {
+    font-size: 28px;
+  }
+  .stat-label {
+    font-size: 12px;
+  }
+  .featured-groups-content,
+  .recent-discussions-content,
+  .upcoming-events-content {
+    padding: 20px 16px;
+  }
+  .groups-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+  }
+  .events-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+  }
+  .categories-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px;
+  }
+  .join-cta-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .join-cta-actions .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* ── TENTANG ── */
+  .tentang-features-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+  .founder-content {
+    flex-direction: column;
+    gap: 24px;
+  }
+  .founder-image-section {
+    width: 100%;
+    text-align: center;
+  }
+  .founder-avatar {
+    width: 120px;
+    height: 120px;
+  }
+  .founder-info {
+    width: 100%;
+  }
+  .values-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .steps-container {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px;
+  }
+  .step-number {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+
+  /* ── AUTH (Login / Daftar) ── */
+  .auth-container {
+    padding: 16px;
+    min-height: 100dvh;
+    align-items: flex-start;
+    padding-top: 32px;
+  }
+  .auth-card {
+    padding: 28px 20px !important;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 100% !important;
+  }
+  .auth-title {
+    font-size: 22px;
+  }
+  .auth-subtitle {
+    font-size: 13px;
+  }
+  .auth-button {
+    font-size: 15px;
+    padding: 14px;
+  }
+  .social-login {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .social-button {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    padding-bottom: 72px; /* ruang untuk mobile nav */
+  }
+  .footer-top {
+    flex-direction: column;
+    gap: 24px;
+    padding: 32px 16px 24px;
+  }
+  .footer-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .footer-col h4 {
+    font-size: 13px;
+  }
+  .footer-col a {
+    font-size: 12px;
+  }
+  .footer-bottom {
+    padding: 16px;
+    font-size: 12px;
+    text-align: center;
+  }
+
+  /* ── MOBILE BOTTOM NAV ── */
   .mobile-bottom-nav {
     display: flex !important;
-    flex-direction: row !important;
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
     background: white;
-    border-top: 1px solid var(--border);
-    padding: 4px 0;
+    border-top: 1px solid #eee;
+    padding: 8px 0 env(safe-area-inset-bottom, 8px);
     z-index: 1000;
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-    justify-content: space-around !important;
-    align-items: center !important;
-    height: 60px;
+    justify-content: space-around;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
   }
-  
   .mobile-nav-item {
-    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    color: #aaa;
     text-decoration: none;
-    color: var(--muted);
-    font-size: 8px;
-    font-weight: 500;
-    padding: 4px 1px;
-    transition: all 0.3s ease;
-    position: relative;
-    height: 100%;
-    min-width: 0;
+    font-size: 20px;
+    min-width: 44px;
+    min-height: 44px;
+    border-radius: 10px;
+    transition: color 0.2s;
   }
-  
-  .mobile-nav-item.active {
-    color: var(--primary);
-    background: rgba(26, 82, 118, 0.1);
-    border-radius: 8px;
-  }
-  
+  .mobile-nav-item.active,
   .mobile-nav-item:hover {
-    color: var(--primary);
-    background: rgba(26, 82, 118, 0.05);
+    color: var(--primary, #2563eb);
   }
-  
-  .mobile-nav-item i {
-    font-size: 14px;
-    margin-bottom: 1px;
-    display: block;
-  }
-  
-  /* Add padding to body to avoid bottom nav overlap */
-  body {
-    padding-bottom: 70px;
-  }
-  
-  /* Footer adjustment for mobile */
-  .footer {
-    margin-bottom: 70px;
-  }
-  
-  /* Hide mobile menu (old hamburger system) */
-  .mobile-menu {
-    display: none;
-  }
-  
-  .hamburger {
-    display: none;
-  }
-  
-  /* Footer */
-  .footer-top {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-lg);
-    text-align: center;
-  }
-  
-  .footer-brand .nav-logo {
-    justify-content: center;
-  }
-  
-  /* Grid System */
-  .grid-cols-2,
-  .grid-cols-3,
-  .grid-cols-4,
-  .grid-cols-5,
-  .grid-cols-6 {
-    grid-template-columns: 1fr;
-  }
-  
-  .content-sidebar {
-    grid-template-columns: 1fr;
-    gap: var(--spacing);
-  }
-  
-  .sidebar {
-    position: static;
-    order: -1;
-  }
-  
-  /* Cards */
-  .card-grid,
-  .card-grid-sm,
-  .card-grid-lg {
-    grid-template-columns: 1fr;
-  }
-  
-  /* Typography */
-  .hero h1 {
-    font-size: var(--font-3xl);
-  }
-  
-  .hero p {
-    font-size: var(--font);
-  }
-  
-  .page-header h1 {
-    font-size: var(--font-2xl);
-  }
-  
-  /* Forms */
-  .modal-content {
-    margin: var(--spacing);
-    max-height: calc(100vh - 2rem);
-  }
-  
-  /* Buttons */
-  .btn-block {
-    display: flex;
-  }
-}
 
-@media (max-width: 480px) {
-  /* Base Layout */
-  body {
-    font-size: var(--font-sm);
-  }
-  
-  .container,
-  .container-sm,
-  .container-md,
-  .container-lg,
-  .container-xl {
-    padding: 0 var(--spacing-sm);
-  }
-  
-  /* Navigation - Mobile App Style */
-  .navbar {
-    height: 56px;
-  }
-  
-  .nav-container {
-    height: 56px;
-    padding: 0 var(--spacing-sm);
-  }
-  
-  .nav-logo {
-    font-size: 1.25rem;
-  }
-  
-  .mobile-menu {
-    top: 56px;
-    height: calc(100vh - 56px);
-  }
-  
-  /* Hide mobile menu (old hamburger system) */
-  .mobile-menu {
-    display: none;
-  }
-  
-  .hamburger {
-    display: none;
-  }
-  
-  .mobile-nav-item.active {
-    color: var(--primary);
-  }
-  
-  .mobile-nav-item:hover {
-    color: var(--primary);
-  }
-  
-  .mobile-nav-icon {
-    font-size: 1.25rem;
-    margin-bottom: var(--spacing-xs);
-  }
-  
-  /* Add padding for bottom nav */
-  body {
-    padding-bottom: 60px;
-  }
-  
-  /* Sections */
-  .section,
-  .section-sm,
-  .section-lg {
-    padding: var(--spacing-lg) 0;
-  }
-  
-  .hero {
-    min-height: 50vh;
-    padding: var(--spacing-xl) var(--spacing-sm);
-  }
-  
-  .hero h1 {
-    font-size: var(--font-2xl);
-  }
-  
-  .hero p {
-    font-size: var(--font-sm);
-  }
-  
-  /* Content Layout */
-  .content {
-    padding: var(--spacing) var(--spacing-sm);
-  }
-  
-  /* Product Cards - Mobile Optimized */
-  .product-card {
-    border-radius: var(--radius);
-  }
-  
-  .product-info {
-    padding: var(--spacing-sm);
-  }
-  
-  .product-title {
-    font-size: var(--font-sm);
-    margin-bottom: var(--spacing-xs);
-  }
-  
-  .product-meta {
-    font-size: var(--font-xs);
-    margin-bottom: var(--spacing-xs);
-  }
-  
-  .price-current {
-    font-size: var(--font);
-  }
-  
-  .price-original {
-    font-size: var(--font-xs);
-  }
-  
-  /* Mobile Search Bar */
+  /* ── MOBILE SEARCH ── */
   .mobile-search-container {
-    position: sticky;
-    top: 56px;
-    z-index: 100;
-    background: var(--light-white);
-    padding: var(--spacing-sm);
-    border-bottom: 1px solid var(--gray-200);
-    box-shadow: var(--shadow);
+    padding: 12px 12px 4px;
+    background: white;
   }
-  
   .mobile-search-bar {
     display: flex;
     align-items: center;
-    background: var(--gray-100);
-    border-radius: var(--radius-full);
-    padding: var(--spacing-sm) var(--spacing);
-    gap: var(--spacing-sm);
-    border: 1px solid transparent;
-    transition: all 0.2s ease;
+    background: #f3f4f6;
+    border-radius: 10px;
+    padding: 10px 14px;
+    gap: 8px;
   }
-  
-  .mobile-search-bar:focus-within {
-    border-color: var(--primary);
-    background: var(--light-white);
-    box-shadow: 0 0 0 3px rgba(255, 179, 0, 0.1);
-  }
-  
   .mobile-search-input {
-    flex: 1;
     border: none;
+    background: transparent;
     outline: none;
-    background: none;
-    font-size: var(--font-sm);
-    color: var(--secondary);
+    font-size: 14px;
+    width: 100%;
   }
-  
-  .mobile-search-input::placeholder {
-    color: var(--gray-500);
-  }
-  
-  /* Mobile Categories */
+
+  /* ── MOBILE CATEGORIES ── */
   .mobile-categories {
-    background: var(--light-white);
-    padding: var(--spacing-sm);
-    border-bottom: 1px solid var(--gray-200);
+    padding: 8px 12px;
+    overflow-x: auto;
+    scrollbar-width: none;
   }
-  
+  .mobile-categories::-webkit-scrollbar { display: none; }
   .mobile-categories-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--spacing-xs);
+    display: flex;
+    gap: 10px;
+    white-space: nowrap;
   }
-  
   .mobile-category-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
-    padding: var(--spacing-sm) var(--spacing-xs);
-    border-radius: var(--radius);
-    background: var(--gray-50);
-    border: 1px solid transparent;
+    gap: 4px;
+    min-width: 60px;
     cursor: pointer;
-    transition: all 0.2s ease;
   }
-  
-  .mobile-category-item:hover {
-    background: rgba(255, 179, 0, 0.1);
-    border-color: var(--primary);
-  }
-  
-  .mobile-category-item:active {
-    transform: scale(0.95);
-  }
-  
-  .mobile-category-icon {
-    font-size: 1.25rem;
-    margin-bottom: var(--spacing-xs);
-    color: var(--primary);
-  }
-  
-  .mobile-category-label {
-    font-size: var(--font-xs);
-    font-weight: 500;
-    color: var(--gray-700);
-  }
-  
-  /* Mobile Flash Sale */
-  .mobile-flash-sale {
-    background: linear-gradient(135deg, var(--error) 0%, #C62828 100%);
-    margin: var(--spacing-sm);
-    padding: var(--spacing);
-    border-radius: var(--radius);
-    color: var(--light-white);
-  }
-  
-  .mobile-flash-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: var(--spacing);
-  }
-  
-  .mobile-flash-title {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-xs);
-    font-weight: 600;
-    font-size: var(--font-sm);
-  }
-  
-  .mobile-flash-icon {
-    font-size: var(--font);
-    animation: pulse 2s infinite;
-  }
-  
-  @keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-  }
-  
-  .mobile-flash-timer {
-    display: flex;
-    gap: var(--spacing-xs);
-    font-family: 'Syne', sans-serif;
-    font-weight: 600;
-    font-size: var(--font-sm);
-    background: rgba(255, 255, 255, 0.2);
-    padding: var(--spacing-xs) var(--spacing-sm);
-    border-radius: var(--radius);
-    backdrop-filter: blur(10px);
-  }
-  
-  .mobile-flash-products {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-xs);
-  }
-  
-  .mobile-flash-product {
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: var(--radius);
-    padding: var(--spacing-xs);
-    cursor: pointer;
-    transition: all 0.2s ease;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-  }
-  
-  .mobile-flash-product:hover {
-    background: rgba(255, 255, 255, 0.25);
-    transform: translateY(-1px);
-  }
-  
-  /* Mobile Products Grid */
-  .mobile-products-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-xs);
-    padding: var(--spacing-sm);
-  }
-  
-  .mobile-product-card {
-    background: var(--light-white);
-    border-radius: var(--radius);
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    cursor: pointer;
-    transition: all 0.2s ease;
-    border: 1px solid var(--gray-200);
-  }
-  
-  .mobile-product-card:hover {
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
-  }
-  
-  .mobile-product-image {
-    position: relative;
-    aspect-ratio: 1;
-    background: var(--gray-100);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    color: var(--gray-400);
-  }
-  
-  .mobile-product-info {
-    padding: var(--spacing-xs);
-  }
-  
-  .mobile-product-title {
-    font-size: var(--font-sm);
-    font-weight: 600;
-    color: var(--secondary);
-    margin-bottom: var(--spacing-xs);
-    line-height: 1.3;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  
-  .mobile-product-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: var(--spacing-xs);
-    font-size: var(--font-xs);
-    color: var(--gray-600);
-  }
-  
-  .mobile-product-price {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-xs);
-  }
-  
-  .mobile-price-current {
-    font-weight: 700;
-    font-size: var(--font-sm);
-    color: var(--primary);
-    font-family: 'Syne', sans-serif;
-  }
-  
-  /* Forms - Mobile Optimized */
-  .form-group {
-    margin-bottom: var(--spacing-sm);
-  }
-  
-  .form-input {
-    padding: var(--spacing);
-    font-size: var(--font-sm);
-  }
-  
-  .btn {
-    padding: var(--spacing) var(--spacing-md);
-    font-size: var(--font-sm);
-  }
-  
-  .btn-lg {
-    padding: var(--spacing-md) var(--spacing-lg);
-    font-size: var(--font);
-  }
-  
-  /* Modal - Mobile */
-  .modal {
-    padding: var(--spacing-xs);
-  }
-  
+  .mobile-category-icon { font-size: 22px; }
+  .mobile-category-label { font-size: 11px; color: #555; }
+
+  /* ── MODAL ── */
   .modal-content {
-    margin: 0;
-    max-width: 100%;
-    max-height: 100vh;
-    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  }
-  
-  .modal-header {
-    padding: var(--spacing);
-  }
-  
-  .modal-body {
-    padding: var(--spacing);
-  }
-  
-  .modal-footer {
-    padding: var(--spacing);
-    flex-direction: column;
-    gap: var(--spacing-sm);
-  }
-  
-  .modal-footer .btn {
-    width: 100%;
-  }
-  
-  /* Typography Adjustments */
-  h1 { font-size: var(--font-2xl); }
-  h2 { font-size: var(--font-xl); }
-  h3 { font-size: var(--font-lg); }
-  h4 { font-size: var(--font); }
-  h5 { font-size: var(--font-sm); }
-  h6 { font-size: var(--font-xs); }
-  
-  /* Spacing Adjustments */
-  .section { padding: var(--spacing-lg) 0; }
-  .section-sm { padding: var(--spacing-md) 0; }
-  .section-lg { padding: var(--spacing-xl) var(--spacing-sm); }
-  
-  /* Hide Desktop Elements */
-  .desktop-only {
-    display: none !important;
-  }
-  
-  /* Show Mobile Elements */
-  .mobile-only {
-    display: block !important;
-  }
-  
-  .mobile-flex {
-    display: flex !important;
-  }
-  
-  .mobile-grid {
-    display: grid !important;
-  }
-  
-  /* Footer Adjustments */
-  .footer {
-    padding: var(--spacing-lg) 0 var(--spacing);
-  }
-  
-  .footer-top {
-    padding: 0 var(--spacing-sm);
-    gap: var(--spacing-md);
-  }
-  
-  .footer-bottom {
-    padding: var(--spacing) var(--spacing-sm);
-  }
-  
-  /* Dashboard Mobile */
-  .dashboard-sidebar {
-    position: fixed;
-    top: 56px;
-    left: -100%;
-    width: 280px;
-    height: calc(100vh - 56px);
-    background: var(--light-white);
-    box-shadow: var(--shadow-lg);
-    transition: left 0.3s ease;
-    z-index: 998;
+    margin: 16px;
+    border-radius: 16px;
+    max-height: 85dvh;
     overflow-y: auto;
   }
-  
-  .dashboard-sidebar.open {
-    left: 0;
+  .modal-body {
+    padding: 16px;
   }
-  
-  .dashboard-main {
-    margin-left: 0;
-    padding: var(--spacing) var(--spacing-sm);
-    padding-bottom: 80px; /* Account for bottom nav */
+  .modal-footer {
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px 16px;
   }
-  
-  /* Tables Mobile */
-  .table-responsive {
+  .modal-footer .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* ── PAGINATION ── */
+  .pagination {
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .page-btn {
+    min-width: 36px;
+    height: 36px;
+    font-size: 13px;
+  }
+
+  /* ── SECTION TITLES ── */
+  .section-title {
+    font-size: clamp(18px, 5vw, 24px);
+  }
+  .section-subtitle {
+    font-size: 13px;
+  }
+
+  /* ── FEATURED COURSES ── */
+  .featured-courses-content,
+  .learning-path-content {
+    padding: 24px 16px;
+  }
+  .featured-courses-grid,
+  .learning-path-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+  }
+
+  /* ── CTA ── */
+  .tentang-cta-content {
+    padding: 40px 20px;
+  }
+  .tentang-cta-title {
+    font-size: clamp(20px, 5.5vw, 28px);
+  }
+  .tentang-cta-button {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 14px 20px;
+  }
+  .join-cta-content {
+    padding: 40px 20px;
+  }
+  .join-cta-title {
+    font-size: clamp(20px, 5.5vw, 28px);
+  }
+
+  /* ── DISCUSSIONS LIST ── */
+  .discussion-item {
+    padding: 14px;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  /* ── TABLES ── */
+  .table-wrapper {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    border-radius: 8px;
   }
-  
   table {
-    min-width: 600px;
+    min-width: 500px;
   }
-  
-  /* Loading States Mobile */
-  .loading {
-    font-size: var(--font-sm);
+  th, td {
+    font-size: 12px;
+    padding: 8px 10px;
+    white-space: nowrap;
   }
-  
-  .empty-state {
-    padding: var(--spacing-lg) var(--spacing);
+
+  /* ── FLASH SALE MOBILE ── */
+  .mobile-flash-sale {
+    padding: 12px 12px;
   }
-  
-  .empty-state-icon {
-    font-size: 2rem;
+  .mobile-flash-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
   }
-  
-  .empty-state-title {
-    font-size: var(--font-lg);
+  .mobile-flash-title {
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .mobile-flash-timer {
+    font-weight: 700;
+    font-size: 14px;
+    color: #ef4444;
+  }
+  .mobile-flash-products {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .mobile-flash-products::-webkit-scrollbar { display: none; }
+}
+
+/* ─────────────────────────────────────────
+   BREAKPOINT KECIL: max-width 480px
+───────────────────────────────────────── */
+@media (max-width: 480px) {
+
+  /* Products grid jadi 1 kolom di layar sangat kecil */
+  .products-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Categories grid 4 kolom tetap tapi lebih kecil */
+  .jasa-categories-grid,
+  .course-categories-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+
+  /* Steps 1 kolom */
+  .steps-container {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Footer links 2 kolom */
+  .footer-links {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Stat cards 2 kolom */
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .auth-card {
+    padding: 24px 16px !important;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(20px, 6vw, 28px);
   }
 }
 
-/* Touch-friendly adjustments for mobile */
-@media (hover: none) and (pointer: coarse) {
-  .btn,
-  .mobile-nav-item,
-  .mobile-category-item,
-  .product-card,
-  .mobile-product-card {
-    min-height: 44px; /* iOS touch target minimum */
+/* ─────────────────────────────────────────
+   BREAKPOINT TABLET: 769px – 1024px
+───────────────────────────────────────── */
+@media (min-width: 769px) and (max-width: 1024px) {
+
+  .navbar { padding: 0 20px; }
+
+  .products-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
   }
-  
-  .mobile-nav-item,
-  .mobile-category-item {
-    padding: var(--spacing-sm) var(--spacing-xs);
+
+  .marketplace-layout {
+    padding: 16px;
+  }
+
+  .services-grid,
+  .courses-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .groups-grid,
+  .events-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .footer-top {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .footer-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .steps-container {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
