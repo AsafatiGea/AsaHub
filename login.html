@@ -4,24 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Masuk - AsaHub</title>
-    <link rel="icon" type="image/png" href="../img/logo.png">
+    <link rel="icon" type="image/png" href="img/logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- CSS Modular -->
-    <link rel="stylesheet" href="../css/base.css">
-    <link rel="stylesheet" href="../css/layout.css">
-    <link rel="stylesheet" href="../css/components.css">
-    <link rel="stylesheet" href="../css/auth.css">
-    <link rel="stylesheet" href="../css/responsive-mobile.css">
-    <link rel="stylesheet" href="../css/responsive-desktop.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/responsive-mobile.css">
+    <link rel="stylesheet" href="css/responsive-desktop.css">
 </head>
 <body>
 
 <div class="auth-container">
     <div class="auth-card fade-in">
         <div class="auth-header">
-            <a href="../index.html" class="auth-logo">Asa<span>Hub</span></a>
+            <a href="index.html" class="auth-logo">Asa<span>Hub</span></a>
             <h1 class="auth-title">Selamat Datang</h1>
             <p class="auth-subtitle">Masuk ke akun AsaHub kamu</p>
         </div>
@@ -75,7 +75,7 @@
 
         <div class="auth-footer">
             <p>Belum punya akun? <a href="daftar.html">Daftar di sini</a></p>
-            <p><a href="../index.html">← Kembali ke Marketplace</a></p>
+            <p><a href="index.html">← Kembali ke Marketplace</a></p>
         </div>
     </div>
 </div>
@@ -124,13 +124,13 @@ function doLogin(event) {
             alertError.classList.remove('show');
             
             // Redirect berdasarkan role
-            let redirectUrl = '../index.html';
+            let redirectUrl = 'index.html';
             if (user.role === 'admin') {
-                redirectUrl = '../Stakeholder/admin-dashboard.html';
+                redirectUrl = 'admin-dashboard.html';
             } else if (user.role === 'penjual') {
-                redirectUrl = '../Stakeholder/seller-dashboard.html';
+                redirectUrl = 'seller-dashboard.html';
             } else if (user.role === 'pembeli') {
-                redirectUrl = '../Stakeholder/buyer-dashboard.html';
+                redirectUrl = 'buyer-dashboard.html';
             }
             
             setTimeout(() => { 
