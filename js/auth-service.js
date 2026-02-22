@@ -18,10 +18,24 @@ class AuthService {
         this.supabase.auth.onAuthStateChange((event, session) => {
             if (event === 'SIGNED_IN' && session) {
                 this.currentUser = session.user;
-                this.loadUserProfile(session.user.id);
+                this.loadUserProfile(session.user.id).then(() => {
+                    // Trigger custom event for UI updates
+                    document.dispatchEvent(new CustomEvent('authStateChanged', { 
+                        detail: { 
+                            event: 'SIGNED_IN', 
+                            user: this.currentUser 
+                        } 
+                    }));
+                });
             } else if (event === 'SIGNED_OUT') {
                 this.currentUser = null;
                 localStorage.removeItem('userProfile');
+                // Trigger custom event for UI updates
+                document.dispatchEvent(new CustomEvent('authStateChanged', { 
+                    detail: { 
+                        event: 'SIGNED_OUT' 
+                    } 
+                }));
                 window.location.href = 'login.html';
             }
         });
