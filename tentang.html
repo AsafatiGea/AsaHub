@@ -5,99 +5,171 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tentang - AsaHub</title>
     <link rel="icon" type="image/png" href="img/logo.png">
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- CSS Modular -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/tentang.css">
+    <link rel="stylesheet" href="css/responsive-mobile.css">
+    <link rel="stylesheet" href="css/responsive-desktop.css">
 </head>
 <body>
 
+<!-- Navigation -->
 <nav class="navbar">
-    <a href="index.html" class="nav-logo">Asa<span>Hub</span></a>
-    <div class="nav-links">
-        <a href="index.html">Marketplace</a>
-        <a href="jasa.html">Jasa</a>
-        <a href="edukasi.html">Edukasi</a>
-        <a href="tentang.html" style="color:var(--primary); font-weight:700;">Tentang</a>
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">Asa<span>Hub</span></a>
+        <div class="nav-links">
+            <a href="index.html">Marketplace</a>
+            <a href="jasa.html">Jasa</a>
+            <a href="edukasi.html">Edukasi</a>
+            <a href="tentang.html" class="active">Tentang</a>
+        </div>
+        <div class="nav-auth" id="navAuth">
+            <a href="login.html" class="btn btn-outline">Masuk</a>
+            <a href="daftar.html" class="btn btn-primary">Daftar</a>
+        </div>
+        <button class="hamburger" onclick="toggleMenu()" aria-label="Buka menu">☰</button>
     </div>
-    <div class="nav-auth" id="navAuth">
-        <a href="login.html" class="btn-outline">Masuk</a>
-        <a href="daftar.html" class="btn-solid">Daftar</a>
-    </div>
-    <button class="hamburger" onclick="toggleMenu()" aria-label="Buka menu">☰</button>
 </nav>
 
+<!-- Mobile Menu -->
 <div class="mobile-menu" id="mobileMenu">
     <a href="index.html" onclick="toggleMenu()">Marketplace</a>
     <a href="jasa.html" onclick="toggleMenu()">Jasa</a>
     <a href="edukasi.html" onclick="toggleMenu()">Edukasi</a>
-    <a href="tentang.html" onclick="toggleMenu()">Tentang</a>
+    <a href="tentang.html" onclick="toggleMenu()" class="active">Tentang</a>
     <a href="login.html" onclick="toggleMenu()">Masuk</a>
     <a href="daftar.html" onclick="toggleMenu()">Daftar</a>
     <a href="dasboard.html" onclick="toggleMenu()" id="mobileDashboard" style="display:none;">Dashboard</a>
 </div>
 
-<section class="features" id="tentang">
-    <div class="section-label">Tentang AsaHub</div>
-    <h2 class="section-title">Semua yang Kamu Butuhkan,<br>Dalam Satu Tempat</h2>
-    <p style="text-align:center; max-width:600px; margin:0 auto 40px; color:var(--muted); font-size:16px;">AsaHub menyatukan marketplace, jasa, teknologi, dan edukasi dalam satu ekosistem terpadu — membantu individu dan brand bertumbuh bersama.</p>
-</section>
-
-<section class="founder">
-    <div class="founder-img">
-        <img src="img/pendiri.jpg" alt="Foto Asafati Gea" class="founder-avatar">
-    </div>
-    <div class="founder-text">
-        <div class="section-label">Kisah Pendiri</div>
-        <h2>Dari Anak Desa Nias<br>ke Ekosistem Digital</h2>
-        <p>Saya, <strong>Asafati Gea</strong>, lahir di Sihare'o, Afulu, Nias. Sejak SD sudah mulai berjualan, SMP mengangkut barang, SMA membuka warung. Saya percaya bahwa setiap orang berhak mendapat akses ke peluang bisnis yang adil.</p>
-        <p>AsaHub lahir dari pengalaman itu — <em>Asa</em> berarti harapan, <em>Hub</em> berarti pusat. Ini bukan sekadar website, ini adalah gerakan pemberdayaan.</p>
-        <div class="founder-values">
-            <span>💬 Public Speaking</span>
-            <span>🤝 Relasi Kuat</span>
-            <span>💪 Mental Tangguh</span>
-            <span>📈 Jiwa Wirausaha</span>
-        </div>
+<!-- Hero Section -->
+<section class="tentang-hero">
+    <div class="tentang-hero-content">
+        <h1 class="tentang-title">Semua yang Kamu Butuhkan, Dalam Satu Tempat</h1>
+        <p class="tentang-subtitle">AsaHub menyatukan marketplace, jasa, teknologi, dan edukasi dalam satu ekosistem terpadu — membantu individu dan brand bertumbuh bersama.</p>
     </div>
 </section>
 
-<section class="how-it-works">
-    <div class="section-label">Cara Kerja</div>
-    <h2 class="section-title">Mulai Berjualan di AsaHub</h2>
-    <div class="steps">
-        <div class="step">
-            <div class="step-num">01</div>
-            <h3>Daftar Akun</h3>
-            <p>Buat akun penjual gratis dengan verifikasi identitas sederhana.</p>
+<!-- Features Section -->
+<section class="tentang-features">
+    <div class="tentang-features-content">
+        <div class="section-label">Fitur Utama</div>
+        <h2 class="section-title">Solusi Lengkap untuk Bisnis Anda</h2>
+        <div class="tentang-features-grid">
+            <div class="tentang-feature">
+                <div class="tentang-feature-icon">🛍️</div>
+                <h3 class="tentang-feature-title">Marketplace</h3>
+                <p class="tentang-feature-description">Jual dan beli produk dengan mudah dalam satu platform terintegrasi.</p>
+            </div>
+            <div class="tentang-feature">
+                <div class="tentang-feature-icon">👥</div>
+                <h3 class="tentang-feature-title">Jasa & Keahlian</h3>
+                <p class="tentang-feature-description">Temukan atau tawarkan jasa profesional dari berbagai bidang keahlian.</p>
+            </div>
+            <div class="tentang-feature">
+                <div class="tentang-feature-icon">🎓</div>
+                <h3 class="tentang-feature-title">Edukasi</h3>
+                <p class="tentang-feature-description">Akses materi pembelajaran untuk meningkatkan skill dan pengetahuan.</p>
+            </div>
         </div>
-        <div class="step-arrow">→</div>
-        <div class="step">
-            <div class="step-num">02</div>
-            <h3>Tambah Produk</h3>
-            <p>Upload produk lengkap dengan foto, deskripsi, dan harga.</p>
-        </div>
-        <div class="step-arrow">→</div>
-        <div class="step">
-            <div class="step-num">03</div>
-            <h3>Daftarkan Rekening</h3>
-            <p>Tambahkan rekening bank atau dompet digital untuk menerima pembayaran.</p>
-        </div>
-        <div class="step-arrow">→</div>
-        <div class="step">
-            <div class="step-num">04</div>
-            <h3>Mulai Berjualan</h3>
-            <p>Produk langsung tampil di marketplace dan siap dibeli.</p>
-        </div>
-    </div>
-    <div style="text-align:center; margin-top: 50px;">
-        <a href="daftar.html" class="btn-solid big">Daftar Sekarang — Gratis</a>
     </div>
 </section>
 
-<section class="cta-banner">
-    <h2>Bergabung dengan Ribuan Penjual di AsaHub</h2>
-    <p>Mulai perjalanan bisnismu hari ini. Gratis untuk semua.</p>
-    <a href="daftar.html" class="btn-white big">Mulai Sekarang</a>
+<!-- Founder Section -->
+<section class="founder-section">
+    <div class="founder-content">
+        <div class="founder-image-section">
+            <div class="founder-avatar-container">
+                <img src="img/pendiri.jpg" alt="Asafati Gea" class="founder-avatar">
+            </div>
+            <div class="founder-credentials">
+                <a href="https://cv-bay-delta.vercel.app/" target="_blank" class="cv-link">
+                    <span class="cv-icon">📄</span>
+                    Lihat CV Resmi
+                </a>
+            </div>
+        </div>
+        
+        <div class="founder-info">
+            <div class="founder-header">
+                <div class="section-label">Kisah Pendiri</div>
+                <h2 class="founder-name">Asafati Gea</h2>
+                <p class="founder-tagline">Dari Anak Desa Nias ke Ekosistem Digital</p>
+            </div>
+            
+            <div class="founder-bio">
+                <p>Saya, <strong>Asafati Gea</strong>, lahir di Sihare'o, Afulu, Nias. Sejak SD sudah mulai berjualan, SMP mengangkut barang, SMA membuka warung. Saya percaya bahwa setiap orang berhak mendapat akses ke peluang bisnis yang adil.</p>
+                <p>AsaHub lahir dari pengalaman itu — <em>Asa</em> berarti harapan, <em>Hub</em> berarti pusat. Ini bukan sekadar website, ini adalah gerakan pemberdayaan.</p>
+            </div>
+            
+            <div class="founder-values">
+                <h3 class="values-title">Nilai-Nilai Inti</h3>
+                <div class="values-grid">
+                    <div class="value-item">
+                        <span class="value-icon">💬</span>
+                        <span class="value-text">Public Speaking</span>
+                    </div>
+                    <div class="value-item">
+                        <span class="value-icon">🤝</span>
+                        <span class="value-text">Relasi Kuat</span>
+                    </div>
+                    <div class="value-item">
+                        <span class="value-icon">💪</span>
+                        <span class="value-text">Mental Tangguh</span>
+                    </div>
+                    <div class="value-item">
+                        <span class="value-icon">📈</span>
+                        <span class="value-text">Jiwa Wirausaha</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
+<!-- How It Works Section -->
+<section class="how-it-works-section">
+    <div class="how-it-works-content">
+        <div class="section-label">Cara Kerja</div>
+        <h2 class="section-title">Mulai Berjualan di AsaHub</h2>
+        <div class="steps-container">
+            <div class="step-item">
+                <div class="step-number">1</div>
+                <h3 class="step-title">Daftar Akun</h3>
+                <p class="step-description">Buat akun penjual gratis dengan verifikasi identitas sederhana.</p>
+            </div>
+            <div class="step-item">
+                <div class="step-number">2</div>
+                <h3 class="step-title">Tambah Produk</h3>
+                <p class="step-description">Upload produk lengkap dengan foto, deskripsi, dan harga.</p>
+            </div>
+            <div class="step-item">
+                <div class="step-number">3</div>
+                <h3 class="step-title">Daftarkan Rekening</h3>
+                <p class="step-description">Tambahkan rekening bank atau dompet digital untuk menerima pembayaran.</p>
+            </div>
+            <div class="step-item">
+                <div class="step-number">4</div>
+                <h3 class="step-title">Mulai Berjualan</h3>
+                <p class="step-description">Produk langsung tampil di marketplace dan siap dibeli.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="tentang-cta">
+    <div class="tentang-cta-content">
+        <h2 class="tentang-cta-title">Bergabung dengan Ribuan Penjual di AsaHub</h2>
+        <p class="tentang-cta-description">Mulai perjalanan bisnismu hari ini. Gratis untuk semua.</p>
+        <a href="daftar.html" class="tentang-cta-button">Mulai Sekarang</a>
+    </div>
+</section>
+
+<!-- Footer -->
 <footer class="footer">
     <div class="footer-top">
         <div class="footer-brand">
@@ -130,18 +202,52 @@
     </div>
 </footer>
 
+<!-- Mobile Bottom Navigation -->
+<nav class="mobile-bottom-nav mobile-only">
+    <a href="index.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon">🏠</span>
+        <span>Home</span>
+    </a>
+    <a href="jasa.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon">👥</span>
+        <span>Jasa</span>
+    </a>
+    <a href="edukasi.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon">🎓</span>
+        <span>Edukasi</span>
+    </a>
+    <a href="dasboard.html" class="mobile-nav-item" id="mobileNavDashboard" style="display:none;">
+        <span class="mobile-nav-icon">📊</span>
+        <span>Dashboard</span>
+    </a>
+    <a href="tentang.html" class="mobile-nav-item active">
+        <span class="mobile-nav-icon">ℹ️</span>
+        <span>Tentang</span>
+    </a>
+</nav>
+
 <script>
 function toggleMenu() {
     document.getElementById('mobileMenu').classList.toggle('open');
 }
+
+// Check user login status
 var user = JSON.parse(localStorage.getItem('asahub_current_user') || 'null');
 if (user) {
-    document.getElementById('navAuth').innerHTML = '<a href="dasboard.html" class="btn-solid">Dashboard</a>';
-    var ml = document.querySelectorAll('#mobileMenu a[href="login.html"], #mobileMenu a[href="daftar.html"]');
-    ml.forEach(function(a) { a.style.display = 'none'; });
-    var md = document.getElementById('mobileDashboard');
-    if (md) md.style.display = 'block';
+    // Update desktop nav
+    document.getElementById('navAuth').innerHTML = '<a href="dasboard.html" class="btn btn-primary">Dashboard</a>';
+    
+    // Update mobile menu
+    var mobileAuthLinks = document.querySelectorAll('#mobileMenu a[href="login.html"], #mobileMenu a[href="daftar.html"]');
+    mobileAuthLinks.forEach(function(a) { a.style.display = 'none'; });
+    
+    var mobileDashboard = document.getElementById('mobileDashboard');
+    if (mobileDashboard) mobileDashboard.style.display = 'block';
+    
+    var mobileNavDashboard = document.getElementById('mobileNavDashboard');
+    if (mobileNavDashboard) mobileNavDashboard.style.display = 'flex';
 }
 </script>
+
 </body>
 </html>

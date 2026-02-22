@@ -3,32 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AsaHub - Marketplace</title>
+    <title>AsaHub - Marketplace, Jasa, dan Edukasi</title>
     <link rel="icon" type="image/png" href="img/logo.png">
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <!-- Supabase JS -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- CSS Modular -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/marketplace.css">
+    <link rel="stylesheet" href="css/responsive-mobile.css">
+    <link rel="stylesheet" href="css/responsive-desktop.css">
 </head>
 <body>
 
+<!-- Navigation -->
 <nav class="navbar">
-    <a href="index.html" class="nav-logo">Asa<span>Hub</span></a>
-    <div class="nav-links">
-        <a href="index.html" style="color:var(--primary); font-weight:700;">Marketplace</a>
-        <a href="jasa.html">Jasa</a>
-        <a href="edukasi.html">Edukasi</a>
-        <a href="tentang.html" style="color:var(--primary-light);">Tentang</a>
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">Asa<span>Hub</span></a>
+        <div class="nav-links">
+            <a href="index.html" class="active">Marketplace</a>
+            <a href="jasa.html">Jasa</a>
+            <a href="edukasi.html">Edukasi</a>
+            <a href="tentang.html">Tentang</a>
+        </div>
+        <div class="nav-auth" id="navAuth">
+            <a href="login.html" class="btn btn-outline">Masuk</a>
+            <a href="daftar.html" class="btn btn-primary">Daftar</a>
+        </div>
+        <button class="hamburger" onclick="toggleMenu()" aria-label="Buka menu">☰</button>
     </div>
-    <div class="nav-auth" id="navAuth">
-        <a href="login.html" class="btn-outline">Masuk</a>
-        <a href="daftar.html" class="btn-solid">Daftar</a>
-    </div>
-    <button class="hamburger" onclick="toggleMenu()" aria-label="Buka menu">☰</button>
 </nav>
 
+<!-- Mobile Menu -->
 <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html" onclick="toggleMenu()">Marketplace</a>
+    <a href="index.html" onclick="toggleMenu()" class="active">Marketplace</a>
     <a href="jasa.html" onclick="toggleMenu()">Jasa</a>
     <a href="edukasi.html" onclick="toggleMenu()">Edukasi</a>
     <a href="tentang.html" onclick="toggleMenu()">Tentang</a>
@@ -37,169 +46,266 @@
     <a href="dasboard.html" onclick="toggleMenu()" id="mobileDashboard" style="display:none;">Dashboard</a>
 </div>
 
-<div class="page-header">
-    <h1>Marketplace AsaHub</h1>
-    <p>Temukan ribuan produk dari penjual terpercaya di seluruh Indonesia</p>
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Selamat Datang di AsaHub</h1>
+        <p>Pusat Harapan — Menyatukan marketplace, jasa, teknologi, dan edukasi dalam satu ekosistem terpadu</p>
+        <div class="hero-actions">
+            <a href="#products" class="hero-cta">Mulai Belanja</a>
+            <a href="daftar.html" class="hero-secondary">Daftar Jualan</a>
+        </div>
+    </div>
+</section>
+
+<!-- Mobile Search -->
+<div class="mobile-search-container mobile-only">
+    <div class="mobile-search-bar">
+        <span class="search-icon">🔍</span>
+        <input type="text" class="mobile-search-input" placeholder="Cari produk, jasa, atau edukasi..." id="mobileSearchInput">
+    </div>
 </div>
 
-<!-- Mobile Layout (Hidden on Desktop) -->
-<div class="mobile-layout">
-    <!-- Mobile Search Bar -->
-    <div class="mobile-search-container">
-        <div class="mobile-search-bar">
-            <span class="search-icon">🔍</span>
-            <input type="text" placeholder="Cari produk di AsaHub..." id="mobileSearchInput">
+<!-- Mobile Categories -->
+<div class="mobile-categories mobile-only">
+    <div class="mobile-categories-grid">
+        <div class="mobile-category-item" onclick="filterByCategory('all')">
+            <span class="mobile-category-icon">🛍️</span>
+            <span class="mobile-category-label">Semua</span>
         </div>
-    </div>
-
-    <!-- Mobile Categories -->
-    <div class="mobile-categories">
-        <div class="category-item" onclick="marketplaceManager.filterByCategory('all')">
-            <div class="category-icon">📦</div>
-            <span>Semua</span>
+        <div class="mobile-category-item" onclick="filterByCategory('elektronik')">
+            <span class="mobile-category-icon">📱</span>
+            <span class="mobile-category-label">Elektronik</span>
         </div>
-        <div class="category-item" onclick="marketplaceManager.filterByCategory('Fashion')">
-            <div class="category-icon">👕</div>
-            <span>Fashion</span>
+        <div class="mobile-category-item" onclick="filterByCategory('fashion')">
+            <span class="mobile-category-icon">👕</span>
+            <span class="mobile-category-label">Fashion</span>
         </div>
-        <div class="category-item" onclick="marketplaceManager.filterByCategory('Makanan & Minuman')">
-            <div class="category-icon">☕</div>
-            <span>Makanan</span>
-        </div>
-        <div class="category-item" onclick="marketplaceManager.filterByCategory('Elektronik')">
-            <div class="category-icon">📱</div>
-            <span>Elektronik</span>
-        </div>
-        <div class="category-item" onclick="marketplaceManager.filterByCategory('Kerajinan')">
-            <div class="category-icon">🎁</div>
-            <span>Kerajinan</span>
-        </div>
-    </div>
-
-    <!-- Flash Sale Section -->
-    <div class="mobile-flash-sale">
-        <div class="flash-sale-header">
-            <div class="flash-title">
-                <span class="flash-icon">⚡</span>
-                <span>Flash Sale</span>
-            </div>
-            <div class="flash-timer">
-                <span id="flashHours">02</span>:<span id="flashMinutes">45</span>:<span id="flashSeconds">30</span>
-            </div>
-        </div>
-        <div class="flash-products" id="flashProducts">
-            <!-- Flash sale products will be inserted here -->
-        </div>
-    </div>
-
-    <!-- Mobile Products Grid -->
-    <div class="mobile-products-container">
-        <div class="mobile-products-header">
-            <h2>Produk Terlaris</h2>
-            <span class="product-count" id="mobileProductCount">0 produk</span>
-        </div>
-        <div class="mobile-products-grid" id="mobileProductsGrid">
-            <!-- Products will be inserted here -->
+        <div class="mobile-category-item" onclick="filterByCategory('makanan')">
+            <span class="mobile-category-icon">🍔</span>
+            <span class="mobile-category-label">Makanan</span>
         </div>
     </div>
 </div>
 
-<!-- Desktop Layout (Hidden on Mobile) -->
+<!-- Mobile Flash Sale -->
+<div class="mobile-flash-sale mobile-only">
+    <div class="mobile-flash-header">
+        <div class="mobile-flash-title">
+            <span class="mobile-flash-icon">⚡</span>
+            Flash Sale
+        </div>
+        <div class="mobile-flash-timer" id="mobileFlashTimer">
+            <span>02</span>:<span>45</span>:<span>30</span>
+        </div>
+    </div>
+    <div class="mobile-flash-products" id="mobileFlashProducts">
+        <!-- Flash sale products will be loaded here -->
+    </div>
+</div>
+
+<!-- Main Content -->
 <div class="marketplace-layout">
-    <aside class="sidebar">
-        <div class="sidebar-box">
-            <h3>Kategori</h3>
-            <div class="filter-item">
-                <input type="radio" id="f1" name="category" checked onchange="marketplaceManager.filterByCategory('all')">
-                <label for="f1">Semua</label>
+    <!-- Sidebar Filters (Desktop) -->
+    <aside class="marketplace-sidebar desktop-only">
+        <div class="filter-section">
+            <div class="filter-header">
+                <h3 class="filter-title">Kategori</h3>
+                <button class="filter-clear" onclick="clearFilters()">Reset</button>
             </div>
-            <div class="filter-item">
-                <input type="radio" id="f2" name="category" onchange="marketplaceManager.filterByCategory('Fashion')">
-                <label for="f2">👕 Fashion</label>
-            </div>
-            <div class="filter-item">
-                <input type="radio" id="f3" name="category" onchange="marketplaceManager.filterByCategory('Makanan & Minuman')">
-                <label for="f3">☕ Makanan & Minuman</label>
-            </div>
-            <div class="filter-item">
-                <input type="radio" id="f4" name="category" onchange="marketplaceManager.filterByCategory('Otomotif')">
-                <label for="f4">🚗 Otomotif</label>
-            </div>
-            <div class="filter-item">
-                <input type="radio" id="f5" name="category" onchange="marketplaceManager.filterByCategory('Elektronik')">
-                <label for="f5">📱 Elektronik</label>
-            </div>
-            <div class="filter-item">
-                <input type="radio" id="f6" name="category" onchange="marketplaceManager.filterByCategory('Kerajinan')">
-                <label for="f6">🎁 Kerajinan</label>
-            </div>
-        </div>
-        <div class="sidebar-box">
-            <h3>Rentang Harga</h3>
-            <div class="form-group">
-                <label>Min (Rp)</label>
-                <input type="number" id="priceMin" placeholder="0" oninput="marketplaceManager.filterProducts()" style="font-size:13px; padding: 8px 12px;">
-            </div>
-            <div class="form-group">
-                <label>Max (Rp)</label>
-                <input type="number" id="priceMax" placeholder="10.000.000" oninput="marketplaceManager.filterProducts()" style="font-size:13px; padding: 8px 12px;">
+            <div class="filter-options">
+                <div class="filter-option">
+                    <input type="radio" id="cat-all" name="category" value="all" checked onchange="filterProducts()">
+                    <label for="cat-all">Semua Kategori</label>
+                    <span class="filter-count">124</span>
+                </div>
+                <div class="filter-option">
+                    <input type="radio" id="cat-elektronik" name="category" value="elektronik" onchange="filterProducts()">
+                    <label for="cat-elektronik">Elektronik</label>
+                    <span class="filter-count">45</span>
+                </div>
+                <div class="filter-option">
+                    <input type="radio" id="cat-fashion" name="category" value="fashion" onchange="filterProducts()">
+                    <label for="cat-fashion">Fashion</label>
+                    <span class="filter-count">38</span>
+                </div>
+                <div class="filter-option">
+                    <input type="radio" id="cat-makanan" name="category" value="makanan" onchange="filterProducts()">
+                    <label for="cat-makanan">Makanan & Minuman</label>
+                    <span class="filter-count">28</span>
+                </div>
+                <div class="filter-option">
+                    <input type="radio" id="cat-jasa" name="category" value="jasa" onchange="filterProducts()">
+                    <label for="cat-jasa">Jasa</label>
+                    <span class="filter-count">13</span>
+                </div>
             </div>
         </div>
-        <a href="dasboard.html" class="btn-solid" style="display:block; text-align:center;">+ Jual Produk</a>
+
+        <div class="filter-section">
+            <div class="filter-header">
+                <h3 class="filter-title">Harga</h3>
+            </div>
+            <div class="price-range">
+                <div class="price-inputs">
+                    <input type="number" class="price-input" placeholder="Min" id="minPrice" onchange="filterProducts()">
+                    <span class="price-separator">-</span>
+                    <input type="number" class="price-input" placeholder="Max" id="maxPrice" onchange="filterProducts()">
+                </div>
+            </div>
+        </div>
     </aside>
 
-    <main class="main-content">
-        <div class="content-header">
-            <h2 id="pageTitle">Marketplace</h2>
-            <span id="produkCount">Menampilkan semua produk</span>
-            <div class="search-bar">
-                <span>🔍</span>
-                <input type="text" placeholder="Cari produk..." id="searchInput">
+    <!-- Main Content Area -->
+    <main class="marketplace-main">
+        <!-- Search Bar (Desktop) -->
+        <div class="marketplace-controls desktop-only">
+            <div class="marketplace-search">
+                <div class="search-bar">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Cari produk..." id="desktopSearchInput" onkeyup="filterProducts()">
+                </div>
+            </div>
+            <select class="form-select marketplace-sort" id="sortSelect" onchange="sortProducts()">
+                <option value="newest">Terbaru</option>
+                <option value="price-low">Harga Terendah</option>
+                <option value="price-high">Harga Tertinggi</option>
+                <option value="popular">Terpopuler</option>
+            </select>
+        </div>
+
+        <!-- Results Header -->
+        <div class="results-header">
+            <div class="results-count">
+                <span id="productCount">Memuat...</span> produk ditemukan
+            </div>
+            <div class="results-view desktop-only">
+                <button class="view-button active" onclick="setView('grid')">⊞</button>
+                <button class="view-button" onclick="setView('list')">☰</button>
             </div>
         </div>
+
+        <!-- Products Grid -->
         <div class="products-grid" id="productsGrid">
-            <!-- Products will be inserted here -->
+            <!-- Products will be loaded here from Supabase -->
+        </div>
+
+        <!-- Loading State -->
+        <div class="products-loading" id="loadingState" style="display: none;">
+            <div class="product-skeleton">
+                <div class="skeleton-image"></div>
+                <div class="skeleton-content">
+                    <div class="skeleton-title"></div>
+                    <div class="skeleton-meta"></div>
+                    <div class="skeleton-price"></div>
+                </div>
+            </div>
+            <div class="product-skeleton">
+                <div class="skeleton-image"></div>
+                <div class="skeleton-content">
+                    <div class="skeleton-title"></div>
+                    <div class="skeleton-meta"></div>
+                    <div class="skeleton-price"></div>
+                </div>
+            </div>
+            <div class="product-skeleton">
+                <div class="skeleton-image"></div>
+                <div class="skeleton-content">
+                    <div class="skeleton-title"></div>
+                    <div class="skeleton-meta"></div>
+                    <div class="skeleton-price"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- No Results -->
+        <div class="no-results" id="noResults" style="display: none;">
+            <div class="no-results-icon">📦</div>
+            <h3 class="no-results-title">Produk tidak ditemukan</h3>
+            <p class="no-results-text">Coba ubah filter atau kata kunci pencarian Anda</p>
+            <a href="#" class="no-results-action" onclick="clearFilters()">Reset Filter</a>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination" id="pagination">
+            <!-- Pagination will be generated dynamically -->
         </div>
     </main>
 </div>
 
-<!-- Mobile Bottom Navigation -->
-<div class="mobile-bottom-nav">
-    <a href="index.html" class="nav-item active">
-        <div class="nav-icon">🏠</div>
-        <span>Home</span>
-    </a>
-    <a href="#" class="nav-item" onclick="showCategories()">
-        <div class="nav-icon">🗂️</div>
-        <span>Kategori</span>
-    </a>
-    <a href="#" class="nav-item" onclick="showCart()">
-        <div class="nav-icon">🛒</div>
-        <span>Keranjang</span>
-        <div class="cart-badge" id="cartBadge">0</div>
-    </a>
-    <a href="#" class="nav-item" onclick="window.location.href='login.html'">
-        <div class="nav-icon">👤</div>
-        <span>Akun</span>
-    </a>
-</div>
-
 <!-- Product Detail Modal -->
-<div class="modal-overlay" id="modalDetail">
-    <div class="modal">
-        <button class="modal-close" onclick="document.getElementById('modalDetail').classList.remove('open')">✕</button>
-        <div style="text-align:center; font-size: 64px; margin-bottom: 16px;" id="detailEmoji">📦</div>
-        <h3 id="detailNama">-</h3>
-        <p style="font-size:13px; color:var(--muted); margin-bottom: 4px;" id="detailKategori">-</p>
-        <p style="font-family:'Syne',sans-serif; font-size:26px; font-weight:800; color:var(--primary); margin: 12px 0;" id="detailHarga">-</p>
-        <p style="font-size:14px; color:var(--muted); margin-bottom: 16px;" id="detailDeskripsi">-</p>
-        <div style="font-size:13px; color:var(--muted); margin-bottom: 20px;">
-            👤 Dijual oleh: <strong id="detailPenjual">-</strong> · Stok: <strong id="detailStok">-</strong>
+<div class="modal" id="productModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modalTitle">Detail Produk</h3>
+            <button class="modal-close" onclick="closeModal()">&times;</button>
         </div>
-        <div id="rekProduk" style="margin-bottom:20px;"></div>
-        <a href="https://wa.me/6282165713526" id="btnBeli" target="_blank" class="form-btn" style="display:block; text-align:center; text-decoration:none; color:white;">💬 Hubungi Penjual</a>
+        <div class="modal-body" id="modalBody">
+            <!-- Product details will be loaded here -->
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeModal()">Tutup</button>
+            <a href="#" class="btn btn-primary" id="modalBuyButton" target="_blank">Hubungi Penjual</a>
+        </div>
     </div>
 </div>
+
+<!-- Mobile Bottom Navigation -->
+<nav class="mobile-bottom-nav mobile-only">
+    <a href="index.html" class="mobile-nav-item active">
+        <span class="mobile-nav-icon">🏠</span>
+        <span>Home</span>
+    </a>
+    <a href="jasa.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon">👥</span>
+        <span>Jasa</span>
+    </a>
+    <a href="edukasi.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon">🎓</span>
+        <span>Edukasi</span>
+    </a>
+    <a href="dasboard.html" class="mobile-nav-item" id="mobileNavDashboard" style="display:none;">
+        <span class="mobile-nav-icon">📊</span>
+        <span>Dashboard</span>
+    </a>
+    <a href="tentang.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon">ℹ️</span>
+        <span>Tentang</span>
+    </a>
+</nav>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-top">
+        <div class="footer-brand">
+            <div class="nav-logo" style="font-size:24px;">Asa<span>Hub</span></div>
+            <p>Pusat Harapan — Menyatukan individu dan brand dalam ekosistem bisnis yang stabil dan berkembang.</p>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col">
+                <h4>Platform</h4>
+                <a href="index.html">Marketplace</a>
+                <a href="jasa.html">Jasa & Kerja</a>
+                <a href="edukasi.html">Edukasi</a>
+            </div>
+            <div class="footer-col">
+                <h4>Akun</h4>
+                <a href="daftar.html">Daftar Penjual</a>
+                <a href="login.html">Masuk</a>
+                <a href="dasboard.html">Dashboard</a>
+            </div>
+            <div class="footer-col">
+                <h4>AsaHub</h4>
+                <a href="tentang.html">Tentang Kami</a>
+                <a href="#" title="Segera hadir">Kontak</a>
+                <a href="#" title="Segera hadir">Kebijakan Privasi</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p> 2026 AsaHub · asahub.site · Dibuat dengan  oleh Asafati Gea</p>
+    </div>
+</footer>
 
 <!-- Scripts -->
 <script src="js/supabase.js"></script>
@@ -212,6 +318,7 @@ function startFlashSaleTimer() {
     let hours = 2;
     let minutes = 45;
     let seconds = 30;
+    
     setInterval(() => {
         seconds--;
         if (seconds < 0) {
