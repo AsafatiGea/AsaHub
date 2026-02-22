@@ -42,9 +42,10 @@
     color: var(--muted);
     font-size: 11px;
     font-weight: 500;
-    padding: 8px 4px;
+    padding: 12px 4px;
     transition: all 0.3s ease;
     position: relative;
+    min-height: 60px;
   }
   
   .mobile-nav-item.active {
@@ -56,7 +57,7 @@
     background: rgba(26, 82, 118, 0.05);
   }
   
-  .mobile-nav-icon {
+  .mobile-nav-item i {
     font-size: 20px;
     margin-bottom: 4px;
     display: block;
