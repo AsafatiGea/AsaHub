@@ -40,7 +40,7 @@
         </ul>
       </nav>
       <div class="sidebar-footer">
-        <a href="login.html" class="logout-btn"><span class="icon">🚪</span><span>Logout</span></a>
+        <a href="login.html" class="logout-btn" id="buyerLogoutBtn"><span class="icon">🚪</span><span>Keluar</span></a>
       </div>
     </aside>
 
@@ -369,6 +369,31 @@
         e.preventDefault();
         alert('Fitur simpan profil akan tersedia setelah terhubung dengan database');
       });
+
+      // Smart Exit Logic for Dashboard
+      const buyerLogoutBtn = document.getElementById('buyerLogoutBtn');
+      if (buyerLogoutBtn) {
+        buyerLogoutBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          if (confirm('Apakah Anda yakin ingin keluar dari dashboard AsaHub?')) {
+            // Try to close window directly first
+            if (window.history.length > 1) {
+              // If there's history, go back to previous page
+              window.history.back();
+            } else {
+              // If no history, try to close the window
+              window.close();
+              
+              // Only redirect to about:blank if window.close() fails and no history
+              setTimeout(() => {
+                if (!window.closed) {
+                  window.location.href = 'about:blank';
+                }
+              }, 100);
+            }
+          }
+        });
+      }
 
       // Initialize buyer dashboard
       if (window.buyerManager) {

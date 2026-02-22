@@ -134,7 +134,10 @@
 <!-- Mobile Navigation Overlay -->
 <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
 
-<!-- Section Divider -->
+<!-- Desktop Section Divider -->
+<div class="desktop-section-divider desktop-only"></div>
+
+<!-- Hero Section -->
 <div class="hero-divider"></div>
 
 <div class="auth-container">
@@ -392,12 +395,22 @@ function setupMobileNavigation() {
             if (confirm('Apakah Anda yakin ingin keluar dari situs AsaHub?')) {
                 // Close the mobile menu first
                 closeMobileMenu();
-                // Then close the window/tab
-                window.close();
-                // Fallback for browsers that don't allow window.close()
-                setTimeout(() => {
-                    window.location.href = 'about:blank';
-                }, 500);
+                
+                // Try to close window directly first
+                if (window.history.length > 1) {
+                    // If there's history, go back to previous page
+                    window.history.back();
+                } else {
+                    // If no history, try to close the window
+                    window.close();
+                    
+                    // Only redirect to about:blank if window.close() fails and no history
+                    setTimeout(() => {
+                        if (!window.closed) {
+                            window.location.href = 'about:blank';
+                        }
+                    }, 100);
+                }
             }
         });
     }
