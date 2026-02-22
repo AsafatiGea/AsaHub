@@ -378,6 +378,22 @@
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
+.founder-name-section {
+    margin-bottom: 1.5rem;
+    padding: 1rem 0;
+    border-bottom: 2px solid #FFD700;
+}
+
+.founder-name-title {
+    font-family: 'New Times Roman', 'Times New Roman', serif;
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #2d3748;
+    margin: 0;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
 .founder-credentials {
     display: flex;
     flex-direction: column;
