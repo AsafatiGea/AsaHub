@@ -1,8 +1,7 @@
 // Supabase Configuration
-// GANTI dengan credentials dari project Supabase Anda
 const SUPABASE_CONFIG = {
-    url: 'YOUR_SUPABASE_URL', // Ganti dengan URL Supabase Anda
-    anonKey: 'YOUR_SUPABASE_ANON_KEY', // Ganti dengan Anon Key Supabase Anda
+    url: 'https://btkmlkpspcsoozdbvsvp.supabase.co',
+    anonKey: 'sb_publishable_N5V-6_jyvq5THYB4peU5Jw_Af5ot066',
     
     // Konfigurasi tambahan
     options: {
