@@ -1,5 +1,5 @@
 const supabaseUrl = "'https://btkmlkpspcsoozdbvsvp.supabase.com"
-const supabaseKey = "sb_publishable_..."
+const supabaseKey = "sb_publishable_N5V-6_jyvq5THYB4peU5Jw_Af5ot066"
 
 // Gunakan client global dari supabase.js
 const supabase = window.SupabaseClient;
