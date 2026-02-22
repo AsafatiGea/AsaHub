@@ -3,252 +3,394 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard - AsaHub Marketplace</title>
+  <title>Admin Dashboard — AsaHub</title>
   <link rel="icon" type="image/png" href="../img/logo.png">
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- CSS Modular -->
-  <link rel="stylesheet" href="../css/base.css">
-  <link rel="stylesheet" href="../css/layout.css">
-  <link rel="stylesheet" href="../css/components.css">
   <link rel="stylesheet" href="../css/Stakeholder/admin.css">
-  <link rel="stylesheet" href="../css/responsive-mobile.css">
-  <link rel="stylesheet" href="../css/responsive-desktop.css">
 </head>
 <body>
-  <div class="dashboard-wrapper">
-    <!-- Overlay untuk menutup sidebar di mobile -->
-    <div class="sidebar-overlay" aria-hidden="true"></div>
 
-    <!-- ========== SIDEBAR ========== -->
-    <aside class="sidebar" id="sidebar">
-      <div class="sidebar-header">
-        <a href="index.html" class="sidebar-logo">
-          <span class="icon" aria-hidden="true">🛒</span>
-          <span>AsaHub</span>
-        </a>
-        <button type="button" class="sidebar-collapse-btn" aria-label="Ciutkan sidebar">«</button>
-        <button type="button" class="sidebar-close" aria-label="Tutup menu">&times;</button>
-      </div>
-      <nav class="sidebar-nav">
-        <ul>
-          <li><a href="#" data-section="section-dashboard" class="active"><span class="icon">📊</span><span>Dashboard</span></a></li>
-          <li><a href="#" data-section="section-users"><span class="icon">👥</span><span>Kelola User</span></a></li>
-          <li><a href="#" data-section="section-products"><span class="icon">📦</span><span>Kelola Produk</span></a></li>
-          <li><a href="#" data-section="section-orders"><span class="icon">📋</span><span>Kelola Order</span></a></li>
-          <li><a href="#" data-section="section-reports"><span class="icon">📈</span><span>Laporan</span></a></li>
-        </ul>
-      </nav>
-      <div class="sidebar-footer">
-        <a href="login.html" class="logout-btn"><span class="icon">🚪</span><span>Logout</span></a>
-      </div>
-    </aside>
+<div class="dashboard-wrapper">
 
-    <!-- ========== MAIN CONTENT ========== -->
-    <main class="main-content">
-      <header class="top-navbar">
-        <div class="navbar-left">
-          <button type="button" class="sidebar-toggle" aria-label="Buka menu">☰</button>
-          <h1 class="page-title">Admin Dashboard</h1>
+  <!-- Overlay -->
+  <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+
+  <!-- ═══════════════ SIDEBAR ═══════════════ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <a href="../index.html" class="sidebar-logo">
+        <span class="icon">🛒</span>
+        <span>AsaHub</span>
+      </a>
+      <button type="button" class="sidebar-collapse-btn" id="collapseBtn" aria-label="Ciutkan sidebar">«</button>
+      <button type="button" class="sidebar-close" id="sidebarClose" aria-label="Tutup menu">×</button>
+    </div>
+
+    <nav class="sidebar-nav">
+      <ul>
+        <li>
+          <a href="#" data-section="section-dashboard" class="active">
+            <span class="icon">📊</span><span>Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" data-section="section-users">
+            <span class="icon">👥</span><span>Kelola User</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" data-section="section-products">
+            <span class="icon">📦</span><span>Kelola Produk</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" data-section="section-orders">
+            <span class="icon">📋</span><span>Kelola Order</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" data-section="section-reports">
+            <span class="icon">📈</span><span>Laporan</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="../login.html" class="logout-btn">
+        <span class="icon">🚪</span><span>Logout</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- ═══════════════ MAIN ═══════════════ -->
+  <main class="main-content">
+
+    <!-- Top Navbar -->
+    <header class="top-navbar">
+      <div class="navbar-left">
+        <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Buka menu">☰</button>
+        <h1 class="page-title" id="pageTitle">Dashboard</h1>
+      </div>
+      <div class="navbar-right">
+        <div class="user-badge">
+          <span class="avatar">A</span>
+          <span>Admin</span>
         </div>
-        <div class="navbar-right">
-          <div class="user-badge">
-            <span class="avatar">A</span>
-            <span>Admin</span>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="content-area">
+
+      <!-- ─── SECTION: Dashboard ─── -->
+      <section id="section-dashboard" class="dashboard-section active">
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <h3>Total Users</h3>
+            <p class="value">1.248</p>
+          </div>
+          <div class="stat-card blue">
+            <h3>Total Sellers</h3>
+            <p class="value">89</p>
+          </div>
+          <div class="stat-card green">
+            <h3>Total Produk</h3>
+            <p class="value">3.456</p>
+          </div>
+          <div class="stat-card purple">
+            <h3>Total Orders</h3>
+            <p class="value">12.890</p>
           </div>
         </div>
-      </header>
 
-      <div class="content-area">
-        <!-- ---------- Section: Dashboard (utama) ---------- -->
-        <section id="section-dashboard" class="dashboard-section active">
-          <!-- Stat cards -->
+        <div class="card">
+          <h2 class="card-title">Statistik Bulanan</h2>
+          <div class="chart-placeholder">
+            📊 &nbsp; Grafik statistik — siap dihubungkan ke Chart.js / ApexCharts
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 class="card-title">Daftar User Terbaru</h2>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Nama</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                  <th>Bergabung</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="admin-users-table"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ─── SECTION: Kelola User ─── -->
+      <section id="section-users" class="dashboard-section">
+        <div class="card">
+          <h2 class="card-title">Kelola User</h2>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Nama</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                  <th>Bergabung</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="section-users-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── SECTION: Kelola Produk ─── -->
+      <section id="section-products" class="dashboard-section">
+        <div class="card">
+          <h2 class="card-title">Kelola Produk</h2>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Nama Produk</th>
+                  <th>Seller</th>
+                  <th>Harga</th>
+                  <th>Stok</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="section-products-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── SECTION: Kelola Order ─── -->
+      <section id="section-orders" class="dashboard-section">
+        <div class="card">
+          <h2 class="card-title">Kelola Order</h2>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID Order</th>
+                  <th>Customer</th>
+                  <th>Total</th>
+                  <th>Status</th>
+                  <th>Tanggal</th>
+                </tr>
+              </thead>
+              <tbody id="section-orders-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── SECTION: Laporan ─── -->
+      <section id="section-reports" class="dashboard-section">
+        <div class="card">
+          <h2 class="card-title">Laporan</h2>
+          <p class="text-muted mb-0" style="margin-bottom:18px;">
+            Ringkasan laporan penjualan, user, dan produk — siap integrasi export PDF/Excel.
+          </p>
           <div class="stats-grid">
             <div class="stat-card">
-              <h3>Total Users</h3>
-              <p class="value">1.248</p>
+              <h3>Penjualan Bulan Ini</h3>
+              <p class="value">Rp 245 Jt</p>
             </div>
             <div class="stat-card blue">
-              <h3>Total Sellers</h3>
-              <p class="value">89</p>
+              <h3>User Baru</h3>
+              <p class="value">42</p>
             </div>
             <div class="stat-card green">
-              <h3>Total Products</h3>
-              <p class="value">3.456</p>
-            </div>
-            <div class="stat-card purple">
-              <h3>Total Orders</h3>
-              <p class="value">12.890</p>
+              <h3>Produk Baru</h3>
+              <p class="value">128</p>
             </div>
           </div>
+        </div>
+      </section>
 
-          <!-- Grafik dummy -->
-          <div class="card">
-            <h2 class="card-title">Statistik Bulanan</h2>
-            <div class="chart-placeholder">
-              Grafik statistik (dummy) — siap dihubungkan chart library (Chart.js / ApexCharts)
-            </div>
-          </div>
+    </div><!-- /content-area -->
+  </main>
 
-          <!-- Tabel daftar user -->
-          <div class="card">
-            <h2 class="card-title">Daftar User Terbaru</h2>
-            <div class="table-wrapper">
-              <table>
-                <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>Nama</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                    <th>Status</th>
-                    <th>Bergabung</th>
-                    <th>Aksi</th>
-                  </tr>
-                </thead>
-                <tbody id="admin-users-table">
-                  <!-- Diisi oleh JS atau static dummy -->
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </section>
+</div><!-- /dashboard-wrapper -->
 
-        <!-- ---------- Section: Kelola User ---------- -->
-        <section id="section-users" class="dashboard-section">
-          <div class="card">
-            <h2 class="card-title">Kelola User</h2>
-            <div class="table-wrapper">
-              <table>
-                <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>Nama</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                    <th>Status</th>
-                    <th>Bergabung</th>
-                    <th>Aksi</th>
-                  </tr>
-                </thead>
-                <tbody id="section-users-tbody">
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </section>
+<!-- ═══════════════ MOBILE BOTTOM NAV ═══════════════ -->
+<nav class="mobile-admin-nav" id="mobileNav">
+  <button class="mobile-admin-nav-item active" data-section="section-dashboard" onclick="switchSection(this)">
+    <span class="nav-icon">📊</span>
+    <span class="nav-label">Dashboard</span>
+  </button>
+  <button class="mobile-admin-nav-item" data-section="section-users" onclick="switchSection(this)">
+    <span class="nav-icon">👥</span>
+    <span class="nav-label">Users</span>
+  </button>
+  <button class="mobile-admin-nav-item" data-section="section-products" onclick="switchSection(this)">
+    <span class="nav-icon">📦</span>
+    <span class="nav-label">Produk</span>
+  </button>
+  <button class="mobile-admin-nav-item" data-section="section-orders" onclick="switchSection(this)">
+    <span class="nav-icon">📋</span>
+    <span class="nav-label">Order</span>
+  </button>
+  <button class="mobile-admin-nav-item" data-section="section-reports" onclick="switchSection(this)">
+    <span class="nav-icon">📈</span>
+    <span class="nav-label">Laporan</span>
+  </button>
+</nav>
 
-        <!-- ---------- Section: Kelola Produk ---------- -->
-        <section id="section-products" class="dashboard-section">
-          <div class="card">
-            <h2 class="card-title">Kelola Produk</h2>
-            <div class="table-wrapper">
-              <table>
-                <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>Nama Produk</th>
-                    <th>Seller</th>
-                    <th>Harga</th>
-                    <th>Stok</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody id="section-products-tbody">
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </section>
+<!-- Scripts -->
+<script src="../dashboard.js"></script>
+<script>
+(function () {
+  /* ── Data ── */
+  var DUMMY = window.AsaHubDashboard.DUMMY;
+  var fmt   = window.AsaHubDashboard.formatRupiah;
 
-        <!-- ---------- Section: Kelola Order ---------- -->
-        <section id="section-orders" class="dashboard-section">
-          <div class="card">
-            <h2 class="card-title">Kelola Order</h2>
-            <div class="table-wrapper">
-              <table>
-                <thead>
-                  <tr>
-                    <th>ID Order</th>
-                    <th>Customer</th>
-                    <th>Total</th>
-                    <th>Status</th>
-                    <th>Tanggal</th>
-                  </tr>
-                </thead>
-                <tbody id="section-orders-tbody">
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </section>
+  /* ── Render helpers ── */
+  function badge(cls, text) {
+    return '<span class="badge ' + cls + '">' + text + '</span>';
+  }
+  function actionBtns(warning, danger) {
+    return '<button type="button" class="btn btn-warning btn-sm">' + warning + '</button> ' +
+           '<button type="button" class="btn btn-danger  btn-sm">' + danger  + '</button>';
+  }
 
-        <!-- ---------- Section: Laporan ---------- -->
-        <section id="section-reports" class="dashboard-section">
-          <div class="card">
-            <h2 class="card-title">Laporan</h2>
-            <p class="text-muted mb-0">Ringkasan laporan penjualan, user, dan produk. (Dummy — siap integrasi export PDF/Excel.)</p>
-            <div class="stats-grid mt-1">
-              <div class="stat-card"><h3>Penjualan Bulan Ini</h3><p class="value">Rp 245 Jt</p></div>
-              <div class="stat-card blue"><h3>User Baru</h3><p class="value">42</p></div>
-              <div class="stat-card green"><h3>Produk Baru</h3><p class="value">128</p></div>
-            </div>
-          </div>
-        </section>
-      </div>
-    </main>
-  </div>
+  /* ── User rows ── */
+  function userRow(u, i) {
+    var bc = u.status === 'Aktif' ? 'badge-success' : 'badge-warning';
+    return '<tr>' +
+      '<td>' + (i + 1) + '</td>' +
+      '<td><strong>' + u.name + '</strong></td>' +
+      '<td style="color:var(--text-muted)">' + u.email + '</td>' +
+      '<td>' + badge(u.role === 'Seller' ? 'badge-info' : 'badge-success', u.role) + '</td>' +
+      '<td>' + badge(bc, u.status) + '</td>' +
+      '<td style="color:var(--text-muted)">' + u.joinDate + '</td>' +
+      '<td>' + actionBtns('Suspend', 'Hapus') + '</td>' +
+    '</tr>';
+  }
 
-  <script src="dashboard.js"></script>
-  <script>
-    // ---------- Render tabel Admin (dummy data dari dashboard.js) ----------
-    (function () {
-      var users = window.AsaHubDashboard.DUMMY.users;
-      var products = window.AsaHubDashboard.DUMMY.products;
-      var orders = window.AsaHubDashboard.DUMMY.orders;
-      var formatRupiah = window.AsaHubDashboard.formatRupiah;
+  /* ── Product rows ── */
+  function productRow(p, i) {
+    var bc = p.status === 'Aktif' ? 'badge-success' : 'badge-danger';
+    return '<tr>' +
+      '<td>' + (i + 1) + '</td>' +
+      '<td><strong>' + p.name + '</strong></td>' +
+      '<td style="color:var(--text-muted)">' + p.seller + '</td>' +
+      '<td><strong>' + fmt(p.price) + '</strong></td>' +
+      '<td>' + (p.stock === 0 ? '<span style="color:var(--red)">Habis</span>' : p.stock) + '</td>' +
+      '<td>' + badge(bc, p.status) + '</td>' +
+    '</tr>';
+  }
 
-      // User table (dashboard + section users)
-      function renderUserRow(u, i) {
-        var statusClass = u.status === 'Aktif' ? 'badge-success' : 'badge-warning';
-        return '<tr>' +
-          '<td>' + (i + 1) + '</td>' +
-          '<td>' + u.name + '</td>' +
-          '<td>' + u.email + '</td>' +
-          '<td>' + u.role + '</td>' +
-          '<td><span class="badge ' + statusClass + '">' + u.status + '</span></td>' +
-          '<td>' + u.joinDate + '</td>' +
-          '<td>' +
-            '<button type="button" class="btn btn-warning btn-sm">Suspend</button> ' +
-            '<button type="button" class="btn btn-danger btn-sm">Hapus</button>' +
-          '</td></tr>';
-      }
+  /* ── Order rows ── */
+  function orderRow(o) {
+    var bc = o.status === 'Selesai' ? 'badge-success' : (o.status === 'Dikirim' ? 'badge-info' : 'badge-warning');
+    return '<tr>' +
+      '<td><code style="font-size:12px;background:var(--bg);padding:2px 7px;border-radius:4px;">' + o.id + '</code></td>' +
+      '<td>' + o.customer + '</td>' +
+      '<td><strong>' + fmt(o.total) + '</strong></td>' +
+      '<td>' + badge(bc, o.status) + '</td>' +
+      '<td style="color:var(--text-muted)">' + o.date + '</td>' +
+    '</tr>';
+  }
 
-      var usersHtml = users.map(renderUserRow).join('');
-      var tbodyDashboard = document.getElementById('admin-users-table');
-      var tbodyUsers = document.getElementById('section-users-tbody');
-      if (tbodyDashboard) tbodyDashboard.innerHTML = usersHtml;
-      if (tbodyUsers) tbodyUsers.innerHTML = usersHtml;
+  /* ── Inject HTML ── */
+  var uHtml = DUMMY.users.map(userRow).join('');
+  ['admin-users-table', 'section-users-tbody'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.innerHTML = uHtml;
+  });
 
-      // Products table
-      var productsHtml = products.map(function (p, i) {
-        var statusClass = p.status === 'Aktif' ? 'badge-success' : 'badge-danger';
-        return '<tr><td>' + (i + 1) + '</td><td>' + p.name + '</td><td>' + p.seller + '</td><td>' +
-          formatRupiah(p.price) + '</td><td>' + p.stock + '</td><td><span class="badge ' + statusClass + '">' + p.status + '</span></td></tr>';
-      }).join('');
-      var productsTbody = document.getElementById('section-products-tbody');
-      if (productsTbody) productsTbody.innerHTML = productsHtml;
+  var el = document.getElementById('section-products-tbody');
+  if (el) el.innerHTML = DUMMY.products.map(productRow).join('');
 
-      // Orders table
-      var ordersHtml = orders.map(function (o) {
-        var statusClass = o.status === 'Selesai' ? 'badge-success' : (o.status === 'Dikirim' ? 'badge-info' : 'badge-warning');
-        return '<tr><td>' + o.id + '</td><td>' + o.customer + '</td><td>' + formatRupiah(o.total) +
-          '</td><td><span class="badge ' + statusClass + '">' + o.status + '</span></td><td>' + o.date + '</td></tr>';
-      }).join('');
-      var ordersTbody = document.getElementById('section-orders-tbody');
-      if (ordersTbody) ordersTbody.innerHTML = ordersHtml;
-    })();
-  </script>
+  var el2 = document.getElementById('section-orders-tbody');
+  if (el2) el2.innerHTML = DUMMY.orders.map(orderRow).join('');
+
+  /* ── Section switcher ── */
+  var titles = {
+    'section-dashboard': 'Dashboard',
+    'section-users':     'Kelola User',
+    'section-products':  'Kelola Produk',
+    'section-orders':    'Kelola Order',
+    'section-reports':   'Laporan',
+  };
+
+  function showSection(id) {
+    document.querySelectorAll('.dashboard-section').forEach(function(s) {
+      s.classList.remove('active');
+    });
+    var s = document.getElementById(id);
+    if (s) s.classList.add('active');
+    document.getElementById('pageTitle').textContent = titles[id] || 'Dashboard';
+
+    /* sidebar active link */
+    document.querySelectorAll('.sidebar-nav a').forEach(function(a) {
+      a.classList.toggle('active', a.dataset.section === id);
+    });
+  }
+
+  /* ── Sidebar nav links ── */
+  document.querySelectorAll('.sidebar-nav a[data-section]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      showSection(a.dataset.section);
+      if (window.innerWidth <= 768) closeSidebar();
+    });
+  });
+
+  /* ── Mobile bottom nav ── */
+  window.switchSection = function(btn) {
+    document.querySelectorAll('.mobile-admin-nav-item').forEach(function(b) {
+      b.classList.remove('active');
+    });
+    btn.classList.add('active');
+    showSection(btn.dataset.section);
+  };
+
+  /* ── Sidebar toggle (mobile) ── */
+  var sidebar = document.getElementById('sidebar');
+  var overlay = document.getElementById('sidebarOverlay');
+
+  document.getElementById('sidebarToggle').addEventListener('click', function() {
+    sidebar.classList.add('open');
+    overlay.classList.add('active');
+  });
+
+  function closeSidebar() {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('active');
+  }
+
+  document.getElementById('sidebarClose').addEventListener('click', closeSidebar);
+  overlay.addEventListener('click', closeSidebar);
+
+  /* ── Sidebar collapse (desktop) ── */
+  var colBtn = document.getElementById('collapseBtn');
+  var main   = document.querySelector('.main-content');
+  colBtn.addEventListener('click', function() {
+    sidebar.classList.toggle('collapsed');
+    main.classList.toggle('sidebar-collapsed');
+    colBtn.textContent = sidebar.classList.contains('collapsed') ? '»' : '«';
+  });
+
+})();
+</script>
 </body>
 </html>
