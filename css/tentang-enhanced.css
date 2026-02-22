@@ -1,0 +1,591 @@
+/* Enhanced CSS for About Page - AsaHub */
+
+/* About Section */
+.tentang-about {
+    padding: 6rem 2rem;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+}
+
+.tentang-about-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.tentang-description {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: #4a5568;
+    margin-top: 1.5rem;
+}
+
+/* Vision & Mission Section */
+.vision-mission-section {
+    padding: 6rem 2rem;
+    background: #ffffff;
+}
+
+.vision-mission-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.vision-mission-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.vision-card, .mission-card {
+    padding: 2.5rem;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.vision-card:hover, .mission-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.vision-icon, .mission-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+.vision-title, .mission-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 1rem;
+}
+
+.vision-description {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: #4a5568;
+}
+
+.mission-list {
+    list-style: none;
+    padding: 0;
+}
+
+.mission-list li {
+    padding: 0.75rem 0;
+    font-size: 1rem;
+    color: #4a5568;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.mission-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #FFD700;
+    font-weight: bold;
+}
+
+/* Why Join Section */
+.why-join-section {
+    padding: 6rem 2rem;
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+}
+
+.why-join-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.why-join-content .section-label {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.why-join-content .section-title {
+    color: #ffffff;
+}
+
+.why-join-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.benefit-card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: left;
+    transition: all 0.3s ease;
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.benefit-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.benefit-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 1rem;
+}
+
+.benefit-list {
+    list-style: none;
+    padding: 0;
+}
+
+.benefit-list li {
+    padding: 0.5rem 0;
+    font-size: 0.95rem;
+    color: #4a5568;
+    position: relative;
+    padding-left: 1.25rem;
+}
+
+.benefit-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #FFA500;
+    font-weight: bold;
+}
+
+/* 6 Pillars Section */
+.pillars-section {
+    padding: 6rem 2rem;
+    background: #ffffff;
+}
+
+.pillars-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.pillar-card {
+    padding: 2rem;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.pillar-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 16px;
+    padding: 2px;
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.pillar-card:hover::before {
+    opacity: 1;
+}
+
+.pillar-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(255, 215, 0, 0.2);
+}
+
+.pillar-number {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.pillar-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 0.75rem;
+}
+
+.pillar-description {
+    font-size: 0.95rem;
+    color: #4a5568;
+    line-height: 1.5;
+}
+
+/* Philosophy Section */
+.philosophy-section {
+    padding: 6rem 2rem;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+}
+
+.philosophy-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.philosophy-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-top: 3rem;
+}
+
+.philosophy-description {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: #4a5568;
+    margin: 1.5rem 0;
+}
+
+.philosophy-meaning {
+    margin-top: 2rem;
+}
+
+.meaning-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem 0;
+    padding: 1rem;
+    background: rgba(255, 215, 0, 0.1);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.meaning-item:hover {
+    background: rgba(255, 215, 0, 0.2);
+    transform: translateX(5px);
+}
+
+.meaning-icon {
+    font-size: 1.5rem;
+}
+
+.meaning-text {
+    font-size: 1rem;
+    color: #2d3748;
+    font-weight: 500;
+}
+
+.philosophy-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-meaning {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo-circle {
+    width: 80px;
+    height: 80px;
+    background: #FFD700;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+}
+
+.logo-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.line {
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #FFD700, #FFA500);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.logo-meaning:hover .line {
+    width: 80px;
+}
+
+/* Founder Section Updates */
+.founder-section {
+    padding: 6rem 2rem;
+    background: #ffffff;
+}
+
+.founder-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    align-items: center;
+    margin-top: 3rem;
+}
+
+.founder-image-section {
+    text-align: center;
+}
+
+.founder-avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.founder-credentials {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.founder-role {
+    font-size: 1rem;
+    color: #4a5568;
+    font-weight: 500;
+}
+
+.founder-story {
+    padding: 2rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border-radius: 16px;
+    border-left: 4px solid #FFD700;
+}
+
+.founder-bio {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: #4a5568;
+    font-style: italic;
+}
+
+/* How to Start Section */
+.how-to-start-section {
+    padding: 6rem 2rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+}
+
+.how-to-start-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.step-card {
+    padding: 2rem;
+    background: white;
+    border-radius: 16px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid #e2e8f0;
+    position: relative;
+    overflow: hidden;
+}
+
+.step-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.step-card:hover::before {
+    left: 100%;
+}
+
+.step-card:hover {
+    transform: translateY(-5px);
+    border-color: #FFD700;
+    box-shadow: 0 20px 40px rgba(255, 215, 0, 0.2);
+}
+
+.step-number {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 auto 1.5rem;
+}
+
+.step-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 0.75rem;
+}
+
+.step-description {
+    font-size: 0.95rem;
+    color: #4a5568;
+    line-height: 1.5;
+}
+
+/* Today Section */
+.today-section {
+    padding: 6rem 2rem;
+    background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+    color: white;
+    text-align: center;
+}
+
+.today-content .section-label {
+    color: #FFD700;
+    background: rgba(255, 215, 0, 0.1);
+}
+
+.today-content .section-title {
+    color: white;
+}
+
+.today-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.today-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    min-width: 150px;
+}
+
+.today-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+}
+
+.today-icon {
+    font-size: 2rem;
+}
+
+.today-text {
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.today-closing {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #FFD700;
+    margin-top: 2rem;
+    font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .vision-mission-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .philosophy-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .founder-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .steps-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .today-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .today-item {
+        width: 100%;
+        max-width: 200px;
+    }
+    
+    .tentang-about,
+    .vision-mission-section,
+    .why-join-section,
+    .pillars-section,
+    .philosophy-section,
+    .founder-section,
+    .how-to-start-section,
+    .today-section {
+        padding: 4rem 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .why-join-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .pillars-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .steps-grid {
+        grid-template-columns: 1fr;
+    }
+}

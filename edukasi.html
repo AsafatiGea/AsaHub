@@ -285,8 +285,11 @@
             <p class="no-courses-text">Admin atau mentor belum menambahkan kursus apa pun. Silakan kembali lagi nanti atau daftar sebagai mentor.</p>
             <a href="daftar.html" class="no-courses-action">Daftar Sebagai Mentor</a>
         </div>
-    </main>
-</div>
+    </div>
+</section>
+
+<!-- Section Divider -->
+<div class="edukasi-divider"></div>
 
 <!-- Featured Courses Section -->
 <section class="featured-courses">
@@ -300,6 +303,9 @@
         </div>
     </div>
 </section>
+
+<!-- Section Divider -->
+<div class="content-separator"></div>
 
 <!-- Learning Path Section -->
 <section class="learning-path">
@@ -385,37 +391,172 @@
 </footer>
 
 <!-- Scripts -->
-<script src="js/supabase.js"></script>
-<script src="js/auth.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.7"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/auth-service.js"></script>
 <script src="js/edukasi-manager.js"></script>
 
 <script>
-// Mobile Menu Toggle
-function toggleMenu() {
-    document.getElementById('mobileMenu').classList.toggle('open');
-}
-
-// Check user login status
-var user = JSON.parse(localStorage.getItem('asahub_current_user') || 'null');
-if (user) {
-    // Update desktop nav
-    document.getElementById('navAuth').innerHTML = '<a href="dasboard.html" class="btn btn-primary">Dashboard</a>';
-    
-    // Update mobile menu
-    var mobileAuthLinks = document.querySelectorAll('#mobileMenu a[href="login.html"], #mobileMenu a[href="daftar.html"]');
-    mobileAuthLinks.forEach(function(a) { a.style.display = 'none'; });
-    
-    var mobileDashboard = document.getElementById('mobileDashboard');
-    if (mobileDashboard) mobileDashboard.style.display = 'block';
-    
-    var mobileNavDashboard = document.getElementById('mobileNavDashboard');
-    if (mobileNavDashboard) mobileNavDashboard.style.display = 'flex';
-}
-
-// Initialize courses manager
+// Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
-    // Courses manager will be initialized from edukasi-manager.js
+    console.log('Edukasi page loaded...');
+    
+    // Initialize auth
+    if (window.authService) {
+        window.authService.init();
+        // Update navigation based on auth status
+        setTimeout(updateNavigationUI, 500);
+    }
+    
+    // Setup mobile navigation
+    setupMobileNavigation();
+    
+    // Initialize edukasi manager
+    if (window.edukasiManager) {
+        window.edukasiManager.init();
+    }
 });
+
+// Mobile Navigation Setup
+function setupMobileNavigation() {
+    const menuToggle = document.getElementById('mobileMenuToggle');
+    const menuClose = document.getElementById('mobileNavClose');
+    const mobileMenu = document.getElementById('mobileNavMenu');
+    const overlay = document.getElementById('mobileNavOverlay');
+    
+    // Open menu
+    if (menuToggle) {
+        menuToggle.addEventListener('click', function() {
+            mobileMenu.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Animate menu items
+            const menuItems = mobileMenu.querySelectorAll('.mobile-nav-item');
+            menuItems.forEach((item, index) => {
+                item.style.setProperty('--item-delay', `${index * 0.05}s`);
+            });
+        });
+    }
+    
+    // Close menu
+    function closeMobileMenu() {
+        mobileMenu.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    
+    if (menuClose) {
+        menuClose.addEventListener('click', closeMobileMenu);
+    }
+    
+    if (overlay) {
+        overlay.addEventListener('click', closeMobileMenu);
+    }
+    
+    // Close menu when clicking on menu items (except logout)
+    const menuItems = mobileMenu.querySelectorAll('.mobile-nav-item:not([onclick*="logout"])');
+    menuItems.forEach(item => {
+        item.addEventListener('click', function() {
+            setTimeout(closeMobileMenu, 300);
+        });
+    });
+}
+
+// Update Navigation UI based on auth status
+function updateNavigationUI() {
+    const isAuth = window.authService && window.authService.isAuthenticated();
+    const user = window.authService ? window.authService.getCurrentUser() : null;
+    const userProfile = user ? user.profile : null;
+    
+    // Update desktop navigation
+    const navAuth = document.getElementById('navAuth');
+    if (navAuth) {
+        if (isAuth && userProfile) {
+            navAuth.innerHTML = `
+                <a href="${userProfile.role === 'seller' ? 'seller-dashboard.html' : 'buyer-dashboard.html'}" class="btn btn-outline">
+                    <i class="fas fa-user"></i> ${userProfile.full_name || 'Dashboard'}
+                </a>
+                <button class="btn btn-primary" onclick="authService.logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            `;
+        } else {
+            navAuth.innerHTML = `
+                <a href="login.html" class="btn btn-outline">Masuk</a>
+                <a href="daftar.html" class="btn btn-primary">Daftar</a>
+            `;
+        }
+    }
+    
+    // Update mobile navigation
+    const guestMenu = document.getElementById('guestMenu');
+    const userMenu = document.getElementById('userMenu');
+    const buyerMenuItems = document.getElementById('buyerMenuItems');
+    const sellerMenuItems = document.getElementById('sellerMenuItems');
+    const mobileUserName = document.getElementById('mobileUserName');
+    const mobileUserRole = document.getElementById('mobileUserRole');
+    
+    if (isAuth && userProfile) {
+        // Show user menu
+        if (guestMenu) guestMenu.style.display = 'none';
+        if (userMenu) userMenu.style.display = 'block';
+        
+        // Update user info
+        if (mobileUserName) mobileUserName.textContent = userProfile.full_name || 'User';
+        if (mobileUserRole) mobileUserRole.textContent = userProfile.role || 'user';
+        
+        // Show role-specific menu items
+        if (userProfile.role === 'seller') {
+            if (buyerMenuItems) buyerMenuItems.style.display = 'none';
+            if (sellerMenuItems) sellerMenuItems.style.display = 'block';
+        } else {
+            if (buyerMenuItems) buyerMenuItems.style.display = 'block';
+            if (sellerMenuItems) sellerMenuItems.style.display = 'none';
+        }
+    } else {
+        // Show guest menu
+        if (guestMenu) guestMenu.style.display = 'block';
+        if (userMenu) userMenu.style.display = 'none';
+    }
+}
+
+// Listen for auth state changes
+document.addEventListener('authStateChanged', function() {
+    updateNavigationUI();
+});
+
+// Course filtering functions (placeholder - will be implemented by edukasi-manager.js)
+function filterByCategory(category) {
+    if (window.edukasiManager) {
+        window.edukasiManager.filterByCategory(category);
+    }
+}
+
+function clearFilters() {
+    if (window.edukasiManager) {
+        window.edukasiManager.clearFilters();
+    }
+}
+
+function filterCourses() {
+    if (window.edukasiManager) {
+        window.edukasiManager.filterCourses();
+    }
+}
+
+function sortCourses() {
+    if (window.edukasiManager) {
+        window.edukasiManager.sortCourses();
+    }
+}
+
+function closeCourseModal() {
+    const modal = document.getElementById('courseModal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
 </script>
 
 </body>
