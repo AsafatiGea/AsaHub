@@ -1,26 +1,20 @@
-// Admin Dashboard - Full database management
+// Admin Dashboard Manager
 class AdminManager {
     constructor() {
+        this.users = [];
+        this.products = [];
+        this.orders = [];
+        this.isLoading = false;
         this.supabase = window.SupabaseClient;
         this.authManager = window.authManager;
-        this.products = [];
-        this.users = [];
-        this.isLoading = false;
+        this.init();
     }
 
-    // Initialize admin dashboard
-    async init() {
-        // Check if user is admin
-        if (!this.authManager.protectPage('admin')) {
-            return;
-        }
-
-        // Load all data
-        await Promise.all([
-            this.loadProducts(),
-            this.loadUsers()
-        ]);
-
+    init() {
+        console.log('Admin dashboard initialized');
+        this.loadUserData();
+        this.loadProducts();
+        this.loadUsers();
         this.setupEventListeners();
         this.updateDashboardStats();
     }

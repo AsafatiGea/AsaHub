@@ -1,23 +1,76 @@
-// Seller Dashboard - Manage own products
+// Seller Dashboard Manager
 class SellerManager {
     constructor() {
-        this.supabase = window.SupabaseClient;
-        this.authManager = window.authManager;
         this.products = [];
-        this.isLoading = false;
+        this.orders = [];
+        this.profile = {};
+        this.init();
     }
 
-    // Initialize seller dashboard
-    async init() {
-        // Check if user is seller
-        if (!this.authManager.protectPage('seller')) {
-            return;
-        }
-
-        // Load seller's products
-        await this.loadProducts();
+    init() {
+        console.log('Seller dashboard initialized');
+        this.loadUserData();
         this.setupEventListeners();
-        this.updateDashboardStats();
+    }
+
+    loadUserData() {
+        // Load user data from authService
+        if (window.authService && window.authService.isAuthenticated()) {
+            const user = window.authService.getCurrentUser();
+            if (user && user.profile) {
+                this.profile = user.profile;
+                this.updateProfileDisplay();
+            }
+        } else {
+            // Show empty state if not logged in
+            document.querySelector('.user-name').textContent = 'Guest Seller';
+            document.querySelector('.user-avatar').textContent = 'G';
+        }
+    }
+
+    updateProfileDisplay() {
+        if (this.profile && this.profile.full_name) {
+            document.querySelector('.user-name').textContent = this.profile.full_name || 'Seller';
+            document.querySelector('.user-avatar').textContent = (this.profile.full_name || 'S').charAt(0).toUpperCase();
+            
+            // Update profile form
+            document.getElementById('storeName').textContent = this.profile.store_name || 'Nama Toko';
+            document.getElementById('storeEmail').textContent = this.profile.email || 'seller@example.com';
+            document.getElementById('storeAvatar').textContent = (this.profile.store_name || 'S').charAt(0).toUpperCase();
+            
+            document.getElementById('storeNameInput').value = this.profile.store_name || '';
+            document.getElementById('storeEmailInput').value = this.profile.email || '';
+            document.getElementById('storePhone').value = this.profile.phone || '';
+            document.getElementById('storeAddress').value = this.profile.address || '';
+            document.getElementById('storeDescription').value = this.profile.description || '';
+        }
+    }
+
+    setupEventListeners() {
+        // Logout button
+        const logoutBtn = document.querySelector('.logout-btn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.logout();
+            });
+        }
+    }
+
+    async logout() {
+        if (window.authService) {
+            await window.authService.logout();
+        } else {
+            localStorage.removeItem('userProfile');
+            window.location.href = 'login.html';
+        }
+    }
+}
+
+// Initialize seller manager when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    window.sellerManager = new SellerManager();
+});
     }
 
     // Load seller's products only

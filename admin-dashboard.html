@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="css/admin.css">
   <link rel="stylesheet" href="css/responsive-mobile.css">
   <link rel="stylesheet" href="css/responsive-desktop.css">
+  <link rel="stylesheet" href="css/buyer-dashboard-mobile.css">
 </head>
 <body>
 
@@ -92,22 +93,28 @@
       <!-- ─── SECTION: Dashboard ─── -->
       <section id="section-dashboard" class="dashboard-section active">
 
+        <div class="welcome-empty">
+          <h3>Selamat Datang Admin! 🎉</h3>
+          <p>Kelola marketplace AsaHub dengan mudah dan efisien</p>
+          <a href="#section-users" class="btn">Kelola User</a>
+        </div>
+
         <div class="stats-grid">
           <div class="stat-card">
             <h3>Total Users</h3>
-            <p class="value">1.248</p>
+            <p class="value" id="total-users">0</p>
           </div>
           <div class="stat-card blue">
             <h3>Total Sellers</h3>
-            <p class="value">89</p>
+            <p class="value" id="total-sellers">0</p>
           </div>
           <div class="stat-card green">
             <h3>Total Produk</h3>
-            <p class="value">3.456</p>
+            <p class="value" id="total-products">0</p>
           </div>
           <div class="stat-card purple">
             <h3>Total Orders</h3>
-            <p class="value">12.890</p>
+            <p class="value" id="total-orders">0</p>
           </div>
         </div>
 
@@ -260,73 +267,30 @@
 </nav>
 
 <!-- Scripts -->
-<script src="../dashboard.js"></script>
+<!-- Supabase JS -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.7"></script>
+<!-- Local JS -->
+<script src="js/supabase-config.js"></script>
+<script src="js/auth-service.js"></script>
+<script src="js/admin.js"></script>
 <script>
 (function () {
-  /* ── Data ── */
-  var DUMMY = window.AsaHubDashboard.DUMMY;
-  var fmt   = window.AsaHubDashboard.formatRupiah;
+  /* ── Initialize Empty Data ── */
+  var users = [];
+  var products = [];
+  var orders = [];
 
-  /* ── Render helpers ── */
-  function badge(cls, text) {
-    return '<span class="badge ' + cls + '">' + text + '</span>';
-  }
-  function actionBtns(warning, danger) {
-    return '<button type="button" class="btn btn-warning btn-sm">' + warning + '</button> ' +
-           '<button type="button" class="btn btn-danger  btn-sm">' + danger  + '</button>';
-  }
+  /* ── Set stats to 0 ── */
+  document.getElementById('total-users').textContent = '0';
+  document.getElementById('total-sellers').textContent = '0';
+  document.getElementById('total-products').textContent = '0';
+  document.getElementById('total-orders').textContent = '0';
 
-  /* ── User rows ── */
-  function userRow(u, i) {
-    var bc = u.status === 'Aktif' ? 'badge-success' : 'badge-warning';
-    return '<tr>' +
-      '<td>' + (i + 1) + '</td>' +
-      '<td><strong>' + u.name + '</strong></td>' +
-      '<td style="color:var(--text-muted)">' + u.email + '</td>' +
-      '<td>' + badge(u.role === 'Seller' ? 'badge-info' : 'badge-success', u.role) + '</td>' +
-      '<td>' + badge(bc, u.status) + '</td>' +
-      '<td style="color:var(--text-muted)">' + u.joinDate + '</td>' +
-      '<td>' + actionBtns('Suspend', 'Hapus') + '</td>' +
-    '</tr>';
-  }
-
-  /* ── Product rows ── */
-  function productRow(p, i) {
-    var bc = p.status === 'Aktif' ? 'badge-success' : 'badge-danger';
-    return '<tr>' +
-      '<td>' + (i + 1) + '</td>' +
-      '<td><strong>' + p.name + '</strong></td>' +
-      '<td style="color:var(--text-muted)">' + p.seller + '</td>' +
-      '<td><strong>' + fmt(p.price) + '</strong></td>' +
-      '<td>' + (p.stock === 0 ? '<span style="color:var(--red)">Habis</span>' : p.stock) + '</td>' +
-      '<td>' + badge(bc, p.status) + '</td>' +
-    '</tr>';
-  }
-
-  /* ── Order rows ── */
-  function orderRow(o) {
-    var bc = o.status === 'Selesai' ? 'badge-success' : (o.status === 'Dikirim' ? 'badge-info' : 'badge-warning');
-    return '<tr>' +
-      '<td><code style="font-size:12px;background:var(--bg);padding:2px 7px;border-radius:4px;">' + o.id + '</code></td>' +
-      '<td>' + o.customer + '</td>' +
-      '<td><strong>' + fmt(o.total) + '</strong></td>' +
-      '<td>' + badge(bc, o.status) + '</td>' +
-      '<td style="color:var(--text-muted)">' + o.date + '</td>' +
-    '</tr>';
-  }
-
-  /* ── Inject HTML ── */
-  var uHtml = DUMMY.users.map(userRow).join('');
-  ['admin-users-table', 'section-users-tbody'].forEach(function(id) {
-    var el = document.getElementById(id);
-    if (el) el.innerHTML = uHtml;
-  });
-
-  var el = document.getElementById('section-products-tbody');
-  if (el) el.innerHTML = DUMMY.products.map(productRow).join('');
-
-  var el2 = document.getElementById('section-orders-tbody');
-  if (el2) el2.innerHTML = DUMMY.orders.map(orderRow).join('');
+  /* ── Empty tables ── */
+  document.getElementById('admin-users-table').innerHTML = '<tr><td colspan="7" class="empty-state">Belum ada user</td></tr>';
+  document.getElementById('section-users-tbody').innerHTML = '<tr><td colspan="7" class="empty-state">Belum ada user</td></tr>';
+  document.getElementById('section-products-tbody').innerHTML = '<tr><td colspan="6" class="empty-state">Belum ada produk</td></tr>';
+  document.getElementById('section-orders-tbody').innerHTML = '<tr><td colspan="5" class="empty-state">Belum ada order</td></tr>';
 
   /* ── Section switcher ── */
   var titles = {
@@ -349,11 +313,16 @@
     document.querySelectorAll('.sidebar-nav a').forEach(function(a) {
       a.classList.toggle('active', a.dataset.section === id);
     });
+
+    /* mobile nav active */
+    document.querySelectorAll('.mobile-admin-nav-item').forEach(function(btn) {
+      btn.classList.toggle('active', btn.dataset.section === id);
+    });
   }
 
-  /* ── Sidebar nav links ── */
-  document.querySelectorAll('.sidebar-nav a[data-section]').forEach(function(a) {
-    a.addEventListener('click', function(e) {
+  /* ── Sidebar navigation ── */
+  document.querySelectorAll('.sidebar-nav a').forEach(function(link) {
+    link.addEventListener('click', function(e) {
       e.preventDefault();
       showSection(a.dataset.section);
       if (window.innerWidth <= 768) closeSidebar();

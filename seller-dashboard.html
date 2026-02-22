@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="css/seller.css">
   <link rel="stylesheet" href="css/responsive-mobile.css">
   <link rel="stylesheet" href="css/responsive-desktop.css">
+  <link rel="stylesheet" href="css/buyer-dashboard-mobile.css">
 </head>
 <body>
 
@@ -76,6 +77,12 @@
       <!-- ─── SECTION: Dashboard ─── -->
       <section id="dashboard" class="content-section active">
         
+        <div class="welcome-empty">
+          <h3>Selamat Datang Seller! 🎉</h3>
+          <p>Mulai jual produk Anda dan raih kesuksesan di AsaHub</p>
+          <a href="#add-product" class="btn">Tambah Produk</a>
+        </div>
+        
         <!-- Stats Grid -->
         <div class="stats-grid">
           <div class="stat-card">
@@ -126,7 +133,7 @@
             <button class="btn btn-primary btn-sm">Lihat Semua</button>
           </div>
           <div class="orders-list" id="recentOrders">
-            <!-- Orders will be loaded dynamically -->
+            <div class="empty-state">Belum ada pesanan</div>
           </div>
         </div>
 
@@ -375,25 +382,13 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Show selected section
-    const targetSection = document.getElementById(sectionId);
-    if (targetSection) {
-      targetSection.classList.add('active');
-    }
+    document.getElementById(sectionId).classList.add('active');
     
     // Update page title
-    const titles = {
-      'dashboard': 'Dashboard',
-      'products': 'Produk Saya',
-      'add-product': 'Tambah Produk',
-      'orders': 'Pesanan',
-      'analytics': 'Analytics',
-      'profile': 'Profil Toko'
-    };
-    
     document.getElementById('pageTitle').textContent = titles[sectionId] || 'Dashboard';
     
     // Update sidebar active state
-    document.querySelectorAll('.sidebar-nav a').forEach(link => {
+    document.querySelectorAll('.sidebar-nav a').forEach(function(link) {
       link.classList.remove('active');
       if (link.getAttribute('data-section') === sectionId) {
         link.classList.add('active');
@@ -401,73 +396,83 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Update mobile nav active state
-    document.querySelectorAll('.mobile-nav-item').forEach(item => {
+    document.querySelectorAll('.mobile-nav-item').forEach(function(item) {
       item.classList.remove('active');
       if (item.getAttribute('data-section') === sectionId) {
         item.classList.add('active');
       }
     });
   }
-  
-  // Sidebar navigation
-  document.querySelectorAll('.sidebar-nav a').forEach(link => {
+
+  /* ── Sidebar navigation ── */
+  document.querySelectorAll('.sidebar-nav a').forEach(function(link) {
     link.addEventListener('click', function(e) {
       e.preventDefault();
-      const sectionId = this.getAttribute('data-section');
+      var sectionId = this.getAttribute('data-section');
       showSection(sectionId);
-      
-      // Close sidebar on mobile
-      if (window.innerWidth <= 768) {
-        closeSidebar();
-      }
     });
   });
-  
-  // Mobile navigation
-  document.querySelectorAll('.mobile-nav-item').forEach(item => {
+
+  /* ── Mobile navigation ── */
+  document.querySelectorAll('.mobile-nav-item').forEach(function(item) {
     item.addEventListener('click', function() {
-      const sectionId = this.getAttribute('data-section');
+      var sectionId = this.getAttribute('data-section');
       showSection(sectionId);
     });
   });
-  
-  // Sidebar toggle
-  const sidebar = document.getElementById('sidebar');
-  const sidebarToggle = document.getElementById('sidebarToggle');
-  const sidebarClose = document.getElementById('sidebarClose');
-  const sidebarOverlay = document.getElementById('sidebarOverlay');
-  const collapseBtn = document.getElementById('collapseBtn');
-  const mainContent = document.querySelector('.main-content');
-  
-  function openSidebar() {
-    sidebar.classList.add('open');
-    sidebarOverlay.classList.add('active');
+
+  /* ── Mobile sidebar toggle ── */
+  var sidebarToggle = document.getElementById('sidebarToggle');
+  var sidebar = document.getElementById('sidebar');
+  var sidebarOverlay = document.getElementById('sidebarOverlay');
+  var sidebarClose = document.getElementById('sidebarClose');
+
+  console.log('Seller sidebar elements:', {
+    toggle: sidebarToggle,
+    sidebar: sidebar,
+    overlay: sidebarOverlay,
+    close: sidebarClose
+  });
+
+  if (sidebarToggle) {
+    sidebarToggle.addEventListener('click', function() {
+      console.log('Seller sidebar toggle clicked!');
+      sidebar.classList.add('active');
+      sidebarOverlay.classList.add('active');
+    });
+  } else {
+    console.log('Seller sidebar toggle not found!');
   }
-  
-  function closeSidebar() {
-    sidebar.classList.remove('open');
-    sidebarOverlay.classList.remove('active');
+
+  if (sidebarOverlay) {
+    sidebarOverlay.addEventListener('click', function() {
+      console.log('Seller sidebar overlay clicked!');
+      sidebar.classList.remove('active');
+      sidebarOverlay.classList.remove('active');
+    });
   }
-  
-  function toggleSidebarCollapse() {
-    sidebar.classList.toggle('collapsed');
-    mainContent.classList.toggle('collapsed');
-    collapseBtn.textContent = sidebar.classList.contains('collapsed') ? '»' : '«';
+
+  if (sidebarClose) {
+    sidebarClose.addEventListener('click', function() {
+      console.log('Seller sidebar close clicked!');
+      sidebar.classList.remove('active');
+      sidebarOverlay.classList.remove('active');
+    });
   }
-  
-  sidebarToggle.addEventListener('click', openSidebar);
-  sidebarClose.addEventListener('click', closeSidebar);
-  sidebarOverlay.addEventListener('click', closeSidebar);
-  collapseBtn.addEventListener('click', toggleSidebarCollapse);
-  
-  // Form submissions
+
+  /* ── Welcome button click ── */
+  document.querySelector('.welcome-empty .btn').addEventListener('click', function(e) {
+    e.preventDefault();
+    showSection('add-product');
+  });
+
+  /* ── Form submissions ── */
   const productForm = document.getElementById('productForm');
   if (productForm) {
     productForm.addEventListener('submit', function(e) {
       e.preventDefault();
-      // Handle product submission
-      alert('Produk berhasil ditambahkan! (Demo)');
-      resetProductForm();
+      alert('Fitur tambah produk akan tersedia setelah terhubung dengan database');
+      productForm.reset();
       showSection('products');
     });
   }
@@ -476,23 +481,22 @@ document.addEventListener('DOMContentLoaded', function() {
   if (profileForm) {
     profileForm.addEventListener('submit', function(e) {
       e.preventDefault();
-      // Handle profile update
-      alert('Profil berhasil diperbarui! (Demo)');
+      alert('Fitur simpan profil akan tersedia setelah terhubung dengan database');
     });
   }
-  
-  // Helper functions
+
+  /* ── Helper functions ── */
   window.resetProductForm = function() {
     productForm.reset();
   };
   
   window.showSection = showSection;
-  
-  // Initialize seller dashboard
+
+  /* ── Initialize seller dashboard ── */
   if (window.sellerManager) {
     window.sellerManager.init();
   }
-});
+})();
 </script>
 
 </body>
