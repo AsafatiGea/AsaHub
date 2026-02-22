@@ -36,6 +36,10 @@
             <a href="login.html" class="btn btn-outline">Masuk</a>
             <a href="daftar.html" class="btn btn-primary">Daftar</a>
         </div>
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" id="mobileMenuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
     </div>
 </nav>
 
@@ -300,34 +304,71 @@
 </footer>
 
 <!-- Scripts -->
-<script src="js/supabase.js"></script>
-<script src="js/auth.js"></script>
-<script src="js/marketplace-fixed.js"></script>
+<!-- Supabase JS -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.7"></script>
+<!-- Local JS -->
+<script src="js/supabase-config.js"></script>
+<script src="js/auth-service.js"></script>
+<script src="js/marketplace.js"></script>
 
 <script>
-// Flash Sale Timer
-function startFlashSaleTimer() {
-    let hours = 2;
-    let minutes = 45;
-    let seconds = 30;
+// Initialize marketplace when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('AsaHub marketplace loading...');
     
-    setInterval(() => {
-        seconds--;
-        if (seconds < 0) {
-            seconds = 59;
-            minutes--;
-            if (minutes < 0) {
-                minutes = 59;
-                hours--;
-                if (hours < 0) {
-                    hours = 23;
-                }
-            }
+    // Initialize marketplace
+    if (window.marketplaceManager) {
+        window.marketplaceManager.init();
+    }
+    
+    // Initialize auth
+    if (window.authService) {
+        window.authService.init();
+    }
+    
+    // Mobile menu toggle
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('mobile-open');
+            this.classList.toggle('active');
+        });
+    }
+    
+    // Flash sale timer
+    startFlashSaleTimer();
+});
+
+// Flash sale countdown timer
+function startFlashSaleTimer() {
+    // Set flash sale end time (24 hours from now)
+    const endTime = new Date();
+    endTime.setHours(23, 59, 59, 999);
+    
+    function updateTimer() {
+        const now = new Date();
+        const diff = endTime - now;
+        
+        if (diff <= 0) {
+            document.getElementById('flashHours').textContent = '00';
+            document.getElementById('flashMinutes').textContent = '00';
+            document.getElementById('flashSeconds').textContent = '00';
+            return;
         }
+        
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        
         document.getElementById('flashHours').textContent = String(hours).padStart(2, '0');
         document.getElementById('flashMinutes').textContent = String(minutes).padStart(2, '0');
         document.getElementById('flashSeconds').textContent = String(seconds).padStart(2, '0');
-    }, 1000);
+    }
+    
+    updateTimer();
+    setInterval(updateTimer, 1000);
 }
 
 // Helper functions
@@ -336,13 +377,13 @@ function showCategories() {
 }
 
 function showCart() {
-    alert('Keranjang belanja Anda kosong');
+    if (window.authService && window.authService.isAuthenticated()) {
+        window.location.href = 'buyer-dashboard.html#section-cart';
+    } else {
+        alert('Silakan login terlebih dahulu untuk melihat keranjang');
+        window.location.href = 'login.html';
+    }
 }
-
-// Initialize flash sale timer
-document.addEventListener('DOMContentLoaded', () => {
-    startFlashSaleTimer();
-});
 </script>
 
 </body>

@@ -18,36 +18,125 @@
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/role-selection.css">
     <link rel="stylesheet" href="css/responsive-mobile.css">
     <link rel="stylesheet" href="css/responsive-desktop.css">
 </head>
 <body>
 
 <div class="auth-container">
-    <div class="auth-card fade-in" style="max-width: 520px;">
+    <div class="auth-card fade-in" style="max-width: 600px;">
         <div class="auth-header">
             <a href="index.html" class="auth-logo">Asa<span>Hub</span></a>
-            <h1 class="auth-title">Buat Akun Baru</h1>
-            <p class="auth-subtitle">Gratis, tidak ada biaya pendaftaran</p>
+            <h1 class="auth-title">Bergabung dengan AsaHub</h1>
+            <p class="auth-subtitle">Pilih peran Anda dan mulai berjualan atau berbelanja</p>
         </div>
 
         <div class="auth-message error" id="alertError"></div>
         <div class="auth-message success" id="alertSuccess">Akun berhasil dibuat! Mengarahkan ke login...</div>
 
-        <form class="auth-form" onsubmit="doRegister(event)">
-            <div class="form-group">
-                <label class="form-label">Nama Lengkap</label>
-                <input type="text" class="form-input" id="name" placeholder="Nama kamu" required>
+        <!-- Role Selection -->
+        <div class="role-selection" id="roleSelection">
+            <h3 class="role-title">Pilih Jenis Akun:</h3>
+            <div class="role-options">
+                <div class="role-card" data-role="buyer" onclick="selectRole('buyer')">
+                    <div class="role-icon">🛒</div>
+                    <h4>Pembeli</h4>
+                    <p>Belanja produk dari berbagai seller</p>
+                    <ul class="role-features">
+                        <li>✅ Akses ke semua produk</li>
+                        <li>✅ Keranjang belanja</li>
+                        <li>✅ Tracking pesanan</li>
+                        <li>✅ Tidak ada persyaratan khusus</li>
+                    </ul>
+                </div>
+                
+                <div class="role-card" data-role="seller" onclick="selectRole('seller')">
+                    <div class="role-icon">🏪</div>
+                    <h4>Penjual</h4>
+                    <p>Jual produk Anda ke ribuan pembeli</p>
+                    <ul class="role-features">
+                        <li>✅ Dashboard lengkap</li>
+                        <li>✅ Manajemen produk</li>
+                        <li>✅ Analytics penjualan</li>
+                        <li>⚠️ Perlu verifikasi data</li>
+                    </ul>
+                </div>
             </div>
+        </div>
+
+        <!-- Registration Form (Hidden Initially) -->
+        <form class="auth-form" id="registrationForm" style="display: none;" onsubmit="doRegister(event)">
+            <input type="hidden" id="selectedRole" name="role" required>
+            
             <div class="form-group">
-                <label class="form-label">Email</label>
+                <label class="form-label">Nama Lengkap <span class="required">*</span></label>
+                <input type="text" class="form-input" id="name" placeholder="Nama lengkap sesuai KTP" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Email <span class="required">*</span></label>
                 <input type="email" class="form-input" id="email" placeholder="nama@email.com" required>
             </div>
+            
             <div class="form-group">
-                <label class="form-label">No. Telepon / WhatsApp</label>
-                <input type="tel" class="form-input" id="phone" placeholder="0812-xxxx-xxxx">
+                <label class="form-label">No. Telepon / WhatsApp <span class="required">*</span></label>
+                <input type="tel" class="form-input" id="phone" placeholder="0812-xxxx-xxxx" required>
             </div>
+            
             <div class="form-group">
+                <label class="form-label">Password <span class="required">*</span></label>
+                <div class="password-input">
+                    <input type="password" class="form-input" id="password" placeholder="Minimal 6 karakter" required minlength="6">
+                    <button type="button" class="password-toggle" onclick="togglePassword('password')">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Konfirmasi Password <span class="required">*</span></label>
+                <div class="password-input">
+                    <input type="password" class="form-input" id="confirmPassword" placeholder="Ulangi password" required minlength="6">
+                    <button type="button" class="password-toggle" onclick="togglePassword('confirmPassword')">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Seller Specific Fields (Hidden for Buyer) -->
+            <div id="sellerFields" style="display: none;">
+                <div class="seller-notice">
+                    <h4>📋 Persyaratan Menjadi Seller</h4>
+                    <p>Setelah registrasi, Anda akan diminta untuk melengkapi data verifikasi:</p>
+                    <ul>
+                        <li>📌 Data Diri (KTP, foto selfie)</li>
+                        <li>🏪 Profil Toko (nama, logo, kategori)</li>
+                        <li>💳 Rekening Pembayaran</li>
+                        <li>✅ Komitmen Seller (terms & conditions)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="terms" required>
+                    <span class="checkmark"></span>
+                    Saya menyetujui <a href="#" class="link">Syarat & Ketentuan</a> dan <a href="#" class="link">Kebijakan Privasi</a> AsaHub
+                </label>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-full" id="submitBtn">
+                <i class="fas fa-user-plus"></i>
+                <span id="submitText">Daftar Sekarang</span>
+            </button>
+            
+            <div class="auth-footer">
+                <p>Sudah punya akun? <a href="login.html" class="link">Masuk di sini</a></p>
+            </div>
+        </form>
+    </div>
+</div>
                 <label class="form-label">Daftar sebagai</label>
                 <select class="form-input" id="role">
                     <option value="pembeli">Pembeli</option>
@@ -110,9 +199,40 @@
 </div>
 
 <script>
-function togglePassword() {
-    const passwordInput = document.getElementById('password');
-    const toggleIcon = document.querySelector('.password-input-wrapper .password-toggle i');
+// Role Selection Functions
+function selectRole(role) {
+    // Update UI
+    document.querySelectorAll('.role-card').forEach(card => {
+        card.classList.remove('selected');
+    });
+    document.querySelector(`[data-role="${role}"]`).classList.add('selected');
+    
+    // Show registration form
+    document.getElementById('roleSelection').style.display = 'none';
+    document.getElementById('registrationForm').style.display = 'block';
+    document.getElementById('selectedRole').value = role;
+    
+    // Show seller fields if seller is selected
+    const sellerFields = document.getElementById('sellerFields');
+    const submitText = document.getElementById('submitText');
+    
+    if (role === 'seller') {
+        sellerFields.style.display = 'block';
+        submitText.textContent = 'Daftar sebagai Seller';
+    } else {
+        sellerFields.style.display = 'none';
+        submitText.textContent = 'Daftar sebagai Pembeli';
+    }
+    
+    // Scroll to form
+    document.getElementById('registrationForm').scrollIntoView({ behavior: 'smooth' });
+}
+
+// Password Toggle Functions
+function togglePassword(fieldId) {
+    const passwordInput = document.getElementById(fieldId);
+    const toggleBtn = passwordInput.nextElementSibling;
+    const toggleIcon = toggleBtn.querySelector('i');
     
     if (passwordInput.type === 'password') {
         passwordInput.type = 'text';
@@ -123,41 +243,183 @@ function togglePassword() {
     }
 }
 
-function toggleConfirmPassword() {
-    const confirmInput = document.getElementById('confirm');
-    const toggleIcon = document.querySelectorAll('.password-input-wrapper .password-toggle i')[1];
-    
-    if (confirmInput.type === 'password') {
-        confirmInput.type = 'text';
-        toggleIcon.className = 'fas fa-eye-slash';
-    } else {
-        confirmInput.type = 'password';
-        toggleIcon.className = 'fas fa-eye';
-    }
-}
-
+// Enhanced Registration Function
 async function doRegister(event) {
     event.preventDefault();
     
     // Check if authService is available
     if (!window.authService) {
         console.error('AuthService not loaded');
-        const errEl = document.getElementById('alertError');
-        errEl.textContent = 'System error. Please refresh the page.';
-        errEl.classList.add('show');
+        showError('System error. Please refresh the page.');
         return;
     }
     
+    // Get form values
     const name = document.getElementById('name').value.trim();
     const email = document.getElementById('email').value.trim();
     const phone = document.getElementById('phone').value.trim();
-    const role = document.getElementById('role').value;
+    const role = document.getElementById('selectedRole').value;
     const password = document.getElementById('password').value;
-    const confirm = document.getElementById('confirm').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
     const terms = document.getElementById('terms').checked;
     
-    const registerText = document.getElementById('registerText');
-    const registerLoading = document.getElementById('registerLoading');
+    // Validation
+    if (!name || !email || !phone || !password || !confirmPassword) {
+        showError('Semua field wajib diisi!');
+        return;
+    }
+    
+    if (password !== confirmPassword) {
+        showError('Password dan konfirmasi password tidak cocok!');
+        return;
+    }
+    
+    if (password.length < 6) {
+        showError('Password minimal 6 karakter!');
+        return;
+    }
+    
+    if (!terms) {
+        showError('Anda harus menyetujui syarat & ketentuan!');
+        return;
+    }
+    
+    if (!role) {
+        showError('Silakan pilih jenis akun terlebih dahulu!');
+        return;
+    }
+    
+    // Show loading state
+    const submitBtn = document.getElementById('submitBtn');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.classList.add('loading');
+    submitBtn.disabled = true;
+    
+    try {
+        // Prepare user data
+        const userData = {
+            email: email,
+            password: password,
+            role: role,
+            full_name: name,
+            phone: phone
+        };
+        
+        console.log('Registering user:', userData);
+        
+        // Call authService register
+        const result = await authService.register(userData);
+        
+        if (result.success) {
+            showSuccess('Akun berhasil dibuat! Mengarahkan ke dashboard...');
+            
+            // Redirect based on role after delay
+            setTimeout(() => {
+                if (role === 'seller') {
+                    // Redirect to seller verification page
+                    window.location.href = 'seller-verification.html';
+                } else {
+                    // Redirect to buyer dashboard
+                    window.location.href = 'buyer-dashboard.html';
+                }
+            }, 2000);
+        } else {
+            showError(result.error || 'Registrasi gagal. Silakan coba lagi.');
+        }
+    } catch (error) {
+        console.error('Registration error:', error);
+        showError('Terjadi kesalahan. Silakan coba lagi.');
+    } finally {
+        // Reset button state
+        submitBtn.classList.remove('loading');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+    }
+}
+
+// Helper Functions
+function showError(message) {
+    const errorEl = document.getElementById('alertError');
+    const successEl = document.getElementById('alertSuccess');
+    
+    errorEl.textContent = message;
+    errorEl.classList.add('show');
+    successEl.classList.remove('show');
+    
+    // Auto hide after 5 seconds
+    setTimeout(() => {
+        errorEl.classList.remove('show');
+    }, 5000);
+}
+
+function showSuccess(message) {
+    const errorEl = document.getElementById('alertError');
+    const successEl = document.getElementById('alertSuccess');
+    
+    successEl.textContent = message;
+    successEl.classList.add('show');
+    errorEl.classList.remove('show');
+}
+
+// Email validation on input
+document.getElementById('email').addEventListener('input', function(e) {
+    const email = e.target.value;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+    if (email && !emailRegex.test(email)) {
+        e.target.setCustomValidity('Format email tidak valid');
+    } else {
+        e.target.setCustomValidity('');
+    }
+});
+
+// Phone validation on input
+document.getElementById('phone').addEventListener('input', function(e) {
+    const phone = e.target.value;
+    const phoneRegex = /^[0-9+\-\s()]+$/;
+    
+    if (phone && !phoneRegex.test(phone)) {
+        e.target.setCustomValidity('Nomor telepon hanya boleh angka');
+    } else {
+        e.target.setCustomValidity('');
+    }
+});
+
+// Password strength indicator
+document.getElementById('password').addEventListener('input', function(e) {
+    const password = e.target.value;
+    let strength = 0;
+    
+    if (password.length >= 6) strength++;
+    if (password.length >= 10) strength++;
+    if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength++;
+    if (/[0-9]/.test(password)) strength++;
+    if (/[^a-zA-Z0-9]/.test(password)) strength++;
+    
+    // You can add password strength indicator UI here if needed
+});
+
+// Initialize page
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Registration page loaded');
+    
+    // Check if user is already logged in
+    if (window.authService && window.authService.isAuthenticated()) {
+        const user = window.authService.getCurrentUser();
+        if (user) {
+            // Redirect to appropriate dashboard
+            if (user.role === 'seller') {
+                window.location.href = 'seller-dashboard.html';
+            } else if (user.role === 'admin') {
+                window.location.href = 'admin-dashboard.html';
+            } else {
+                window.location.href = 'buyer-dashboard.html';
+            }
+            return;
+        }
+    }
+});
+</script>
     const errEl = document.getElementById('alertError');
     const okEl = document.getElementById('alertSuccess');
 

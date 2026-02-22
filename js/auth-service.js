@@ -21,6 +21,7 @@ class AuthService {
                 this.loadUserProfile(session.user.id);
             } else if (event === 'SIGNED_OUT') {
                 this.currentUser = null;
+                localStorage.removeItem('userProfile');
                 window.location.href = 'login.html';
             }
         });
@@ -30,7 +31,10 @@ class AuthService {
         try {
             const { data, error } = await this.supabase
                 .from('users')
-                .select('*')
+                .select(`
+                    *,
+                    profiles:user_profiles(*)
+                `)
                 .eq('id', userId)
                 .single();
 
@@ -46,245 +50,110 @@ class AuthService {
         }
     }
 
+    async register(userData) {
+        try {
+            const { email, password, role, full_name, phone } = userData;
+            
+            // Register with Supabase Auth
+            const { data: authData, error: authError } = await this.supabase.auth.signUp({
+                email: email,
+                password: password,
+                options: {
+                    data: {
+                        role: role,
+                        full_name: full_name
+                    }
+                }
+            });
+
+            if (authError) throw authError;
+
+            // Create user record in users table
+            const { data: userRecord, error: userError } = await this.supabase
+                .from('users')
+                .insert({
+                    email: email,
+                    role: role,
+                    is_active: true,
+                    email_verified: false
+                })
+                .select()
+                .single();
+
+            if (userError) throw userError;
+
+            // Create user profile
+            const { data: profileData, error: profileError } = await this.supabase
+                .from('user_profiles')
+                .insert({
+                    user_id: userRecord.id,
+                    full_name: full_name,
+                    phone: phone
+                })
+                .select()
+                .single();
+
+            if (profileError) throw profileError;
+
+            console.log('Registration successful:', { userRecord, profileData });
+
+            return {
+                success: true,
+                user: userRecord,
+                profile: profileData
+            };
+
+        } catch (error) {
+            console.error('Registration error:', error);
+            return {
+                success: false,
+                error: error.message || 'Registrasi gagal'
+            };
+        }
+    }
+
     async login(email, password) {
         try {
             console.log('Login attempt for:', email);
             
-            // First check database users (for users registered via our form)
-            try {
-                const { data: user, error: userError } = await this.supabase
-                    .from('users')
-                    .select('*')
-                    .eq('email', email)
-                    .single();
-
-                if (!userError && user) {
-                    console.log('Found user in database, checking password');
-                    return this.handlePasswordCheck(user, password);
-                }
-            } catch (dbError) {
-                console.log('Database check failed, trying Supabase Auth');
-            }
-            
-            // Try Supabase Auth (for users created via Supabase Auth system)
+            // Try Supabase Auth first
             const { data: authData, error: authError } = await this.supabase.auth.signInWithPassword({
                 email: email,
                 password: password
             });
 
             if (authError) {
-                console.log('Supabase auth failed, checking localStorage:', authError.message);
-                return this.handleLocalStorageLogin(email, password);
+                console.log('Supabase Auth failed:', authError.message);
+                throw authError;
             }
 
-            // If Supabase Auth succeeds, load user profile
             if (authData.user) {
-                try {
-                    const { data: profile, error: profileError } = await this.supabase
-                        .from('users')
-                        .select('*')
-                        .eq('id', authData.user.id)
-                        .single();
-
-                    if (profileError) {
-                        console.warn('Profile not found, using auth data only');
-                        this.currentUser = authData.user;
-                    } else {
-                        this.currentUser = authData.user;
-                        this.currentUser.profile = profile;
-                        localStorage.setItem('userProfile', JSON.stringify(profile));
-                    }
-                } catch (profileError) {
-                    console.warn('Profile load failed, using auth data only');
-                    this.currentUser = authData.user;
+                console.log('Login successful:', authData.user);
+                await this.loadUserProfile(authData.user.id);
+                
+                // Redirect based on role
+                const user = this.currentUser.profile;
+                if (user.role === 'admin') {
+                    window.location.href = 'admin-dashboard.html';
+                } else if (user.role === 'seller') {
+                    window.location.href = 'seller-dashboard.html';
+                } else {
+                    window.location.href = 'buyer-dashboard.html';
                 }
-
-                this.redirectBasedOnRole(this.currentUser.profile?.role || 'pembeli');
-                return { success: true, user: this.currentUser };
+                
+                return {
+                    success: true,
+                    user: authData.user,
+                    profile: this.currentUser.profile
+                };
             }
 
         } catch (error) {
             console.error('Login error:', error);
-            return { success: false, error: error.message };
-        }
-    }
-
-    handleLocalStorageLogin(email, password) {
-        console.log('Checking localStorage for login');
-        
-        // Check hardcoded demo users first
-        const demoUsers = [
-            { 
-                id: 'admin-001', 
-                email: 'admin@asahub.site', 
-                password: 'admin123', 
-                role: 'admin', 
-                full_name: 'Admin AsaHub', 
-                phone: '08123456789'
-            },
-            { 
-                id: 'seller-001', 
-                email: 'seller@asahub.site', 
-                password: 'seller123', 
-                role: 'penjual', 
-                full_name: 'Seller Demo', 
-                phone: '08123456788'
-            },
-            { 
-                id: 'buyer-001', 
-                email: 'buyer@asahub.site', 
-                password: 'buyer123', 
-                role: 'pembeli', 
-                full_name: 'Buyer Demo', 
-                phone: '08123456787'
-            }
-        ];
-        
-        const demoUser = demoUsers.find(u => u.email === email && u.password === password);
-        if (demoUser) {
-            this.currentUser = { id: demoUser.id, email: demoUser.email };
-            this.currentUser.profile = demoUser;
-            localStorage.setItem('userProfile', JSON.stringify(demoUser));
-            
-            this.redirectBasedOnRole(demoUser.role);
-            return { success: true, user: this.currentUser };
-        }
-        
-        // Check localStorage registered users
-        const localUsers = JSON.parse(localStorage.getItem('asahub_users') || '[]');
-        const localUser = localUsers.find(u => u.email === email && u.password_hash === password + '_hash');
-        
-        if (localUser) {
-            this.currentUser = { id: localUser.id, email: localUser.email };
-            this.currentUser.profile = localUser;
-            localStorage.setItem('userProfile', JSON.stringify(localUser));
-            
-            this.redirectBasedOnRole(localUser.role);
-            return { success: true, user: this.currentUser };
-        }
-        
-        return { success: false, error: 'Invalid credentials' };
-    }
-
-    handlePasswordCheck(user, password) {
-        console.log('Checking password for user:', user.email);
-        console.log('Stored password hash:', user.password_hash);
-        console.log('Input password:', password);
-        
-        // Demo password check for existing database users
-        if ((password === 'admin123' && user.role === 'admin') ||
-            (password === 'seller123' && user.role === 'penjual') ||
-            (password === 'buyer123' && user.role === 'pembeli') ||
-            (user.password_hash === password + '_hash')) {
-            
-            console.log('Password match! Creating session...');
-            
-            const mockSession = {
-                user: {
-                    id: user.id,
-                    email: user.email
-                }
+            return {
+                success: false,
+                error: error.message || 'Login gagal. Periksa email dan password Anda.'
             };
-            
-            this.currentUser = mockSession.user;
-            this.currentUser.profile = user;
-            localStorage.setItem('userProfile', JSON.stringify(user));
-            
-            console.log('Session created, redirecting to:', user.role);
-            this.redirectBasedOnRole(user.role);
-            return { success: true, user };
-        } else {
-            console.log('Password mismatch!');
-            return { success: false, error: 'Invalid credentials' };
-        }
-    }
-
-    async register(userData) {
-        try {
-            console.log('Starting registration for:', userData.email);
-            
-            // Try Supabase first
-            try {
-                // Check if email already exists
-                const { data: existingUser, error: checkError } = await this.supabase
-                    .from('users')
-                    .select('email')
-                    .eq('email', userData.email)
-                    .single();
-
-                console.log('Email check result:', { existingUser, checkError });
-
-                if (existingUser) {
-                    return { success: false, error: 'Email sudah terdaftar.' };
-                }
-
-                // Insert new user into Supabase database
-                console.log('Inserting new user...');
-                const { data, error } = await this.supabase
-                    .from('users')
-                    .insert([{
-                        email: userData.email,
-                        password_hash: userData.password + '_hash',
-                        full_name: userData.fullName,
-                        role: userData.role || 'pembeli',
-                        phone: userData.phone,
-                        is_active: true,
-                        created_at: new Date().toISOString()
-                    }])
-                    .select()
-                    .single();
-
-                console.log('Insert result:', { data, error });
-
-                if (error) {
-                    throw error;
-                }
-
-                console.log('Registration successful:', data);
-                return { success: true, user: data };
-                
-            } catch (dbError) {
-                console.log('Database failed, using localStorage fallback:', dbError.message);
-                return this.registerToLocalStorage(userData);
-            }
-            
-        } catch (error) {
-            console.error('Registration error:', error);
-            return { success: false, error: error.message || 'Registrasi gagal. Silakan coba lagi.' };
-        }
-    }
-
-    registerToLocalStorage(userData) {
-        try {
-            console.log('Using localStorage registration for:', userData.email);
-            
-            const users = JSON.parse(localStorage.getItem('asahub_users') || '[]');
-            
-            // Check if email already exists
-            if (users.find(u => u.email === userData.email)) {
-                return { success: false, error: 'Email sudah terdaftar.' };
-            }
-
-            const newUser = {
-                id: 'local_' + Date.now(),
-                email: userData.email,
-                password_hash: userData.password + '_hash',
-                full_name: userData.fullName,
-                role: userData.role || 'pembeli',
-                phone: userData.phone,
-                is_active: true,
-                created_at: new Date().toISOString(),
-                source: 'localStorage'
-            };
-            
-            users.push(newUser);
-            localStorage.setItem('asahub_users', JSON.stringify(users));
-
-            console.log('LocalStorage registration successful:', newUser);
-            return { success: true, user: newUser };
-        } catch (error) {
-            console.error('LocalStorage registration error:', error);
-            return { success: false, error: 'Registrasi gagal. Silakan coba lagi.' };
         }
     }
 
@@ -293,36 +162,139 @@ class AuthService {
             const { error } = await this.supabase.auth.signOut();
             if (error) throw error;
             
+            this.currentUser = null;
             localStorage.removeItem('userProfile');
             window.location.href = 'login.html';
+            
         } catch (error) {
             console.error('Logout error:', error);
+            // Force redirect even if error
+            window.location.href = 'login.html';
         }
-    }
-
-    redirectBasedOnRole(role) {
-        const redirects = {
-            'admin': 'admin-dashboard.html',
-            'penjual': 'seller-dashboard.html',
-            'pembeli': 'buyer-dashboard.html'
-        };
-        
-        const redirectUrl = redirects[role] || 'index.html';
-        window.location.href = redirectUrl;
-    }
-
-    getCurrentUser() {
-        return this.currentUser;
     }
 
     isAuthenticated() {
         return this.currentUser !== null;
     }
 
+    getCurrentUser() {
+        return this.currentUser;
+    }
+
+    getUserRole() {
+        return this.currentUser?.profile?.role || null;
+    }
+
+    // Check if user has specific role
     hasRole(role) {
-        return this.currentUser?.profile?.role === role;
+        return this.getUserRole() === role;
+    }
+
+    // Protect page - redirect if not authenticated or wrong role
+    protectPage(requiredRole = null) {
+        if (!this.isAuthenticated()) {
+            window.location.href = 'login.html';
+            return false;
+        }
+
+        if (requiredRole && !this.hasRole(requiredRole)) {
+            // Redirect to appropriate dashboard based on current role
+            const currentRole = this.getUserRole();
+            if (currentRole === 'admin') {
+                window.location.href = 'admin-dashboard.html';
+            } else if (currentRole === 'seller') {
+                window.location.href = 'seller-dashboard.html';
+            } else {
+                window.location.href = 'buyer-dashboard.html';
+            }
+            return false;
+        }
+
+        return true;
+    }
+
+    // Update user profile
+    async updateProfile(profileData) {
+        try {
+            if (!this.isAuthenticated()) {
+                throw new Error('User not authenticated');
+            }
+
+            const { data, error } = await this.supabase
+                .from('user_profiles')
+                .update(profileData)
+                .eq('user_id', this.currentUser.id)
+                .select()
+                .single();
+
+            if (error) throw error;
+
+            // Update cached profile
+            this.currentUser.profile = { ...this.currentUser.profile, ...data };
+            localStorage.setItem('userProfile', JSON.stringify(this.currentUser.profile));
+
+            return {
+                success: true,
+                data: data
+            };
+
+        } catch (error) {
+            console.error('Profile update error:', error);
+            return {
+                success: false,
+                error: error.message || 'Gagal memperbarui profil'
+            };
+        }
+    }
+
+    // Reset password
+    async resetPassword(email) {
+        try {
+            const { data, error } = await this.supabase.auth.resetPasswordForEmail(email, {
+                redirectTo: `${window.location.origin}/reset-password.html`
+            });
+
+            if (error) throw error;
+
+            return {
+                success: true,
+                message: 'Email reset password telah dikirim'
+            };
+
+        } catch (error) {
+            console.error('Reset password error:', error);
+            return {
+                success: false,
+                error: error.message || 'Gagal mengirim email reset password'
+            };
+        }
+    }
+
+    // Update password
+    async updatePassword(newPassword) {
+        try {
+            const { data, error } = await this.supabase.auth.updateUser({
+                password: newPassword
+            });
+
+            if (error) throw error;
+
+            return {
+                success: true,
+                message: 'Password berhasil diperbarui'
+            };
+
+        } catch (error) {
+            console.error('Update password error:', error);
+            return {
+                success: false,
+                error: error.message || 'Gagal memperbarui password'
+            };
+        }
     }
 }
 
-// Initialize auth service
-window.authService = new AuthService();
+// Initialize auth service when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    window.authService = new AuthService();
+});

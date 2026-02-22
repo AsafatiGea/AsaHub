@@ -1,28 +1,35 @@
-const supabaseUrl = "'https://btkmlkpspcsoozdbvsvp.supabase.com"
-const supabaseKey = "sb_publishable_N5V-6_jyvq5THYB4peU5Jw_Af5ot066"
-
-// Gunakan client global dari supabase.js
-const supabase = window.SupabaseClient;
-
-// Marketplace functionality - Database driven
+// Marketplace Manager - Handles product display, filtering, and cart
 class MarketplaceManager {
     constructor() {
-        // Gunakan client global dari supabase.js
-        this.supabase = window.SupabaseClient;
         this.products = [];
         this.filteredProducts = [];
-        this.categories = [];
+        this.categories = {};
+        this.currentView = 'grid';
+        this.currentPage = 1;
+        this.itemsPerPage = 12;
+        this.cart = [];
         this.isLoading = false;
-        this.user = null;
+        this.filters = {
+            category: 'all',
+            search: '',
+            minPrice: null,
+            maxPrice: null,
+            sortBy: 'newest'
+        };
     }
 
-    // Load all products from database
-    async loadProducts() {
-        this.isLoading = true;
-        this.showLoading();
+    async init() {
+        console.log('Initializing marketplace...');
+        await this.loadProducts();
+        this.setupEventListeners();
+        this.updateAuthUI();
+    }
 
+    async loadProducts() {
+        this.showLoading(true);
+        
         try {
-            const { data, error } = await this.supabase
+            const { data, error } = await window.SupabaseClient
                 .from('products')
                 .select(`
                     *,
