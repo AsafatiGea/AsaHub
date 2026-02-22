@@ -65,7 +65,12 @@
   
   /* Add padding to body to avoid bottom nav overlap */
   body {
-    padding-bottom: 70px;
+    padding-bottom: 80px;
+  }
+  
+  /* Footer adjustment for mobile */
+  .footer {
+    margin-bottom: 70px;
   }
   
   /* Hide mobile menu (old hamburger system) */
