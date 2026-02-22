@@ -8,7 +8,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- CSS Modular -->
+    <!-- Supabase JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Local JS -->
+    <script src="js/supabase-config.js"></script>
+    <script src="js/auth-service.js"></script>
+    <script src="js/api-service.js"></script>
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/components.css">
@@ -94,65 +99,70 @@ function togglePassword() {
     }
 }
 
-function doLogin(event) {
-    event.preventDefault();
+document.addEventListener('DOMContentLoaded', async function() {
+    const loginForm = document.getElementById('loginForm');
+    const errorMessage = document.getElementById('error-message');
     
-    const email = document.getElementById('email').value.trim();
-    const password = document.getElementById('password').value;
-    const loginText = document.getElementById('loginText');
-    const loginLoading = document.getElementById('loginLoading');
-    const alertError = document.getElementById('alertError');
-    const alertSuccess = document.getElementById('alertSuccess');
-    
-    // Show loading state
-    loginText.style.display = 'none';
-    loginLoading.style.display = 'inline-block';
-    
-    // Simulate API call
-    setTimeout(() => {
-        const users = JSON.parse(localStorage.getItem('asahub_users') || '[]');
-        const found = users.find(u => u.email === email && u.password === password);
+    // Check if user is already logged in
+    if (window.authService.isAuthenticated()) {
+        const user = window.authService.getCurrentUser();
+        window.authService.redirectBasedOnRole(user.profile.role);
+        return;
+    }
+
+    loginForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
         
-        // Demo akun default
-        const isDemo = (email === 'admin@asahub.site' && password === 'admin123');
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const submitBtn = loginForm.querySelector('button[type="submit"]');
         
-        if (found || isDemo) {
-            const user = found || { name: 'Admin User', email, role: 'admin' };
-            localStorage.setItem('asahub_current_user', JSON.stringify(user));
+        // Show loading state
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Masuk...';
+        errorMessage.style.display = 'none';
+        
+        try {
+            const result = await window.authService.login(email, password);
             
-            alertSuccess.classList.add('show');
-            alertError.classList.remove('show');
-            
-            // Redirect berdasarkan role
-            let redirectUrl = 'index.html';
-            if (user.role === 'admin') {
-                redirectUrl = 'admin-dashboard.html';
-            } else if (user.role === 'penjual') {
-                redirectUrl = 'seller-dashboard.html';
-            } else if (user.role === 'pembeli') {
-                redirectUrl = 'buyer-dashboard.html';
+            if (result.success) {
+                // Redirect will be handled by auth service
+                console.log('Login successful:', result.user);
+            } else {
+                errorMessage.textContent = result.error || 'Login gagal. Silakan coba lagi.';
+                errorMessage.style.display = 'block';
             }
-            
-            setTimeout(() => { 
-                window.location.href = redirectUrl; 
-            }, 1200);
-        } else {
-            // Show error
-            alertError.classList.add('show');
-            alertSuccess.classList.remove('show');
-            
-            // Reset loading state
-            loginText.style.display = 'inline';
-            loginLoading.style.display = 'none';
-            
-            // Shake animation for error
-            document.querySelector('.auth-card').style.animation = 'shake 0.5s';
-            setTimeout(() => {
-                document.querySelector('.auth-card').style.animation = '';
-            }, 500);
+        } catch (error) {
+            errorMessage.textContent = 'Terjadi kesalahan. Silakan coba lagi.';
+            errorMessage.style.display = 'block';
+        } finally {
+            // Reset button state
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = 'Masuk';
         }
-    }, 1000);
-}
+    });
+
+    // Demo credentials helper
+    const showDemoBtn = document.createElement('button');
+    showDemoBtn.type = 'button';
+    showDemoBtn.className = 'btn btn-secondary btn-sm';
+    showDemoBtn.innerHTML = '<i class="fas fa-info-circle"></i> Lihat Kredensial Demo';
+    showDemoBtn.style.marginTop = '10px';
+    showDemoBtn.onclick = function() {
+        alert('Kredensial Demo:\n\n' +
+              'Admin:\n' +
+              'Email: admin@asahub.site\n' +
+              'Password: admin123\n\n' +
+              'Seller:\n' +
+              'Email: seller@asahub.site\n' +
+              'Password: seller123\n\n' +
+              'Buyer:\n' +
+              'Email: buyer@asahub.site\n' +
+              'Password: buyer123');
+    };
+    
+    loginForm.appendChild(showDemoBtn);
+});
 
 // Add shake animation
 const style = document.createElement('style');
