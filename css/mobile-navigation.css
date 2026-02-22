@@ -17,13 +17,43 @@
     right: 0;
 }
 
+/* Mobile Navigation Header */
 .mobile-nav-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: var(--spacing-lg) var(--spacing);
+    border-bottom: 1px solid var(--border-light);
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+}
+
+.mobile-nav-header-buttons {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.mobile-nav-exit {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
     color: white;
+    border-radius: var(--r-sm);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.mobile-nav-exit:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+.mobile-nav-exit:active {
+    transform: scale(0.95);
 }
 
 .mobile-nav-logo {

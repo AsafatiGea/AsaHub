@@ -51,9 +51,14 @@
 <div class="mobile-nav-menu mobile-only" id="mobileNavMenu">
     <div class="mobile-nav-header">
         <div class="mobile-nav-logo">Asa<span>Hub</span></div>
-        <button class="mobile-nav-close" id="mobileNavClose">
-            <i class="fas fa-times"></i>
-        </button>
+        <div class="mobile-nav-header-buttons">
+            <button class="mobile-nav-exit" id="mobileNavExit" title="Keluar dari Situs">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+            <button class="mobile-nav-close" id="mobileNavClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
     </div>
     
     <!-- Menu Content - Will be dynamically updated -->
@@ -421,6 +426,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function setupMobileNavigation() {
     const menuToggle = document.getElementById('mobileMenuToggle');
     const menuClose = document.getElementById('mobileNavClose');
+    const menuExit = document.getElementById('mobileNavExit');
     const mobileMenu = document.getElementById('mobileNavMenu');
     const overlay = document.getElementById('mobileNavOverlay');
     
@@ -448,6 +454,22 @@ function setupMobileNavigation() {
     
     if (menuClose) {
         menuClose.addEventListener('click', closeMobileMenu);
+    }
+    
+    // Exit from site
+    if (menuExit) {
+        menuExit.addEventListener('click', function() {
+            if (confirm('Apakah Anda yakin ingin keluar dari situs AsaHub?')) {
+                // Close the mobile menu first
+                closeMobileMenu();
+                // Then close the window/tab
+                window.close();
+                // Fallback for browsers that don't allow window.close()
+                setTimeout(() => {
+                    window.location.href = 'about:blank';
+                }, 500);
+            }
+        });
     }
     
     if (overlay) {
