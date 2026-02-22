@@ -3,554 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Komunitas & Ulasan - AsaHub</title>
+    <title>Komunitas - AsaHub</title>
     <link rel="icon" type="image/png" href="img/logo.png">
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* ===== VISITOR COUNTER HERO ===== */
-        .counter-hero {
-            background: linear-gradient(135deg, var(--blue) 0%, #1a5276 60%, #0e2a47 100%);
-            padding: 70px 24px 60px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .counter-hero::before {
-            content: '';
-            position: absolute; inset: 0;
-            background: radial-gradient(ellipse at 70% 30%, rgba(245,200,66,0.15) 0%, transparent 60%);
-        }
-        .counter-hero h1 {
-            color: white;
-            font-size: clamp(26px, 4vw, 44px);
-            font-weight: 800;
-            margin-bottom: 10px;
-            position: relative;
-        }
-        .counter-hero p {
-            color: rgba(255,255,255,0.7);
-            font-size: 16px;
-            margin-bottom: 48px;
-            position: relative;
-        }
-
-        .counter-boxes {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            position: relative;
-        }
-        .counter-box {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 18px;
-            padding: 28px 36px;
-            min-width: 160px;
-            text-align: center;
-        }
-        .counter-num {
-            font-family: 'Syne', sans-serif;
-            font-size: 42px;
-            font-weight: 800;
-            color: var(--yellow);
-            display: block;
-            line-height: 1;
-            margin-bottom: 6px;
-        }
-        .counter-label {
-            color: rgba(255,255,255,0.75);
-            font-size: 13px;
-            font-weight: 500;
-        }
-
-        /* ===== RATING SUMMARY ===== */
-        .rating-summary {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            background: white;
-            border-radius: 20px;
-            padding: 36px 40px;
-            box-shadow: var(--shadow-lg);
-            margin-bottom: 32px;
-            border: 1px solid var(--border);
-        }
-        .rating-big {
-            text-align: center;
-            flex-shrink: 0;
-        }
-        .rating-big .num {
-            font-family: 'Syne', sans-serif;
-            font-size: 64px;
-            font-weight: 800;
-            color: var(--blue);
-            line-height: 1;
-        }
-        .stars-display { font-size: 24px; margin: 6px 0; }
-        .rating-big span { font-size: 13px; color: var(--muted); }
-
-        .rating-bars { flex: 1; min-width: 200px; }
-        .bar-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 8px;
-        }
-        .bar-label { font-size: 13px; color: var(--muted); width: 40px; text-align: right; flex-shrink: 0; }
-        .bar-track {
-            flex: 1;
-            height: 8px;
-            background: var(--bg);
-            border-radius: 100px;
-            overflow: hidden;
-        }
-        .bar-fill {
-            height: 100%;
-            background: var(--yellow);
-            border-radius: 100px;
-            transition: width 1s ease;
-        }
-        .bar-count { font-size: 12px; color: var(--muted); width: 24px; }
-
-        /* ===== FORM ULASAN ===== */
-        .review-form-wrap {
-            background: white;
-            border-radius: 20px;
-            padding: 36px 40px;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border);
-            margin-bottom: 32px;
-        }
-        .review-form-wrap h3 {
-            font-size: 20px;
-            font-weight: 800;
-            color: var(--blue);
-            margin-bottom: 24px;
-        }
-
-        .star-picker {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 20px;
-        }
-        .star-btn {
-            font-size: 32px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.15s;
-            opacity: 0.3;
-            line-height: 1;
-        }
-        .star-btn.active { opacity: 1; }
-        .star-btn:hover { transform: scale(1.2); }
-
-        .photo-upload-area {
-            border: 2px dashed var(--border);
-            border-radius: 12px;
-            padding: 24px;
-            text-align: center;
-            cursor: pointer;
-            transition: 0.2s;
-            margin-bottom: 16px;
-            background: var(--bg);
-        }
-        .photo-upload-area:hover { border-color: var(--blue-light); background: #eef4ff; }
-        .photo-upload-area input { display: none; }
-        .photo-preview {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 12px;
-        }
-        .photo-thumb {
-            width: 80px; height: 80px;
-            border-radius: 10px;
-            object-fit: cover;
-            border: 2px solid var(--border);
-        }
-        .photo-del {
-            position: absolute; top: -6px; right: -6px;
-            background: #ef4444; color: white;
-            border: none; border-radius: 50%;
-            width: 20px; height: 20px;
-            font-size: 11px; cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .thumb-wrap { position: relative; display: inline-block; }
-
-        /* ===== ULASAN CARDS ===== */
-        .reviews-list { display: flex; flex-direction: column; gap: 20px; }
-
-        .review-card {
-            background: white;
-            border-radius: 16px;
-            padding: 28px;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border);
-            animation: fadeInUp 0.4s ease;
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(16px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .review-header {
-            display: flex;
-            align-items: flex-start;
-            gap: 14px;
-            margin-bottom: 14px;
-        }
-        .review-avatar {
-            width: 46px; height: 46px;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-family: 'Syne', sans-serif;
-            font-weight: 800; font-size: 18px;
-            color: white; flex-shrink: 0;
-        }
-        .review-meta { flex: 1; }
-        .review-name {
-            font-weight: 700; font-size: 15px; color: var(--text);
-        }
-        .review-date { font-size: 12px; color: var(--muted); margin-top: 2px; }
-        .review-stars { font-size: 16px; margin-top: 3px; }
-
-        .review-text {
-            font-size: 15px; color: var(--text);
-            line-height: 1.7; margin-bottom: 14px;
-        }
-        .review-photos {
-            display: flex; gap: 10px; flex-wrap: wrap;
-            margin-bottom: 14px;
-        }
-        .review-photo {
-            width: 100px; height: 100px;
-            border-radius: 10px;
-            object-fit: cover;
-            border: 1px solid var(--border);
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .review-photo:hover { transform: scale(1.04); }
-
-        .review-actions {
-            display: flex;
-            gap: 16px;
-            align-items: center;
-        }
-        .like-btn {
-            background: none; border: 1.5px solid var(--border);
-            border-radius: 100px; padding: 6px 16px;
-            font-size: 13px; cursor: pointer;
-            display: flex; align-items: center; gap: 6px;
-            transition: 0.2s; color: var(--muted);
-            font-family: 'DM Sans', sans-serif;
-        }
-        .like-btn:hover, .like-btn.liked { 
-            background: #fde8ff; border-color: #c084fc; color: #7c3aed;
-        }
-        .review-tag {
-            font-size: 11px; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 1px;
-            padding: 4px 10px; border-radius: 100px;
-            background: #eef4ff; color: var(--blue-light);
-        }
-
-        /* FILTER TABS */
-        .filter-tabs {
-            display: flex; gap: 8px; flex-wrap: wrap;
-            margin-bottom: 24px;
-        }
-        .filter-tab {
-            padding: 8px 18px; border-radius: 100px;
-            border: 1.5px solid var(--border);
-            background: white; color: var(--muted);
-            font-size: 13px; font-weight: 600;
-            cursor: pointer; transition: 0.2s;
-            font-family: 'DM Sans', sans-serif;
-        }
-        .filter-tab.active {
-            background: var(--blue); color: white; border-color: var(--blue);
-        }
-
-        /* LIGHTBOX */
-        .lightbox {
-            display: none; position: fixed; inset: 0;
-            background: rgba(0,0,0,0.85);
-            z-index: 500;
-            align-items: center; justify-content: center;
-        }
-        .lightbox.open { display: flex; }
-        .lightbox img {
-            max-width: 90vw; max-height: 85vh;
-            border-radius: 12px;
-            object-fit: contain;
-        }
-        .lightbox-close {
-            position: fixed; top: 20px; right: 24px;
-            color: white; font-size: 32px;
-            cursor: pointer; background: none; border: none;
-        }
-
-        /* FLOATING VISITOR BADGE */
-        .visit-badge {
-            position: fixed;
-            bottom: 24px; right: 24px;
-            background: var(--blue);
-            color: white;
-            border-radius: 100px;
-            padding: 12px 20px;
-            font-size: 13px; font-weight: 700;
-            font-family: 'Syne', sans-serif;
-            box-shadow: 0 8px 24px rgba(26,58,107,0.35);
-            z-index: 50;
-            display: flex; align-items: center; gap: 8px;
-            animation: slideUp 0.5s ease 1s both;
-        }
-        @keyframes slideUp {
-            from { transform: translateY(80px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        .visit-dot {
-            width: 8px; height: 8px;
-            background: #4ade80; border-radius: 50%;
-            animation: pulse 1.5s infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.6; transform: scale(1.3); }
-        }
-
-        /* SORT */
-        .reviews-toolbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-        .reviews-toolbar span { font-size: 14px; color: var(--muted); }
-        .reviews-toolbar select {
-            padding: 8px 14px; border-radius: 8px;
-            border: 1.5px solid var(--border);
-            font-family: 'DM Sans', sans-serif;
-            font-size: 13px; color: var(--text);
-            outline: none; background: white;
-        }
-
-        /* MAIN LAYOUT */
-        .komunitas-layout {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 48px 24px;
-        }
-
-        /* BADGE VERIFIED */
-        .verified-badge {
-            background: #e7f7ee; color: #1a7f37;
-            font-size: 10px; font-weight: 700;
-            padding: 2px 8px; border-radius: 100px;
-            margin-left: 6px;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- CSS Modular -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/komunitas.css">
+    <link rel="stylesheet" href="css/responsive-mobile.css">
+    <link rel="stylesheet" href="css/responsive-desktop.css">
 </head>
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar">
-    <a href="index.html" class="nav-logo">Asa<span>Hub</span></a>
-    <div class="nav-links">
-        <a href="index.html">Marketplace</a>
-        <a href="jasa.html">Jasa</a>
-        <a href="edukasi.html">Edukasi</a>
-        <a href="tentang.html">Tentang</a>
-        <a href="komunitas.html" style="color:var(--blue); font-weight:700;">Komunitas</a>
+<!-- Navigation (Desktop Only) -->
+<nav class="navbar desktop-only">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">Asa<span>Hub</span></a>
+        <div class="nav-links">
+            <a href="index.html">Marketplace</a>
+            <a href="jasa.html">Jasa</a>
+            <a href="edukasi.html">Edukasi</a>
+            <a href="komunitas.html" class="active">Komunitas</a>
+            <a href="tentang.html">Tentang</a>
+        </div>
+        <div class="nav-auth" id="navAuth">
+            <a href="login.html" class="btn btn-outline">Masuk</a>
+            <a href="daftar.html" class="btn btn-primary">Daftar</a>
+        </div>
     </div>
-    <div class="nav-auth" id="navAuth">
-        <a href="login.html" class="btn-outline">Masuk</a>
-        <a href="daftar.html" class="btn-solid">Daftar</a>
-    </div>
-    <button class="hamburger" onclick="toggleMenu()" aria-label="Buka menu">☰</button>
 </nav>
-<div class="mobile-menu" id="mobileMenu">
-    <a href="index.html">Marketplace</a>
-    <a href="jasa.html">Jasa</a>
-    <a href="edukasi.html">Edukasi</a>
-    <a href="tentang.html">Tentang</a>
-    <a href="komunitas.html">Komunitas</a>
-    <a href="login.html">Masuk</a>
-    <a href="daftar.html">Daftar</a>
-</div>
 
-<!-- COUNTER HERO -->
-<div class="counter-hero">
-    <h1>Suara Komunitas AsaHub</h1>
-    <p>Jutaan orang telah mengunjungi — simak apa kata mereka</p>
-    <div class="counter-boxes">
-        <div class="counter-box">
-            <span class="counter-num" id="cntVisitor">0</span>
-            <div class="counter-label">Total Pengunjung</div>
-        </div>
-        <div class="counter-box">
-            <span class="counter-num" id="cntOnline">0</span>
-            <div class="counter-label">Sedang Online</div>
-        </div>
-        <div class="counter-box">
-            <span class="counter-num" id="cntUlasan">0</span>
-            <div class="counter-label">Ulasan Masuk</div>
-        </div>
-        <div class="counter-box">
-            <span class="counter-num" id="cntRating">0.0</span>
-            <div class="counter-label">Rating Rata-rata</div>
-        </div>
+<!-- Hero Section -->
+<section class="komunitas-hero">
+    <div class="komunitas-hero-content">
+        <h1 class="komunitas-title">Komunitas AsaHub</h1>
+        <p class="komunitas-subtitle">Bergabung dengan ribuan pebisnis dan kreator dalam ekosistem kolaboratif</p>
+        <a href="daftar.html" class="komunitas-cta">Bergabung Sekarang</a>
     </div>
-</div>
+</section>
 
-<!-- MAIN CONTENT -->
-<div class="komunitas-layout">
-
-    <!-- RATING SUMMARY -->
-    <div class="rating-summary">
-        <div class="rating-big">
-            <div class="num" id="avgRating">0.0</div>
-            <div class="stars-display" id="avgStars">☆☆☆☆☆</div>
-            <span id="totalUlasanLabel">0 ulasan</span>
-        </div>
-        <div class="rating-bars" id="ratingBars">
-            <!-- Filled by JS -->
-        </div>
-    </div>
-
-    <!-- FORM ULASAN -->
-    <div class="review-form-wrap" id="formSection">
-        <h3>✍️ Tinggalkan Ulasan Kamu</h3>
-
-        <div class="alert alert-success" id="formSuccess" style="display:none; background:#e7f7ee; color:#1a7f37; border:1px solid #bbf0cd; padding:14px; border-radius:10px; margin-bottom:16px;">
-            Terima kasih! Ulasan kamu berhasil dikirim dan langsung tampil di bawah.
-        </div>
-
-        <div class="form-group">
-            <label>Nama Kamu</label>
-            <input type="text" id="inpNama" placeholder="Nama lengkap atau nama panggilan">
-        </div>
-
-        <div class="form-group">
-            <label>Dari mana? (Opsional)</label>
-            <input type="text" id="inpKota" placeholder="Cth: Medan, Nias, Jakarta...">
-        </div>
-
-        <div class="form-group">
-            <label>Penilaian Bintang</label>
-            <div class="star-picker" id="starPicker">
-                <button class="star-btn" data-val="1" onclick="setStar(1)">⭐</button>
-                <button class="star-btn" data-val="2" onclick="setStar(2)">⭐</button>
-                <button class="star-btn" data-val="3" onclick="setStar(3)">⭐</button>
-                <button class="star-btn" data-val="4" onclick="setStar(4)">⭐</button>
-                <button class="star-btn" data-val="5" onclick="setStar(5)">⭐</button>
+<!-- Community Stats -->
+<section class="community-stats">
+    <div class="community-stats-content">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number" id="totalMembers">0</div>
+                <div class="stat-label">Anggota Aktif</div>
             </div>
-            <div id="starLabel" style="font-size:13px; color:var(--muted); margin-top:-12px; margin-bottom:8px;">Pilih bintang di atas</div>
-        </div>
-
-        <div class="form-group">
-            <label>Ulasan / Pesan</label>
-            <textarea id="inpPesan" placeholder="Ceritakan pengalaman kamu dengan AsaHub, saran, atau apapun yang ingin kamu sampaikan..." style="min-height: 110px;"></textarea>
-        </div>
-
-        <div class="form-group">
-            <label>Tambah Foto (Opsional, maks. 3 foto)</label>
-            <div class="photo-upload-area" onclick="document.getElementById('fotoInput').click()">
-                <div style="font-size: 32px;">📷</div>
-                <div style="font-size: 14px; color: var(--muted); margin-top: 6px;">Klik untuk pilih foto</div>
-                <div style="font-size: 12px; color: var(--muted);">JPG, PNG, max 2MB per foto</div>
-                <input type="file" id="fotoInput" accept="image/*" multiple onchange="handlePhotos(this)">
+            <div class="stat-item">
+                <div class="stat-number" id="totalGroups">0</div>
+                <div class="stat-label">Grup Komunitas</div>
             </div>
-            <div class="photo-preview" id="photoPreview"></div>
-        </div>
-
-        <div class="form-group">
-            <label>Kategori Ulasan</label>
-            <select id="inpKategori">
-                <option value="Umum">💬 Umum</option>
-                <option value="Marketplace">🛒 Marketplace</option>
-                <option value="Jasa">🔧 Platform Jasa</option>
-                <option value="Edukasi">📚 Edukasi</option>
-                <option value="Saran">💡 Saran & Masukan</option>
-            </select>
-        </div>
-
-        <button class="form-btn" onclick="submitReview()">Kirim Ulasan</button>
-        <div style="font-size: 12px; color: var(--muted); margin-top: 10px; text-align: center;">
-            Ulasan kamu akan langsung tampil dan bisa dilihat semua pengunjung AsaHub.
+            <div class="stat-item">
+                <div class="stat-number" id="totalDiscussions">0</div>
+                <div class="stat-label">Diskusi Aktif</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="totalEvents">0</div>
+                <div class="stat-label">Event Bulanan</div>
+            </div>
         </div>
     </div>
+</section>
 
-    <!-- DAFTAR ULASAN -->
-    <div class="reviews-toolbar">
-        <span id="reviewCountLabel">0 ulasan</span>
-        <select onchange="sortReviews(this.value)" style="padding:8px 14px; border-radius:8px; border:1.5px solid var(--border); font-family:'DM Sans',sans-serif; font-size:13px;">
-            <option value="terbaru">Terbaru</option>
-            <option value="tertinggi">Rating Tertinggi</option>
-            <option value="terendah">Rating Terendah</option>
-            <option value="terbanyak_like">Paling Disukai</option>
-        </select>
+<!-- Community Categories -->
+<section class="community-categories">
+    <div class="community-categories-content">
+        <h2 class="section-title">Kategori Komunitas</h2>
+        <div class="categories-grid" id="categoriesGrid">
+            <!-- Categories will be loaded dynamically -->
+        </div>
     </div>
+</section>
 
-    <div class="filter-tabs">
-        <button class="filter-tab active" onclick="filterByKat('Semua', this)">Semua</button>
-        <button class="filter-tab" onclick="filterByKat('Umum', this)">💬 Umum</button>
-        <button class="filter-tab" onclick="filterByKat('Marketplace', this)">🛒 Marketplace</button>
-        <button class="filter-tab" onclick="filterByKat('Jasa', this)">🔧 Jasa</button>
-        <button class="filter-tab" onclick="filterByKat('Edukasi', this)">📚 Edukasi</button>
-        <button class="filter-tab" onclick="filterByKat('Saran', this)">💡 Saran</button>
+<!-- Featured Groups -->
+<section class="featured-groups">
+    <div class="featured-groups-content">
+        <div class="section-header">
+            <h2 class="section-title">Grup Unggulan</h2>
+            <p class="section-subtitle">Komunitas terpopuler dengan diskusi aktif</p>
+        </div>
+        <div class="groups-grid" id="featuredGroupsGrid">
+            <!-- Featured groups will be loaded dynamically -->
+        </div>
     </div>
+</section>
 
-    <div class="reviews-list" id="reviewsList"></div>
-
-    <div id="emptyMsg" style="display:none; text-align:center; padding:60px 0; color:var(--muted);">
-        <div style="font-size:48px; margin-bottom:12px;">💬</div>
-        <div style="font-size:16px; font-weight:600;">Belum ada ulasan</div>
-        <div style="font-size:14px; margin-top:4px;">Jadilah yang pertama meninggalkan ulasan!</div>
+<!-- Recent Discussions -->
+<section class="recent-discussions">
+    <div class="recent-discussions-content">
+        <div class="section-header">
+            <h2 class="section-title">Diskusi Terbaru</h2>
+            <p class="section-subtitle">Topik yang sedang hangat dibicarakan</p>
+        </div>
+        <div class="discussions-list" id="discussionsList">
+            <!-- Discussions will be loaded dynamically -->
+        </div>
     </div>
+</section>
 
-</div>
+<!-- Upcoming Events -->
+<section class="upcoming-events">
+    <div class="upcoming-events-content">
+        <div class="section-header">
+            <h2 class="section-title">Event Mendatang</h2>
+            <p class="section-subtitle">Workshop, webinar, dan meetup komunitas</p>
+        </div>
+        <div class="events-grid" id="eventsGrid">
+            <!-- Events will be loaded dynamically -->
+        </div>
+    </div>
+</section>
 
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="this.classList.remove('open')">
-    <button class="lightbox-close" onclick="document.getElementById('lightbox').classList.remove('open')">✕</button>
-    <img id="lightboxImg" src="" alt="Foto ulasan">
-</div>
+<!-- Join Community CTA -->
+<section class="join-cta">
+    <div class="join-cta-content">
+        <h2 class="join-cta-title">Siap Bergabung?</h2>
+        <p class="join-cta-subtitle">Mulai perjalanan komunitasmu bersama AsaHub</p>
+        <div class="join-cta-actions">
+            <a href="daftar.html" class="btn btn-primary btn-large">Daftar Sekarang</a>
+            <a href="#" class="btn btn-outline btn-large" onclick="showCommunityGuide()">Panduan Komunitas</a>
+        </div>
+    </div>
+</section>
 
-<!-- FLOATING BADGE -->
-<div class="visit-badge">
-    <span class="visit-dot"></span>
-    <span id="badgeOnline">0</span> orang online sekarang
-</div>
+<!-- Mobile Bottom Navigation -->
+<nav class="mobile-bottom-nav mobile-only">
+    <a href="index.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon">🏠</span>
+        <span>Home</span>
+    </a>
+    <a href="jasa.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon">👥</span>
+        <span>Jasa</span>
+    </a>
+    <a href="edukasi.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon">🎓</span>
+        <span>Edukasi</span>
+    </a>
+    <a href="komunitas.html" class="mobile-nav-item active">
+        <span class="mobile-nav-icon">👥</span>
+        <span>Komunitas</span>
+    </a>
+    <a href="tentang.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon">ℹ️</span>
+        <span>Tentang</span>
+    </a>
+</nav>
 
-<footer class="footer" style="margin-top: 60px;">
-    <div class="footer-top" style="max-width:1100px; margin:0 auto; padding:40px;">
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-top">
         <div class="footer-brand">
-            <div class="nav-logo" style="font-size:22px; color:white;">Asa<span style="color:var(--yellow)">Hub</span></div>
-            <p style="color:rgba(255,255,255,0.6); font-size:14px; margin-top:10px;">Pusat Harapan — Ekosistem Bisnis dan Teknologi Indonesia</p>
+            <div class="nav-logo" style="font-size:24px;">Asa<span>Hub</span></div>
+            <p>Pusat Harapan — Menyatukan individu dan brand dalam ekosistem bisnis yang stabil dan berkembang.</p>
         </div>
         <div class="footer-links">
             <div class="footer-col">
                 <h4>Platform</h4>
                 <a href="index.html">Marketplace</a>
-                <a href="jasa.html">Jasa</a>
+                <a href="jasa.html">Jasa & Kerja</a>
                 <a href="edukasi.html">Edukasi</a>
-                <a href="tentang.html">Tentang</a>
                 <a href="komunitas.html">Komunitas</a>
             </div>
             <div class="footer-col">
                 <h4>Akun</h4>
-                <a href="daftar.html">Daftar</a>
+                <a href="daftar.html">Daftar Penjual</a>
                 <a href="login.html">Masuk</a>
                 <a href="dasboard.html">Dashboard</a>
+            </div>
+            <div class="footer-col">
+                <h4>AsaHub</h4>
+                <a href="tentang.html">Tentang Kami</a>
+                <a href="#" title="Segera hadir">Kontak</a>
+                <a href="#" title="Segera hadir">Kebijakan Privasi</a>
             </div>
         </div>
     </div>
@@ -559,342 +186,82 @@
     </div>
 </footer>
 
+<!-- Community Guide Modal -->
+<div class="modal" id="communityGuideModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title">Panduan Komunitas</h3>
+            <button class="modal-close" onclick="closeCommunityGuide()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="guide-content">
+                <h4>🎯 Tujuan Komunitas</h4>
+                <p>AsaHub Komunitas adalah wadah untuk berbagi pengalaman, belajar bersama, dan membangun jaringan bisnis yang kuat.</p>
+                
+                <h4>📋 Aturan Utama</h4>
+                <ul>
+                    <li>Saling menghormati dan mendukung sesama anggota</li>
+                    <li>Berbagi konten yang bermanfaat dan relevan</li>
+                    <li>Tidak melakukan spam atau promosi berlebihan</li>
+                    <li>Mengikuti etika bisnis yang baik</li>
+                </ul>
+                
+                <h4>🎉 Cara Bergabung</h4>
+                <ol>
+                    <li>Daftar akun AsaHub</li>
+                    <li>Verifikasi email dan profil</li>
+                    <li>Pilih grup komunitas yang sesuai</li>
+                    <li>Mulai berinteraksi dan berkontribusi</li>
+                </ol>
+                
+                <h4>💡 Tips Aktif</h4>
+                <ul>
+                    <li>Perkenalkan diri di grup baru</li>
+                    <li>Bagikan pengalaman dan tips bisnis</li>
+                    <li>Bantu anggota lain yang membutuhkan bantuan</li>
+                    <li>Ikuti event dan workshop komunitas</li>
+                </ul>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" onclick="closeCommunityGuide()">Mengerti</button>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="js/supabase.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/komunitas-manager.js"></script>
+
 <script>
-function toggleMenu() {
-    document.getElementById('mobileMenu').classList.toggle('open');
-}
-// ===== STORAGE KEYS =====
-const REVIEWS_KEY = 'asahub_reviews';
-const VISITORS_KEY = 'asahub_total_visitors';
-const SESSION_KEY = 'asahub_session_counted';
-
-// ===== WARNA AVATAR =====
-const avatarColors = ['#1a3a6b','#2a5298','#0e7490','#6d28d9','#b45309','#047857','#be185d','#7c3aed'];
-function getColor(name) {
-    let h = 0;
-    for (let i = 0; i < name.length; i++) h += name.charCodeAt(i);
-    return avatarColors[h % avatarColors.length];
-}
-function getInitials(name) {
-    return name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2) || '?';
-}
-
-// ===== VISITOR COUNTER =====
-function initVisitor() {
-    // Total visitors - increment jika belum pernah dari session ini
-    let total = parseInt(localStorage.getItem(VISITORS_KEY) || '1847');
-    if (!sessionStorage.getItem(SESSION_KEY)) {
-        total++;
-        localStorage.setItem(VISITORS_KEY, total);
-        sessionStorage.setItem(SESSION_KEY, '1');
-    }
-    // Simulate online users (5-35 range, acak per session)
-    const online = Math.floor(Math.random() * 30) + 5;
-    sessionStorage.setItem('asahub_online', online);
-    return { total, online };
-}
-
-function animateNumber(el, target, isFloat = false, duration = 1200) {
-    const start = performance.now();
-    const from = 0;
-    function step(ts) {
-        const p = Math.min((ts - start) / duration, 1);
-        const ease = 1 - Math.pow(1 - p, 3);
-        const val = from + (target - from) * ease;
-        el.textContent = isFloat ? val.toFixed(1) : Math.floor(val).toLocaleString('id-ID');
-        if (p < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-}
-
-// ===== BINTANG =====
-let selectedStar = 0;
-const starLabels = ['', 'Sangat Buruk 😞', 'Kurang Baik 😐', 'Cukup Baik 🙂', 'Bagus! 😊', 'Luar Biasa! 🤩'];
-
-function setStar(val) {
-    selectedStar = val;
-    document.querySelectorAll('.star-btn').forEach((b, i) => {
-        b.classList.toggle('active', i < val);
-    });
-    document.getElementById('starLabel').textContent = starLabels[val];
-}
-
-// ===== FOTO =====
-let selectedPhotos = [];
-
-function handlePhotos(input) {
-    const files = Array.from(input.files);
-    const remaining = 3 - selectedPhotos.length;
-    const toProcess = files.slice(0, remaining);
-
-    toProcess.forEach(file => {
-        if (file.size > 2 * 1024 * 1024) { alert(`${file.name} terlalu besar (maks 2MB).`); return; }
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            selectedPhotos.push(e.target.result);
-            renderPhotoPreview();
-        };
-        reader.readAsDataURL(file);
-    });
-    input.value = '';
-}
-
-function renderPhotoPreview() {
-    const el = document.getElementById('photoPreview');
-    el.innerHTML = selectedPhotos.map((src, i) => `
-        <div class="thumb-wrap">
-            <img src="${src}" class="photo-thumb" alt="preview">
-            <button class="photo-del" onclick="removePhoto(${i})">✕</button>
-        </div>
-    `).join('');
-}
-
-function removePhoto(i) {
-    selectedPhotos.splice(i, 1);
-    renderPhotoPreview();
-}
-
-// ===== SUBMIT ULASAN =====
-function submitReview() {
-    const nama = document.getElementById('inpNama').value.trim();
-    const kota = document.getElementById('inpKota').value.trim();
-    const pesan = document.getElementById('inpPesan').value.trim();
-    const kategori = document.getElementById('inpKategori').value;
-
-    if (!nama) { alert('Nama wajib diisi.'); return; }
-    if (!selectedStar) { alert('Pilih penilaian bintang terlebih dahulu.'); return; }
-    if (!pesan) { alert('Tulis ulasan kamu terlebih dahulu.'); return; }
-    if (pesan.length < 10) { alert('Ulasan minimal 10 karakter.'); return; }
-
-    const reviews = getReviews();
-
-    const newReview = {
-        id: Date.now(),
-        nama,
-        kota: kota || null,
-        pesan,
-        bintang: selectedStar,
-        kategori,
-        foto: [...selectedPhotos],
-        waktu: new Date().toISOString(),
-        likes: 0,
-        likedBy: []
-    };
-
-    reviews.unshift(newReview);
-    localStorage.setItem(REVIEWS_KEY, JSON.stringify(reviews));
-
-    // Reset form
-    document.getElementById('inpNama').value = '';
-    document.getElementById('inpKota').value = '';
-    document.getElementById('inpPesan').value = '';
-    document.getElementById('inpKategori').value = 'Umum';
-    selectedStar = 0;
-    selectedPhotos = [];
-    renderPhotoPreview();
-    setStar(0);
-    document.querySelectorAll('.star-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('starLabel').textContent = 'Pilih bintang di atas';
-
-    const s = document.getElementById('formSuccess');
-    s.style.display = 'block';
-    setTimeout(() => s.style.display = 'none', 4000);
-
-    renderAll();
-    window.scrollTo({ top: document.getElementById('reviewsList').offsetTop - 100, behavior: 'smooth' });
-}
-
-// ===== GET REVIEWS =====
-function getReviews() {
-    const stored = localStorage.getItem(REVIEWS_KEY);
-    if (stored) return JSON.parse(stored);
-
-    // Default seeded reviews
-    const defaults = [
-        { id: 1, nama: 'Budi Santoso', kota: 'Medan', pesan: 'Platform ini luar biasa! Saya sudah berjualan di AsaHub selama 2 bulan dan omset saya meningkat 3x lipat. Sistem yang mudah digunakan dan sangat membantu UMKM seperti saya.', bintang: 5, kategori: 'Marketplace', foto: [], waktu: '2026-02-18T10:30:00.000Z', likes: 24, likedBy: [] },
-        { id: 2, nama: 'Rina Amalia', kota: 'Jakarta', pesan: 'Saya suka banget sama konsep AsaHub. Bukan cuma marketplace biasa tapi ada edukasi bisnis juga. Sangat cocok untuk pemula yang mau mulai bisnis dari nol.', bintang: 5, kategori: 'Edukasi', foto: [], waktu: '2026-02-17T14:20:00.000Z', likes: 18, likedBy: [] },
-        { id: 3, nama: 'Dedi Kurnia', kota: 'Bandung', pesan: 'Platform jasa-nya sangat membantu! Saya menemukan montir panggilan lewat AsaHub dan kerjanya bagus. Cepat respons dan harga transparan. Recommended!', bintang: 4, kategori: 'Jasa', foto: [], waktu: '2026-02-15T09:00:00.000Z', likes: 11, likedBy: [] },
-        { id: 4, nama: 'Sari Indah', kota: 'Surabaya', pesan: 'Saran saya, tambahkan fitur chat langsung antar penjual dan pembeli di dalam platform. Sekarang masih via WA yang agak kurang praktis. Tapi overall sangat bagus, semoga makin berkembang!', bintang: 4, kategori: 'Saran', foto: [], waktu: '2026-02-14T16:45:00.000Z', likes: 9, likedBy: [] },
-        { id: 5, nama: 'Hendra Wijaya', kota: 'Nias', pesan: 'Bangga ada platform dari putra daerah Nias! Semoga AsaHub terus berkembang dan menjadi kebanggaan Indonesia. Saya sudah ajak semua kenalan untuk bergabung.', bintang: 5, kategori: 'Umum', foto: [], waktu: '2026-02-12T11:00:00.000Z', likes: 31, likedBy: [] },
-        { id: 6, nama: 'Maya Putri', kota: 'Yogyakarta', pesan: 'Desain websitenya modern dan enak dilihat. Navigasinya mudah dipahami bahkan untuk orang yang tidak terlalu melek teknologi seperti saya. Proses daftar juga cepat, tidak ribet.', bintang: 5, kategori: 'Umum', foto: [], waktu: '2026-02-10T08:30:00.000Z', likes: 15, likedBy: [] },
-    ];
-    localStorage.setItem(REVIEWS_KEY, JSON.stringify(defaults));
-    return defaults;
-}
-
-// ===== RENDER =====
-let currentFilter = 'Semua';
-let currentSort = 'terbaru';
-
-function getSessionId() {
-    let sid = sessionStorage.getItem('asahub_sid');
-    if (!sid) { sid = Math.random().toString(36).slice(2); sessionStorage.setItem('asahub_sid', sid); }
-    return sid;
-}
-
-function toggleLike(id) {
-    const reviews = getReviews();
-    const r = reviews.find(x => x.id === id);
-    if (!r) return;
-    const sid = getSessionId();
-    if (!r.likedBy) r.likedBy = [];
-    if (r.likedBy.includes(sid)) {
-        r.likedBy = r.likedBy.filter(s => s !== sid);
-        r.likes = Math.max(0, r.likes - 1);
-    } else {
-        r.likedBy.push(sid);
-        r.likes++;
-    }
-    localStorage.setItem(REVIEWS_KEY, JSON.stringify(reviews));
-    renderAll();
-}
-
-function filterByKat(kat, btn) {
-    currentFilter = kat;
-    document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    renderReviews();
-}
-
-function sortReviews(val) {
-    currentSort = val;
-    renderReviews();
-}
-
-function renderReviews() {
-    let reviews = getReviews();
-
-    // Filter
-    if (currentFilter !== 'Semua') {
-        reviews = reviews.filter(r => r.kategori === currentFilter);
-    }
-
-    // Sort
-    if (currentSort === 'tertinggi') reviews.sort((a,b) => b.bintang - a.bintang);
-    else if (currentSort === 'terendah') reviews.sort((a,b) => a.bintang - b.bintang);
-    else if (currentSort === 'terbanyak_like') reviews.sort((a,b) => b.likes - a.likes);
-    else reviews.sort((a,b) => new Date(b.waktu) - new Date(a.waktu));
-
-    const el = document.getElementById('reviewsList');
-    const empty = document.getElementById('emptyMsg');
-    document.getElementById('reviewCountLabel').textContent = `${reviews.length} ulasan`;
-
-    if (!reviews.length) {
-        el.innerHTML = '';
-        empty.style.display = 'block';
-        return;
-    }
-    empty.style.display = 'none';
-
-    const sid = getSessionId();
-    const timeAgo = (iso) => {
-        const d = new Date(iso);
-        const now = new Date();
-        const s = Math.floor((now - d) / 1000);
-        if (s < 60) return 'Baru saja';
-        if (s < 3600) return Math.floor(s/60) + ' menit lalu';
-        if (s < 86400) return Math.floor(s/3600) + ' jam lalu';
-        if (s < 604800) return Math.floor(s/86400) + ' hari lalu';
-        return d.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
-    };
-    const starStr = (n) => '⭐'.repeat(n) + '☆'.repeat(5 - n);
-    const katEmoji = { Umum:'💬', Marketplace:'🛒', Jasa:'🔧', Edukasi:'📚', Saran:'💡' };
-
-    el.innerHTML = reviews.map(r => `
-        <div class="review-card">
-            <div class="review-header">
-                <div class="review-avatar" style="background:${getColor(r.nama)}">${getInitials(r.nama)}</div>
-                <div class="review-meta">
-                    <div class="review-name">${r.nama}${r.kota ? ` <span style="font-weight:400; color:var(--muted); font-size:13px;">· ${r.kota}</span>` : ''}</div>
-                    <div class="review-date">${timeAgo(r.waktu)}</div>
-                    <div class="review-stars">${starStr(r.bintang)}</div>
-                </div>
-                <span class="review-tag">${katEmoji[r.kategori] || '💬'} ${r.kategori}</span>
-            </div>
-            <div class="review-text">${r.pesan}</div>
-            ${r.foto && r.foto.length ? `
-                <div class="review-photos">
-                    ${r.foto.map(src => `<img src="${src}" class="review-photo" onclick="openLightbox('${src}')" alt="foto ulasan">`).join('')}
-                </div>
-            ` : ''}
-            <div class="review-actions">
-                <button class="like-btn ${r.likedBy && r.likedBy.includes(sid) ? 'liked' : ''}" onclick="toggleLike(${r.id})">
-                    ❤️ Suka <span>${r.likes}</span>
-                </button>
-                <span style="font-size:13px; color:var(--muted);">Ulasan ini membantu?</span>
-            </div>
-        </div>
-    `).join('');
-}
-
-function renderCounters() {
-    const reviews = getReviews();
-    const { total, online } = initVisitor();
-
-    // Hitung rata-rata
-    const avg = reviews.length
-        ? reviews.reduce((s, r) => s + r.bintang, 0) / reviews.length
-        : 0;
-
-    // Animate counters
-    animateNumber(document.getElementById('cntVisitor'), total);
-    animateNumber(document.getElementById('cntOnline'), online);
-    animateNumber(document.getElementById('cntUlasan'), reviews.length);
-    animateNumber(document.getElementById('cntRating'), avg, true);
-
-    animateNumber(document.getElementById('avgRating'), avg, true);
-    document.getElementById('totalUlasanLabel').textContent = reviews.length + ' ulasan';
-
-    // Stars
-    const fullStars = Math.round(avg);
-    document.getElementById('avgStars').textContent = '⭐'.repeat(fullStars) + '☆'.repeat(5 - fullStars);
-
-    // Badge
-    document.getElementById('badgeOnline').textContent = online;
-
-    // Rating bars
-    const bars = [5, 4, 3, 2, 1].map(star => {
-        const count = reviews.filter(r => r.bintang === star).length;
-        const pct = reviews.length ? (count / reviews.length) * 100 : 0;
-        return { star, count, pct };
-    });
-    document.getElementById('ratingBars').innerHTML = bars.map(b => `
-        <div class="bar-row">
-            <span class="bar-label">${b.star} ⭐</span>
-            <div class="bar-track">
-                <div class="bar-fill" style="width:${b.pct}%"></div>
-            </div>
-            <span class="bar-count">${b.count}</span>
-        </div>
-    `).join('');
-}
-
-function renderAll() {
-    renderCounters();
-    renderReviews();
-}
-
-function openLightbox(src) {
-    document.getElementById('lightboxImg').src = src;
-    document.getElementById('lightbox').classList.add('open');
-}
-
-// ===== INIT =====
-renderAll();
-
-// Update counter every 45 sec for "realtime feel"
-setInterval(() => {
-    const online = Math.floor(Math.random() * 30) + 5;
-    document.getElementById('cntOnline').textContent = online.toLocaleString('id-ID');
-    document.getElementById('badgeOnline').textContent = online;
-}, 45000);
-
-// Auth state
-const user = JSON.parse(localStorage.getItem('asahub_current_user') || 'null');
+// Check user login status
+var user = JSON.parse(localStorage.getItem('asahub_current_user') || 'null');
 if (user) {
-    document.getElementById('navAuth').innerHTML = `<a href="dasboard.html" class="btn-solid">Dashboard</a>`;
-    document.getElementById('inpNama').value = user.name;
+    // Update desktop nav
+    document.getElementById('navAuth').innerHTML = '<a href="dasboard.html" class="btn btn-primary">Dashboard</a>';
 }
+
+// Community Guide Modal
+function showCommunityGuide() {
+    const modal = document.getElementById('communityGuideModal');
+    if (modal) {
+        modal.classList.add('open');
+    }
+}
+
+function closeCommunityGuide() {
+    const modal = document.getElementById('communityGuideModal');
+    if (modal) {
+        modal.classList.remove('open');
+    }
+}
+
+// Initialize community manager
+document.addEventListener('DOMContentLoaded', function() {
+    // Community manager will be initialized from komunitas-manager.js
+});
 </script>
+
 </body>
 </html>
