@@ -86,6 +86,7 @@
   .mobile-only,
   .mobile-flex,
   .mobile-grid,
+  .mobile-bottom-nav,
   .mobile-search-container,
   .mobile-categories,
   .mobile-flash-sale,
@@ -93,61 +94,24 @@
     display: none !important;
   }
   
-  /* Show Mobile Bottom Navigation on Desktop */
-  .mobile-bottom-nav {
-    display: flex !important;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: white;
-    border-top: 1px solid rgba(255, 215, 0, 0.2);
-    padding: 12px 0;
-    z-index: 1000;
-    justify-content: center;
-    gap: 48px;
-    box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
-  }
-  
-  .mobile-bottom-nav .mobile-nav-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: #aaa;
-    text-decoration: none;
-    font-size: 24px;
-    min-width: 60px;
-    min-height: 60px;
-    border-radius: 12px;
+  /* Show Mobile Menu Toggle on Desktop */
+  .mobile-menu-toggle {
+    display: block !important;
+    background: rgba(255, 215, 0, 0.1);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    color: var(--primary);
+    padding: var(--spacing-sm);
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 18px;
     transition: all 0.3s ease;
   }
   
-  .mobile-bottom-nav .mobile-nav-item span {
-    font-size: 11px;
-    margin-top: 4px;
-    font-weight: 500;
-  }
-  
-  .mobile-bottom-nav .mobile-nav-item:hover {
-    background: rgba(255, 215, 0, 0.1);
-    color: var(--primary);
-    transform: translateY(-2px);
-  }
-  
-  .mobile-bottom-nav .mobile-nav-item.active {
-    color: var(--primary);
-    background: rgba(255, 215, 0, 0.15);
-  }
-  
-  /* Add padding to body to avoid content being hidden */
-  body {
-    padding-bottom: 80px;
-  }
-  
-  /* Add padding to footer to avoid being hidden by bottom nav */
-  .footer {
-    margin-bottom: 80px;
+  .mobile-menu-toggle:hover {
+    background: var(--primary);
+    color: var(--light-white);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
   }
   
   /* Desktop Auth Buttons */
@@ -319,8 +283,6 @@
   .price-separator {
     color: var(--gray-500);
     font-weight: 500;
-  }
-    display: block !important;
   }
   
   .desktop-flex {
