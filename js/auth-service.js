@@ -48,71 +48,137 @@ class AuthService {
 
     async login(email, password) {
         try {
-            // First, get user from database to check role
-            const { data: user, error: userError } = await this.supabase
-                .from('users')
-                .select('*')
-                .eq('email', email)
-                .single();
+            // Use Supabase Auth first
+            const { data: authData, error: authError } = await this.supabase.auth.signInWithPassword({
+                email: email,
+                password: password
+            });
 
-            if (userError || !user) {
-                throw new Error('User not found');
+            if (authError) {
+                // If Supabase Auth fails, try fallback demo mode
+                console.log('Supabase auth failed, trying demo mode:', authError.message);
+                
+                try {
+                    // Get user from database for demo check
+                    const { data: user, error: userError } = await this.supabase
+                        .from('users')
+                        .select('*')
+                        .eq('email', email)
+                        .single();
+
+                    if (userError) {
+                        // If RLS blocks access, use hardcoded demo users
+                        console.log('Database access blocked, using hardcoded demo users');
+                        return this.handleDemoLogin(email, password);
+                    }
+
+                    if (!user) {
+                        throw new Error('User not found');
+                    }
+
+                    return this.handlePasswordCheck(user, password);
+                } catch (dbError) {
+                    // Fallback to hardcoded demo users if database fails
+                    console.log('Database error, using hardcoded demo users');
+                    return this.handleDemoLogin(email, password);
+                }
             }
 
-            // For demo purposes, we'll use simple password check
-            // In production, use Supabase Auth properly
-            if (password === 'admin123' && user.role === 'admin') {
-                // Simulate admin login
-                const mockSession = {
-                    user: {
-                        id: user.id,
-                        email: user.email
+            // If Supabase Auth succeeds, load user profile
+            if (authData.user) {
+                try {
+                    const { data: profile, error: profileError } = await this.supabase
+                        .from('users')
+                        .select('*')
+                        .eq('id', authData.user.id)
+                        .single();
+
+                    if (profileError) {
+                        console.warn('Profile not found, using auth data only');
+                        this.currentUser = authData.user;
+                    } else {
+                        this.currentUser = authData.user;
+                        this.currentUser.profile = profile;
+                        localStorage.setItem('userProfile', JSON.stringify(profile));
                     }
-                };
-                
-                this.currentUser = mockSession.user;
-                this.currentUser.profile = user;
-                localStorage.setItem('userProfile', JSON.stringify(user));
-                
-                // Redirect based on role
-                this.redirectBasedOnRole(user.role);
-                return { success: true, user };
-            } else if (password === 'seller123' && user.role === 'penjual') {
-                // Simulate seller login
-                const mockSession = {
-                    user: {
-                        id: user.id,
-                        email: user.email
-                    }
-                };
-                
-                this.currentUser = mockSession.user;
-                this.currentUser.profile = user;
-                localStorage.setItem('userProfile', JSON.stringify(user));
-                
-                this.redirectBasedOnRole(user.role);
-                return { success: true, user };
-            } else if (password === 'buyer123' && user.role === 'pembeli') {
-                // Simulate buyer login
-                const mockSession = {
-                    user: {
-                        id: user.id,
-                        email: user.email
-                    }
-                };
-                
-                this.currentUser = mockSession.user;
-                this.currentUser.profile = user;
-                localStorage.setItem('userProfile', JSON.stringify(user));
-                
-                this.redirectBasedOnRole(user.role);
-                return { success: true, user };
-            } else {
-                throw new Error('Invalid credentials');
+                } catch (profileError) {
+                    console.warn('Profile load failed, using auth data only');
+                    this.currentUser = authData.user;
+                }
+
+                this.redirectBasedOnRole(this.currentUser.profile?.role || 'pembeli');
+                return { success: true, user: this.currentUser };
             }
+
         } catch (error) {
             console.error('Login error:', error);
             return { success: false, error: error.message };
+        }
+    }
+
+    handleDemoLogin(email, password) {
+        const demoUsers = [
+            { 
+                id: 'admin-001', 
+                email: 'admin@asahub.site', 
+                password: 'admin123', 
+                role: 'admin', 
+                full_name: 'Admin AsaHub', 
+                phone: '08123456789'
+            },
+            { 
+                id: 'seller-001', 
+                email: 'seller@asahub.site', 
+                password: 'seller123', 
+                role: 'penjual', 
+                full_name: 'Seller Demo', 
+                phone: '08123456788'
+            },
+            { 
+                id: 'buyer-001', 
+                email: 'buyer@asahub.site', 
+                password: 'buyer123', 
+                role: 'pembeli', 
+                full_name: 'Buyer Demo', 
+                phone: '08123456787'
+            }
+        ];
+        
+        const user = demoUsers.find(u => u.email === email && u.password === password);
+        
+        if (user) {
+            this.currentUser = { id: user.id, email: user.email };
+            this.currentUser.profile = user;
+            localStorage.setItem('userProfile', JSON.stringify(user));
+            
+            this.redirectBasedOnRole(user.role);
+            return { success: true, user };
+        } else {
+            return { success: false, error: 'Invalid credentials' };
+        }
+    }
+
+    handlePasswordCheck(user, password) {
+        // Demo password check
+        if ((password === 'admin123' && user.role === 'admin') ||
+            (password === 'seller123' && user.role === 'penjual') ||
+            (password === 'buyer123' && user.role === 'pembeli')) {
+            
+            const mockSession = {
+                user: {
+                    id: user.id,
+                    email: user.email
+                }
+            };
+            
+            this.currentUser = mockSession.user;
+            this.currentUser.profile = user;
+            localStorage.setItem('userProfile', JSON.stringify(user));
+            
+            this.redirectBasedOnRole(user.role);
+            return { success: true, user };
+        } else {
+            return { success: false, error: 'Invalid credentials' };
         }
     }
 
