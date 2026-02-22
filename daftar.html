@@ -180,11 +180,21 @@ function doRegister(event) {
     registerText.style.display = 'none';
     registerLoading.style.display = 'inline-block';
 
-    // Simulate API call
-    setTimeout(() => {
-        const users = JSON.parse(localStorage.getItem('asahub_users') || '[]');
-        if (users.find(u => u.email === email)) {
-            errEl.textContent = 'Email sudah terdaftar.';
+    // Call actual registration API
+    window.authService.register({
+        fullName: name,
+        email: email,
+        phone: phone,
+        role: role,
+        password: password
+    }).then(result => {
+        if (result.success) {
+            okEl.classList.add('show');
+            setTimeout(() => { 
+                window.location.href = 'login.html'; 
+            }, 1500);
+        } else {
+            errEl.textContent = result.error || 'Registrasi gagal. Silakan coba lagi.';
             errEl.classList.add('show');
             
             // Reset loading
@@ -196,26 +206,15 @@ function doRegister(event) {
             setTimeout(() => {
                 document.querySelector('.auth-card').style.animation = '';
             }, 500);
-            return;
         }
-
-        const newUser = { 
-            name, 
-            email, 
-            phone, 
-            role, 
-            password, 
-            joinDate: new Date().toLocaleDateString('id-ID'),
-            status: 'active'
-        };
-        users.push(newUser);
-        localStorage.setItem('asahub_users', JSON.stringify(users));
-
-        okEl.classList.add('show');
-        setTimeout(() => { 
-            window.location.href = 'login.html'; 
-        }, 1500);
-    }, 1000);
+    }).catch(error => {
+        errEl.textContent = 'Terjadi kesalahan. Silakan coba lagi.';
+        errEl.classList.add('show');
+        
+        // Reset loading
+        registerText.style.display = 'inline';
+        registerLoading.style.display = 'none';
+    });
 }
 
 // Add shake animation

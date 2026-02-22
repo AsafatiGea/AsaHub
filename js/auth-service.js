@@ -55,32 +55,23 @@ class AuthService {
             });
 
             if (authError) {
-                // If Supabase Auth fails, try fallback demo mode
-                console.log('Supabase auth failed, trying demo mode:', authError.message);
+                // If Supabase Auth fails, try direct database check for demo users
+                console.log('Supabase auth failed, checking database users:', authError.message);
                 
                 try {
-                    // Get user from database for demo check
                     const { data: user, error: userError } = await this.supabase
                         .from('users')
                         .select('*')
                         .eq('email', email)
                         .single();
 
-                    if (userError) {
-                        // If RLS blocks access, use hardcoded demo users
-                        console.log('Database access blocked, using hardcoded demo users');
-                        return this.handleDemoLogin(email, password);
-                    }
-
-                    if (!user) {
+                    if (userError || !user) {
                         throw new Error('User not found');
                     }
 
                     return this.handlePasswordCheck(user, password);
                 } catch (dbError) {
-                    // Fallback to hardcoded demo users if database fails
-                    console.log('Database error, using hardcoded demo users');
-                    return this.handleDemoLogin(email, password);
+                    throw new Error('Invalid credentials');
                 }
             }
 
@@ -116,38 +107,21 @@ class AuthService {
         }
     }
 
-    handleDemoLogin(email, password) {
-        const demoUsers = [
-            { 
-                id: 'admin-001', 
-                email: 'admin@asahub.site', 
-                password: 'admin123', 
-                role: 'admin', 
-                full_name: 'Admin AsaHub', 
-                phone: '08123456789'
-            },
-            { 
-                id: 'seller-001', 
-                email: 'seller@asahub.site', 
-                password: 'seller123', 
-                role: 'penjual', 
-                full_name: 'Seller Demo', 
-                phone: '08123456788'
-            },
-            { 
-                id: 'buyer-001', 
-                email: 'buyer@asahub.site', 
-                password: 'buyer123', 
-                role: 'pembeli', 
-                full_name: 'Buyer Demo', 
-                phone: '08123456787'
-            }
-        ];
-        
-        const user = demoUsers.find(u => u.email === email && u.password === password);
-        
-        if (user) {
-            this.currentUser = { id: user.id, email: user.email };
+    handlePasswordCheck(user, password) {
+        // Demo password check for existing database users
+        if ((password === 'admin123' && user.role === 'admin') ||
+            (password === 'seller123' && user.role === 'penjual') ||
+            (password === 'buyer123' && user.role === 'pembeli') ||
+            (user.password_hash === password + '_hash')) {
+            
+            const mockSession = {
+                user: {
+                    id: user.id,
+                    email: user.email
+                }
+            };
+            
+            this.currentUser = mockSession.user;
             this.currentUser.profile = user;
             localStorage.setItem('userProfile', JSON.stringify(user));
             
@@ -184,24 +158,41 @@ class AuthService {
 
     async register(userData) {
         try {
+            // Check if email already exists
+            const { data: existingUser, error: checkError } = await this.supabase
+                .from('users')
+                .select('email')
+                .eq('email', userData.email)
+                .single();
+
+            if (existingUser) {
+                return { success: false, error: 'Email sudah terdaftar.' };
+            }
+
+            // Insert new user into Supabase database
             const { data, error } = await this.supabase
                 .from('users')
                 .insert([{
                     email: userData.email,
-                    password_hash: 'hashed_password', // In production, hash this properly
+                    password_hash: userData.password + '_hash', // Simple hash for demo
                     full_name: userData.fullName,
                     role: userData.role || 'pembeli',
-                    phone: userData.phone
+                    phone: userData.phone,
+                    is_active: true,
+                    created_at: new Date().toISOString()
                 }])
                 .select()
                 .single();
 
-            if (error) throw error;
+            if (error) {
+                console.error('Database insert error:', error);
+                throw error;
+            }
 
             return { success: true, user: data };
         } catch (error) {
             console.error('Registration error:', error);
-            return { success: false, error: error.message };
+            return { success: false, error: error.message || 'Registrasi gagal. Silakan coba lagi.' };
         }
     }
 
