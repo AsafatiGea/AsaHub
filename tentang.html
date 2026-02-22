@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="css/tentang.css">
     <link rel="stylesheet" href="css/responsive-mobile.css">
     <link rel="stylesheet" href="css/responsive-desktop.css">
+    <link rel="stylesheet" href="css/mobile-navigation.css">
+    <link rel="stylesheet" href="css/enhanced-buttons.css">
 </head>
 <body>
 
@@ -22,6 +24,7 @@
 <nav class="navbar">
     <div class="nav-container">
         <a href="index.html" class="nav-logo">Asa<span>Hub</span></a>
+        
         <div class="nav-links">
             <a href="index.html">Marketplace</a>
             <a href="jasa.html">Jasa</a>
@@ -29,12 +32,97 @@
             <a href="komunitas.html">Komunitas</a>
             <a href="tentang.html" class="active">Tentang</a>
         </div>
-        <div class="nav-auth" id="navAuth">
+        
+        <!-- Desktop Auth Buttons -->
+        <div class="nav-auth desktop-only" id="navAuth">
             <a href="login.html" class="btn btn-outline">Masuk</a>
             <a href="daftar.html" class="btn btn-primary">Daftar</a>
         </div>
+        
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle mobile-only" id="mobileMenuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
     </div>
 </nav>
+
+<!-- Mobile Navigation Menu -->
+<div class="mobile-nav-menu mobile-only" id="mobileNavMenu">
+    <div class="mobile-nav-header">
+        <div class="mobile-nav-logo">Asa<span>Hub</span></div>
+        <button class="mobile-nav-close" id="mobileNavClose">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    
+    <!-- Menu Content - Will be dynamically updated -->
+    <div class="mobile-nav-content" id="mobileNavContent">
+        <!-- Default menu for non-logged users -->
+        <div class="mobile-nav-section" id="guestMenu">
+            <h4 class="mobile-nav-title">Selamat Datang!</h4>
+            <a href="login.html?role=seller" class="mobile-nav-item">
+                <i class="fas fa-store"></i>
+                <span>Masuk sebagai Seller</span>
+            </a>
+            <a href="login.html?role=buyer" class="mobile-nav-item">
+                <i class="fas fa-user"></i>
+                <span>Masuk sebagai User/Pembeli</span>
+            </a>
+        </div>
+        
+        <!-- Menu for logged in users - hidden by default -->
+        <div class="mobile-nav-section" id="userMenu" style="display: none;">
+            <div class="mobile-user-info">
+                <div class="mobile-user-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="mobile-user-details">
+                    <div class="mobile-user-name" id="mobileUserName">User Name</div>
+                    <div class="mobile-user-role" id="mobileUserRole">Role</div>
+                </div>
+            </div>
+            
+            <!-- Buyer Menu -->
+            <div class="mobile-nav-subsection" id="buyerMenuItems" style="display: none;">
+                <a href="buyer-dashboard.html" class="mobile-nav-item">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard User</span>
+                </a>
+                <a href="buyer-dashboard.html#section-profile" class="mobile-nav-item">
+                    <i class="fas fa-user"></i>
+                    <span>Profil</span>
+                </a>
+            </div>
+            
+            <!-- Seller Menu -->
+            <div class="mobile-nav-subsection" id="sellerMenuItems" style="display: none;">
+                <a href="seller-dashboard.html" class="mobile-nav-item">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard Seller</span>
+                </a>
+                <a href="seller-dashboard.html#section-profile" class="mobile-nav-item">
+                    <i class="fas fa-store"></i>
+                    <span>Profil Toko</span>
+                </a>
+            </div>
+            
+            <!-- Common Menu Items -->
+            <div class="mobile-nav-subsection">
+                <a href="index.html" class="mobile-nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Marketplace</span>
+                </a>
+                <a href="#" class="mobile-nav-item" onclick="authService.logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Mobile Navigation Overlay -->
+<div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
 
 <!-- Hero Section -->
 <section class="tentang-hero">
