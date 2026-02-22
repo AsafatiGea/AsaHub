@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Supabase Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .result { margin: 10px 0; padding: 10px; border-radius: 5px; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        button { padding: 10px 20px; margin: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Simple Supabase Connection Test</h1>
+    
+    <button onclick="testConnection()">Test Connection</button>
+    <div id="result"></div>
+
+    <!-- Load Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        // Direct test
+        const SUPABASE_URL = 'https://btkmlkpspcsoozdbvsvp.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ0a21sa3BzcGNzb296ZGJ2c3ZwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE2ODcyMzIsImV4cCI6MjA4NzI2MzIzMn0.sMpQs0EhD2OuIRmBKEXODuEmahijHj9MXUGgVsVP5Do';
+        
+        console.log('Testing with URL:', SUPABASE_URL);
+        console.log('Testing with Key:', SUPABASE_ANON_KEY.substring(0, 20) + '...');
+        
+        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        
+        async function testConnection() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = 'Testing...';
+            
+            try {
+                const { data, error } = await supabaseClient.from('users').select('count').single();
+                
+                if (error) {
+                    resultDiv.innerHTML = `<div class="error">❌ Error: ${error.message}</div>`;
+                    console.error('Connection error:', error);
+                } else {
+                    resultDiv.innerHTML = `<div class="success">✅ Connection successful! Users accessible.</div>`;
+                    console.log('Connection success:', data);
+                }
+            } catch (err) {
+                resultDiv.innerHTML = `<div class="error">❌ Exception: ${err.message}</div>`;
+                console.error('Exception:', err);
+            }
+        }
+        
+        // Auto test on load
+        window.addEventListener('load', testConnection);
+    </script>
+</body>
+</html>

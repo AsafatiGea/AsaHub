@@ -93,8 +93,25 @@
     </div>
 
     <!-- Supabase JS -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.7"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.7/dist/umd/index.js"></script>
     <script src="js/supabase-config.js"></script>
+    <script>
+        // Debug: Check if Supabase is loaded
+        console.log('Supabase library:', window.supabase);
+        console.log('Supabase config:', window.SUPABASE_CONFIG);
+        console.log('Supabase client:', window.SupabaseClient);
+        
+        // Additional check
+        if (typeof window.supabase === 'undefined') {
+            console.error('Supabase library not loaded!');
+            alert('Error: Supabase library not loaded. Check your internet connection.');
+        }
+        if (typeof window.SupabaseClient === 'undefined') {
+            console.error('Supabase client not initialized!');
+            alert('Error: Supabase client not initialized. Check configuration.');
+        }
+    </script>
     <script>
         function showResult(elementId, message, type = 'info') {
             const element = document.getElementById(elementId);
