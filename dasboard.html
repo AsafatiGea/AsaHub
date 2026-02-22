@@ -7,6 +7,7 @@
     <link rel="icon" type="image/png" href="img/logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/dashboard-responsive-patch.css">
     <style>
         .tab-nav {
             display: flex; gap: 4px;
@@ -65,6 +66,7 @@
             background: none; border: none; color: #b91c1c;
             cursor: pointer; font-size: 18px; padding: 4px 8px;
         }
+        .mobile-dash-tabbar { display: none; } /* default hidden, tampil di mobile via CSS */
         .notif-dot {
             width: 8px; height: 8px; background: #ef4444;
             border-radius: 50%; display: inline-block; margin-left: 6px;
@@ -355,6 +357,25 @@
     </div>
 </div>
 
+<!-- MOBILE BOTTOM TAB BAR -->
+<nav class="mobile-dash-tabbar" id="mobileDashTabbar">
+    <div class="mobile-dash-tab active" onclick="showTab('overview');setMobileTab(this)" data-tab="overview">
+        <span>📊</span><span class="label">Overview</span>
+    </div>
+    <div class="mobile-dash-tab" onclick="showTab('produk');setMobileTab(this)" data-tab="produk">
+        <span>📦</span><span class="label">Produk</span>
+    </div>
+    <div class="mobile-dash-tab" onclick="showTab('pesanan');setMobileTab(this)" data-tab="pesanan">
+        <span>🛒</span><span class="label">Pesanan</span>
+    </div>
+    <div class="mobile-dash-tab" onclick="showTab('rekening');setMobileTab(this)" data-tab="rekening">
+        <span>🏦</span><span class="label">Rekening</span>
+    </div>
+    <div class="mobile-dash-tab" onclick="showTab('profil');setMobileTab(this)" data-tab="profil">
+        <span>👤</span><span class="label">Profil</span>
+    </div>
+</nav>
+
 <script>
 // Check login
 const user = JSON.parse(localStorage.getItem('asahub_current_user') || 'null');
@@ -366,6 +387,11 @@ if (!user) {
 document.getElementById('userInitials').textContent = user.name.charAt(0).toUpperCase();
 document.getElementById('userName').textContent = user.name;
 document.getElementById('userRole').textContent = user.role || 'penjual';
+
+function setMobileTab(el) {
+    document.querySelectorAll('.mobile-dash-tab').forEach(t => t.classList.remove('active'));
+    if (el) el.classList.add('active');
+}
 
 // Tab navigation
 function showTab(tabName) {

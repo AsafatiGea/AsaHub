@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Buyer Dashboard - AsaHub Marketplace</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/dashboard-responsive-patch.css">
 </head>
 <body>
   <div class="dashboard-wrapper">
@@ -171,7 +172,7 @@
               <div class="profile-avatar" id="buyer-avatar">B</div>
               <div class="profile-info">
                 <h2 id="buyer-name">Nama Buyer</h2>
-                <p id="buyer-email" class="text-muted">email@buyer.com</p>
+                <p id="buyer-email" class="text-muted"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9cf9f1fdf5f0dcfee9e5f9eeb2fff3f1">[email&#160;protected]</a></p>
               </div>
             </div>
             <form id="form-buyer-profile" style="max-width: 560px;">
@@ -214,7 +215,7 @@
     </main>
   </div>
 
-  <script src="dashboard.js"></script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="dashboard.js"></script>
   <script>
     (function () {
       var DUMMY = window.AsaHubDashboard.DUMMY;
@@ -288,10 +289,4 @@
         var def = a.isDefault ? ' <span class="badge badge-info">Default</span>' : '';
         return '<div class="card mt-1" style="padding: 1rem;"><strong>' + a.label + '</strong>' + def +
           '<p class="text-muted mb-0 mt-1">' + a.address + '</p><p class="text-muted">' + a.phone + '</p>' +
-          '<button type="button" class="btn btn-secondary btn-sm">Edit</button> <button type="button" class="btn btn-danger btn-sm">Hapus</button></div>';
-      }).join('');
-      document.getElementById('buyer-address-list').innerHTML = addrHtml;
-    })();
-  </script>
-</body>
-</html>
+          '<button type="button" class="btn btn-secondary btn-sm">E
