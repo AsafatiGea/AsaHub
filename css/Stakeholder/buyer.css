@@ -449,6 +449,10 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  display: box;
+  line-clamp: 2;
+  box-orient: vertical;
+  overflow: hidden;
 }
 
 .buyer-product-description {
@@ -459,6 +463,10 @@
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+  overflow: hidden;
+  display: box;
+  line-clamp: 2;
+  box-orient: vertical;
   overflow: hidden;
 }
 
