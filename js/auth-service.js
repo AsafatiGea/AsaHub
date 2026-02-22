@@ -158,6 +158,8 @@ class AuthService {
 
     async register(userData) {
         try {
+            console.log('Starting registration for:', userData.email);
+            
             // Check if email already exists
             const { data: existingUser, error: checkError } = await this.supabase
                 .from('users')
@@ -165,11 +167,14 @@ class AuthService {
                 .eq('email', userData.email)
                 .single();
 
+            console.log('Email check result:', { existingUser, checkError });
+
             if (existingUser) {
                 return { success: false, error: 'Email sudah terdaftar.' };
             }
 
             // Insert new user into Supabase database
+            console.log('Inserting new user...');
             const { data, error } = await this.supabase
                 .from('users')
                 .insert([{
@@ -184,11 +189,14 @@ class AuthService {
                 .select()
                 .single();
 
+            console.log('Insert result:', { data, error });
+
             if (error) {
                 console.error('Database insert error:', error);
                 throw error;
             }
 
+            console.log('Registration successful:', data);
             return { success: true, user: data };
         } catch (error) {
             console.error('Registration error:', error);

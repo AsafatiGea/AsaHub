@@ -8,6 +8,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Supabase JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.7"></script>
+    <!-- Local JS -->
+    <script src="js/supabase-config.js"></script>
+    <script src="js/auth-service.js"></script>
     <!-- CSS Modular -->
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/layout.css">
@@ -131,8 +136,17 @@ function toggleConfirmPassword() {
     }
 }
 
-function doRegister(event) {
+async function doRegister(event) {
     event.preventDefault();
+    
+    // Check if authService is available
+    if (!window.authService) {
+        console.error('AuthService not loaded');
+        const errEl = document.getElementById('alertError');
+        errEl.textContent = 'System error. Please refresh the page.';
+        errEl.classList.add('show');
+        return;
+    }
     
     const name = document.getElementById('name').value.trim();
     const email = document.getElementById('email').value.trim();
@@ -181,13 +195,15 @@ function doRegister(event) {
     registerLoading.style.display = 'inline-block';
 
     // Call actual registration API
-    window.authService.register({
-        fullName: name,
-        email: email,
-        phone: phone,
-        role: role,
-        password: password
-    }).then(result => {
+    try {
+        const result = await window.authService.register({
+            fullName: name,
+            email: email,
+            phone: phone,
+            role: role,
+            password: password
+        });
+        
         if (result.success) {
             okEl.classList.add('show');
             setTimeout(() => { 
@@ -207,14 +223,21 @@ function doRegister(event) {
                 document.querySelector('.auth-card').style.animation = '';
             }, 500);
         }
-    }).catch(error => {
+    } catch (error) {
+        console.error('Registration error:', error);
         errEl.textContent = 'Terjadi kesalahan. Silakan coba lagi.';
         errEl.classList.add('show');
         
         // Reset loading
         registerText.style.display = 'inline';
         registerLoading.style.display = 'none';
-    });
+        
+        // Shake animation
+        document.querySelector('.auth-card').style.animation = 'shake 0.5s';
+        setTimeout(() => {
+            document.querySelector('.auth-card').style.animation = '';
+        }, 500);
+    }
 }
 
 // Add shake animation
