@@ -420,6 +420,21 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
+
+<script>
+// Registration function
+async function handleRegister(event) {
+    event.preventDefault();
+    
+    // Get form values
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const password = document.getElementById('password').value;
+    const confirm = document.getElementById('confirmPassword').value;
+    const terms = document.getElementById('terms').checked;
+    const role = document.querySelector('input[name="role"]:checked')?.value;
+    
     const errEl = document.getElementById('alertError');
     const okEl = document.getElementById('alertSuccess');
 
@@ -453,6 +468,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Show loading
+    const registerText = document.querySelector('#registerBtn .btn-text');
+    const registerLoading = document.querySelector('#registerBtn .btn-loading');
     registerText.style.display = 'none';
     registerLoading.style.display = 'inline-block';
 
@@ -517,6 +534,12 @@ document.head.appendChild(style);
 document.addEventListener('DOMContentLoaded', function() {
     // Focus on name input
     document.getElementById('name').focus();
+    
+    // Add form submit listener
+    const registerForm = document.getElementById('registerForm');
+    if (registerForm) {
+        registerForm.addEventListener('submit', handleRegister);
+    }
 });
 </script>
 </body>
