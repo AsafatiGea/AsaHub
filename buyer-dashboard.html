@@ -326,15 +326,25 @@
       var sidebar = document.querySelector('.sidebar');
       var sidebarOverlay = document.querySelector('.sidebar-overlay');
 
+      console.log('Sidebar elements:', {
+        toggle: sidebarToggle,
+        sidebar: sidebar,
+        overlay: sidebarOverlay
+      });
+
       if (sidebarToggle) {
         sidebarToggle.addEventListener('click', function() {
+          console.log('Sidebar toggle clicked!');
           sidebar.classList.add('active');
           sidebarOverlay.classList.add('active');
         });
+      } else {
+        console.log('Sidebar toggle not found!');
       }
 
       if (sidebarOverlay) {
         sidebarOverlay.addEventListener('click', function() {
+          console.log('Sidebar overlay clicked!');
           sidebar.classList.remove('active');
           sidebarOverlay.classList.remove('active');
         });
@@ -344,6 +354,7 @@
       var sidebarClose = document.querySelector('.sidebar-close');
       if (sidebarClose) {
         sidebarClose.addEventListener('click', function() {
+          console.log('Sidebar close clicked!');
           sidebar.classList.remove('active');
           sidebarOverlay.classList.remove('active');
         });

@@ -16,6 +16,7 @@
         box-shadow: 2px 0 10px rgba(0,0,0,0.1);
         z-index: 1000;
         transition: left 0.3s ease;
+        display: block !important;
     }
 
     .sidebar.active {
@@ -542,12 +543,7 @@
     transform: translateY(-2px);
 }
 
-/* Hide desktop sidebar on mobile */
-    .sidebar {
-        display: none;
-    }
-
-    /* Add bottom padding to account for mobile nav */
+/* Add bottom padding to account for mobile nav */
     .content-area {
         padding-bottom: 5rem;
     }
