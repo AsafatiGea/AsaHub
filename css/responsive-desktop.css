@@ -86,12 +86,68 @@
   .mobile-only,
   .mobile-flex,
   .mobile-grid,
-  .mobile-bottom-nav,
   .mobile-search-container,
   .mobile-categories,
   .mobile-flash-sale,
   .mobile-products-grid {
     display: none !important;
+  }
+  
+  /* Show Mobile Bottom Navigation on Desktop */
+  .mobile-bottom-nav {
+    display: flex !important;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    border-top: 1px solid rgba(255, 215, 0, 0.2);
+    padding: 12px 0;
+    z-index: 1000;
+    justify-content: center;
+    gap: 48px;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+  }
+  
+  .mobile-bottom-nav .mobile-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+    text-decoration: none;
+    font-size: 24px;
+    min-width: 60px;
+    min-height: 60px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+  }
+  
+  .mobile-bottom-nav .mobile-nav-item span {
+    font-size: 11px;
+    margin-top: 4px;
+    font-weight: 500;
+  }
+  
+  .mobile-bottom-nav .mobile-nav-item:hover {
+    background: rgba(255, 215, 0, 0.1);
+    color: var(--primary);
+    transform: translateY(-2px);
+  }
+  
+  .mobile-bottom-nav .mobile-nav-item.active {
+    color: var(--primary);
+    background: rgba(255, 215, 0, 0.15);
+  }
+  
+  /* Add padding to body to avoid content being hidden */
+  body {
+    padding-bottom: 80px;
+  }
+  
+  /* Add padding to footer to avoid being hidden by bottom nav */
+  .footer {
+    margin-bottom: 80px;
   }
   
   /* Desktop Auth Buttons */
