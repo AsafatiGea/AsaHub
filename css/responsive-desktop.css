@@ -119,6 +119,93 @@
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
+    position: relative;
+  }
+  
+  /* Desktop Dropdown Menu */
+  .desktop-dropdown {
+    position: relative;
+  }
+  
+  .desktop-dropdown-toggle {
+    background: rgba(255, 215, 0, 0.1);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    color: var(--primary);
+    padding: var(--spacing-sm) var(--spacing);
+    border-radius: var(--radius);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  .desktop-dropdown-toggle:hover {
+    background: var(--primary);
+    color: var(--light-white);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .desktop-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    border-radius: var(--radius);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    min-width: 200px;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(20px);
+    transition: all 0.3s ease;
+    margin-top: var(--spacing-xs);
+  }
+  
+  .desktop-dropdown-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+  }
+  
+  .desktop-dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing);
+    color: var(--dark);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  
+  .desktop-dropdown-item:first-child {
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+  
+  .desktop-dropdown-item:last-child {
+    border-radius: 0 0 var(--radius) var(--radius);
+    border-bottom: none;
+  }
+  
+  .desktop-dropdown-item:hover {
+    background: rgba(255, 215, 0, 0.1);
+    color: var(--primary);
+  }
+  
+  .desktop-dropdown-item i {
+    width: 16px;
+    text-align: center;
+  }
+  
+  .desktop-dropdown-divider {
+    height: 1px;
+    background: rgba(0, 0, 0, 0.1);
+    margin: var(--spacing-xs) 0;
   }
   
   .nav-exit-btn {

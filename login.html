@@ -42,10 +42,30 @@
         <div class="nav-auth desktop-only" id="navAuth">
             <a href="login.html" class="btn btn-outline">Masuk</a>
             <a href="daftar.html" class="btn btn-primary">Daftar</a>
-            <button class="nav-exit-btn" id="desktopExitBtn" title="Keluar dari Situs">
-                <i class="fas fa-sign-out-alt"></i>
-                <span>Keluar</span>
-            </button>
+            
+            <!-- Desktop Dropdown Menu -->
+            <div class="desktop-dropdown">
+                <button class="desktop-dropdown-toggle" id="desktopDropdownToggle">
+                    <i class="fas fa-th"></i>
+                    <span>Menu</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="desktop-dropdown-menu" id="desktopDropdownMenu">
+                    <a href="buyer-dashboard.html" class="desktop-dropdown-item">
+                        <i class="fas fa-user"></i>
+                        <span>Dashboard User</span>
+                    </a>
+                    <a href="seller-dashboard.html" class="desktop-dropdown-item">
+                        <i class="fas fa-store"></i>
+                        <span>Dashboard Seller</span>
+                    </a>
+                    <div class="desktop-dropdown-divider"></div>
+                    <button class="desktop-dropdown-item" id="desktopDropdownExit">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Keluar</span>
+                    </button>
+                </div>
+            </div>
         </div>
         
         <!-- Mobile Menu Toggle -->

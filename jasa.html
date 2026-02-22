@@ -37,10 +37,30 @@
         <div class="nav-auth desktop-only" id="navAuth">
             <a href="login.html" class="btn btn-outline">Masuk</a>
             <a href="daftar.html" class="btn btn-primary">Daftar</a>
-            <button class="nav-exit-btn" id="desktopExitBtn" title="Keluar dari Situs">
-                <i class="fas fa-sign-out-alt"></i>
-                <span>Keluar</span>
-            </button>
+            
+            <!-- Desktop Dropdown Menu -->
+            <div class="desktop-dropdown">
+                <button class="desktop-dropdown-toggle" id="desktopDropdownToggle">
+                    <i class="fas fa-th"></i>
+                    <span>Menu</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="desktop-dropdown-menu" id="desktopDropdownMenu">
+                    <a href="buyer-dashboard.html" class="desktop-dropdown-item">
+                        <i class="fas fa-user"></i>
+                        <span>Dashboard User</span>
+                    </a>
+                    <a href="seller-dashboard.html" class="desktop-dropdown-item">
+                        <i class="fas fa-store"></i>
+                        <span>Dashboard Seller</span>
+                    </a>
+                    <div class="desktop-dropdown-divider"></div>
+                    <button class="desktop-dropdown-item" id="desktopDropdownExit">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Keluar</span>
+                    </button>
+                </div>
+            </div>
         </div>
         
         <!-- Mobile Menu Toggle -->
@@ -529,6 +549,61 @@ const desktopExitBtn = document.getElementById('desktopExitBtn');
 if (desktopExitBtn) {
     desktopExitBtn.addEventListener('click', function() {
         if (confirm('Apakah Anda yakin ingin keluar dari situs AsaHub?')) {
+            // Try to close window directly first
+            if (window.history.length > 1) {
+                // If there's history, go back to previous page
+                window.history.back();
+            } else {
+                // If no history, try to close the window
+                window.close();
+                
+                // Only redirect to about:blank if window.close() fails and no history
+                setTimeout(() => {
+                    if (!window.closed) {
+                        window.location.href = 'about:blank';
+                    }
+                }, 100);
+            }
+        }
+    });
+}
+
+// Desktop Dropdown Menu Logic
+const desktopDropdownToggle = document.getElementById('desktopDropdownToggle');
+const desktopDropdownMenu = document.getElementById('desktopDropdownMenu');
+const desktopDropdownExit = document.getElementById('desktopDropdownExit');
+
+// Toggle dropdown menu
+if (desktopDropdownToggle && desktopDropdownMenu) {
+    desktopDropdownToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        desktopDropdownMenu.classList.toggle('active');
+    });
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function() {
+    if (desktopDropdownMenu) {
+        desktopDropdownMenu.classList.remove('active');
+    }
+});
+
+// Prevent dropdown from closing when clicking inside
+if (desktopDropdownMenu) {
+    desktopDropdownMenu.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+}
+
+// Exit button in dropdown
+if (desktopDropdownExit) {
+    desktopDropdownExit.addEventListener('click', function() {
+        if (confirm('Apakah Anda yakin ingin keluar dari situs AsaHub?')) {
+            // Close dropdown first
+            if (desktopDropdownMenu) {
+                desktopDropdownMenu.classList.remove('active');
+            }
+            
             // Try to close window directly first
             if (window.history.length > 1) {
                 // If there's history, go back to previous page
