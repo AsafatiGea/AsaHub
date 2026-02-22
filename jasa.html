@@ -5,158 +5,242 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jasa & Pekerjaan - AsaHub</title>
     <link rel="icon" type="image/png" href="img/logo.png">
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- CSS Modular -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/jasa.css">
+    <link rel="stylesheet" href="css/responsive-mobile.css">
+    <link rel="stylesheet" href="css/responsive-desktop.css">
 </head>
 <body>
 
+<!-- Navigation -->
 <nav class="navbar">
-    <a href="index.html" class="nav-logo">Asa<span>Hub</span></a>
-    <div class="nav-links">
-        <a href="index.html">Marketplace</a>
-        <a href="jasa.html" style="color:var(--primary); font-weight:700;">Jasa</a>
-        <a href="edukasi.html">Edukasi</a>
-        <a href="tentang.html">Tentang</a>
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">Asa<span>Hub</span></a>
+        <div class="nav-links">
+            <a href="index.html">Marketplace</a>
+            <a href="jasa.html" class="active">Jasa</a>
+            <a href="edukasi.html">Edukasi</a>
+            <a href="tentang.html">Tentang</a>
+        </div>
+        <div class="nav-auth" id="navAuth">
+            <a href="login.html" class="btn btn-outline">Masuk</a>
+            <a href="daftar.html" class="btn btn-primary">Daftar</a>
+        </div>
+        <button class="hamburger" onclick="toggleMenu()" aria-label="Buka menu">☰</button>
     </div>
-    <div class="nav-auth" id="navAuth">
-        <a href="login.html" class="btn-outline">Masuk</a>
-        <a href="daftar.html" class="btn-solid">Daftar</a>
-    </div>
-    <button class="hamburger" onclick="toggleMenu()" aria-label="Buka menu">☰</button>
 </nav>
+
+<!-- Mobile Menu -->
 <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html">Marketplace</a>
-    <a href="jasa.html">Jasa</a>
-    <a href="edukasi.html">Edukasi</a>
-    <a href="tentang.html">Tentang</a>
-    <a href="login.html">Masuk</a>
-    <a href="daftar.html">Daftar</a>
-    <a href="dasboard.html" id="mobileDashboardJasa" style="display:none;">Dashboard</a>
+    <a href="index.html" onclick="toggleMenu()">Marketplace</a>
+    <a href="jasa.html" onclick="toggleMenu()" class="active">Jasa</a>
+    <a href="edukasi.html" onclick="toggleMenu()">Edukasi</a>
+    <a href="tentang.html" onclick="toggleMenu()">Tentang</a>
+    <a href="login.html" onclick="toggleMenu()">Masuk</a>
+    <a href="daftar.html" onclick="toggleMenu()">Daftar</a>
+    <a href="dasboard.html" onclick="toggleMenu()" id="mobileDashboard" style="display:none;">Dashboard</a>
 </div>
 
-<div class="page-header">
-    <h1>Platform Jasa & Pekerjaan</h1>
-    <p>Temukan tenaga ahli dan profesional, atau tawarkan keahlianmu sendiri</p>
-</div>
-
-<!-- Mobile Layout (Hidden on Desktop) -->
-<div class="mobile-layout">
-    <!-- Mobile Search Bar -->
-    <div class="mobile-search-container">
-        <div class="mobile-search-bar">
-            <span class="search-icon">🔍</span>
-            <input type="text" placeholder="Cari jasa di AsaHub..." id="mobileSearchInput" oninput="filterJasaMobile()">
-        </div>
+<!-- Hero Section -->
+<section class="jasa-hero">
+    <div class="jasa-hero-content">
+        <h1 class="jasa-title">Platform Jasa & Pekerjaan</h1>
+        <p class="jasa-subtitle">Temukan tenaga ahli dan profesional, atau tawarkan keahlianmu sendiri</p>
+        <a href="daftar.html" class="jasa-cta">Daftar Sebagai Penyedia Jasa</a>
     </div>
+</section>
 
-    <!-- Mobile Categories -->
-    <div class="mobile-categories">
-        <div class="category-item" onclick="filterByCategoryJasa('all')">
-            <div class="category-icon">📦</div>
-            <span>Semua</span>
-        </div>
-        <div class="category-item" onclick="filterByCategoryJasa('Otomotif')">
-            <div class="category-icon">🔧</div>
-            <span>Otomotif</span>
-        </div>
-        <div class="category-item" onclick="filterByCategoryJasa('Konstruksi')">
-            <div class="category-icon">🏗️</div>
-            <span>Konstruksi</span>
-        </div>
-        <div class="category-item" onclick="filterByCategoryJasa('Teknologi')">
-            <div class="category-icon">💻</div>
-            <span>Teknologi</span>
-        </div>
-        <div class="category-item" onclick="filterByCategoryJasa('Kreatif')">
-            <div class="category-icon">🎨</div>
-            <span>Kreatif</span>
-        </div>
-    </div>
-
-    <!-- Flash Sale Section for Services -->
-    <div class="mobile-flash-sale">
-        <div class="flash-sale-header">
-            <div class="flash-title">
-                <span class="flash-icon">⚡</span>
-                <span>Jasa Promo</span>
+<!-- Categories Section -->
+<section class="jasa-categories">
+    <div class="jasa-categories-content">
+        <div class="jasa-categories-grid">
+            <div class="jasa-category-card active" onclick="filterByCategory('all')">
+                <div class="jasa-category-icon">🛠️</div>
+                <div class="jasa-category-name">Semua Jasa</div>
+                <div class="jasa-category-count" id="countAll">0</div>
             </div>
-            <div class="flash-timer">
-                <span id="flashHours">02</span>:<span id="flashMinutes">45</span>:<span id="flashSeconds">30</span>
+            <div class="jasa-category-card" onclick="filterByCategory('otomotif')">
+                <div class="jasa-category-icon">🔧</div>
+                <div class="jasa-category-name">Otomotif</div>
+                <div class="jasa-category-count" id="countOtomotif">0</div>
+            </div>
+            <div class="jasa-category-card" onclick="filterByCategory('konstruksi')">
+                <div class="jasa-category-icon">🏗️</div>
+                <div class="jasa-category-name">Konstruksi</div>
+                <div class="jasa-category-count" id="countKonstruksi">0</div>
+            </div>
+            <div class="jasa-category-card" onclick="filterByCategory('teknologi')">
+                <div class="jasa-category-icon">💻</div>
+                <div class="jasa-category-name">Teknologi</div>
+                <div class="jasa-category-count" id="countTeknologi">0</div>
+            </div>
+            <div class="jasa-category-card" onclick="filterByCategory('kreatif')">
+                <div class="jasa-category-icon">🎨</div>
+                <div class="jasa-category-name">Kreatif</div>
+                <div class="jasa-category-count" id="countKreatif">0</div>
+            </div>
+            <div class="jasa-category-card" onclick="filterByCategory('rumah-tangga')">
+                <div class="jasa-category-icon">🏠</div>
+                <div class="jasa-category-name">Rumah Tangga</div>
+                <div class="jasa-category-count" id="countRumahTangga">0</div>
+            </div>
+            <div class="jasa-category-card" onclick="filterByCategory('pendidikan')">
+                <div class="jasa-category-icon">📚</div>
+                <div class="jasa-category-name">Pendidikan</div>
+                <div class="jasa-category-count" id="countPendidikan">0</div>
+            </div>
+            <div class="jasa-category-card" onclick="filterByCategory('lainnya')">
+                <div class="jasa-category-icon">📦</div>
+                <div class="jasa-category-name">Lainnya</div>
+                <div class="jasa-category-count" id="countLainnya">0</div>
             </div>
         </div>
-        <div class="flash-products" id="flashJasa">
-            <!-- Flash sale services will be inserted here -->
-        </div>
     </div>
+</section>
 
-    <!-- Mobile Services Grid -->
-    <div class="mobile-products-container">
-        <div class="mobile-products-header">
-            <h2>Jasa Terpopuler</h2>
-            <span class="product-count" id="mobileJasaCount">0 jasa</span>
+<!-- Services Layout -->
+<div class="services-layout">
+    <!-- Services Sidebar (Desktop) -->
+    <aside class="services-sidebar desktop-only">
+        <div class="filter-section">
+            <div class="filter-header">
+                <h3 class="filter-title">Filter Harga</h3>
+                <button class="filter-clear" onclick="clearFilters()">Reset</button>
+            </div>
+            <div class="price-range">
+                <div class="price-inputs">
+                    <input type="number" class="price-input" placeholder="Min" id="minPrice" onchange="filterServices()">
+                    <span class="price-separator">-</span>
+                    <input type="number" class="price-input" placeholder="Max" id="maxPrice" onchange="filterServices()">
+                </div>
+            </div>
         </div>
-        <div class="mobile-products-grid" id="mobileJasaGrid">
-            <!-- Services will be inserted here -->
+
+        <div class="filter-section">
+            <div class="filter-header">
+                <h3 class="filter-title">Lokasi</h3>
+            </div>
+            <div class="filter-options">
+                <div class="filter-option">
+                    <input type="checkbox" id="loc-online" value="online" onchange="filterServices()">
+                    <label for="loc-online">Online</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="loc-medan" value="medan" onchange="filterServices()">
+                    <label for="loc-medan">Medan</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="loc-padang" value="padang" onchange="filterServices()">
+                    <label for="loc-padang">Padang</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="loc-nias" value="nias" onchange="filterServices()">
+                    <label for="loc-nias">Nias</label>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Services Main -->
+    <main class="services-main">
+        <!-- Services Header -->
+        <div class="services-header">
+            <h2 class="services-title">Jasa Tersedia</h2>
+            <div class="services-controls">
+                <div class="services-search">
+                    <div class="search-bar">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" class="search-input" placeholder="Cari jasa..." id="searchInput" onkeyup="filterServices()">
+                    </div>
+                </div>
+                <select class="form-select services-sort" id="sortSelect" onchange="sortServices()">
+                    <option value="newest">Terbaru</option>
+                    <option value="price-low">Harga Terendah</option>
+                    <option value="price-high">Harga Tertinggi</option>
+                    <option value="popular">Terpopuler</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Services Grid -->
+        <div class="services-grid" id="servicesGrid">
+            <!-- Services will be loaded dynamically from Supabase -->
+        </div>
+
+        <!-- Loading State -->
+        <div class="services-loading" id="loadingState" style="display: none;">
+            <div class="service-skeleton">
+                <div class="service-header">
+                    <div class="service-icon">🛠️</div>
+                    <div class="service-type">Loading...</div>
+                </div>
+                <div class="service-body">
+                    <div class="service-title">Loading...</div>
+                    <div class="service-description">Loading...</div>
+                </div>
+                <div class="service-footer">
+                    <div class="service-price">Loading...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- No Services -->
+        <div class="no-services" id="noServices" style="display: none;">
+            <div class="no-services-icon">🛠️</div>
+            <h3 class="no-services-title">Belum Ada Jasa Tersedia</h3>
+            <p class="no-services-text">Admin atau penyedia jasa belum menambahkan jasa apa pun. Silakan kembali lagi nanti atau daftar sebagai penyedia jasa.</p>
+            <a href="daftar.html" class="no-services-action">Daftar Sebagai Penyedia Jasa</a>
+        </div>
+    </main>
+</div>
+
+<!-- Service Detail Modal -->
+<div class="modal" id="serviceModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modalTitle">Detail Jasa</h3>
+            <button class="modal-close" onclick="closeServiceModal()">&times;</button>
+        </div>
+        <div class="modal-body" id="modalBody">
+            <!-- Service details will be loaded here -->
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeServiceModal()">Tutup</button>
+            <a href="#" class="btn btn-primary" id="modalContactButton" target="_blank">Hubungi Penyedia</a>
         </div>
     </div>
 </div>
-
-<!-- Desktop Layout (Hidden on Mobile) -->
-<div style="max-width:1100px; margin:0 auto; padding: 32px 24px 0;">
-    <div style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom: 28px;">
-        <button class="btn-solid" onclick="filterJasa('semua', this)">Semua</button>
-        <button class="btn-outline" onclick="filterJasa('Otomotif', this)">🔧 Otomotif</button>
-        <button class="btn-outline" onclick="filterJasa('Konstruksi', this)">🏗️ Konstruksi</button>
-        <button class="btn-outline" onclick="filterJasa('Teknologi', this)">💻 Teknologi</button>
-        <button class="btn-outline" onclick="filterJasa('Kreatif', this)">🎨 Kreatif</button>
-        <button class="btn-outline" onclick="filterJasa('Rumah Tangga', this)">🏠 Rumah Tangga</button>
-        <button class="btn-outline" onclick="filterJasa('Pendidikan', this)">📚 Pendidikan</button>
-    </div>
-</div>
-
-<div class="jasa-grid" id="jasaGrid"></div>
 
 <!-- Mobile Bottom Navigation -->
-<div class="mobile-bottom-nav">
-    <a href="index.html" class="nav-item">
-        <div class="nav-icon">🏠</div>
+<nav class="mobile-bottom-nav mobile-only">
+    <a href="index.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon">🏠</span>
         <span>Home</span>
     </a>
-    <a href="jasa.html" class="nav-item active">
-        <div class="nav-icon">🔧</div>
+    <a href="jasa.html" class="mobile-nav-item active">
+        <span class="mobile-nav-icon">👥</span>
         <span>Jasa</span>
     </a>
-    <a href="#" class="nav-item" onclick="showCart()">
-        <div class="nav-icon">🛒</div>
-        <span>Keranjang</span>
-        <div class="cart-badge" id="cartBadge">0</div>
+    <a href="edukasi.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon">🎓</span>
+        <span>Edukasi</span>
     </a>
-    <a href="dasboard.html" class="nav-item">
-        <div class="nav-icon">👤</div>
-        <span>Akun</span>
+    <a href="dasboard.html" class="mobile-nav-item" id="mobileNavDashboard" style="display:none;">
+        <span class="mobile-nav-icon">📊</span>
+        <span>Dashboard</span>
     </a>
-</div>
+    <a href="tentang.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon">ℹ️</span>
+        <span>Tentang</span>
+    </a>
+</nav>
 
-<!-- MODAL -->
-<div class="modal-overlay" id="modalJasa">
-    <div class="modal">
-        <button class="modal-close" onclick="document.getElementById('modalJasa').classList.remove('open')">✕</button>
-        <div style="font-size:52px; margin-bottom:12px;" id="jEmoji"></div>
-        <div class="jasa-category" id="jKat"></div>
-        <h3 id="jNama"></h3>
-        <p style="font-size:14px; color:var(--muted); margin: 12px 0;" id="jDesc"></p>
-        <div style="display:flex; justify-content:space-between; margin-bottom:16px; font-size:14px;">
-            <span>👤 <strong id="jPenyedia"></strong></span>
-            <span>📍 <span id="jLokasi"></span></span>
-        </div>
-        <div style="background:var(--gray-100); border-radius:10px; padding:12px; margin-bottom:20px;">
-            <strong style="color:var(--primary);">Mulai dari <span id="jHarga"></span></strong>
-        </div>
-        <a href="https://wa.me/6282165713526" id="btnWaJasa" target="_blank" class="form-btn" style="display:block; text-align:center; text-decoration:none; color:white;">💬 Hubungi via WhatsApp</a>
-    </div>
-</div>
-
-<footer class="footer" style="margin-top:60px;">
+<!-- Footer -->
+<footer class="footer">
     <div class="footer-top">
         <div class="footer-brand">
             <div class="nav-logo" style="font-size:24px;">Asa<span>Hub</span></div>
@@ -178,203 +262,49 @@
             <div class="footer-col">
                 <h4>AsaHub</h4>
                 <a href="tentang.html">Tentang Kami</a>
-                <a href="komunitas.html">Komunitas</a>
+                <a href="#" title="Segera hadir">Kontak</a>
+                <a href="#" title="Segera hadir">Kebijakan Privasi</a>
             </div>
         </div>
     </div>
     <div class="footer-bottom">
-        <p> 2026 AsaHub · asahub.site · Dibuat dengan oleh Asafati Gea</p>
+        <p> 2026 AsaHub · asahub.site · Dibuat dengan ❤️ oleh Asafati Gea</p>
     </div>
 </footer>
 
+<!-- Scripts -->
+<script src="js/supabase.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/jasa-manager.js"></script>
+
 <script>
-// Fungsi toggleMenu untuk mobile menu
+// Mobile Menu Toggle
 function toggleMenu() {
     document.getElementById('mobileMenu').classList.toggle('open');
 }
 
-// Jika sudah login, tampilkan link Dashboard
-const userJasa = JSON.parse(localStorage.getItem('asahub_current_user') || 'null');
-if (userJasa) {
-    document.getElementById('navAuth').innerHTML = '<a href="dasboard.html" class="btn-solid">Dashboard</a>';
-    const loginLink = document.querySelector('#mobileMenu a[href="login.html"]');
-    const daftarLink = document.querySelector('#mobileMenu a[href="daftar.html"]');
-    if (loginLink) loginLink.style.display = 'none';
-    if (daftarLink) daftarLink.style.display = 'none';
-    const dashJasa = document.getElementById('mobileDashboardJasa');
-    if (dashJasa) dashJasa.style.display = 'block';
+// Check user login status
+var user = JSON.parse(localStorage.getItem('asahub_current_user') || 'null');
+if (user) {
+    // Update desktop nav
+    document.getElementById('navAuth').innerHTML = '<a href="dasboard.html" class="btn btn-primary">Dashboard</a>';
+    
+    // Update mobile menu
+    var mobileAuthLinks = document.querySelectorAll('#mobileMenu a[href="login.html"], #mobileMenu a[href="daftar.html"]');
+    mobileAuthLinks.forEach(function(a) { a.style.display = 'none'; });
+    
+    var mobileDashboard = document.getElementById('mobileDashboard');
+    if (mobileDashboard) mobileDashboard.style.display = 'block';
+    
+    var mobileNavDashboard = document.getElementById('mobileNavDashboard');
+    if (mobileNavDashboard) mobileNavDashboard.style.display = 'flex';
 }
 
-const jasaData = [
-    { id:1, nama:'Montir Panggilan', kat:'Otomotif', emoji:'🔧', desc:'Perbaikan kendaraan roda 2 dan 4 di lokasi kamu. Berpengalaman 8 tahun.', penyedia:'Rudi Mekanik', lokasi:'Medan', harga:'Rp 50.000/jam' },
-    { id:2, nama:'Tukang Bangunan Harian', kat:'Konstruksi', emoji:'🏗️', desc:'Pengecatan, pemasangan keramik, renovasi rumah. Berpengalaman dan rapi.', penyedia:'Tim Bangunan Pak Hendra', lokasi:'Padang', harga:'Rp 150.000/hari' },
-    { id:3, nama:'Pembuatan Website', kat:'Teknologi', emoji:'💻', desc:'Website bisnis, landing page, toko online. Pengerjaan 3-7 hari kerja.', penyedia:'AsaHub IT Team', lokasi:'Online', harga:'Rp 500.000' },
-    { id:4, nama:'Desain Logo & Branding', kat:'Kreatif', emoji:'🎨', desc:'Desain logo profesional, brand identity, sosial media kit.', penyedia:'Studio Kreatif Nias', lokasi:'Online', harga:'Rp 200.000' },
-    { id:5, nama:'Jasa Cuci AC', kat:'Rumah Tangga', emoji:'❄️', desc:'Cuci, service, dan isi freon AC segala merk. Bergaransi.', penyedia:'AC Bersih Pro', lokasi:'Gunungsitoli', harga:'Rp 80.000/unit' },
-    { id:6, nama:'Les Privat SD-SMA', kat:'Pendidikan', emoji:'📚', desc:'Guru privat Matematika, IPA, Bahasa Inggris. Datang ke rumah.', penyedia:'Tutor Pintar', lokasi:'Teluk Dalam', harga:'Rp 75.000/sesi' },
-    { id:7, nama:'Sistem Stok & Kasir UMKM', kat:'Teknologi', emoji:'📊', desc:'Setup sistem manajemen stok dan kasir berbasis Excel/Google Sheets.', penyedia:'AsaHub IT Team', lokasi:'Online', harga:'Rp 250.000' },
-    { id:8, nama:'Foto & Video Produk', kat:'Kreatif', emoji:'📸', desc:'Foto produk profesional untuk marketplace dan media sosial.', penyedia:'Lens & Light Studio', lokasi:'Medan', harga:'Rp 300.000/sesi' },
-    { id:9, nama:'Perawatan Taman', kat:'Rumah Tangga', emoji:'🌿', desc:'Perawatan tanaman, potong rumput, dekorasi taman rumah/kantor.', penyedia:'Green Garden', lokasi:'Padang Sidimpuan', harga:'Rp 100.000/kunjungan' },
-];
-
-let filtered = [...jasaData];
-
-function renderJasa(list) {
-    const el = document.getElementById('jasaGrid');
-    el.innerHTML = list.map(j => `
-        <div class="jasa-card" onclick="showJasa(${j.id})">
-            <div class="jasa-category">${j.kat}</div>
-            <h3>${j.emoji} ${j.nama}</h3>
-            <p>${j.desc}</p>
-            <div class="jasa-meta">
-                <span>👤 ${j.penyedia}</span>
-                <span>📍 ${j.lokasi}</span>
-            </div>
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-                <div class="jasa-price">${j.harga}</div>
-                <button class="btn-solid" style="padding:8px 16px; font-size:13px;" onclick="event.stopPropagation(); showJasa(${j.id})">Pesan</button>
-            </div>
-        </div>
-    `).join('');
-}
-
-function filterJasa(kat, btn) {
-    document.querySelectorAll('.navbar ~ div .btn-solid, .navbar ~ div .btn-outline').forEach(b => {
-        b.className = 'btn-outline'; 
-    });
-    btn.className = 'btn-solid';
-    filtered = kat === 'semua' ? jasaData : jasaData.filter(j => j.kat === kat);
-    renderJasa(filtered);
-}
-
-function showJasa(id) {
-    const j = jasaData.find(x => x.id === id);
-    document.getElementById('jEmoji').textContent = j.emoji;
-    document.getElementById('jKat').textContent = j.kat;
-    document.getElementById('jNama').textContent = j.nama;
-    document.getElementById('jDesc').textContent = j.desc;
-    document.getElementById('jPenyedia').textContent = j.penyedia;
-    document.getElementById('jLokasi').textContent = j.lokasi;
-    document.getElementById('jHarga').textContent = j.harga;
-    // Link WA ke nomor kamu dengan pesan berisi nama jasa & harga
-    const waText = encodeURIComponent('Halo, saya tertarik dengan jasa:\n\n*' + j.nama + '*\n' + j.harga + ' - ' + j.penyedia);
-    document.getElementById('btnWaJasa').href = 'https://wa.me/6282165713526?text=' + waText;
-    document.getElementById('modalJasa').classList.add('open');
-}
-
-document.getElementById('modalJasa').addEventListener('click', function(e) {
-    if (e.target === this) this.classList.remove('open');
+// Initialize services manager
+document.addEventListener('DOMContentLoaded', function() {
+    // Services manager will be initialized from jasa-manager.js
 });
-
-// Mobile-specific functions for services
-function filterByCategoryJasa(category) {
-    let filtered = jasaData;
-    
-    if (category !== 'all') {
-        filtered = jasaData.filter(j => j.kat === category);
-    }
-    
-    renderMobileJasa(filtered);
-}
-
-function filterJasaMobile() {
-    const mobileSearch = document.getElementById('mobileSearchInput').value.toLowerCase();
-    let filtered = jasaData;
-    
-    if (mobileSearch) {
-        filtered = jasaData.filter(j => 
-            j.nama.toLowerCase().includes(mobileSearch) || 
-            j.desc.toLowerCase().includes(mobileSearch) ||
-            j.penyedia.toLowerCase().includes(mobileSearch)
-        );
-    }
-    
-    renderMobileJasa(filtered);
-}
-
-function renderMobileJasa(list) {
-    const grid = document.getElementById('mobileJasaGrid');
-    const count = document.getElementById('mobileJasaCount');
-    
-    count.textContent = `${list.length} jasa`;
-    
-    if (list.length === 0) {
-        grid.innerHTML = '<div class="no-products">Jasa tidak ditemukan</div>';
-        return;
-    }
-    
-    grid.innerHTML = list.map(j => `
-        <div class="mobile-product-card" onclick="showJasa(${j.id})">
-            <div class="mobile-product-image">
-                ${j.emoji}
-                ${Math.random() > 0.7 ? '<div class="stock-badge">Promo</div>' : ''}
-            </div>
-            <div class="mobile-product-info">
-                <h4>${j.nama}</h4>
-                <div class="mobile-product-meta">
-                    <span class="mobile-seller">${j.penyedia}</span>
-                    <span class="mobile-sold">⭐ ${Math.floor(Math.random() * 2) + 4}.0</span>
-                </div>
-                <div class="mobile-product-price">
-                    <span class="current-price">${j.harga}</span>
-                    ${Math.random() > 0.6 ? '<span class="discount-badge">20%</span>' : ''}
-                </div>
-            </div>
-        </div>
-    `).join('');
-}
-
-function renderFlashJasa() {
-    const flashServices = jasaData.slice(0, 3);
-    const container = document.getElementById('flashJasa');
-    
-    container.innerHTML = flashServices.map(j => `
-        <div class="flash-product-card" onclick="showJasa(${j.id})">
-            <div class="flash-product-image">
-                ${j.emoji}
-                <div class="flash-discount">-20%</div>
-            </div>
-            <div class="flash-product-info">
-                <h4>${j.nama}</h4>
-                <div class="flash-price">
-                    <span class="flash-current">${j.harga}</span>
-                    <span class="flash-original">${j.harga}</span>
-                </div>
-            </div>
-        </div>
-    `).join('');
-}
-
-// Check if mobile and render accordingly
-function isMobile() {
-    return window.innerWidth <= 480;
-}
-
-function initializeJasaLayout() {
-    if (isMobile()) {
-        document.querySelector('.mobile-layout').style.display = 'block';
-        document.querySelector('.page-header').style.display = 'none';
-        document.querySelector('.navbar').style.display = 'none';
-        document.querySelector('.jasa-grid').style.display = 'none';
-        document.querySelector('footer').style.display = 'none';
-        
-        renderMobileJasa(jasaData);
-        renderFlashJasa();
-        startFlashSaleTimer();
-    } else {
-        document.querySelector('.mobile-layout').style.display = 'none';
-        document.querySelector('.page-header').style.display = 'block';
-        document.querySelector('.navbar').style.display = 'flex';
-        document.querySelector('.jasa-grid').style.display = 'grid';
-        document.querySelector('footer').style.display = 'block';
-    }
-}
-
-// Initialize on load and resize
-window.addEventListener('load', initializeJasaLayout);
-window.addEventListener('resize', initializeJasaLayout);
-
-renderJasa(jasaData);
 </script>
+
 </body>
 </html>

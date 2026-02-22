@@ -5,120 +5,276 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edukasi - AsaHub</title>
     <link rel="icon" type="image/png" href="img/logo.png">
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- CSS Modular -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/edukasi.css">
+    <link rel="stylesheet" href="css/responsive-mobile.css">
+    <link rel="stylesheet" href="css/responsive-desktop.css">
 </head>
 <body>
 
+<!-- Navigation -->
 <nav class="navbar">
-    <a href="index.html" class="nav-logo">Asa<span>Hub</span></a>
-    <div class="nav-links">
-        <a href="index.html">Marketplace</a>
-        <a href="jasa.html">Jasa</a>
-        <a href="edukasi.html" style="color:var(--primary); font-weight:700;">Edukasi</a>
-        <a href="tentang.html">Tentang</a>
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">Asa<span>Hub</span></a>
+        <div class="nav-links">
+            <a href="index.html">Marketplace</a>
+            <a href="jasa.html">Jasa</a>
+            <a href="edukasi.html" class="active">Edukasi</a>
+            <a href="tentang.html">Tentang</a>
+        </div>
+        <div class="nav-auth" id="navAuth">
+            <a href="login.html" class="btn btn-outline">Masuk</a>
+            <a href="daftar.html" class="btn btn-primary">Daftar</a>
+        </div>
+        <button class="hamburger" onclick="toggleMenu()" aria-label="Buka menu">☰</button>
     </div>
-    <div class="nav-auth" id="navAuth">
-        <a href="login.html" class="btn-outline">Masuk</a>
-        <a href="daftar.html" class="btn-solid">Daftar</a>
-    </div>
-    <button class="hamburger" onclick="toggleMenu()" aria-label="Buka menu">☰</button>
 </nav>
+
+<!-- Mobile Menu -->
 <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html">Marketplace</a>
-    <a href="jasa.html">Jasa</a>
-    <a href="edukasi.html">Edukasi</a>
-    <a href="tentang.html">Tentang</a>
-    <a href="komunitas.html">Komunitas</a>
-    <a href="login.html">Masuk</a>
-    <a href="daftar.html">Daftar</a>
-    <a href="dasboard.html" id="mobileDashboardEdu" style="display:none;">Dashboard</a>
+    <a href="index.html" onclick="toggleMenu()">Marketplace</a>
+    <a href="jasa.html" onclick="toggleMenu()">Jasa</a>
+    <a href="edukasi.html" onclick="toggleMenu()" class="active">Edukasi</a>
+    <a href="tentang.html" onclick="toggleMenu()">Tentang</a>
+    <a href="login.html" onclick="toggleMenu()">Masuk</a>
+    <a href="daftar.html" onclick="toggleMenu()">Daftar</a>
+    <a href="dasboard.html" onclick="toggleMenu()" id="mobileDashboard" style="display:none;">Dashboard</a>
 </div>
 
-<div class="page-header">
-    <h1>Edukasi & Mentoring</h1>
-    <p>Podcast, pelatihan bisnis, dan mentoring dari pelaku usaha nyata</p>
+<!-- Hero Section -->
+<section class="edukasi-hero">
+    <div class="edukasi-hero-content">
+        <h1 class="edukasi-title">Edukasi & Mentoring</h1>
+        <p class="edukasi-subtitle">Podcast, pelatihan bisnis, dan mentoring dari pelaku usaha nyata</p>
+        <a href="daftar.html" class="edukasi-cta">Daftar Sebagai Mentor</a>
+    </div>
+</section>
+
+<!-- Course Categories -->
+<section class="course-categories">
+    <div class="course-categories-content">
+        <div class="course-categories-grid">
+            <div class="course-category-card active" onclick="filterByCategory('all')">
+                <div class="course-category-icon">📚</div>
+                <div class="course-category-name">Semua Kursus</div>
+                <div class="course-category-count" id="countAll">0</div>
+            </div>
+            <div class="course-category-card" onclick="filterByCategory('bisnis')">
+                <div class="course-category-icon">💼</div>
+                <div class="course-category-name">Bisnis</div>
+                <div class="course-category-count" id="countBisnis">0</div>
+            </div>
+            <div class="course-category-card" onclick="filterByCategory('teknologi')">
+                <div class="course-category-icon">💻</div>
+                <div class="course-category-name">Teknologi</div>
+                <div class="course-category-count" id="countTeknologi">0</div>
+            </div>
+            <div class="course-category-card" onclick="filterByCategory('marketing')">
+                <div class="course-category-icon">📈</div>
+                <div class="course-category-name">Marketing</div>
+                <div class="course-category-count" id="countMarketing">0</div>
+            </div>
+            <div class="course-category-card" onclick="filterByCategory('desain')">
+                <div class="course-category-icon">🎨</div>
+                <div class="course-category-name">Desain</div>
+                <div class="course-category-count" id="countDesain">0</div>
+            </div>
+            <div class="course-category-card" onclick="filterByCategory('lainnya')">
+                <div class="course-category-icon">📦</div>
+                <div class="course-category-name">Lainnya</div>
+                <div class="course-category-count" id="countLainnya">0</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Courses Layout -->
+<div class="courses-layout">
+    <!-- Courses Sidebar (Desktop) -->
+    <aside class="courses-sidebar desktop-only">
+        <div class="filter-section">
+            <div class="filter-header">
+                <h3 class="filter-title">Filter Harga</h3>
+                <button class="filter-clear" onclick="clearFilters()">Reset</button>
+            </div>
+            <div class="price-range">
+                <div class="price-inputs">
+                    <input type="number" class="price-input" placeholder="Min" id="minPrice" onchange="filterCourses()">
+                    <span class="price-separator">-</span>
+                    <input type="number" class="price-input" placeholder="Max" id="maxPrice" onchange="filterCourses()">
+                </div>
+            </div>
+        </div>
+
+        <div class="filter-section">
+            <div class="filter-header">
+                <h3 class="filter-title">Level</h3>
+            </div>
+            <div class="filter-options">
+                <div class="filter-option">
+                    <input type="checkbox" id="level-pemula" value="pemula" onchange="filterCourses()">
+                    <label for="level-pemula">Pemula</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="level-menengah" value="menengah" onchange="filterCourses()">
+                    <label for="level-menengah">Menengah</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="level-lanjutan" value="lanjutan" onchange="filterCourses()">
+                    <label for="level-lanjutan">Lanjutan</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="filter-section">
+            <div class="filter-header">
+                <h3 class="filter-title">Tipe</h3>
+            </div>
+            <div class="filter-options">
+                <div class="filter-option">
+                    <input type="checkbox" id="type-video" value="video" onchange="filterCourses()">
+                    <label for="type-video">Video</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="type-workshop" value="workshop" onchange="filterCourses()">
+                    <label for="type-workshop">Workshop</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="type-mentoring" value="mentoring" onchange="filterCourses()">
+                    <label for="type-mentoring">Mentoring</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="type-ebook" value="ebook" onchange="filterCourses()">
+                    <label for="type-ebook">E-Book</label>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Courses Main -->
+    <main class="courses-main">
+        <!-- Courses Header -->
+        <div class="courses-header">
+            <h2 class="courses-title">Kursus Tersedia</h2>
+            <div class="courses-controls">
+                <div class="courses-search">
+                    <div class="search-bar">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" class="search-input" placeholder="Cari kursus..." id="searchInput" onkeyup="filterCourses()">
+                    </div>
+                </div>
+                <select class="form-select courses-sort" id="sortSelect" onchange="sortCourses()">
+                    <option value="newest">Terbaru</option>
+                    <option value="price-low">Harga Terendah</option>
+                    <option value="price-high">Harga Tertinggi</option>
+                    <option value="popular">Terpopuler</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Courses Grid -->
+        <div class="courses-grid" id="coursesGrid">
+            <!-- Courses will be loaded dynamically from Supabase -->
+        </div>
+
+        <!-- Loading State -->
+        <div class="courses-loading" id="loadingState" style="display: none;">
+            <div class="course-skeleton">
+                <div class="course-image"></div>
+                <div class="course-body">
+                    <div class="course-title">Loading...</div>
+                    <div class="course-instructor">
+                        <div class="instructor-avatar">L</div>
+                        <div class="instructor-name">Loading...</div>
+                    </div>
+                    <div class="course-description">Loading...</div>
+                </div>
+                <div class="course-footer">
+                    <div class="course-price">Loading...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- No Courses -->
+        <div class="no-courses" id="noCourses" style="display: none;">
+            <div class="no-courses-icon">📚</div>
+            <h3 class="no-courses-title">Belum Ada Kursus Tersedia</h3>
+            <p class="no-courses-text">Admin atau mentor belum menambahkan kursus apa pun. Silakan kembali lagi nanti atau daftar sebagai mentor.</p>
+            <a href="daftar.html" class="no-courses-action">Daftar Sebagai Mentor</a>
+        </div>
+    </main>
 </div>
 
-<!-- STATS -->
-<div style="max-width:900px; margin: 0 auto; padding: 40px 24px 0; display:flex; gap:32px; justify-content:center; flex-wrap:wrap; text-align:center;">
-    <div><div class="stat-num" style="font-family:'Syne',sans-serif; font-size:32px; font-weight:800; color:var(--primary);">25+</div><div style="color:var(--gray-500); font-size:14px;">Materi Tersedia</div></div>
-    <div style="width:1px; background:var(--gray-300);"></div>
-    <div><div class="stat-num" style="font-family:'Syne',sans-serif; font-size:32px; font-weight:800; color:var(--primary);">1.200+</div><div style="color:var(--gray-500); font-size:14px;">Pelajar Aktif</div></div>
-    <div style="width:1px; background:var(--gray-300);"></div>
-    <div><div class="stat-num" style="font-family:'Syne',sans-serif; font-size:32px; font-weight:800; color:var(--primary);">100%</div><div style="color:var(--gray-500); font-size:14px;">Gratis</div></div>
-</div>
+<!-- Featured Courses Section -->
+<section class="featured-courses">
+    <div class="featured-courses-content">
+        <div class="featured-courses-header">
+            <h2 class="featured-courses-title">Kursus Unggulan</h2>
+            <p class="featured-courses-subtitle">Kursus terpopuler yang dipilih oleh mentor profesional</p>
+        </div>
+        <div class="featured-courses-grid" id="featuredCoursesGrid">
+            <!-- Featured courses will be loaded dynamically -->
+        </div>
+    </div>
+</section>
 
-<div class="edukasi-grid">
-    <div class="edu-card">
-        <div class="edu-banner edu-banner-blue">🎙️</div>
-        <div class="edu-body">
-            <div class="edu-type">Podcast</div>
-            <h3>Dari Nol ke Omset Pertama</h3>
-            <p>Perjalanan memulai bisnis dari nol tanpa modal besar. Kisah nyata dari Asafati Gea.</p>
-            <div class="edu-meta">⏱ 45 menit · Pemula</div>
-            <button class="btn-solid" style="margin-top:14px; width:100%; text-align:center; padding:10px; font-size:14px;">▶ Dengarkan</button>
+<!-- Learning Path Section -->
+<section class="learning-path">
+    <div class="learning-path-content">
+        <h2 class="learning-path-title">Path Pembelajaran</h2>
+        <p class="learning-path-subtitle">Pilih path yang sesuai dengan tujuan karirmu</p>
+        <div class="learning-path-grid" id="learningPathGrid">
+            <!-- Learning paths will be loaded dynamically -->
         </div>
     </div>
-    <div class="edu-card">
-        <div class="edu-banner edu-banner-yellow">📈</div>
-        <div class="edu-body">
-            <div class="edu-type">Workshop</div>
-            <h3>Cara Jualan di Marketplace</h3>
-            <p>Panduan lengkap berjualan di AsaHub dan marketplace lainnya. Dari foto produk hingga strategi harga.</p>
-            <div class="edu-meta">⏱ 90 menit · Pemula-Menengah</div>
-            <button class="btn-solid" style="margin-top:14px; width:100%; text-align:center; padding:10px; font-size:14px;">▶ Mulai</button>
+</section>
+
+<!-- Course Detail Modal -->
+<div class="modal" id="courseModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modalTitle">Detail Kursus</h3>
+            <button class="modal-close" onclick="closeCourseModal()">&times;</button>
         </div>
-    </div>
-    <div class="edu-card">
-        <div class="edu-banner edu-banner-green">💻</div>
-        <div class="edu-body">
-            <div class="edu-type">Tutorial</div>
-            <h3>Bikin Website Bisnis Sendiri</h3>
-            <p>Panduan membuat website bisnis sederhana menggunakan tools gratis. Tidak perlu bisa coding.</p>
-            <div class="edu-meta">⏱ 2 jam · Semua Level</div>
-            <button class="btn-solid" style="margin-top:14px; width:100%; text-align:center; padding:10px; font-size:14px;">▶ Mulai</button>
+        <div class="modal-body" id="modalBody">
+            <!-- Course details will be loaded here -->
         </div>
-    </div>
-    <div class="edu-card">
-        <div class="edu-banner edu-banner-blue">🤝</div>
-        <div class="edu-body">
-            <div class="edu-type">Mentoring</div>
-            <h3>1-on-1 Konsultasi Bisnis</h3>
-            <p>Sesi mentoring langsung dengan Asafati Gea atau mentor berpengalaman AsaHub untuk membahas bisnismu.</p>
-            <div class="edu-meta">⏱ 60 menit · Semua Level</div>
-            <button class="btn-yellow" style="margin-top:14px; width:100%; text-align:center; padding:10px; font-size:14px;">📅 Jadwalkan</button>
-        </div>
-    </div>
-    <div class="edu-card">
-        <div class="edu-banner edu-banner-yellow">📊</div>
-        <div class="edu-body">
-            <div class="edu-type">E-Book</div>
-            <h3>Manajemen Stok untuk UMKM</h3>
-            <p>Panduan mengelola stok barang dengan Excel. Template siap pakai, gratis untuk semua pengguna.</p>
-            <div class="edu-meta">📄 PDF · 32 halaman</div>
-            <button class="btn-outline" style="margin-top:14px; width:100%; text-align:center; padding:10px; font-size:14px;">⬇ Unduh Gratis</button>
-        </div>
-    </div>
-    <div class="edu-card">
-        <div class="edu-banner edu-banner-green">💬</div>
-        <div class="edu-body">
-            <div class="edu-type">Komunitas</div>
-            <h3>Grup WhatsApp UMKM AsaHub</h3>
-            <p>Bergabung dengan komunitas pebisnis AsaHub. Berbagi pengalaman, tips, dan peluang kerja sama.</p>
-            <div class="edu-meta">👥 850+ anggota aktif</div>
-            <button class="btn-solid" style="margin-top:14px; width:100%; text-align:center; padding:10px; font-size:14px; background:#25d366;">💬 Gabung WhatsApp</button>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeCourseModal()">Tutup</button>
+            <a href="#" class="btn btn-primary" id="modalEnrollButton">Daftar Kursus</a>
         </div>
     </div>
 </div>
 
-<!-- CTA -->
-<div class="cta-banner" style="margin-top:0;">
-    <h2>Mau Jadi Mentor di AsaHub?</h2>
-    <p>Bagikan keahlian dan pengalamanmu kepada ribuan pebisnis muda Indonesia.</p>
-    <a href="daftar.html" class="btn-white big">Daftar sebagai Mentor</a>
-</div>
+<!-- Mobile Bottom Navigation -->
+<nav class="mobile-bottom-nav mobile-only">
+    <a href="index.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon">🏠</span>
+        <span>Home</span>
+    </a>
+    <a href="jasa.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon">👥</span>
+        <span>Jasa</span>
+    </a>
+    <a href="edukasi.html" class="mobile-nav-item active">
+        <span class="mobile-nav-icon">🎓</span>
+        <span>Edukasi</span>
+    </a>
+    <a href="dasboard.html" class="mobile-nav-item" id="mobileNavDashboard" style="display:none;">
+        <span class="mobile-nav-icon">📊</span>
+        <span>Dashboard</span>
+    </a>
+    <a href="tentang.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon">ℹ️</span>
+        <span>Tentang</span>
+    </a>
+</nav>
 
+<!-- Footer -->
 <footer class="footer">
     <div class="footer-top">
         <div class="footer-brand">
@@ -141,31 +297,49 @@
             <div class="footer-col">
                 <h4>AsaHub</h4>
                 <a href="tentang.html">Tentang Kami</a>
-                <a href="komunitas.html">Komunitas</a>
+                <a href="#" title="Segera hadir">Kontak</a>
+                <a href="#" title="Segera hadir">Kebijakan Privasi</a>
             </div>
         </div>
     </div>
     <div class="footer-bottom">
-        <p>© 2026 AsaHub · asahub.site · Dibuat dengan ❤️ oleh Asafati Gea</p>
+        <p> 2026 AsaHub · asahub.site · Dibuat dengan oleh Asafati Gea</p>
     </div>
 </footer>
 
+<!-- Scripts -->
+<script src="js/supabase.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/edukasi-manager.js"></script>
+
 <script>
-// Jika sudah login, tampilkan link Dashboard
-const userEdu = JSON.parse(localStorage.getItem('asahub_current_user') || 'null');
+// Mobile Menu Toggle
 function toggleMenu() {
     document.getElementById('mobileMenu').classList.toggle('open');
 }
-if (userEdu) {
-    document.getElementById('navAuth').innerHTML = '<a href="dasboard.html" class="btn-solid">Dashboard</a>';
-    var mm = document.getElementById('mobileMenu');
-    if (mm) {
-        var links = mm.querySelectorAll('a[href="login.html"], a[href="daftar.html"]');
-        links.forEach(function(a) { a.style.display = 'none'; });
-        var dash = document.getElementById('mobileDashboardEdu');
-        if (dash) dash.style.display = 'block';
-    }
+
+// Check user login status
+var user = JSON.parse(localStorage.getItem('asahub_current_user') || 'null');
+if (user) {
+    // Update desktop nav
+    document.getElementById('navAuth').innerHTML = '<a href="dasboard.html" class="btn btn-primary">Dashboard</a>';
+    
+    // Update mobile menu
+    var mobileAuthLinks = document.querySelectorAll('#mobileMenu a[href="login.html"], #mobileMenu a[href="daftar.html"]');
+    mobileAuthLinks.forEach(function(a) { a.style.display = 'none'; });
+    
+    var mobileDashboard = document.getElementById('mobileDashboard');
+    if (mobileDashboard) mobileDashboard.style.display = 'block';
+    
+    var mobileNavDashboard = document.getElementById('mobileNavDashboard');
+    if (mobileNavDashboard) mobileNavDashboard.style.display = 'flex';
 }
+
+// Initialize courses manager
+document.addEventListener('DOMContentLoaded', function() {
+    // Courses manager will be initialized from edukasi-manager.js
+});
 </script>
+
 </body>
 </html>
