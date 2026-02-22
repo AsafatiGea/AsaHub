@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="css/buyer.css">
   <link rel="stylesheet" href="css/responsive-mobile.css">
   <link rel="stylesheet" href="css/responsive-desktop.css">
+  <link rel="stylesheet" href="css/buyer-dashboard-mobile.css">
 </head>
 <body>
   <div class="dashboard-wrapper">
@@ -61,6 +62,11 @@
       <div class="content-area">
         <!-- ---------- Section: Dashboard ---------- -->
         <section id="section-dashboard" class="dashboard-section active">
+          <div class="welcome-empty">
+            <h3>Selamat Datang di AsaHub! 🎉</h3>
+            <p>Mulai belanja sekarang dan dapatkan pengalaman berbelanja yang menyenangkan</p>
+            <a href="index.html" class="btn">Jelajahi Produk</a>
+          </div>
           <div class="card">
             <h2 class="card-title">Ringkasan Pesanan</h2>
             <div class="stats-grid">
@@ -220,88 +226,65 @@
         </section>
       </div>
     </main>
+
+    <!-- ========== MOBILE NAVIGATION ========== -->
+    <nav class="mobile-nav">
+      <a href="#" data-section="section-dashboard" class="mobile-nav-item active">
+        <span class="mobile-nav-icon">📊</span>
+        <span>Dashboard</span>
+      </a>
+      <a href="#" data-section="section-cart" class="mobile-nav-item">
+        <span class="mobile-nav-icon">🛒</span>
+        <span>Keranjang</span>
+      </a>
+      <a href="#" data-section="section-orders" class="mobile-nav-item">
+        <span class="mobile-nav-icon">📋</span>
+        <span>Pesanan</span>
+      </a>
+      <a href="#" data-section="section-profile" class="mobile-nav-item">
+        <span class="mobile-nav-icon">👤</span>
+        <span>Profil</span>
+      </a>
+    </nav>
   </div>
 
-  <script src="js/supabase.js"></script>
-<script src="js/auth.js"></script>
-<script src="js/buyer.js"></script>
+  <!-- Supabase JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.7"></script>
+  <!-- Local JS -->
+  <script src="js/supabase-config.js"></script>
+  <script src="js/auth-service.js"></script>
+  <script src="js/buyer.js"></script>
   <script>
     (function () {
-      var DUMMY = window.AsaHubDashboard.DUMMY;
-      var formatRupiah = window.AsaHubDashboard.formatRupiah;
-      var orders = DUMMY.buyerOrders;
-      var cart = DUMMY.cart;
-      var profile = DUMMY.buyerProfile;
-      var addresses = DUMMY.addresses;
+      // Initialize with empty data - no dummy data
+      var orders = [];
+      var cart = [];
+      var profile = {};
+      var addresses = [];
 
-      // Stat ringkasan
-      var pending = orders.filter(function (o) { return o.status === 'Pending'; }).length;
-      var shipped = orders.filter(function (o) { return o.status === 'Dikirim'; }).length;
-      var done = orders.filter(function (o) { return o.status === 'Selesai'; }).length;
-      document.getElementById('buyer-stat-pending').textContent = pending;
-      document.getElementById('buyer-stat-shipped').textContent = shipped;
-      document.getElementById('buyer-stat-done').textContent = done;
+      // Initialize stats to 0
+      document.getElementById('buyer-stat-pending').textContent = '0';
+      document.getElementById('buyer-stat-shipped').textContent = '0';
+      document.getElementById('buyer-stat-done').textContent = '0';
 
-      function statusBadge(s) {
-        var c = s === 'Selesai' ? 'badge-success' : (s === 'Dikirim' ? 'badge-info' : 'badge-warning');
-        return '<span class="badge ' + c + '">' + s + '</span>';
-      }
+      // Empty dashboard orders
+      document.getElementById('buyer-dashboard-orders').innerHTML = '<tr><td colspan="5" class="empty-state">Belum ada pesanan</td></tr>';
 
-      function orderRow(o, showDetail) {
-        var btn = showDetail !== false ? '<button type="button" class="btn btn-primary btn-sm">Lihat Detail</button>' : '';
-        return '<tr><td>' + o.id + '</td><td>' + (o.items || '-') + '</td><td>' + formatRupiah(o.total) +
-          '</td><td>' + statusBadge(o.status) + '</td><td>' + o.date + '</td><td>' + btn + '</td></tr>';
-      }
+      // Empty orders tables
+      document.getElementById('buyer-orders-tbody').innerHTML = '<tr><td colspan="6" class="empty-state">Belum ada pesanan</td></tr>';
+      document.getElementById('buyer-history-tbody').innerHTML = '<tr><td colspan="6" class="empty-state">Belum ada riwayat pembelian</td></tr>';
 
-      // Dashboard orders (tanpa kolom items)
-      var dashHtml = orders.map(function (o) {
-        return '<tr><td>' + o.id + '</td><td>' + formatRupiah(o.total) + '</td><td>' + statusBadge(o.status) +
-          '</td><td>' + o.date + '</td><td><button type="button" class="btn btn-primary btn-sm">Lihat Detail</button></td></tr>';
-      }).join('');
-      document.getElementById('buyer-dashboard-orders').innerHTML = dashHtml;
+      // Empty cart
+      document.getElementById('buyer-cart-tbody').innerHTML = '<tr><td colspan="6" class="empty-state">Keranjang kosong</td></tr>';
+      document.getElementById('cart-total').textContent = 'Rp 0';
 
-      // Pesanan Saya & Riwayat
-      var ordersHtml = orders.map(function (o) { return orderRow(o); }).join('');
-      document.getElementById('buyer-orders-tbody').innerHTML = ordersHtml;
-      document.getElementById('buyer-history-tbody').innerHTML = ordersHtml;
+      // Empty profile - will be loaded from auth service
+      document.getElementById('buyer-name').textContent = 'Loading...';
+      document.getElementById('buyer-email').textContent = 'Loading...';
+      document.getElementById('buyer-avatar').textContent = '?';
 
-      // Keranjang
-      var cartTotal = 0;
-      var cartHtml = cart.map(function (c) {
-        var sub = c.price * c.qty;
-        cartTotal += sub;
-        return '<tr><td>' + c.name + '</td><td>' + c.seller + '</td><td>' + formatRupiah(c.price) +
-          '</td><td>' + c.qty + '</td><td>' + formatRupiah(sub) + '</td><td><button type="button" class="btn btn-danger btn-sm">Hapus</button></td></tr>';
-      }).join('');
-      document.getElementById('buyer-cart-tbody').innerHTML = cartHtml || '<tr><td colspan="6" class="empty-state">Keranjang kosong.</td></tr>';
-      document.getElementById('cart-total').textContent = formatRupiah(cartTotal);
-
-      // Profil
-      document.getElementById('buyer-name').textContent = profile.name;
-      document.getElementById('buyer-email').textContent = profile.email;
-      document.getElementById('buyer-avatar').textContent = profile.name.charAt(0);
-      document.getElementById('buyer-name-input').value = profile.name;
-      document.getElementById('buyer-email-input').value = profile.email;
-      document.getElementById('buyer-phone').value = profile.phone;
-      document.getElementById('buyer-address').value = profile.address;
-
-      document.getElementById('form-buyer-profile').addEventListener('submit', function (e) {
-        e.preventDefault();
-        document.getElementById('buyer-name').textContent = document.getElementById('buyer-name-input').value;
-        document.getElementById('buyer-email').textContent = document.getElementById('buyer-email-input').value;
-        document.getElementById('buyer-avatar').textContent = document.getElementById('buyer-name-input').value.charAt(0);
-        alert('Profil disimpan (dummy).');
-      });
-
-      // Daftar alamat
-      var addrHtml = addresses.map(function (a) {
-        var def = a.isDefault ? ' <span class="badge badge-info">Default</span>' : '';
-        return '<div class="card mt-1" style="padding: 1rem;"><strong>' + a.label + '</strong>' + def +
-          '<p class="text-muted mb-0 mt-1">' + a.address + '</p><p class="text-muted">' + a.phone + '</p>' +
-          '<button type="button" class="btn btn-secondary btn-sm">Edit</button>' +
-          '<button type="button" class="btn btn-danger btn-sm">Hapus</button></div>';
-      }).join('');
-      document.getElementById('buyer-address-list').innerHTML = addrHtml;
+      // Empty addresses
+      document.getElementById('buyer-address-list').innerHTML = '<p class="text-muted">Belum ada alamat tersimpan</p>';
 
       // Section switching
       function showSection(id) {
@@ -317,7 +300,59 @@
           e.preventDefault();
           var section = this.getAttribute('data-section');
           showSection(section);
+          updateMobileNav(section);
         });
+      });
+
+      // Mobile navigation
+      document.querySelectorAll('.mobile-nav-item').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          var section = this.getAttribute('data-section');
+          showSection(section);
+          updateMobileNav(section);
+        });
+      });
+
+      function updateMobileNav(section) {
+        document.querySelectorAll('.mobile-nav-item').forEach(function(item) {
+          item.classList.remove('active');
+        });
+        document.querySelector('.mobile-nav-item[data-section="' + section + '"]').classList.add('active');
+      }
+
+      // Mobile sidebar toggle
+      var sidebarToggle = document.querySelector('.sidebar-toggle');
+      var sidebar = document.querySelector('.sidebar');
+      var sidebarOverlay = document.querySelector('.sidebar-overlay');
+
+      if (sidebarToggle) {
+        sidebarToggle.addEventListener('click', function() {
+          sidebar.classList.add('active');
+          sidebarOverlay.classList.add('active');
+        });
+      }
+
+      if (sidebarOverlay) {
+        sidebarOverlay.addEventListener('click', function() {
+          sidebar.classList.remove('active');
+          sidebarOverlay.classList.remove('active');
+        });
+      }
+
+      // Sidebar close button
+      var sidebarClose = document.querySelector('.sidebar-close');
+      if (sidebarClose) {
+        sidebarClose.addEventListener('click', function() {
+          sidebar.classList.remove('active');
+          sidebarOverlay.classList.remove('active');
+        });
+      }
+
+      // Profile form handler
+      document.getElementById('form-buyer-profile').addEventListener('submit', function (e) {
+        e.preventDefault();
+        alert('Fitur simpan profil akan tersedia setelah terhubung dengan database');
       });
 
       // Initialize buyer dashboard
