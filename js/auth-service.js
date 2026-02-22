@@ -48,17 +48,19 @@ class AuthService {
 
     async login(email, password) {
         try {
-            // Use Supabase Auth first
+            console.log('Login attempt for:', email);
+            
+            // Try Supabase Auth first
             const { data: authData, error: authError } = await this.supabase.auth.signInWithPassword({
                 email: email,
                 password: password
             });
 
             if (authError) {
-                // If Supabase Auth fails, try direct database check for demo users
                 console.log('Supabase auth failed, checking database users:', authError.message);
                 
                 try {
+                    // Check database users
                     const { data: user, error: userError } = await this.supabase
                         .from('users')
                         .select('*')
@@ -66,12 +68,14 @@ class AuthService {
                         .single();
 
                     if (userError || !user) {
-                        throw new Error('User not found');
+                        console.log('Database user not found, checking localStorage');
+                        return this.handleLocalStorageLogin(email, password);
                     }
 
                     return this.handlePasswordCheck(user, password);
                 } catch (dbError) {
-                    throw new Error('Invalid credentials');
+                    console.log('Database failed, checking localStorage:', dbError.message);
+                    return this.handleLocalStorageLogin(email, password);
                 }
             }
 
@@ -105,6 +109,63 @@ class AuthService {
             console.error('Login error:', error);
             return { success: false, error: error.message };
         }
+    }
+
+    handleLocalStorageLogin(email, password) {
+        console.log('Checking localStorage for login');
+        
+        // Check hardcoded demo users first
+        const demoUsers = [
+            { 
+                id: 'admin-001', 
+                email: 'admin@asahub.site', 
+                password: 'admin123', 
+                role: 'admin', 
+                full_name: 'Admin AsaHub', 
+                phone: '08123456789'
+            },
+            { 
+                id: 'seller-001', 
+                email: 'seller@asahub.site', 
+                password: 'seller123', 
+                role: 'penjual', 
+                full_name: 'Seller Demo', 
+                phone: '08123456788'
+            },
+            { 
+                id: 'buyer-001', 
+                email: 'buyer@asahub.site', 
+                password: 'buyer123', 
+                role: 'pembeli', 
+                full_name: 'Buyer Demo', 
+                phone: '08123456787'
+            }
+        ];
+        
+        const demoUser = demoUsers.find(u => u.email === email && u.password === password);
+        if (demoUser) {
+            this.currentUser = { id: demoUser.id, email: demoUser.email };
+            this.currentUser.profile = demoUser;
+            localStorage.setItem('userProfile', JSON.stringify(demoUser));
+            
+            this.redirectBasedOnRole(demoUser.role);
+            return { success: true, user: this.currentUser };
+        }
+        
+        // Check localStorage registered users
+        const localUsers = JSON.parse(localStorage.getItem('asahub_users') || '[]');
+        const localUser = localUsers.find(u => u.email === email && u.password_hash === password + '_hash');
+        
+        if (localUser) {
+            this.currentUser = { id: localUser.id, email: localUser.email };
+            this.currentUser.profile = localUser;
+            localStorage.setItem('userProfile', JSON.stringify(localUser));
+            
+            this.redirectBasedOnRole(localUser.role);
+            return { success: true, user: this.currentUser };
+        }
+        
+        return { success: false, error: 'Invalid credentials' };
     }
 
     handlePasswordCheck(user, password) {
@@ -160,47 +221,88 @@ class AuthService {
         try {
             console.log('Starting registration for:', userData.email);
             
-            // Check if email already exists
-            const { data: existingUser, error: checkError } = await this.supabase
-                .from('users')
-                .select('email')
-                .eq('email', userData.email)
-                .single();
+            // Try Supabase first
+            try {
+                // Check if email already exists
+                const { data: existingUser, error: checkError } = await this.supabase
+                    .from('users')
+                    .select('email')
+                    .eq('email', userData.email)
+                    .single();
 
-            console.log('Email check result:', { existingUser, checkError });
+                console.log('Email check result:', { existingUser, checkError });
 
-            if (existingUser) {
-                return { success: false, error: 'Email sudah terdaftar.' };
+                if (existingUser) {
+                    return { success: false, error: 'Email sudah terdaftar.' };
+                }
+
+                // Insert new user into Supabase database
+                console.log('Inserting new user...');
+                const { data, error } = await this.supabase
+                    .from('users')
+                    .insert([{
+                        email: userData.email,
+                        password_hash: userData.password + '_hash',
+                        full_name: userData.fullName,
+                        role: userData.role || 'pembeli',
+                        phone: userData.phone,
+                        is_active: true,
+                        created_at: new Date().toISOString()
+                    }])
+                    .select()
+                    .single();
+
+                console.log('Insert result:', { data, error });
+
+                if (error) {
+                    throw error;
+                }
+
+                console.log('Registration successful:', data);
+                return { success: true, user: data };
+                
+            } catch (dbError) {
+                console.log('Database failed, using localStorage fallback:', dbError.message);
+                return this.registerToLocalStorage(userData);
             }
-
-            // Insert new user into Supabase database
-            console.log('Inserting new user...');
-            const { data, error } = await this.supabase
-                .from('users')
-                .insert([{
-                    email: userData.email,
-                    password_hash: userData.password + '_hash', // Simple hash for demo
-                    full_name: userData.fullName,
-                    role: userData.role || 'pembeli',
-                    phone: userData.phone,
-                    is_active: true,
-                    created_at: new Date().toISOString()
-                }])
-                .select()
-                .single();
-
-            console.log('Insert result:', { data, error });
-
-            if (error) {
-                console.error('Database insert error:', error);
-                throw error;
-            }
-
-            console.log('Registration successful:', data);
-            return { success: true, user: data };
+            
         } catch (error) {
             console.error('Registration error:', error);
             return { success: false, error: error.message || 'Registrasi gagal. Silakan coba lagi.' };
+        }
+    }
+
+    registerToLocalStorage(userData) {
+        try {
+            console.log('Using localStorage registration for:', userData.email);
+            
+            const users = JSON.parse(localStorage.getItem('asahub_users') || '[]');
+            
+            // Check if email already exists
+            if (users.find(u => u.email === userData.email)) {
+                return { success: false, error: 'Email sudah terdaftar.' };
+            }
+
+            const newUser = {
+                id: 'local_' + Date.now(),
+                email: userData.email,
+                password_hash: userData.password + '_hash',
+                full_name: userData.fullName,
+                role: userData.role || 'pembeli',
+                phone: userData.phone,
+                is_active: true,
+                created_at: new Date().toISOString(),
+                source: 'localStorage'
+            };
+            
+            users.push(newUser);
+            localStorage.setItem('asahub_users', JSON.stringify(users));
+
+            console.log('LocalStorage registration successful:', newUser);
+            return { success: true, user: newUser };
+        } catch (error) {
+            console.error('LocalStorage registration error:', error);
+            return { success: false, error: 'Registrasi gagal. Silakan coba lagi.' };
         }
     }
 
