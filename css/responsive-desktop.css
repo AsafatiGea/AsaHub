@@ -94,8 +94,38 @@
     display: none !important;
   }
   
-  .desktop-only {
-    display: block !important;
+  /* Desktop Auth Buttons */
+  .nav-auth {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+  
+  .nav-exit-btn {
+    background: rgba(255, 215, 0, 0.1);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    color: var(--primary);
+    padding: var(--spacing-sm) var(--spacing);
+    border-radius: var(--radius);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+  
+  .nav-exit-btn:hover {
+    background: var(--primary);
+    color: var(--light-white);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .nav-exit-btn i {
+    font-size: 0.875rem;
   }
   
   /* Desktop Marketplace Layout */

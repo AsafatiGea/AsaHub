@@ -38,6 +38,10 @@
         <div class="nav-auth desktop-only" id="navAuth">
             <a href="login.html" class="btn btn-outline">Masuk</a>
             <a href="daftar.html" class="btn btn-primary">Daftar</a>
+            <button class="nav-exit-btn" id="desktopExitBtn" title="Keluar dari Situs">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Keluar</span>
+            </button>
         </div>
         
         <!-- Mobile Menu Toggle -->
@@ -595,6 +599,30 @@ function showCart() {
 document.addEventListener('authStateChanged', function() {
     updateNavigationUI();
 });
+
+// Desktop Exit Button Logic
+const desktopExitBtn = document.getElementById('desktopExitBtn');
+if (desktopExitBtn) {
+    desktopExitBtn.addEventListener('click', function() {
+        if (confirm('Apakah Anda yakin ingin keluar dari situs AsaHub?')) {
+            // Try to close window directly first
+            if (window.history.length > 1) {
+                // If there's history, go back to previous page
+                window.history.back();
+            } else {
+                // If no history, try to close the window
+                window.close();
+                
+                // Only redirect to about:blank if window.close() fails and no history
+                setTimeout(() => {
+                    if (!window.closed) {
+                        window.location.href = 'about:blank';
+                    }
+                }, 100);
+            }
+        }
+    });
+}
 
 // Override marketplace manager's updateAuthUI to use our function
 if (window.marketplaceManager) {
