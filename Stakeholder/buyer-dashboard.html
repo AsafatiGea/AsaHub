@@ -174,7 +174,7 @@
               <div class="profile-avatar" id="buyer-avatar">B</div>
               <div class="profile-info">
                 <h2 id="buyer-name">Nama Buyer</h2>
-                <p id="buyer-email" class="text-muted"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9cf9f1fdf5f0dcfee9e5f9eeb2fff3f1">[email&#160;protected]</a></p>
+                <p id="buyer-email" class="text-muted">buyer@example.com</p>
               </div>
             </div>
             <form id="form-buyer-profile" style="max-width: 560px;">
@@ -293,4 +293,33 @@
         var def = a.isDefault ? ' <span class="badge badge-info">Default</span>' : '';
         return '<div class="card mt-1" style="padding: 1rem;"><strong>' + a.label + '</strong>' + def +
           '<p class="text-muted mb-0 mt-1">' + a.address + '</p><p class="text-muted">' + a.phone + '</p>' +
-          '<button type="button" class="btn btn-secondary btn-sm">E
+          '<button type="button" class="btn btn-secondary btn-sm">Edit</button>' +
+          '<button type="button" class="btn btn-danger btn-sm">Hapus</button></div>';
+      }).join('');
+      document.getElementById('buyer-address-list').innerHTML = addrHtml;
+
+      // Section switching
+      function showSection(id) {
+        document.querySelectorAll('.dashboard-section').forEach(function(s) {
+          s.classList.remove('active');
+        });
+        document.getElementById(id).classList.add('active');
+      }
+
+      // Navigation
+      document.querySelectorAll('.sidebar-nav a').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          var section = this.getAttribute('data-section');
+          showSection(section);
+        });
+      });
+
+      // Initialize buyer dashboard
+      if (window.buyerManager) {
+        window.buyerManager.init();
+      }
+    })();
+  </script>
+</body>
+</html>
