@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seller Dashboard — AsaHub</title>
+
+<link rel="icon" type="image/png" href="img/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+
+<body style="margin:0;font-family:'DM Sans',sans-serif;background:#000;color:#fff;overflow-x:hidden;">
+
+<div style="display:flex;min-height:100vh;">
+
+<!-- ===== SIDEBAR ===== -->
+<aside id="sidebar" style="
+width:260px;
+background:#FFC107;
+padding:20px;
+position:fixed;
+height:100vh;
+overflow-y:auto;
+z-index:1000;
+transition:.3s;
+transform:translateX(0);
+">
+
+<div style="display:flex;align-items:center;margin-bottom:30px;padding-bottom:20px;border-bottom:2px solid rgba(255,255,255,.2);">
+
+<a href="index.html" style="
+font-family:Syne;
+font-size:1.5rem;
+font-weight:800;
+color:#fff;
+text-decoration:none;
+display:flex;
+align-items:center;
+gap:10px;
+">
+
+<span>🛒</span>
+<span>AsaHub</span>
+
+</a>
+
+<button id="sidebarClose" style="
+margin-left:auto;
+background:none;
+border:none;
+color:#fff;
+font-size:24px;
+cursor:pointer;
+">×</button>
+
+</div>
+
+<!-- NAV -->
+<nav>
+<div style="display:flex;flex-direction:column;gap:6px;">
+
+<a href="#" data-section="dashboard" class="sidebar-link" style="padding:12px 16px;border-radius:8px;color:#fff;text-decoration:none;display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.2);">
+📊 Dashboard
+</a>
+
+<a href="#" data-section="products" class="sidebar-link" style="padding:12px 16px;border-radius:8px;color:#fff;text-decoration:none;display:flex;gap:12px;align-items:center;">
+📦 Produk Saya
+</a>
+
+<a href="#" data-section="add-product" class="sidebar-link" style="padding:12px 16px;border-radius:8px;color:#fff;text-decoration:none;display:flex;gap:12px;align-items:center;">
+➕ Tambah Produk
+</a>
+
+<a href="#" data-section="orders" class="sidebar-link" style="padding:12px 16px;border-radius:8px;color:#fff;text-decoration:none;display:flex;gap:12px;align-items:center;">
+📋 Pesanan
+</a>
+
+</div>
+</nav>
+
+</aside>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main style="flex:1;margin-left:260px;min-height:100vh;background:#000;">
+
+<!-- TOPBAR -->
+<header style="
+background:#FFC107;
+padding:15px 30px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+">
+
+<div style="display:flex;align-items:center;gap:20px;">
+
+<button id="sidebarToggle" style="
+background:none;
+border:none;
+color:#fff;
+font-size:24px;
+cursor:pointer;
+">☰</button>
+
+<h1 style="
+font-family:Syne;
+font-size:1.5rem;
+margin:0;
+">Dashboard</h1>
+
+</div>
+
+<div style="
+display:flex;
+align-items:center;
+gap:10px;
+background:rgba(255,255,255,.2);
+padding:8px 16px;
+border-radius:25px;
+">
+
+<div style="
+width:35px;
+height:35px;
+border-radius:50%;
+background:#fff;
+color:#FFC107;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:bold;
+">S</div>
+
+<span>Seller</span>
+
+</div>
+
+</header>
+
+<!-- CONTENT -->
+<div style="padding:30px;">
+
+<div id="dashboard">
+
+<div style="
+text-align:center;
+padding:40px;
+background:rgba(255,255,255,.05);
+border-radius:12px;
+margin-bottom:30px;
+">
+
+<h3>Selamat Datang Seller! 🎉</h3>
+<p>Mulai jual produk Anda</p>
+
+</div>
+
+</div>
+
+</div>
+
+</main>
+
+</div>
+
+<!-- MOBILE NAV -->
+<nav id="mobileNav" style="
+display:none;
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+height:60px;
+background:#FFC107;
+justify-content:space-around;
+align-items:center;
+">
+
+<a href="#" style="color:#000;font-size:20px;">📊</a>
+<a href="#" style="color:#000;font-size:20px;">📦</a>
+<a href="#" style="color:#000;font-size:20px;">➕</a>
+<a href="#" style="color:#000;font-size:20px;">📋</a>
+
+</nav>
+
+<script>
+if(window.innerWidth<=768){
+document.getElementById('mobileNav').style.display='flex';
+}
+
+const sidebar=document.getElementById('sidebar');
+
+document.getElementById('sidebarToggle')?.addEventListener('click',()=>{
+sidebar.style.transform='translateX(0)';
+});
+
+document.getElementById('sidebarClose')?.addEventListener('click',()=>{
+if(window.innerWidth<=768){
+sidebar.style.transform='translateX(-100%)';
+}
+});
+</script>
+
+</body>
+</html>

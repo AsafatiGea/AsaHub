@@ -1,0 +1,113 @@
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">Asa<span>Hub</span></a>
+        
+        <div class="nav-links">
+            <a href="index.html">Marketplace</a>
+            <a href="jasa.html">Jasa</a>
+            <a href="edukasi.html">Edukasi</a>
+            <a href="komunitas.html">Komunitas</a>
+            <a href="tentang.html">Tentang</a>
+        </div>
+        
+        <!-- Desktop Auth Buttons -->
+        <div class="nav-auth desktop-only" id="navAuth">
+            <a href="login.html" class="btn btn-outline">Masuk</a>
+            <a href="daftar.html" class="btn btn-primary">Daftar</a>
+            
+            <!-- Desktop Dropdown Menu -->
+            <div class="desktop-dropdown">
+                <button class="desktop-dropdown-toggle" id="desktopDropdownToggle">
+                    <i class="fas fa-th"></i>
+                    <span>Menu</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="desktop-dropdown-menu" id="desktopDropdownMenu">
+                    <a href="login.html?role=user" class="desktop-dropdown-item">
+                        <i class="fas fa-user"></i>
+                        <span>Login sebagai User</span>
+                    </a>
+                    <a href="login.html?role=seller" class="desktop-dropdown-item">
+                        <i class="fas fa-store"></i>
+                        <span>Login sebagai Seller</span>
+                    </a>
+                    <a href="login.html?role=provider" class="desktop-dropdown-item">
+                        <i class="fas fa-tools"></i>
+                        <span>Login sebagai Penyedia Jasa</span>
+                    </a>
+                    <a href="login.html?role=mentor" class="desktop-dropdown-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Login sebagai Mentor Edukasi</span>
+                    </a>
+                    <div class="desktop-dropdown-divider"></div>
+                    <button class="desktop-dropdown-item" id="desktopDropdownExit">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Keluar dari Website</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle mobile-only" id="mobileMenuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+</nav>
+
+<!-- Mobile Navigation Menu -->
+<div class="mobile-nav-menu" id="mobileNavMenu">
+    <div class="mobile-nav-header">
+        <div class="mobile-nav-logo">Asa<span>Hub</span></div>
+        <div class="mobile-nav-header-buttons">
+            <button class="mobile-nav-exit" id="mobileNavExit" title="Keluar dari Situs">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+            <button class="mobile-nav-close" id="mobileNavClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Menu Content -->
+    <div class="mobile-nav-content" id="mobileNavContent">
+        <!-- Default menu for non-logged users -->
+        <div class="mobile-nav-section" id="guestMenu">
+            <h4 class="mobile-nav-title">MENU UTAMA</h4>
+            <a href="index.html" class="mobile-nav-item">
+                <i class="fas fa-home"></i>
+                <span>Marketplace</span>
+            </a>
+            <a href="jasa.html" class="mobile-nav-item">
+                <i class="fas fa-tools"></i>
+                <span>Jasa</span>
+            </a>
+            <a href="edukasi.html" class="mobile-nav-item">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Edukasi</span>
+            </a>
+            <a href="komunitas.html" class="mobile-nav-item">
+                <i class="fas fa-users"></i>
+                <span>Komunitas</span>
+            </a>
+            <a href="tentang.html" class="mobile-nav-item">
+                <i class="fas fa-info-circle"></i>
+                <span>Tentang</span>
+            </a>
+            
+            <h4 class="mobile-nav-title">AUTENTIKASI</h4>
+            <a href="login.html" class="mobile-nav-item">
+                <i class="fas fa-sign-in-alt"></i>
+                <span>Masuk</span>
+            </a>
+            <a href="daftar.html" class="mobile-nav-item">
+                <i class="fas fa-user-plus"></i>
+                <span>Daftar</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Mobile Navigation Overlay -->
+<div class="mobile-nav-overlay" id="mobileNavOverlay"></div>

@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edukasi - AsaHub</title>
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS Modular -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/edukasi.css">
+    <link rel="stylesheet" href="css/responsive-mobile.css">
+    <link rel="stylesheet" href="css/responsive-desktop.css">
+    <link rel="stylesheet" href="css/mobile-navigation.css">
+    <link rel="stylesheet" href="css/enhanced-buttons.css">
+    <link rel="stylesheet" href="css/navigation.css">
+    <style>
+        /* User Settings Icon Styles */
+        .user-settings-icon {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 193, 7, 0.1);
+            border: 2px solid rgba(255, 193, 7, 0.3);
+            border-radius: 50%;
+            color: #FFC107;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-left: 10px;
+        }
+
+        .user-settings-icon:hover {
+            background: #FFC107;
+            color: #ffffff;
+            transform: rotate(90deg);
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+        }
+
+        .user-settings-icon i {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">Asa<span>Hub</span></a>
+        
+        <div class="nav-links">
+            <a href="index.html">Marketplace</a>
+            <a href="jasa.html">Jasa</a>
+            <a href="edukasi.html" class="active">Edukasi</a>
+            <a href="komunitas.html">Komunitas</a>
+            <a href="tentang.html">Tentang</a>
+        </div>
+        
+        <!-- Desktop Auth Buttons -->
+        <div class="nav-auth desktop-only" id="navAuth">
+            <a href="login.html" class="btn btn-outline">Masuk</a>
+            <a href="daftar.html" class="btn btn-primary">Daftar</a>
+            
+            <!-- User Settings Icon (shown when logged in) -->
+            <a href="profil-user.html" class="user-settings-icon" id="userSettingsIcon" style="display: none;">
+                <i class="fas fa-cog"></i>
+            </a>
+            
+            <!-- Desktop Dropdown Menu -->
+            <div class="desktop-dropdown">
+                <button class="desktop-dropdown-toggle" id="desktopDropdownToggle">
+                    <i class="fas fa-th"></i>
+                    <span>Menu</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="desktop-dropdown-menu" id="desktopDropdownMenu">
+                    <a href="login.html?role=user" class="desktop-dropdown-item">
+                        <i class="fas fa-user"></i>
+                        <span>Login sebagai User</span>
+                    </a>
+                    <a href="login.html?role=seller" class="desktop-dropdown-item">
+                        <i class="fas fa-store"></i>
+                        <span>Login sebagai Seller</span>
+                    </a>
+                    <a href="login.html?role=provider" class="desktop-dropdown-item">
+                        <i class="fas fa-tools"></i>
+                        <span>Login sebagai Penyedia Jasa</span>
+                    </a>
+                    <a href="login.html?role=mentor" class="desktop-dropdown-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Login sebagai Mentor Edukasi</span>
+                    </a>
+                    <div class="desktop-dropdown-divider"></div>
+                    <button class="desktop-dropdown-item" id="desktopDropdownExit">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Keluar dari Website</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" id="mobileMenuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+</nav>
+
+<!-- Mobile Navigation Menu -->
+<div class="mobile-nav-menu" id="mobileNavMenu">
+    <div class="mobile-nav-header">
+        <div class="mobile-nav-logo">Asa<span>Hub</span></div>
+        <div class="mobile-nav-header-buttons">
+            <button class="mobile-nav-exit" id="mobileNavExit" title="Keluar dari Situs">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+            <button class="mobile-nav-close" id="mobileNavClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Menu Content - Will be dynamically updated -->
+    <div class="mobile-nav-content" id="mobileNavContent">
+        <!-- Default menu for non-logged users -->
+        <div class="mobile-nav-section" id="guestMenu">
+            <h4 class="mobile-nav-title">Selamat Datang!</h4>
+            <a href="login.html?role=seller" class="mobile-nav-item">
+                <i class="fas fa-store"></i>
+                <span>Masuk sebagai Seller</span>
+            </a>
+            <a href="login.html?role=buyer" class="mobile-nav-item">
+                <i class="fas fa-user"></i>
+                <span>Masuk sebagai User/Pembeli</span>
+            </a>
+        </div>
+        
+        <!-- Menu for logged in users - hidden by default -->
+        <div class="mobile-nav-section" id="userMenu" style="display: none;">
+            <div class="mobile-user-info">
+                <div class="mobile-user-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="mobile-user-details">
+                    <div class="mobile-user-name" id="mobileUserName">User Name</div>
+                    <div class="mobile-user-role" id="mobileUserRole">Role</div>
+                </div>
+            </div>
+            
+            <!-- Buyer Menu -->
+            <div class="mobile-nav-subsection" id="buyerMenuItems" style="display: none;">
+                <a href="buyer-dashboard.html" class="mobile-nav-item">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard User</span>
+                </a>
+                <a href="buyer-dashboard.html#section-profile" class="mobile-nav-item">
+                    <i class="fas fa-user"></i>
+                    <span>Profil</span>
+                </a>
+            </div>
+            
+            <!-- Seller Menu -->
+            <div class="mobile-nav-subsection" id="sellerMenuItems" style="display: none;">
+                <a href="seller-dashboard.html" class="mobile-nav-item">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard Seller</span>
+                </a>
+                <a href="seller-dashboard.html#section-profile" class="mobile-nav-item">
+                    <i class="fas fa-store"></i>
+                    <span>Profil Toko</span>
+                </a>
+            </div>
+            
+            <!-- Common Menu Items -->
+            <div class="mobile-nav-subsection">
+                <a href="index.html" class="mobile-nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Marketplace</span>
+                </a>
+                <a href="#" class="mobile-nav-item" onclick="authService.logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Mobile Navigation Overlay -->
+<div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+
+<!-- Hero Section -->
+<section class="edukasi-hero">
+    <div class="edukasi-hero-content">
+        <h1 class="edukasi-title">Edukasi & Mentoring</h1>
+        <p class="edukasi-subtitle">Podcast, pelatihan bisnis, dan mentoring dari pelaku usaha nyata</p>
+        <a href="daftar.html" class="edukasi-cta">Daftar Sebagai Mentor</a>
+    </div>
+</section>
+
+<!-- Course Categories -->
+<section class="course-categories">
+    <div class="course-categories-content">
+        <div class="course-categories-grid">
+            <div class="course-category-card active" onclick="filterByCategory('all')">
+                <div class="course-category-icon">📚</div>
+                <div class="course-category-name">Semua Kursus</div>
+                <div class="course-category-count" id="countAll">0</div>
+            </div>
+            <div class="course-category-card" onclick="filterByCategory('bisnis')">
+                <div class="course-category-icon">💼</div>
+                <div class="course-category-name">Bisnis</div>
+                <div class="course-category-count" id="countBisnis">0</div>
+            </div>
+            <div class="course-category-card" onclick="filterByCategory('teknologi')">
+                <div class="course-category-icon">💻</div>
+                <div class="course-category-name">Teknologi</div>
+                <div class="course-category-count" id="countTeknologi">0</div>
+            </div>
+            <div class="course-category-card" onclick="filterByCategory('marketing')">
+                <div class="course-category-icon">📈</div>
+                <div class="course-category-name">Marketing</div>
+                <div class="course-category-count" id="countMarketing">0</div>
+            </div>
+            <div class="course-category-card" onclick="filterByCategory('desain')">
+                <div class="course-category-icon">🎨</div>
+                <div class="course-category-name">Desain</div>
+                <div class="course-category-count" id="countDesain">0</div>
+            </div>
+            <div class="course-category-card" onclick="filterByCategory('lainnya')">
+                <div class="course-category-icon">📦</div>
+                <div class="course-category-name">Lainnya</div>
+                <div class="course-category-count" id="countLainnya">0</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Courses Layout -->
+<div class="courses-layout">
+    <!-- Courses Sidebar (Desktop) -->
+    <aside class="courses-sidebar desktop-only">
+        <div class="filter-section">
+            <div class="filter-header">
+                <h3 class="filter-title">Filter Harga</h3>
+                <button class="filter-clear" onclick="clearFilters()">Reset</button>
+            </div>
+            <div class="price-range">
+                <div class="price-inputs">
+                    <input type="number" class="price-input" placeholder="Min" id="minPrice" onchange="filterCourses()">
+                    <span class="price-separator">-</span>
+                    <input type="number" class="price-input" placeholder="Max" id="maxPrice" onchange="filterCourses()">
+                </div>
+            </div>
+        </div>
+
+        <div class="filter-section">
+            <div class="filter-header">
+                <h3 class="filter-title">Level</h3>
+            </div>
+            <div class="filter-options">
+                <div class="filter-option">
+                    <input type="checkbox" id="level-pemula" value="pemula" onchange="filterCourses()">
+                    <label for="level-pemula">Pemula</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="level-menengah" value="menengah" onchange="filterCourses()">
+                    <label for="level-menengah">Menengah</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="level-lanjutan" value="lanjutan" onchange="filterCourses()">
+                    <label for="level-lanjutan">Lanjutan</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="filter-section">
+            <div class="filter-header">
+                <h3 class="filter-title">Tipe</h3>
+            </div>
+            <div class="filter-options">
+                <div class="filter-option">
+                    <input type="checkbox" id="type-video" value="video" onchange="filterCourses()">
+                    <label for="type-video">Video</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="type-workshop" value="workshop" onchange="filterCourses()">
+                    <label for="type-workshop">Workshop</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="type-mentoring" value="mentoring" onchange="filterCourses()">
+                    <label for="type-mentoring">Mentoring</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="type-ebook" value="ebook" onchange="filterCourses()">
+                    <label for="type-ebook">E-Book</label>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Courses Main -->
+    <main class="courses-main">
+        <!-- Courses Header -->
+        <div class="courses-header">
+            <h2 class="courses-title">Kursus Tersedia</h2>
+            <div class="courses-controls">
+                <div class="courses-search">
+                    <div class="search-bar">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" class="search-input" placeholder="Cari kursus..." id="searchInput" onkeyup="filterCourses()">
+                    </div>
+                </div>
+                <select class="form-select courses-sort" id="sortSelect" onchange="sortCourses()">
+                    <option value="newest">Terbaru</option>
+                    <option value="price-low">Harga Terendah</option>
+                    <option value="price-high">Harga Tertinggi</option>
+                    <option value="popular">Terpopuler</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Courses Grid -->
+        <div class="courses-grid" id="coursesGrid">
+            <!-- Courses will be loaded dynamically from Supabase -->
+        </div>
+
+        <!-- Loading State -->
+        <div class="courses-loading" id="loadingState" style="display: none;">
+            <div class="course-skeleton">
+                <div class="course-image"></div>
+                <div class="course-body">
+                    <div class="course-title">Loading...</div>
+                    <div class="course-instructor">
+                        <div class="instructor-avatar">L</div>
+                        <div class="instructor-name">Loading...</div>
+                    </div>
+                    <div class="course-description">Loading...</div>
+                </div>
+                <div class="course-footer">
+                    <div class="course-price">Loading...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- No Courses -->
+        <div class="no-courses" id="noCourses" style="display: none;">
+            <div class="no-courses-icon">📚</div>
+            <h3 class="no-courses-title">Belum Ada Kursus Tersedia</h3>
+            <p class="no-courses-text">Admin atau mentor belum menambahkan kursus apa pun. Silakan kembali lagi nanti atau daftar sebagai mentor.</p>
+            <a href="daftar.html" class="no-courses-action">Daftar Sebagai Mentor</a>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Courses Section -->
+<section class="featured-courses">
+    <div class="featured-courses-content">
+        <div class="featured-courses-header">
+            <h2 class="featured-courses-title">Kursus Unggulan</h2>
+            <p class="featured-courses-subtitle">Kursus terpopuler yang dipilih oleh mentor profesional</p>
+        </div>
+        <div class="featured-courses-grid" id="featuredCoursesGrid">
+            <!-- Featured courses will be loaded dynamically -->
+        </div>
+    </div>
+</section>
+
+<!-- Section Divider -->
+<div class="content-separator"></div>
+
+<!-- Learning Path Section -->
+<section class="learning-path">
+    <div class="learning-path-content">
+        <h2 class="learning-path-title">Path Pembelajaran</h2>
+        <p class="learning-path-subtitle">Pilih path yang sesuai dengan tujuan karirmu</p>
+        <div class="learning-path-grid" id="learningPathGrid">
+            <!-- Learning paths will be loaded dynamically -->
+        </div>
+    </div>
+</section>
+
+<!-- Course Detail Modal -->
+<div class="modal" id="courseModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modalTitle">Detail Kursus</h3>
+            <button class="modal-close" onclick="closeCourseModal()">&times;</button>
+        </div>
+        <div class="modal-body" id="modalBody">
+            <!-- Course details will be loaded here -->
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeCourseModal()">Tutup</button>
+            <a href="#" class="btn btn-primary" id="modalEnrollButton">Daftar Kursus</a>
+        </div>
+    </div>
+</div>
+
+<!-- Mobile Bottom Navigation -->
+<nav class="mobile-bottom-nav mobile-only">
+    <a href="index.html" class="mobile-nav-item">
+        <i class="fas fa-home"></i>
+    </a>
+    <a href="jasa.html" class="mobile-nav-item">
+        <i class="fas fa-briefcase"></i>
+    </a>
+    <a href="edukasi.html" class="mobile-nav-item active">
+        <i class="fas fa-graduation-cap"></i>
+    </a>
+    <a href="komunitas.html" class="mobile-nav-item">
+        <i class="fas fa-users"></i>
+    </a>
+    <a href="tentang.html" class="mobile-nav-item">
+        <i class="fas fa-info-circle"></i>
+    </a>
+    <a href="login.html" class="mobile-nav-item">
+        <i class="fas fa-user"></i>
+    </a>
+</nav>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-top">
+        <div class="footer-brand">
+            <div class="nav-logo" style="font-size:24px;">Asa<span>Hub</span></div>
+            <p>Pusat Harapan — Menyatukan individu dan brand dalam ekosistem bisnis yang stabil dan berkembang.</p>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col">
+                <h4>Platform</h4>
+                <a href="index.html">Marketplace</a>
+                <a href="jasa.html">Jasa & Kerja</a>
+                <a href="edukasi.html">Edukasi</a>
+            </div>
+            <div class="footer-col">
+                <h4>Akun</h4>
+                <a href="daftar.html">Daftar Penjual</a>
+                <a href="login.html">Masuk</a>
+                <a href="dasboard.html">Dashboard</a>
+            </div>
+            <div class="footer-col">
+                <h4>AsaHub</h4>
+                <a href="tentang.html">Tentang Kami</a>
+                <a href="#" title="Segera hadir">Kontak</a>
+                <a href="#" title="Segera hadir">Kebijakan Privasi</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p> 2026 AsaHub · asahub.site · Dibuat dengan oleh Asafati Gea</p>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.7"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/auth-service.js"></script>
+<script src="js/edukasi-manager.js"></script>
+<script src="js/navigation.js"></script>
+
+<script>
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Edukasi page loaded...');
+    
+    // Initialize auth
+    if (window.authService) {
+        window.authService.init();
+        // Update navigation based on auth status
+        setTimeout(updateNavigationUI, 500);
+    }
+    
+    // Setup mobile navigation
+    setupMobileNavigation();
+    
+    // Initialize edukasi manager
+    if (window.edukasiManager) {
+        window.edukasiManager.init();
+    }
+});
+
+// Check login state and update UI
+function checkLoginState() {
+    const isLoggedIn = localStorage.getItem('userLoggedIn') === 'true';
+    const userType = localStorage.getItem('userType');
+    
+    if (isLoggedIn && userType === 'user') {
+        // Show user settings icon
+        const userSettingsIcon = document.getElementById('userSettingsIcon');
+        if (userSettingsIcon) {
+            userSettingsIcon.style.display = 'inline-flex';
+        }
+        
+        // Hide login/daftar buttons
+        const navAuth = document.getElementById('navAuth');
+        if (navAuth) {
+            const loginBtn = navAuth.querySelector('.btn-outline');
+            const daftarBtn = navAuth.querySelector('.btn-primary');
+            if (loginBtn) loginBtn.style.display = 'none';
+            if (daftarBtn) daftarBtn.style.display = 'none';
+        }
+    }
+}
+
+// Initialize login state check
+document.addEventListener('DOMContentLoaded', checkLoginState);
+
+// Mobile Navigation Setup
+function setupMobileNavigation() {
+    const menuToggle = document.getElementById('mobileMenuToggle');
+    const menuClose = document.getElementById('mobileNavClose');
+    const menuExit = document.getElementById('mobileNavExit');
+    const mobileMenu = document.getElementById('mobileNavMenu');
+    const overlay = document.getElementById('mobileNavOverlay');
+    
+    // Open menu
+    if (menuToggle) {
+        menuToggle.addEventListener('click', function() {
+            mobileMenu.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Only animate menu items on desktop, disable on mobile
+            if (window.innerWidth > 768) {
+                const menuItems = mobileMenu.querySelectorAll('.mobile-nav-item');
+                menuItems.forEach((item, index) => {
+                    item.style.setProperty('--item-delay', `${index * 0.05}s`);
+                });
+            }
+        });
+    }
+    
+    // Close menu
+    function closeMobileMenu() {
+        mobileMenu.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    
+    if (menuClose) {
+        menuClose.addEventListener('click', closeMobileMenu);
+    }
+    
+    // Exit from site
+    if (menuExit) {
+        menuExit.addEventListener('click', function() {
+            if (confirm('Apakah Anda yakin ingin keluar dari situs AsaHub?')) {
+                // Close the mobile menu first
+                closeMobileMenu();
+                
+                // Try to close window directly first
+                if (window.history.length > 1) {
+                    // If there's history, go back to previous page
+                    window.history.back();
+                } else {
+                    // If no history, try to close the window
+                    window.close();
+                    
+                    // Only redirect to about:blank if window.close() fails and no history
+                    setTimeout(() => {
+                        if (!window.closed) {
+                            window.location.href = 'about:blank';
+                        }
+                    }, 100);
+                }
+            }
+        });
+    }
+    
+    if (overlay) {
+        overlay.addEventListener('click', closeMobileMenu);
+    }
+    
+    // Close menu when clicking on menu items (except logout)
+    const menuItems = mobileMenu.querySelectorAll('.mobile-nav-item:not([onclick*="logout"])');
+    menuItems.forEach(item => {
+        item.addEventListener('click', function() {
+            setTimeout(closeMobileMenu, 300);
+        });
+    });
+}
+
+// Update Navigation UI based on auth status
+function updateNavigationUI() {
+    const isAuth = window.authService && window.authService.isAuthenticated();
+    const user = window.authService ? window.authService.getCurrentUser() : null;
+    const userProfile = user ? user.profile : null;
+    
+    // Update desktop navigation
+    const navAuth = document.getElementById('navAuth');
+    if (navAuth) {
+        if (isAuth && userProfile) {
+            navAuth.innerHTML = `
+                <a href="${userProfile.role === 'seller' ? 'seller-dashboard.html' : 'buyer-dashboard.html'}" class="btn btn-outline">
+                    <i class="fas fa-user"></i> ${userProfile.full_name || 'Dashboard'}
+                </a>
+                <button class="btn btn-primary" onclick="authService.logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            `;
+        } else {
+            navAuth.innerHTML = `
+                <a href="login.html" class="btn btn-outline">Masuk</a>
+                <a href="daftar.html" class="btn btn-primary">Daftar</a>
+            `;
+        }
+    }
+    
+    // Update mobile navigation
+    const guestMenu = document.getElementById('guestMenu');
+    const userMenu = document.getElementById('userMenu');
+    const buyerMenuItems = document.getElementById('buyerMenuItems');
+    const sellerMenuItems = document.getElementById('sellerMenuItems');
+    const mobileUserName = document.getElementById('mobileUserName');
+    const mobileUserRole = document.getElementById('mobileUserRole');
+    
+    if (isAuth && userProfile) {
+        // Show user menu
+        if (guestMenu) guestMenu.style.display = 'none';
+        if (userMenu) userMenu.style.display = 'block';
+        
+        // Update user info
+        if (mobileUserName) mobileUserName.textContent = userProfile.full_name || 'User';
+        if (mobileUserRole) mobileUserRole.textContent = userProfile.role || 'user';
+        
+        // Show role-specific menu items
+        if (userProfile.role === 'seller') {
+            if (buyerMenuItems) buyerMenuItems.style.display = 'none';
+            if (sellerMenuItems) sellerMenuItems.style.display = 'block';
+        } else {
+            if (buyerMenuItems) buyerMenuItems.style.display = 'block';
+            if (sellerMenuItems) sellerMenuItems.style.display = 'none';
+        }
+    } else {
+        // Show guest menu
+        if (guestMenu) guestMenu.style.display = 'block';
+        if (userMenu) userMenu.style.display = 'none';
+    }
+}
+
+// Listen for auth state changes
+document.addEventListener('authStateChanged', function() {
+    updateNavigationUI();
+});
+
+// Desktop Exit Button Logic
+const desktopExitBtn = document.getElementById('desktopExitBtn');
+if (desktopExitBtn) {
+    desktopExitBtn.addEventListener('click', function() {
+        if (confirm('Apakah Anda yakin ingin keluar dari situs AsaHub?')) {
+            // Try to close window directly first
+            if (window.history.length > 1) {
+                // If there's history, go back to previous page
+                window.history.back();
+            } else {
+                // If no history, try to close the window
+                window.close();
+                
+                // Only redirect to about:blank if window.close() fails and no history
+                setTimeout(() => {
+                    if (!window.closed) {
+                        window.location.href = 'about:blank';
+                    }
+                }, 100);
+            }
+        }
+    });
+}
+
+// Desktop Dropdown Menu Logic
+const desktopDropdownToggle = document.getElementById('desktopDropdownToggle');
+const desktopDropdownMenu = document.getElementById('desktopDropdownMenu');
+const desktopDropdownExit = document.getElementById('desktopDropdownExit');
+
+// Toggle dropdown menu
+if (desktopDropdownToggle && desktopDropdownMenu) {
+    desktopDropdownToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        desktopDropdownMenu.classList.toggle('active');
+    });
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function() {
+    if (desktopDropdownMenu) {
+        desktopDropdownMenu.classList.remove('active');
+    }
+});
+
+// Prevent dropdown from closing when clicking inside
+if (desktopDropdownMenu) {
+    desktopDropdownMenu.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+}
+
+// Exit button in dropdown
+if (desktopDropdownExit) {
+    desktopDropdownExit.addEventListener('click', function() {
+        if (confirm('Apakah Anda yakin ingin keluar dari situs AsaHub?')) {
+            // Close dropdown first
+            if (desktopDropdownMenu) {
+                desktopDropdownMenu.classList.remove('active');
+            }
+            
+            // Try to close window directly first
+            if (window.history.length > 1) {
+                // If there's history, go back to previous page
+                window.history.back();
+            } else {
+                // If no history, try to close the window
+                window.close();
+                
+                // Only redirect to about:blank if window.close() fails and no history
+                setTimeout(() => {
+                    if (!window.closed) {
+                        window.location.href = 'about:blank';
+                    }
+                }, 100);
+            }
+        }
+    });
+}
+
+// Course filtering functions (placeholder - will be implemented by edukasi-manager.js)
+function filterByCategory(category) {
+    if (window.edukasiManager) {
+        window.edukasiManager.filterByCategory(category);
+    }
+}
+
+function clearFilters() {
+    if (window.edukasiManager) {
+        window.edukasiManager.clearFilters();
+    }
+}
+
+function filterCourses() {
+    if (window.edukasiManager) {
+        window.edukasiManager.filterCourses();
+    }
+}
+
+function sortCourses() {
+    if (window.edukasiManager) {
+        window.edukasiManager.sortCourses();
+    }
+}
+
+function closeCourseModal() {
+    const modal = document.getElementById('courseModal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
+</script>
+
+</body>
+</html>
+
+

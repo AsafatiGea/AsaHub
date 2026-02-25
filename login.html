@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Masuk - AsaHub</title>
+
+<link rel="icon" type="image/png" href="img/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+
+<body style="margin:0;padding-top:64px;font-family:'DM Sans',sans-serif;background:linear-gradient(135deg,#000,#1a1a1a);color:#fff;overflow-x:hidden;">
+
+<!-- NAVBAR -->
+<nav style="position:fixed;top:0;left:0;right:0;height:64px;background:#FFC107;display:flex;align-items:center;z-index:1000;box-shadow:0 2px 20px rgba(0,0,0,.3);">
+
+<div style="width:100%;max-width:1280px;margin:auto;padding:0 24px;display:flex;align-items:center;gap:24px;">
+
+<a href="index.html" style="font-family:Syne,sans-serif;font-size:1.5rem;font-weight:800;color:#fff;text-decoration:none;white-space:nowrap;">
+Asa<span style="color:#000">Hub</span>
+</a>
+
+<div style="display:flex;gap:4px;flex:1;">
+<a href="index.html" style="color:#fff;text-decoration:none;padding:8px 14px;border-radius:8px;">Marketplace</a>
+<a href="jasa.html" style="color:#fff;text-decoration:none;padding:8px 14px;border-radius:8px;">Jasa</a>
+<a href="edukasi.html" style="color:#fff;text-decoration:none;padding:8px 14px;border-radius:8px;">Edukasi</a>
+<a href="komunitas.html" style="color:#fff;text-decoration:none;padding:8px 14px;border-radius:8px;">Komunitas</a>
+<a href="tentang.html" style="color:#fff;text-decoration:none;padding:8px 14px;border-radius:8px;">Tentang</a>
+</div>
+
+<div style="display:flex;gap:10px;align-items:center;">
+<a href="login.html" style="padding:8px 20px;border:2px solid #fff;border-radius:8px;color:#fff;text-decoration:none;font-weight:600;">Masuk</a>
+<a href="daftar.html" style="padding:8px 20px;background:#000;border-radius:8px;color:#fff;text-decoration:none;font-weight:600;">Daftar</a>
+</div>
+
+<!-- HAMBURGER MENU -->
+<button id="hamburgerToggle" style="display:none;background:none;border:none;color:#fff;font-size:24px;cursor:pointer;padding:8px;">
+<i class="fas fa-bars"></i>
+</button>
+
+</div>
+</nav>
+
+<!-- MOBILE SLIDE MENU -->
+<div id="mobileMenu" style="position:fixed;top:64px;right:-280px;width:260px;height:calc(100vh - 64px);background:#111;z-index:999;transition:right 0.3s ease;box-shadow:-2px 0 10px rgba(0,0,0,0.3);">
+<div style="padding:20px;">
+<div style="display:flex;align-items:center;margin-bottom:20px;padding-bottom:15px;border-bottom:1px solid rgba(255,255,255,0.2);">
+<a href="index.html" style="font-family:Syne,sans-serif;font-size:1.2rem;font-weight:800;color:#fff;text-decoration:none;">
+Asa<span style="color:#FFC107">Hub</span>
+</a>
+<button id="mobileMenuClose" style="margin-left:auto;background:none;border:none;color:#fff;font-size:20px;cursor:pointer;">
+<i class="fas fa-times"></i>
+</button>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:8px;">
+<a href="index.html" style="color:#fff;text-decoration:none;padding:12px 16px;border-radius:8px;display:flex;align-items:center;gap:12px;">
+<i class="fas fa-home"></i> Marketplace
+</a>
+<a href="jasa.html" style="color:#fff;text-decoration:none;padding:12px 16px;border-radius:8px;display:flex;align-items:center;gap:12px;">
+<i class="fas fa-briefcase"></i> Jasa
+</a>
+<a href="edukasi.html" style="color:#fff;text-decoration:none;padding:12px 16px;border-radius:8px;display:flex;align-items:center;gap:12px;">
+<i class="fas fa-graduation-cap"></i> Edukasi
+</a>
+<a href="komunitas.html" style="color:#fff;text-decoration:none;padding:12px 16px;border-radius:8px;display:flex;align-items:center;gap:12px;">
+<i class="fas fa-users"></i> Komunitas
+</a>
+<a href="tentang.html" style="color:#fff;text-decoration:none;padding:12px 16px;border-radius:8px;display:flex;align-items:center;gap:12px;">
+<i class="fas fa-info-circle"></i> Tentang
+</a>
+</div>
+
+<div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.2);">
+<div style="display:flex;flex-direction:column;gap:10px;">
+<a href="login.html" style="padding:12px 16px;border:2px solid #FFC107;border-radius:8px;color:#FFC107;text-decoration:none;font-weight:600;text-align:center;">
+Masuk
+</a>
+<a href="daftar.html" style="padding:12px 16px;background:#FFC107;border-radius:8px;color:#000;text-decoration:none;font-weight:600;text-align:center;">
+Daftar
+</a>
+</div>
+</div>
+</div>
+</div>
+
+<!-- OVERLAY -->
+<div id="menuOverlay" style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:998;display:none;"></div>
+
+<!-- LOGIN CONTAINER -->
+<section style="min-height:calc(100vh - 64px);display:flex;align-items:center;justify-content:center;padding:40px 20px;">
+
+<div style="background:#FFC107;border-radius:20px;padding:40px;width:100%;max-width:480px;box-shadow:0 20px 60px rgba(0,0,0,.4);text-align:center;">
+
+<div style="font-family:Syne,sans-serif;font-size:2.5rem;font-weight:800;color:#fff;margin-bottom:8px;">
+Asa<span style="color:#000;">Hub</span>
+</div>
+
+<div style="color:rgba(255,255,255,.85);font-size:14px;margin-bottom:32px;">
+Pusat Harapan — Menyatukan Peluang Bisnis
+</div>
+
+<form id="loginForm">
+
+<div style="margin-bottom:18px;text-align:left;">
+<label style="color:#fff;font-weight:600;margin-bottom:8px;display:block;font-size:14px;">
+Email *
+</label>
+
+<input type="email" id="email"
+style="width:100%;padding:12px 16px;border:2px solid rgba(255,255,255,.25);border-radius:10px;background:rgba(255,255,255,.15);color:#fff;font-size:15px;"
+placeholder="nama@email.com" required>
+</div>
+
+<div style="margin-bottom:18px;text-align:left;">
+<label style="color:#fff;font-weight:600;margin-bottom:8px;display:block;font-size:14px;">
+Password *
+</label>
+
+<input type="password" id="password"
+style="width:100%;padding:12px 16px;border:2px solid rgba(255,255,255,.25);border-radius:10px;background:rgba(255,255,255,.15);color:#fff;font-size:15px;"
+placeholder="Masukkan password" required>
+</div>
+
+<div style="margin-bottom:18px;text-align:left;">
+<label style="color:#fff;font-weight:600;margin-bottom:8px;display:block;font-size:14px;">
+Jenis Akun *
+</label>
+
+<select id="accountType"
+style="width:100%;padding:12px 16px;border:2px solid rgba(255,255,255,.25);border-radius:10px;background:rgba(255,255,255,.15);color:#fff;font-size:15px;"
+required>
+<option value="">Pilih jenis akun</option>
+<option value="user">👤 User</option>
+<option value="seller">🏪 Seller</option>
+<option value="provider">🛠️ Penyedia Jasa</option>
+<option value="mentor">🎓 Mentor Edukasi</option>
+</select>
+
+</div>
+
+<button type="submit" id="loginBtn"
+style="width:100%;padding:14px;background:#000;color:#fff;border:none;border-radius:10px;font-size:16px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;">
+<i class="fas fa-sign-in-alt"></i> Masuk
+</button>
+
+</form>
+
+<div style="margin-top:24px;padding-top:24px;border-top:1px solid rgba(255,255,255,.2);">
+<div style="color:rgba(255,255,255,.7);font-size:14px;margin-bottom:16px;">
+Belum punya akun?
+</div>
+<a href="daftar.html" style="display:inline-block;padding:12px 24px;background:#fff;color:#FFC107;border-radius:10px;text-decoration:none;font-weight:600;">
+Daftar Sekarang
+</a>
+</div>
+
+</div>
+</section>
+
+<!-- MOBILE NAV -->
+<nav style="display:none;position:fixed;bottom:0;left:0;right:0;height:60px;background:#FFC107;align-items:center;justify-content:space-around;box-shadow:0 -4px 20px rgba(0,0,0,.3);z-index:1000;"
+class="mobile-nav">
+
+<a href="index.html" style="flex:1;display:flex;justify-content:center;align-items-center;color:rgba(0,0,0,.5);font-size:1.2rem;text-decoration:none;">
+<i class="fas fa-home"></i>
+</a>
+
+<a href="jasa.html" style="flex:1;display:flex;justify-content:center;align-items-center;color:rgba(0,0,0,.5);font-size:1.2rem;text-decoration:none;">
+<i class="fas fa-briefcase"></i>
+</a>
+
+<a href="edukasi.html" style="flex:1;display:flex;justify-content:center;align-items-center;color:rgba(0,0,0,.5);font-size:1.2rem;text-decoration:none;">
+<i class="fas fa-graduation-cap"></i>
+</a>
+
+<a href="komunitas.html" style="flex:1;display:flex;justify-content:center;align-items-center;color:rgba(0,0,0,.5);font-size:1.2rem;text-decoration:none;">
+<i class="fas fa-users"></i>
+</a>
+
+<a href="tentang.html" style="flex:1;display:flex;justify-content:center;align-items-center;color:rgba(0,0,0,.5);font-size:1.2rem;text-decoration:none;">
+<i class="fas fa-info-circle"></i>
+</a>
+
+<a href="daftar.html" style="flex:1;display:flex;justify-content:center;align-items-center;color:rgba(0,0,0,.5);font-size:1.2rem;text-decoration:none;">
+<i class="fas fa-user"></i>
+</a>
+
+</nav>
+
+<script>
+// Mobile Navigation
+const hamburgerToggle = document.getElementById('hamburgerToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileMenuClose = document.getElementById('mobileMenuClose');
+const menuOverlay = document.getElementById('menuOverlay');
+const mobileNav = document.querySelector('.mobile-nav');
+
+function toggleMobileMenu(show) {
+    if (show) {
+        mobileMenu.style.right = '0';
+        menuOverlay.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    } else {
+        mobileMenu.style.right = '-280px';
+        menuOverlay.style.display = 'none';
+        document.body.style.overflow = '';
+    }
+}
+
+hamburgerToggle?.addEventListener('click', () => toggleMobileMenu(true));
+mobileMenuClose?.addEventListener('click', () => toggleMobileMenu(false));
+menuOverlay?.addEventListener('click', () => toggleMobileMenu(false));
+
+// Close menu when clicking on links
+mobileMenu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => toggleMobileMenu(false));
+});
+
+// Responsive behavior
+function handleResize() {
+    if (window.innerWidth <= 768) {
+        hamburgerToggle.style.display = 'block';
+        mobileNav.style.display = 'flex';
+        
+        // Hide desktop menu items
+        document.querySelector('nav > div > div:nth-child(2)').style.display = 'none';
+        document.querySelector('nav > div > div:nth-child(3)').style.display = 'none';
+    } else {
+        hamburgerToggle.style.display = 'none';
+        mobileNav.style.display = 'none';
+        toggleMobileMenu(false);
+        
+        // Show desktop menu items
+        document.querySelector('nav > div > div:nth-child(2)').style.display = 'flex';
+        document.querySelector('nav > div > div:nth-child(3)').style.display = 'flex';
+    }
+}
+
+// Initial check and event listener
+handleResize();
+window.addEventListener('resize', handleResize);
+
+// Login form handler
+document.getElementById('loginForm')?.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const accountType = document.getElementById('accountType').value;
+    
+    if (!email || !password || !accountType) {
+        alert('Harap lengkapi semua field');
+        return;
+    }
+    
+    // Simulate login process
+    console.log('Login attempt:', { email, accountType });
+    
+    // Redirect based on account type
+    const redirects = {
+        'user': 'index.html',
+        'seller': 'seller-dashboard.html',
+        'provider': 'jasa-dashboard.html',
+        'mentor': 'edukasi-dashboard.html'
+    };
+    
+    if (redirects[accountType]) {
+        window.location.href = redirects[accountType];
+    }
+});
+</script>
+
+</body>
+</html>
+
+<script>
+document.getElementById('loginForm').addEventListener('submit', function(e){
+e.preventDefault();
+
+const email=document.getElementById('email').value.trim();
+const password=document.getElementById('password').value;
+const type=document.getElementById('accountType').value;
+
+if(!email||!password||!type){
+alert("Semua field wajib diisi!");
+return;
+}
+
+const btn=document.getElementById('loginBtn');
+
+btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Memproses...';
+btn.disabled=true;
+
+localStorage.setItem("userLoggedIn","true");
+localStorage.setItem("userType",type);
+localStorage.setItem("userName",email.split("@")[0]||"User");
+localStorage.setItem("userEmail",email);
+
+setTimeout(()=>{
+if(type==="user") window.location.href="index.html";
+else if(type==="seller") window.location.href="seller-dashboard.html";
+else if(type==="provider") window.location.href="jasa-dashboard.html";
+else if(type==="mentor") window.location.href="edukasi-dashboard.html";
+},1200);
+
+});
+</script>
+
+</body>
+</html>

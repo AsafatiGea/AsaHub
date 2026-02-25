@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — AsaHub</title>
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="css/responsive-mobile.css">
+  <link rel="stylesheet" href="css/responsive-desktop.css">
+  <link rel="stylesheet" href="css/buyer-dashboard-mobile.css">
+</head>
+<body>
+
+<div class="dashboard-wrapper">
+
+  <!-- Overlay -->
+  <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+
+  <!-- ═══════════════ SIDEBAR ═══════════════ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <a href="index.html" class="sidebar-logo">
+        <span class="icon">🛒</span>
+        <span>AsaHub</span>
+      </a>
+      <button type="button" class="sidebar-collapse-btn" id="collapseBtn" aria-label="Ciutkan sidebar">«</button>
+      <button type="button" class="sidebar-close" id="sidebarClose" aria-label="Tutup menu">×</button>
+    </div>
+
+    <nav class="sidebar-nav">
+      <ul>
+        <li>
+          <a href="#" data-section="section-dashboard" class="active">
+            <span class="icon">📊</span><span>Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" data-section="section-users">
+            <span class="icon">👥</span><span>Kelola User</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" data-section="section-products">
+            <span class="icon">📦</span><span>Kelola Produk</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" data-section="section-orders">
+            <span class="icon">📋</span><span>Kelola Order</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" data-section="section-reports">
+            <span class="icon">📈</span><span>Laporan</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="login.html" class="logout-btn">
+        <span class="icon">🚪</span><span>Logout</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- ═══════════════ MAIN ═══════════════ -->
+  <main class="main-content">
+
+    <!-- Top Navbar -->
+    <header class="top-navbar">
+      <div class="navbar-left">
+        <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Buka menu">☰</button>
+        <h1 class="page-title" id="pageTitle">Dashboard</h1>
+      </div>
+      <div class="navbar-right">
+        <div class="user-badge">
+          <span class="avatar">A</span>
+          <span>Admin</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="content-area">
+
+      <!-- ─── SECTION: Dashboard ─── -->
+      <section id="section-dashboard" class="dashboard-section active">
+
+        <div class="welcome-empty">
+          <h3>Selamat Datang Admin! 🎉</h3>
+          <p>Kelola marketplace AsaHub dengan mudah dan efisien</p>
+          <a href="#section-users" class="btn">Kelola User</a>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <h3>Total Users</h3>
+            <p class="value" id="total-users">0</p>
+          </div>
+          <div class="stat-card blue">
+            <h3>Total Sellers</h3>
+            <p class="value" id="total-sellers">0</p>
+          </div>
+          <div class="stat-card green">
+            <h3>Total Produk</h3>
+            <p class="value" id="total-products">0</p>
+          </div>
+          <div class="stat-card purple">
+            <h3>Total Orders</h3>
+            <p class="value" id="total-orders">0</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 class="card-title">Statistik Bulanan</h2>
+          <div class="chart-placeholder">
+            📊 &nbsp; Grafik statistik — siap dihubungkan ke Chart.js / ApexCharts
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 class="card-title">Daftar User Terbaru</h2>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Nama</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                  <th>Bergabung</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="admin-users-table"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ─── SECTION: Kelola User ─── -->
+      <section id="section-users" class="dashboard-section">
+        <div class="card">
+          <h2 class="card-title">Kelola User</h2>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Nama</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                  <th>Bergabung</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="section-users-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── SECTION: Kelola Produk ─── -->
+      <section id="section-products" class="dashboard-section">
+        <div class="card">
+          <h2 class="card-title">Kelola Produk</h2>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Nama Produk</th>
+                  <th>Seller</th>
+                  <th>Harga</th>
+                  <th>Stok</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="section-products-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── SECTION: Kelola Order ─── -->
+      <section id="section-orders" class="dashboard-section">
+        <div class="card">
+          <h2 class="card-title">Kelola Order</h2>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID Order</th>
+                  <th>Customer</th>
+                  <th>Total</th>
+                  <th>Status</th>
+                  <th>Tanggal</th>
+                </tr>
+              </thead>
+              <tbody id="section-orders-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── SECTION: Laporan ─── -->
+      <section id="section-reports" class="dashboard-section">
+        <div class="card">
+          <h2 class="card-title">Laporan</h2>
+          <p class="text-muted mb-0" style="margin-bottom:18px;">
+            Ringkasan laporan penjualan, user, dan produk — siap integrasi export PDF/Excel.
+          </p>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <h3>Penjualan Bulan Ini</h3>
+              <p class="value">Rp 245 Jt</p>
+            </div>
+            <div class="stat-card blue">
+              <h3>User Baru</h3>
+              <p class="value">42</p>
+            </div>
+            <div class="stat-card green">
+              <h3>Produk Baru</h3>
+              <p class="value">128</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- /content-area -->
+  </main>
+
+</div><!-- /dashboard-wrapper -->
+
+<!-- ═══════════════ MOBILE BOTTOM NAV ═══════════════ -->
+<nav class="mobile-admin-nav" id="mobileNav">
+  <button class="mobile-admin-nav-item active" data-section="section-dashboard" onclick="switchSection(this)">
+    <span class="nav-icon">📊</span>
+    <span class="nav-label">Dashboard</span>
+  </button>
+  <button class="mobile-admin-nav-item" data-section="section-users" onclick="switchSection(this)">
+    <span class="nav-icon">👥</span>
+    <span class="nav-label">Users</span>
+  </button>
+  <button class="mobile-admin-nav-item" data-section="section-products" onclick="switchSection(this)">
+    <span class="nav-icon">📦</span>
+    <span class="nav-label">Produk</span>
+  </button>
+  <button class="mobile-admin-nav-item" data-section="section-orders" onclick="switchSection(this)">
+    <span class="nav-icon">📋</span>
+    <span class="nav-label">Order</span>
+  </button>
+  <button class="mobile-admin-nav-item" data-section="section-reports" onclick="switchSection(this)">
+    <span class="nav-icon">📈</span>
+    <span class="nav-label">Laporan</span>
+  </button>
+</nav>
+
+<!-- Scripts -->
+<!-- Supabase JS -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.7"></script>
+<!-- Local JS -->
+<script src="js/supabase-config.js"></script>
+<script src="js/auth-service.js"></script>
+<script src="js/admin.js"></script>
+<script>
+(function () {
+  /* ── Initialize Empty Data ── */
+  var users = [];
+  var products = [];
+  var orders = [];
+
+  /* ── Set stats to 0 ── */
+  document.getElementById('total-users').textContent = '0';
+  document.getElementById('total-sellers').textContent = '0';
+  document.getElementById('total-products').textContent = '0';
+  document.getElementById('total-orders').textContent = '0';
+
+  /* ── Empty tables ── */
+  document.getElementById('admin-users-table').innerHTML = '<tr><td colspan="7" class="empty-state">Belum ada user</td></tr>';
+  document.getElementById('section-users-tbody').innerHTML = '<tr><td colspan="7" class="empty-state">Belum ada user</td></tr>';
+  document.getElementById('section-products-tbody').innerHTML = '<tr><td colspan="6" class="empty-state">Belum ada produk</td></tr>';
+  document.getElementById('section-orders-tbody').innerHTML = '<tr><td colspan="5" class="empty-state">Belum ada order</td></tr>';
+
+  /* ── Section switcher ── */
+  var titles = {
+    'section-dashboard': 'Dashboard',
+    'section-users':     'Kelola User',
+    'section-products':  'Kelola Produk',
+    'section-orders':    'Kelola Order',
+    'section-reports':   'Laporan',
+  };
+
+  function showSection(id) {
+    document.querySelectorAll('.dashboard-section').forEach(function(s) {
+      s.classList.remove('active');
+    });
+    var s = document.getElementById(id);
+    if (s) s.classList.add('active');
+    document.getElementById('pageTitle').textContent = titles[id] || 'Dashboard';
+
+    /* sidebar active link */
+    document.querySelectorAll('.sidebar-nav a').forEach(function(a) {
+      a.classList.toggle('active', a.dataset.section === id);
+    });
+
+    /* mobile nav active */
+    document.querySelectorAll('.mobile-admin-nav-item').forEach(function(btn) {
+      btn.classList.toggle('active', btn.dataset.section === id);
+    });
+  }
+
+  /* ── Sidebar navigation ── */
+  document.querySelectorAll('.sidebar-nav a').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      showSection(a.dataset.section);
+      if (window.innerWidth <= 768) closeSidebar();
+    });
+  });
+
+  /* ── Mobile bottom nav ── */
+  window.switchSection = function(btn) {
+    document.querySelectorAll('.mobile-admin-nav-item').forEach(function(b) {
+      b.classList.remove('active');
+    });
+    btn.classList.add('active');
+    showSection(btn.dataset.section);
+  };
+
+  /* ── Sidebar toggle (mobile) ── */
+  var sidebar = document.getElementById('sidebar');
+  var overlay = document.getElementById('sidebarOverlay');
+
+  document.getElementById('sidebarToggle').addEventListener('click', function() {
+    sidebar.classList.add('open');
+    overlay.classList.add('active');
+  });
+
+  function closeSidebar() {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('active');
+  }
+
+  document.getElementById('sidebarClose').addEventListener('click', closeSidebar);
+  overlay.addEventListener('click', closeSidebar);
+
+  /* ── Sidebar collapse (desktop) ── */
+  var colBtn = document.getElementById('collapseBtn');
+  var main   = document.querySelector('.main-content');
+  colBtn.addEventListener('click', function() {
+    sidebar.classList.toggle('collapsed');
+    main.classList.toggle('sidebar-collapsed');
+    colBtn.textContent = sidebar.classList.contains('collapsed') ? '»' : '«';
+  });
+
+})();
+</script>
+</body>
+</html>
+
