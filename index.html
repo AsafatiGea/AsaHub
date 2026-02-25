@@ -645,7 +645,7 @@ Daftar
 
 
 <!-- MOBILE NAV -->
-<nav style="display:none;position:fixed;bottom:0;left:0;right:0;height:65px;background:#FFC107;align-items:center;justify-content:space-around;box-shadow:0 -4px 20px rgba(0,0,0,.3);z-index:1000;"
+<nav style="position:fixed;bottom:0;left:0;right:0;height:65px;background:#FFC107;align-items:center;justify-content:space-around;box-shadow:0 -4px 20px rgba(0,0,0,.3);z-index:1000;"
 class="mobile-nav">
 
 <a href="index.html" style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;color:#000;font-size:1.3rem;text-decoration:none;">
@@ -708,6 +708,8 @@ mobileNavMenu?.querySelectorAll('a').forEach(link => {
 });
 
 // Responsive behavior
+const mobileNav = document.querySelector('.mobile-nav');
+
 function handleResize() {
     if (window.innerWidth <= 768) {
         mobileNav.style.display = 'flex';
