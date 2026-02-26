@@ -34,7 +34,7 @@
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: yellow;
 }
 
 .mobile-hamburger:hover {
@@ -47,11 +47,12 @@
 }
 
 .hamburger-icon {
-  width: 24px;
+  width: 60px;
   height: 20px;
   position: relative;
   transform: rotate(0deg);
   transition: 0.3s ease-in-out;
+  background-color: yellow;
 }
 
 .hamburger-icon span {
@@ -98,10 +99,10 @@
 .mobile-nav-overlay {
   position: fixed;
   top: 0;
-  left: 0;
+  left: 12;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: yellow;
   z-index: 999;
   opacity: 0;
   visibility: hidden;
