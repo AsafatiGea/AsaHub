@@ -26,20 +26,7 @@ h3 {
   font-family: "Syne", sans-serif;
 }
 
-/* ================= NAVBAR ================= */
 
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: #ffc107;
-  height: 70px;
-  display: flex;
-  align-items: center;
-  z-index: 1000;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
 
 /* ================= SECTION ================= */
 
@@ -167,32 +154,6 @@ h3 {
   background: rgba(0, 0, 0, 0.1);
 }
 
-/* ================= RESPONSIVE Ke Device ================= */
-
-@media (max-width: 768px) {
-  body {
-    padding-top: 0;
-  }
-
-  .section {
-    padding: 30px 20px 90px;
-  }
-
-  .mobile-nav {
-    display: flex;
-  }
-}
-
-@media (max-width: 480px) {
-  .grid-auto-fit {
-    grid-template-columns: 1fr;
-  }
-
-  .card {
-    padding: 20px;
-  }
-}
-
 /* ---------- NAVBAR STYLES ---------- */
 
 .navbar-links a {
@@ -243,20 +204,6 @@ h3 {
   background: #333;
 }
 
-/* ---------- MAIN NAVBAR STYLES untuk device kecil ---------- */
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 64px;
-  background: #ffc107;
-  display: flex;
-  align-items: center;
-  z-index: 1000;
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
-}
-
 .navbar-container {
   width: 100%;
   max-width: 1280px;
@@ -267,14 +214,7 @@ h3 {
   gap: 24px;
 }
 
-.navbar-logo {
-  font-family: Syne, sans-serif;
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: #fff;
-  text-decoration: none;
-  white-space: nowrap;
-}
+.
 
 .navbar-logo span {
   color: #000;

@@ -4,7 +4,7 @@
   top: 0;
   right: -100%;
   width: 80%;
-  max-width: 320px;
+  max-width: 3x;
   height: 100vh;
   background: rgba(26, 26, 26, 0.98);
   backdrop-filter: blur(10px);
@@ -114,14 +114,7 @@
 }
 
 /* Mobile Navigation Header */
-.mobile-nav-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 16px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.05);
-}
+
 
 .mobile-nav-header-buttons {
   display: flex;
@@ -603,10 +596,10 @@
   left: 0;
   right: 0;
   height: 30px;
-  background: yellow;
+  background: black;
   align-items: center;
   justify-content: space-around;
-  box-shadow: black;
+  box-shadow: yellow;
   z-index: 1000;
 }
 
@@ -617,7 +610,7 @@
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  color: rgba(0, 0, 0, 0.6);
+  color: yellow;
   font-size: 1.1rem;
 }
 
@@ -1064,4 +1057,26 @@
     padding: var(--spacing-sm) var(--spacing);
     font-size: var(--font-sm);
   }
+}
+
+.navbar-logo {
+  font-family: Syne, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: yellow;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+  background-color: black;
 }

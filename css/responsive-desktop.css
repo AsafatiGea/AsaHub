@@ -74,25 +74,7 @@
     display: none !important;
   }
 
-  /* Show Mobile Menu Toggle on Desktop */
-  .mobile-menu-toggle {
-    display: block !important;
-    background: rgba(255, 215, 0, 0.1);
-    border: 1px solid rgba(255, 215, 0, 0.3);
-    color: var(--primary);
-    padding: var(--spacing-sm);
-    border-radius: var(--radius);
-    cursor: pointer;
-    font-size: 18px;
-    transition: all 0.3s ease;
-  }
-
-  .mobile-menu-toggle:hover {
-    background: var(--primary);
-    color: var(--light-white);
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
-  }
+  
 
   /* Desktop Auth Buttons */
   .nav-auth {
