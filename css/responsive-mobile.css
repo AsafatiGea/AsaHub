@@ -21,10 +21,9 @@
 /* Hamburger Button - Fixed Top Right */
 .mobile-hamburger {
   position: fixed;
-  top: 16px;
-  right: 16px;
-  width: 44px;
-  height: 44px;
+  top: 0px;
+  right: 0px;
+  height: 39px;
   background: transparent;
   border: none;
   border-radius: 8px;
@@ -47,7 +46,7 @@
 }
 
 .hamburger-icon {
-  width: 60px;
+  width: 34px;
   height: 20px;
   position: relative;
   transform: rotate(0deg);
@@ -58,10 +57,10 @@
 .hamburger-icon span {
   display: block;
   position: absolute;
-  height: 3px;
-  width: 100%;
+  height: 7px;
+  width: 70px;
   background: #000;
-  border-radius: 2px;
+  border-radius: 9px;
   opacity: 1;
   left: 0;
   transform: rotate(0deg);
@@ -69,15 +68,15 @@
 }
 
 .hamburger-icon span:nth-child(1) {
-  top: 0px;
+  top: 10px;
 }
 
 .hamburger-icon span:nth-child(2) {
-  top: 8px;
+  top: 2px;
 }
 
 .hamburger-icon span:nth-child(3) {
-  top: 16px;
+  top: 10px;
 }
 
 .mobile-hamburger.active .hamburger-icon span:nth-child(1) {
@@ -115,7 +114,6 @@
 }
 
 /* Mobile Navigation Header */
-
 
 .mobile-nav-header-buttons {
   display: flex;
