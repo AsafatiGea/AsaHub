@@ -1,196 +1,195 @@
 /* ================= GLOBAL ================= */
 
 .daftar-page {
-    margin: 0;
-    padding-top: 64px;
-    font-family: 'DM Sans', sans-serif;
-    background: linear-gradient(135deg, #000, #1a1a1a);
-    color: #fff;
-    overflow-x: hidden;
+  margin: 0;
+  padding-top: 64px;
+  font-family: "DM Sans", sans-serif;
+  background: linear-gradient(135deg, #000, #1a1a1a);
+  color: #fff;
+  overflow-x: hidden;
 }
 
 /* ================= NAVBAR ================= */
 
 .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 64px;
-    background: #FFC107;
-    display: flex;
-    align-items: center;
-    z-index: 1000;
-    box-shadow: 0 2px 20px rgba(0,0,0,.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: #ffc107;
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
 }
 
 .navbar-container {
-    width: 100%;
-    max-width: 1280px;
-    margin: auto;
-    padding: 0 24px;
-    display: flex;
-    align-items: center;
-    gap: 24px;
+  width: 100%;
+  max-width: 1280px;
+  margin: auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
 }
 
 .navbar-logo {
-    font-family: Syne, sans-serif;
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: #fff;
-    text-decoration: none;
+  font-family: Syne, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #fff;
+  text-decoration: none;
 }
 
 .navbar-logo span {
-    color: #000;
+  color: #000;
 }
 
 .navbar-links {
-    display: flex;
-    gap: 10px;
-    flex: 1;
+  display: flex;
+  gap: 10px;
+  flex: 1;
 }
 
 .navbar-links a {
-    color: #fff;
-    text-decoration: none;
-    padding: 8px 14px;
-    border-radius: 8px;
-    transition: .2s;
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  transition: 0.2s;
 }
 
 .navbar-links a:hover {
-    background: rgba(0,0,0,0.1);
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .navbar-actions {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
 }
 
 .btn-login {
-    padding: 8px 20px;
-    border: 2px solid #fff;
-    border-radius: 8px;
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
+  padding: 8px 20px;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
 }
 
 .btn-daftar {
-    padding: 8px 20px;
-    background: #000;
-    border-radius: 8px;
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
+  padding: 8px 20px;
+  background: #000;
+  border-radius: 8px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
 }
 
 /* ================= HERO ================= */
 
 .hero-section {
-    text-align: center;
-    padding: 100px 20px 60px;
+  text-align: center;
+  padding: 100px 20px 60px;
 }
 
 .hero-section h1 {
-    font-family: Syne;
-    font-size: 2.8rem;
-    margin-bottom: 16px;
+  font-family: Syne;
+  font-size: 2.8rem;
+  margin-bottom: 16px;
 }
 
 .hero-section p {
-    opacity: .8;
+  opacity: 0.8;
 }
 
 /* ================= REGISTER ================= */
 
 .register-section {
-    max-width: 1200px;
-    margin: auto;
-    padding: 40px 20px 100px;
+  max-width: 1200px;
+  margin: auto;
+  padding: 40px 20px 100px;
 }
 
 .register-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
-    gap: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
 }
 
 .register-card {
-    background: #111;
-    border-radius: 18px;
-    padding: 40px 24px;
-    border: 1px solid rgba(255,255,255,.05);
-    text-decoration: none;
-    color: #fff;
-    text-align: center;
-    transition: .3s;
+  background: #111;
+  border-radius: 18px;
+  padding: 40px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  text-decoration: none;
+  color: #fff;
+  text-align: center;
+  transition: 0.3s;
 }
 
 .register-card:hover {
-    transform: translateY(-6px);
-    border-color: #FFC107;
+  transform: translateY(-6px);
+  border-color: #ffc107;
 }
 
 .register-card-icon {
-    font-size: 3rem;
-    margin-bottom: 16px;
+  font-size: 3rem;
+  margin-bottom: 16px;
 }
 
 .register-card h3 {
-    font-family: Syne;
-    margin-bottom: 12px;
+  font-family: Syne;
+  margin-bottom: 12px;
 }
 
 .register-card p {
-    opacity: .8;
+  opacity: 0.8;
 }
 
 .cta {
-    margin-top: 20px;
-    color: #FFC107;
-    font-weight: 600;
+  margin-top: 20px;
+  color: #ffc107;
+  font-weight: 600;
 }
 
 /* ================= MOBILE NAV ================= */
 
 .mobile-nav {
-    display: none;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    background: #FFC107;
-    justify-content: space-around;
-    align-items: center;
-    box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: #ffc107;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .mobile-nav-item {
-    flex: 1;
-    text-align: center;
-    color: rgba(0,0,0,0.5);
-    font-size: 1.2rem;
-    text-decoration: none;
+  flex: 1;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 1.2rem;
+  text-decoration: none;
 }
 
 .mobile-nav-item.active {
-    color: #000;
+  color: #000;
 }
 
 /* ================= RESPONSIVE ================= */
 
 @media (max-width: 768px) {
+  .navbar-links,
+  .navbar-actions {
+    display: none;
+  }
 
-    .navbar-links,
-    .navbar-actions {
-        display: none;
-    }
-
-    .mobile-nav {
-        display: flex;
-    }
+  .mobile-nav {
+    display: flex;
+  }
 }

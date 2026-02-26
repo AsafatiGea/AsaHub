@@ -1,126 +1,159 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard Mentor - AsaHub</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Mentor - AsaHub</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
 
-<link rel="stylesheet" href="css/edukasi-dashboard.css">
-</head>
+    <link rel="stylesheet" href="css/edukasi-dashboard.css" />
+  </head>
 
-<body>
-
-<div class="dashboard-wrapper">
-
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
+  <body>
+    <div class="dashboard-wrapper">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
         <div class="sidebar-header">
-            <a href="index.html" class="sidebar-logo">
-                <i class="fas fa-graduation-cap"></i>
-                AsaHub
-            </a>
+          <a href="index.html" class="sidebar-logo">
+            <i class="fas fa-graduation-cap"></i>
+            AsaHub
+          </a>
         </div>
 
         <nav class="sidebar-nav">
-            <ul>
-                <li><a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
-                <li><a href="#"><i class="fas fa-chalkboard-teacher"></i> Kelas</a></li>
-                <li><a href="#"><i class="fas fa-users"></i> Murid</a></li>
-                <li><a href="#"><i class="fas fa-history"></i> Riwayat</a></li>
-                <li><a href="#"><i class="fas fa-user"></i> Profil</a></li>
-            </ul>
+          <ul>
+            <li>
+              <a href="#" class="active"
+                ><i class="fas fa-home"></i> Dashboard</a
+              >
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-chalkboard-teacher"></i> Kelas</a>
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-users"></i> Murid</a>
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-history"></i> Riwayat</a>
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-user"></i> Profil</a>
+            </li>
+          </ul>
         </nav>
 
         <div class="sidebar-footer">
-            <a href="login.html" class="btn btn-outline btn-full">
-                <i class="fas fa-sign-out-alt"></i> Logout
-            </a>
+          <a href="login.html" class="btn btn-outline btn-full">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </a>
         </div>
-    </aside>
+      </aside>
 
-    <!-- MAIN CONTENT -->
-    <main class="main-content">
-
+      <!-- MAIN CONTENT -->
+      <main class="main-content">
         <!-- TOP NAV -->
         <div class="top-navbar">
-            <h1 class="page-title">Dashboard Mentor</h1>
+          <h1 class="page-title">Dashboard Mentor</h1>
 
-            <div class="user-badge">
-                <div class="avatar">M</div>
-                <span>Mentor Edukasi</span>
-            </div>
+          <div class="user-badge">
+            <div class="avatar">M</div>
+            <span>Mentor Edukasi</span>
+          </div>
         </div>
 
         <!-- CONTENT -->
         <div class="content-area">
-
-            <!-- STATS -->
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-value">12</div>
-                    <div class="stat-label">Total Kelas</div>
-                </div>
-
-                <div class="stat-card">
-                    <div class="stat-value">230</div>
-                    <div class="stat-label">Total Murid</div>
-                </div>
-
-                <div class="stat-card">
-                    <div class="stat-value">Rp 8jt</div>
-                    <div class="stat-label">Pendapatan</div>
-                </div>
+          <!-- STATS -->
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-value">12</div>
+              <div class="stat-label">Total Kelas</div>
             </div>
 
-            <!-- CARD CONTENT -->
-            <div class="card">
-                <h2 class="card-title">Aktivitas Terbaru</h2>
-                <p>Belum ada aktivitas terbaru.</p>
+            <div class="stat-card">
+              <div class="stat-value">230</div>
+              <div class="stat-label">Total Murid</div>
             </div>
 
-            <!-- PROFILE FORM -->
-            <div class="card">
-                <h2 class="card-title">Edit Profil</h2>
-
-                <form class="profile-form">
-                    <div class="form-group">
-                        <label>Nama Lengkap</label>
-                        <input type="text" class="form-input" placeholder="Masukkan nama">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" class="form-input" placeholder="Masukkan email">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Spesialisasi</label>
-                        <input type="text" class="form-input" placeholder="Contoh: Web Development">
-                    </div>
-
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-full">Simpan Perubahan</button>
-                    </div>
-                </form>
+            <div class="stat-card">
+              <div class="stat-value">Rp 8jt</div>
+              <div class="stat-label">Pendapatan</div>
             </div>
+          </div>
 
+          <!-- CARD CONTENT -->
+          <div class="card">
+            <h2 class="card-title">Aktivitas Terbaru</h2>
+            <p>Belum ada aktivitas terbaru.</p>
+          </div>
+
+          <!-- PROFILE FORM -->
+          <div class="card">
+            <h2 class="card-title">Edit Profil</h2>
+
+            <form class="profile-form">
+              <div class="form-group">
+                <label>Nama Lengkap</label>
+                <input
+                  type="text"
+                  class="form-input"
+                  placeholder="Masukkan nama"
+                />
+              </div>
+
+              <div class="form-group">
+                <label>Email</label>
+                <input
+                  type="email"
+                  class="form-input"
+                  placeholder="Masukkan email"
+                />
+              </div>
+
+              <div class="form-group">
+                <label>Spesialisasi</label>
+                <input
+                  type="text"
+                  class="form-input"
+                  placeholder="Contoh: Web Development"
+                />
+              </div>
+
+              <div class="form-group">
+                <button type="submit" class="btn btn-full">
+                  Simpan Perubahan
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-
-    </main>
-</div>
-
-<!-- MOBILE NAV -->
-<nav class="mobile-nav">
-    <div class="mobile-nav-items">
-        <a href="#" class="mobile-nav-item"><i class="fas fa-home"></i><span>Home</span></a>
-        <a href="#" class="mobile-nav-item"><i class="fas fa-book"></i><span>Kelas</span></a>
-        <a href="#" class="mobile-nav-item"><i class="fas fa-users"></i><span>Murid</span></a>
-        <a href="#" class="mobile-nav-item"><i class="fas fa-user"></i><span>Profil</span></a>
+      </main>
     </div>
-</nav>
 
-</body>
+    <!-- MOBILE NAV -->
+    <nav class="mobile-nav">
+      <div class="mobile-nav-items">
+        <a href="#" class="mobile-nav-item"
+          ><i class="fas fa-home"></i><span>Home</span></a
+        >
+        <a href="#" class="mobile-nav-item"
+          ><i class="fas fa-book"></i><span>Kelas</span></a
+        >
+        <a href="#" class="mobile-nav-item"
+          ><i class="fas fa-users"></i><span>Murid</span></a
+        >
+        <a href="#" class="mobile-nav-item"
+          ><i class="fas fa-user"></i><span>Profil</span></a
+        >
+      </div>
+    </nav>
+  </body>
 </html>

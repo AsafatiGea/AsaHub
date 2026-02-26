@@ -1,210 +1,210 @@
 /* ================= GLOBAL ================= */
 
 .login-page {
-    margin: 0;
-    padding-top: 64px;
-    font-family: 'DM Sans', sans-serif;
-    background: linear-gradient(135deg,#000,#1a1a1a);
-    color: #fff;
-    overflow-x: hidden;
+  margin: 0;
+  padding-top: 64px;
+  font-family: "DM Sans", sans-serif;
+  background: linear-gradient(135deg, #000, #1a1a1a);
+  color: #fff;
+  overflow-x: hidden;
 }
 
 /* ================= NAVBAR ================= */
 
 .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 64px;
-    background: #FFC107;
-    display: flex;
-    align-items: center;
-    box-shadow: 0 2px 20px rgba(0,0,0,.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: #ffc107;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
 }
 
 .navbar-container {
-    width: 100%;
-    max-width: 1280px;
-    margin: auto;
-    padding: 0 24px;
-    display: flex;
-    align-items: center;
-    gap: 24px;
+  width: 100%;
+  max-width: 1280px;
+  margin: auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
 }
 
 .navbar-logo {
-    font-family: Syne;
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: #fff;
-    text-decoration: none;
+  font-family: Syne;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #fff;
+  text-decoration: none;
 }
 
 .navbar-logo span {
-    color: #000;
+  color: #000;
 }
 
 .navbar-links {
-    display: flex;
-    gap: 10px;
-    flex: 1;
+  display: flex;
+  gap: 10px;
+  flex: 1;
 }
 
 .navbar-links a {
-    color: #fff;
-    text-decoration: none;
-    padding: 8px 14px;
-    border-radius: 8px;
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 8px;
 }
 
 .navbar-actions {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
 }
 
 .btn-login,
 .btn-daftar {
-    padding: 8px 20px;
-    border-radius: 8px;
-    font-weight: 600;
-    text-decoration: none;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
 }
 
 .btn-login {
-    border: 2px solid #fff;
-    color: #fff;
+  border: 2px solid #fff;
+  color: #fff;
 }
 
 .btn-daftar {
-    background: #000;
-    color: #fff;
+  background: #000;
+  color: #fff;
 }
 
 /* ================= LOGIN SECTION ================= */
 
 .login-section {
-    min-height: calc(100vh - 64px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 40px 20px;
+  min-height: calc(100vh - 64px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
 }
 
 .login-card {
-    background: rgba(255,255,255,0.95);
-    border-radius: 20px;
-    padding: 40px;
-    width: 100%;
-    max-width: 480px;
-    box-shadow: 0 20px 60px rgba(0,0,0,.4);
-    text-align: center;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 40px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  text-align: center;
 }
 
 .login-logo {
-    font-family: Syne;
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: #000;
-    margin-bottom: 8px;
+  font-family: Syne;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #000;
+  margin-bottom: 8px;
 }
 
 .login-logo span {
-    color: #FFC107;
+  color: #ffc107;
 }
 
 .login-subtitle {
-    color: #333;
-    font-size: 14px;
-    margin-bottom: 32px;
+  color: #333;
+  font-size: 14px;
+  margin-bottom: 32px;
 }
 
 /* ================= FORM ================= */
 
 .form-group {
-    margin-bottom: 18px;
-    text-align: left;
+  margin-bottom: 18px;
+  text-align: left;
 }
 
 .form-group label {
-    color: #333;
-    font-weight: 600;
-    margin-bottom: 8px;
-    display: block;
-    font-size: 14px;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: block;
+  font-size: 14px;
 }
 
 .form-group input,
 .form-group select {
-    width: 100%;
-    padding: 12px 16px;
-    border: 2px solid rgba(0,0,0,.2);
-    border-radius: 10px;
-    background: rgba(255,255,255,.8);
-    font-size: 15px;
-    color: #000;
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  font-size: 15px;
+  color: #000;
 }
 
 .btn-login-main {
-    width: 100%;
-    padding: 14px;
-    background: #FFC107;
-    color: #000;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    gap: 8px;
+  width: 100%;
+  padding: 14px;
+  background: #ffc107;
+  color: #000;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
 }
 
 /* ================= FOOTER ================= */
 
 .login-footer {
-    margin-top: 24px;
-    padding-top: 24px;
-    border-top: 1px solid rgba(0,0,0,.2);
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .btn-register {
-    display: inline-block;
-    padding: 12px 24px;
-    background: #333;
-    color: #fff;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: 600;
-    margin-top: 12px;
+  display: inline-block;
+  padding: 12px 24px;
+  background: #333;
+  color: #fff;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: 12px;
 }
 
 /* ================= MOBILE ================= */
 
 .mobile-nav {
-    display: none;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    background: #FFC107;
-    justify-content: space-around;
-    align-items: center;
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: #ffc107;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .mobile-nav a {
-    color: rgba(0,0,0,.6);
-    font-size: 1.2rem;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 1.2rem;
 }
 
-@media (max-width:768px){
-    .navbar-links,
-    .navbar-actions {
-        display: none;
-    }
+@media (max-width: 768px) {
+  .navbar-links,
+  .navbar-actions {
+    display: none;
+  }
 
-    .mobile-nav {
-        display: flex;
-    }
+  .mobile-nav {
+    display: flex;
+  }
 }

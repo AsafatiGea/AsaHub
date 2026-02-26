@@ -1,309 +1,315 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Seller Registration — AsaHub</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seller Registration — AsaHub</title>
 
-<link rel="icon" type="image/png" href="../img/logo.png">
+    <link rel="icon" type="image/png" href="../img/logo.png" />
 
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
 
-<link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/layout.css">
-<link rel="stylesheet" href="css/components.css">
-<link rel="stylesheet" href="css/seller.register.css">
-<link rel="stylesheet" href="css/mobile-navigation.css">
-</head>
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/seller.register.css" />
+    <link rel="stylesheet" href="css/mobile-navigation.css" />
+  </head>
 
-<body>
+  <body>
     <nav class="navbar">
-    <div class="nav-container">
+      <div class="nav-container">
         <a href="index.html" class="nav-logo">Asa<span>Hub</span></a>
-    </div>
-</nav>
+      </div>
+    </nav>
 
-    
-
-<!-- HAMBURGER BUTTON - POJOK KANAN ATAS (HANYA MOBILE) -->
-<button class="mobile-hamburger" id="mobileHamburger" aria-label="Toggle menu">
-    <div class="hamburger-icon">
+    <!-- HAMBURGER BUTTON - POJOK KANAN ATAS (HANYA MOBILE) -->
+    <button
+      class="mobile-hamburger"
+      id="mobileHamburger"
+      aria-label="Toggle menu"
+    >
+      <div class="hamburger-icon">
         <span></span>
         <span></span>
         <span></span>
-    </div>
-</button>
+      </div>
+    </button>
 
-<!-- MOBILE NAVIGATION OVERLAY -->
-<div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+    <!-- MOBILE NAVIGATION OVERLAY -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
 
-<!-- MOBILE NAVIGATION MENU -->
-<div class="mobile-nav-menu" id="mobileNavMenu">
-    <div class="mobile-nav-header">
-        <div class="mobile-nav-logo">
-            <span>🛒</span> AsaHub
-        </div>
-        <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">
-            <i class="fas fa-times"></i>
+    <!-- MOBILE NAVIGATION MENU -->
+    <div class="mobile-nav-menu" id="mobileNavMenu">
+      <div class="mobile-nav-header">
+        <div class="mobile-nav-logo"><span>🛒</span> AsaHub</div>
+        <button
+          class="mobile-nav-close"
+          id="mobileNavClose"
+          aria-label="Close menu"
+        >
+          <i class="fas fa-times"></i>
         </button>
-    </div>
-    
-    <div class="mobile-nav-content">
+      </div>
+
+      <div class="mobile-nav-content">
         <div class="mobile-nav-links">
-            <a href="index.html">
-                <i class="fas fa-home"></i>
-                <span>Home</span>
-            </a>
-            <a href="jasa.html">
-                <i class="fas fa-briefcase"></i>
-                <span>Jasa</span>
-            </a>
-            <a href="edukasi.html">
-                <i class="fas fa-graduation-cap"></i>
-                <span>Edukasi</span>
-            </a>
-            <a href="komunitas.html">
-                <i class="fas fa-users"></i>
-                <span>Komunitas</span>
-            </a>
-            <a href="tentang.html">
-                <i class="fas fa-info-circle"></i>
-                <span>Tentang</span>
-            </a>
+          <a href="index.html">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+          </a>
+          <a href="jasa.html">
+            <i class="fas fa-briefcase"></i>
+            <span>Jasa</span>
+          </a>
+          <a href="edukasi.html">
+            <i class="fas fa-graduation-cap"></i>
+            <span>Edukasi</span>
+          </a>
+          <a href="komunitas.html">
+            <i class="fas fa-users"></i>
+            <span>Komunitas</span>
+          </a>
+          <a href="tentang.html">
+            <i class="fas fa-info-circle"></i>
+            <span>Tentang</span>
+          </a>
         </div>
-        
+
         <div class="mobile-nav-actions">
-            <a href="login.html" class="btn btn-outline">
-                <i class="fas fa-sign-in-alt"></i> Masuk
-            </a>
-            <a href="daftar.html" class="btn btn-solid">
-                <i class="fas fa-user-plus"></i> Daftar
-            </a>
+          <a href="login.html" class="btn btn-outline">
+            <i class="fas fa-sign-in-alt"></i> Masuk
+          </a>
+          <a href="daftar.html" class="btn btn-solid">
+            <i class="fas fa-user-plus"></i> Daftar
+          </a>
         </div>
+      </div>
     </div>
-</div>
 
-<div class="registration-container">
+    <div class="registration-container">
+      <div class="registration-card">
+        <!-- HEADER -->
+        <div class="registration-header">
+          <a href="index.html" class="nav-logo registration-logo"
+            >Asa<span>Hub</span></a
+          >
+          <p class="registration-subtitle">
+            Daftar sebagai penyedia jasa dan mulai jual layanan Anda
+          </p>
+        </div>
 
-<div class="registration-card">
+        <!-- PROGRESS -->
+        <div class="progress-indicator">
+          <div class="progress-step active">
+            <div class="progress-number">1</div>
+            Data Pribadi
+          </div>
 
-<!-- HEADER -->
-<div class="registration-header">
-<a href="index.html" class="nav-logo registration-logo">Asa<span>Hub</span></a>
-<p class="registration-subtitle">
-Daftar sebagai penyedia jasa dan mulai jual layanan Anda
-</p>
-</div>
+          <div class="progress-line"></div>
 
-<!-- PROGRESS -->
-<div class="progress-indicator">
+          <div class="progress-step">
+            <div class="progress-number">2</div>
+            Data Profesional
+          </div>
 
-<div class="progress-step active">
-<div class="progress-number">1</div>
-Data Pribadi
-</div>
+          <div class="progress-line"></div>
 
-<div class="progress-line"></div>
+          <div class="progress-step">
+            <div class="progress-number">3</div>
+            Konfirmasi
+          </div>
+        </div>
 
-<div class="progress-step">
-<div class="progress-number">2</div>
-Data Profesional
-</div>
+        <form>
+          <div class="error-message" id="errorMessage">
+            Terjadi kesalahan. Periksa kembali data Anda.
+          </div>
 
-<div class="progress-line"></div>
+          <!-- ================= DATA PRIBADI ================= -->
+          <div class="form-section">
+            <div class="section-title">Data Pribadi</div>
 
-<div class="progress-step">
-<div class="progress-number">3</div>
-Konfirmasi
-</div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label"
+                  >Nama Lengkap <span class="required">*</span></label
+                >
+                <input type="text" class="form-input" required />
+              </div>
 
-</div>
+              <div class="form-group">
+                <label class="form-label"
+                  >Email <span class="required">*</span></label
+                >
+                <input type="email" class="form-input" required />
+              </div>
+            </div>
 
-<form>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label"
+                  >No. WhatsApp <span class="required">*</span></label
+                >
+                <input type="tel" class="form-input" required />
+              </div>
 
-<div class="error-message" id="errorMessage">
-Terjadi kesalahan. Periksa kembali data Anda.
-</div>
+              <div class="form-group">
+                <label class="form-label"
+                  >Password <span class="required">*</span></label
+                >
+                <input type="password" class="form-input" required />
+              </div>
+            </div>
+          </div>
 
-<!-- ================= DATA PRIBADI ================= -->
-<div class="form-section">
+          <!-- ================= DATA PROFESIONAL ================= -->
+          <div class="form-section">
+            <div class="section-title">Data Profesional</div>
 
-<div class="section-title">Data Pribadi</div>
+            <div class="form-group">
+              <label class="form-label"
+                >Kategori Jasa <span class="required">*</span></label
+              >
+              <select class="form-select" required>
+                <option value="">Pilih kategori</option>
+                <option>Web Development</option>
+                <option>Desain Grafis</option>
+                <option>Digital Marketing</option>
+                <option>Video Editing</option>
+                <option>Penulisan</option>
+              </select>
+            </div>
 
-<div class="form-row">
+            <div class="form-group">
+              <label class="form-label"
+                >Nama Layanan Utama <span class="required">*</span></label
+              >
+              <input type="text" class="form-input" required />
+            </div>
 
-<div class="form-group">
-<label class="form-label">Nama Lengkap <span class="required">*</span></label>
-<input type="text" class="form-input" required>
-</div>
+            <div class="form-group">
+              <label class="form-label"
+                >Deskripsi Layanan <span class="required">*</span></label
+              >
+              <textarea class="form-textarea" required></textarea>
+            </div>
 
-<div class="form-group">
-<label class="form-label">Email <span class="required">*</span></label>
-<input type="email" class="form-input" required>
-</div>
+            <div class="form-group">
+              <label class="form-label"
+                >Harga Mulai Dari (Rp) <span class="required">*</span></label
+              >
+              <input type="number" class="form-input" required />
+            </div>
 
-</div>
+            <div class="form-group">
+              <label class="form-label">Upload Foto Profil</label>
 
-<div class="form-row">
+              <div class="file-upload">
+                <input type="file" id="profilePhoto" />
+                <label for="profilePhoto" class="file-upload-label">
+                  Klik untuk upload foto
+                </label>
+              </div>
+            </div>
+          </div>
 
-<div class="form-group">
-<label class="form-label">No. WhatsApp <span class="required">*</span></label>
-<input type="tel" class="form-input" required>
-</div>
+          <!-- ================= PERSETUJUAN ================= -->
+          <div class="form-section">
+            <div class="checkbox-group">
+              <input type="checkbox" required />
+              <label class="checkbox-label">
+                Saya menyetujui syarat & ketentuan AsaHub
+              </label>
+            </div>
+          </div>
 
-<div class="form-group">
-<label class="form-label">Password <span class="required">*</span></label>
-<input type="password" class="form-input" required>
-</div>
+          <!-- ================= BUTTON ================= -->
+          <div class="btn-container">
+            <a href="index.html" class="btn-back"> Kembali </a>
 
-</div>
+            <button type="submit" class="btn-register">Daftar Sekarang</button>
+          </div>
+        </form>
+      </div>
+    </div>
 
-</div>
+    <!-- SUCCESS MODAL -->
+    <div class="success-modal" id="successModal">
+      <div class="success-content">
+        <h2>Pendaftaran Berhasil 🎉</h2>
+        <p>Akun Anda sedang diverifikasi oleh tim AsaHub</p>
+      </div>
+    </div>
 
-<!-- ================= DATA PROFESIONAL ================= -->
-<div class="form-section">
+    <!-- Mobile Bottom Navigation -->
+    <!-- MOBILE NAV -->
+    <nav class="mobile-nav">
+      <a href="index.html">
+        <i class="fas fa-home"></i>
+      </a>
 
-<div class="section-title">Data Profesional</div>
+      <a href="jasa.html" class="active">
+        <i class="fas fa-briefcase"></i>
+      </a>
 
-<div class="form-group">
-<label class="form-label">Kategori Jasa <span class="required">*</span></label>
-<select class="form-select" required>
-<option value="">Pilih kategori</option>
-<option>Web Development</option>
-<option>Desain Grafis</option>
-<option>Digital Marketing</option>
-<option>Video Editing</option>
-<option>Penulisan</option>
-</select>
-</div>
+      <a href="edukasi.html">
+        <i class="fas fa-graduation-cap"></i>
+      </a>
 
-<div class="form-group">
-<label class="form-label">Nama Layanan Utama <span class="required">*</span></label>
-<input type="text" class="form-input" required>
-</div>
+      <a href="komunitas.html">
+        <i class="fas fa-users"></i>
+      </a>
 
-<div class="form-group">
-<label class="form-label">Deskripsi Layanan <span class="required">*</span></label>
-<textarea class="form-textarea" required></textarea>
-</div>
+      <a href="tentang.html">
+        <i class="fas fa-info-circle"></i>
+      </a>
 
-<div class="form-group">
-<label class="form-label">Harga Mulai Dari (Rp) <span class="required">*</span></label>
-<input type="number" class="form-input" required>
-</div>
+      <a href="login.html">
+        <i class="fas fa-user"></i>
+      </a>
+    </nav>
 
-<div class="form-group">
-<label class="form-label">Upload Foto Profil</label>
+    <script>
+      // Mobile Navigation
+      const mobileHamburger = document.getElementById("mobileHamburger");
+      const mobileNavOverlay = document.getElementById("mobileNavOverlay");
+      const mobileNavMenu = document.getElementById("mobileNavMenu");
+      const mobileNavClose = document.getElementById("mobileNavClose");
 
-<div class="file-upload">
-<input type="file" id="profilePhoto">
-<label for="profilePhoto" class="file-upload-label">
-Klik untuk upload foto
-</label>
-</div>
+      if (
+        mobileHamburger &&
+        mobileNavOverlay &&
+        mobileNavMenu &&
+        mobileNavClose
+      ) {
+        mobileHamburger.addEventListener("click", () => {
+          mobileNavOverlay.style.display = "block";
+          mobileNavMenu.style.right = "0";
+        });
 
-</div>
+        mobileNavClose.addEventListener("click", () => {
+          mobileNavOverlay.style.display = "none";
+          mobileNavMenu.style.right = "-280px";
+        });
 
-</div>
+        mobileNavOverlay.addEventListener("click", () => {
+          mobileNavOverlay.style.display = "none";
+          mobileNavMenu.style.right = "-280px";
+        });
+      }
 
-<!-- ================= PERSETUJUAN ================= -->
-<div class="form-section">
-
-<div class="checkbox-group">
-<input type="checkbox" required>
-<label class="checkbox-label">
-Saya menyetujui syarat & ketentuan AsaHub
-</label>
-</div>
-
-</div>
-
-<!-- ================= BUTTON ================= -->
-<div class="btn-container">
-
-<a href="index.html" class="btn-back">
-Kembali
-</a>
-
-<button type="submit" class="btn-register">
-Daftar Sekarang
-</button>
-
-</div>
-
-</form>
-
-</div>
-</div>
-
-<!-- SUCCESS MODAL -->
-<div class="success-modal" id="successModal">
-<div class="success-content">
-<h2>Pendaftaran Berhasil 🎉</h2>
-<p>Akun Anda sedang diverifikasi oleh tim AsaHub</p>
-</div>
-</div>
-
-<!-- Mobile Bottom Navigation -->
-<!-- MOBILE NAV -->
-<nav class="mobile-nav">
-
-<a href="index.html">
-<i class="fas fa-home"></i>
-</a>
-
-<a href="jasa.html" class="active">
-<i class="fas fa-briefcase"></i>
-</a>
-
-<a href="edukasi.html">
-<i class="fas fa-graduation-cap"></i>
-</a>
-
-<a href="komunitas.html">
-<i class="fas fa-users"></i>
-</a>
-
-<a href="tentang.html">
-<i class="fas fa-info-circle"></i>
-</a>
-
-<a href="login.html">
-<i class="fas fa-user"></i>
-</a>
-
-</nav>
-
-<script>
-// Mobile Navigation
-const mobileHamburger = document.getElementById('mobileHamburger');
-const mobileNavOverlay = document.getElementById('mobileNavOverlay');
-const mobileNavMenu = document.getElementById('mobileNavMenu');
-const mobileNavClose = document.getElementById('mobileNavClose');
-
-if (mobileHamburger && mobileNavOverlay && mobileNavMenu && mobileNavClose) {
-    mobileHamburger.addEventListener('click', () => {
-        mobileNavOverlay.style.display = 'block';
-        mobileNavMenu.style.right = '0';
-    });
-
-    mobileNavClose.addEventListener('click', () => {
-        mobileNavOverlay.style.display = 'none';
-        mobileNavMenu.style.right = '-280px';
-    });
-
-    mobileNavOverlay.addEventListener('click', () => {
-        mobileNavOverlay.style.display = 'none';
-        mobileNavMenu.style.right = '-280px';
-    });
-}
-
-// Show mobile nav on small screens
-if(window.innerWidth<=768){
-document.querySelector('.mobile-nav').style.display='flex';
-}
-</script>
-
-</body>
+      // Show mobile nav on small screens
+      if (window.innerWidth <= 768) {
+        document.querySelector(".mobile-nav").style.display = "flex";
+      }
+    </script>
+  </body>
 </html>

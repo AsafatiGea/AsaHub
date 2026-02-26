@@ -13,8 +13,8 @@
   --buyer-dark: #1f2937;
   --buyer-light: #f9fafb;
   --buyer-border: #e5e7eb;
-  --buyer-shadow: 0 1px 3px rgba(0,0,0,0.12);
-  --buyer-shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+  --buyer-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  --buyer-shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
 /* ========== DASHBOARD LAYOUT ========== */
@@ -46,7 +46,11 @@
 .buyer-sidebar-header {
   padding: 24px;
   border-bottom: 1px solid var(--buyer-border);
-  background: linear-gradient(135deg, var(--buyer-primary), var(--buyer-primary-dark));
+  background: linear-gradient(
+    135deg,
+    var(--buyer-primary),
+    var(--buyer-primary-dark)
+  );
   color: white;
 }
 
@@ -124,7 +128,11 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--buyer-primary), var(--buyer-secondary));
+  background: linear-gradient(
+    135deg,
+    var(--buyer-primary),
+    var(--buyer-secondary)
+  );
   color: white;
   display: flex;
   align-items: center;
@@ -157,8 +165,14 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ========== STATS CARDS ========== */
@@ -181,13 +195,17 @@
 }
 
 .buyer-stat-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--buyer-primary), var(--buyer-secondary));
+  background: linear-gradient(
+    90deg,
+    var(--buyer-primary),
+    var(--buyer-secondary)
+  );
 }
 
 .buyer-stat-card:hover {
@@ -363,7 +381,11 @@
   position: absolute;
   top: 12px;
   left: 12px;
-  background: linear-gradient(135deg, var(--buyer-primary), var(--buyer-secondary));
+  background: linear-gradient(
+    135deg,
+    var(--buyer-primary),
+    var(--buyer-secondary)
+  );
   color: white;
   padding: 4px 12px;
   border-radius: 20px;
@@ -406,7 +428,11 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 100%);
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
   opacity: 0;
   transition: opacity 0.3s ease;
   display: flex;
@@ -771,7 +797,11 @@
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--buyer-primary), var(--buyer-secondary));
+  background: linear-gradient(
+    135deg,
+    var(--buyer-primary),
+    var(--buyer-secondary)
+  );
   color: white;
   display: flex;
   align-items: center;
@@ -833,13 +863,18 @@
 }
 
 .buyer-btn::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
   transition: left 0.5s ease;
 }
 
@@ -848,7 +883,11 @@
 }
 
 .buyer-btn-primary {
-  background: linear-gradient(135deg, var(--buyer-primary), var(--buyer-secondary));
+  background: linear-gradient(
+    135deg,
+    var(--buyer-primary),
+    var(--buyer-secondary)
+  );
   color: white;
 }
 
@@ -933,7 +972,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(135deg, var(--buyer-primary), var(--buyer-secondary));
+  background: linear-gradient(
+    135deg,
+    var(--buyer-primary),
+    var(--buyer-secondary)
+  );
   color: white;
   border-radius: 16px 16px 0 0;
 }
@@ -1012,7 +1055,11 @@
 }
 
 .buyer-notification.info {
-  background: linear-gradient(135deg, var(--buyer-primary), var(--buyer-secondary));
+  background: linear-gradient(
+    135deg,
+    var(--buyer-primary),
+    var(--buyer-secondary)
+  );
 }
 
 /* ========== EMPTY STATES ========== */
@@ -1067,8 +1114,12 @@
 }
 
 @keyframes buyer-spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* ========== RESPONSIVE ========== */
@@ -1076,63 +1127,63 @@
   .buyer-sidebar {
     transform: translateX(-100%);
   }
-  
+
   .buyer-sidebar.open {
     transform: translateX(0);
   }
-  
+
   .buyer-main {
     margin-left: 0;
     padding: 16px;
   }
-  
+
   .buyer-stats-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .buyer-products-grid {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
-  
+
   .buyer-wishlist-grid {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
-  
+
   .buyer-form-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .buyer-browse-filters {
     flex-direction: column;
     align-items: stretch;
   }
-  
+
   .buyer-search-bar {
     width: 100%;
   }
-  
+
   .buyer-modal {
     width: 95%;
     margin: 16px;
   }
-  
+
   .buyer-topbar {
     padding: 12px 16px;
   }
-  
+
   .buyer-page-title {
     font-size: 20px;
   }
-  
+
   .buyer-user-info {
     display: none;
   }
-  
+
   .buyer-profile-header {
     flex-direction: column;
     text-align: center;
   }
-  
+
   .buyer-order-products {
     flex-direction: column;
   }
@@ -1142,45 +1193,69 @@
   .buyer-stats-grid {
     gap: 16px;
   }
-  
+
   .buyer-stat-card {
     padding: 16px;
   }
-  
+
   .buyer-stat-value {
     font-size: 24px;
   }
-  
+
   .buyer-products-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .buyer-wishlist-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .buyer-product-card {
     margin-bottom: 16px;
   }
-  
+
   .buyer-profile-container {
     padding: 20px;
   }
 }
 
 /* ========== UTILITIES ========== */
-.buyer-text-center { text-align: center; }
-.buyer-text-right { text-align: right; }
-.buyer-mb-0 { margin-bottom: 0; }
-.buyer-mb-1 { margin-bottom: 8px; }
-.buyer-mb-2 { margin-bottom: 16px; }
-.buyer-mb-3 { margin-bottom: 24px; }
-.buyer-mt-0 { margin-top: 0; }
-.buyer-mt-1 { margin-top: 8px; }
-.buyer-mt-2 { margin-top: 16px; }
-.buyer-mt-3 { margin-top: 24px; }
-.buyer-hidden { display: none; }
-.buyer-visible { display: block; }
+.buyer-text-center {
+  text-align: center;
+}
+.buyer-text-right {
+  text-align: right;
+}
+.buyer-mb-0 {
+  margin-bottom: 0;
+}
+.buyer-mb-1 {
+  margin-bottom: 8px;
+}
+.buyer-mb-2 {
+  margin-bottom: 16px;
+}
+.buyer-mb-3 {
+  margin-bottom: 24px;
+}
+.buyer-mt-0 {
+  margin-top: 0;
+}
+.buyer-mt-1 {
+  margin-top: 8px;
+}
+.buyer-mt-2 {
+  margin-top: 16px;
+}
+.buyer-mt-3 {
+  margin-top: 24px;
+}
+.buyer-hidden {
+  display: none;
+}
+.buyer-visible {
+  display: block;
+}
 
 /* ========== ANIMATIONS ========== */
 .buyer-pulse {
@@ -1188,9 +1263,15 @@
 }
 
 @keyframes buyer-pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .buyer-slide-up {
@@ -1198,8 +1279,14 @@
 }
 
 @keyframes buyer-slideUp {
-  from { transform: translateY(20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .buyer-fade-in {
@@ -1207,6 +1294,10 @@
 }
 
 @keyframes buyer-fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

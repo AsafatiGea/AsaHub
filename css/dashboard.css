@@ -208,7 +208,7 @@
   font-weight: 700;
   color: var(--secondary);
   margin-bottom: var(--spacing-xs);
-  font-family: 'Syne', sans-serif;
+  font-family: "Syne", sans-serif;
 }
 
 .stat-label {
@@ -591,7 +591,7 @@ tbody tr:hover {
   .dashboard-layout {
     grid-template-columns: 1fr;
   }
-  
+
   .dashboard-sidebar {
     position: fixed;
     top: 64px;
@@ -604,16 +604,16 @@ tbody tr:hover {
     z-index: 998;
     overflow-y: auto;
   }
-  
+
   .dashboard-sidebar.open {
     left: 0;
   }
-  
+
   .dashboard-main {
     margin-left: 0;
     padding: var(--spacing);
   }
-  
+
   .stats-grid {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: var(--spacing);
@@ -624,47 +624,47 @@ tbody tr:hover {
   .dashboard-main {
     padding: var(--spacing-sm);
   }
-  
+
   .dashboard-header {
     flex-direction: column;
     gap: var(--spacing);
     text-align: center;
   }
-  
+
   .dashboard-actions {
     width: 100%;
     justify-content: center;
   }
-  
+
   .content-header {
     flex-direction: column;
     gap: var(--spacing);
     text-align: center;
   }
-  
+
   .content-actions {
     width: 100%;
     justify-content: center;
   }
-  
+
   .stats-grid {
     grid-template-columns: 1fr;
     gap: var(--spacing);
   }
-  
+
   .form-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .table-container {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
-  
+
   table {
     min-width: 600px;
   }
-  
+
   .chart-placeholder {
     height: 200px;
   }
@@ -674,40 +674,40 @@ tbody tr:hover {
   .dashboard-main {
     padding: var(--spacing-xs);
   }
-  
+
   .dashboard-header,
   .content-header,
   .form-section {
     padding: var(--spacing);
   }
-  
+
   .dashboard-title {
     font-size: var(--font-xl);
   }
-  
+
   .content-title {
     font-size: var(--font-lg);
   }
-  
+
   .stat-card {
     padding: var(--spacing);
   }
-  
+
   .stat-value {
     font-size: var(--font-2xl);
   }
-  
+
   .dashboard-content,
   .table-container,
   .chart-container,
   .activity-feed {
     padding: var(--spacing);
   }
-  
+
   .activity-item {
     padding: var(--spacing-sm);
   }
-  
+
   .activity-icon {
     width: 32px;
     height: 32px;

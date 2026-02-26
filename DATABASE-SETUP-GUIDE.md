@@ -3,6 +3,7 @@
 ## 📋 STEP-BY-STEP INSTRUCTIONS
 
 ### 🔧 STEP 1: RESET DATABASE
+
 1. **Buka Supabase Dashboard**
    - Go to: https://supabase.com/dashboard/project/btkmlkpspcsoozdbvsvp
    - Login ke Supabase
@@ -12,6 +13,7 @@
    - Pastikan database: `btkmlkpspcsoozdbvsvp`
 
 ### 🗑️ STEP 2: DROP OLD TABLES
+
 Copy dan jalankan SQL ini untuk reset total:
 
 ```sql
@@ -27,6 +29,7 @@ DROP TABLE IF EXISTS users CASCADE;
 ```
 
 ### 🏗️ STEP 3: CREATE NEW STRUCTURE
+
 Copy dan jalankan SQL dari file: `asa-hub-database-fresh.sql`
 
 ```sql
@@ -35,6 +38,7 @@ Copy dan jalankan SQL dari file: `asa-hub-database-fresh.sql`
 ```
 
 ### 📊 STEP 4: INSERT INITIAL DATA
+
 Copy dan jalankan SQL dari file: `asa-hub-initial-data.sql`
 
 ```sql
@@ -49,6 +53,7 @@ Copy dan jalankan SQL dari file: `asa-hub-initial-data.sql`
 ```
 
 ### 🛡️ STEP 5: APPLY SECURITY POLICIES
+
 Copy dan jalankan SQL dari file: `asa-hub-rls-policies.sql`
 
 ```sql
@@ -57,6 +62,7 @@ Copy dan jalankan SQL dari file: `asa-hub-rls-policies.sql`
 ```
 
 ### 🔍 STEP 6: VERIFICATION
+
 Jalankan query ini untuk verifikasi:
 
 ```sql
@@ -71,6 +77,7 @@ SELECT 'Reviews: ' || COUNT(*) FROM reviews;
 ```
 
 ### 🎯 EXPECTED RESULTS:
+
 - **Categories:** 8
 - **Users:** 3
 - **Products:** 5
@@ -82,14 +89,17 @@ SELECT 'Reviews: ' || COUNT(*) FROM reviews;
 ## 📱 LOGIN CREDENTIALS (SETelah SETUP):
 
 **🔑 ADMIN:**
+
 - Email: `admin@asahub.site`
 - Password: `admin123`
 
 **🛒 SELLER:**
+
 - Email: `seller@asahub.site`
 - Password: `seller123`
 
 **👤 BUYER:**
+
 - Email: `buyer@asahub.site`
 - Password: `buyer123`
 

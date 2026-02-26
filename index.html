@@ -1,232 +1,246 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Marketplace - AsaHub</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marketplace - AsaHub</title>
 
-<link rel="icon" type="image/png" href="img/logo.png">
+    <link rel="icon" type="image/png" href="img/logo.png" />
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
 
-<!-- Main CSS -->
-<link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/layout.css">
-<link rel="stylesheet" href="css/components.css">
-<link rel="stylesheet" href="css/index.css">
-<link rel="stylesheet" href="css/responsive-mobile.css">
-<link rel="stylesheet" href="css/responsive-desktop.css">
-<link rel="stylesheet" href="style.css">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/responsive-mobile.css" />
+    <link rel="stylesheet" href="css/responsive-desktop.css" />
+    <link rel="stylesheet" href="style.css" />
 
-<style>
-/* Hide desktop navigation on mobile */
-@media (max-width: 768px) {
-    nav > div > div:nth-child(2) {
-        display: none !important;
-    }
-    nav > div > div:nth-child(3) {
-        display: none !important;
-    }
-}
-</style>
-</head>
+    <style>
+      /* Hide desktop navigation on mobile */
+      @media (max-width: 768px) {
+        nav > div > div:nth-child(2) {
+          display: none !important;
+        }
+        nav > div > div:nth-child(3) {
+          display: none !important;
+        }
+      }
+    </style>
+  </head>
 
-<body>
-
-<!-- Navbar -->
-<nav class="navbar">
-
-<div class="navbar-container">
-
-<a href="index.html" class="navbar-logo">
-Asa<span>Hub</span>
-</a>
-
-<div class="navbar-links">
-<a href="index.html" class="active">Marketplace</a>
-<a href="jasa.html">Jasa</a>
-<a href="edukasi.html">Edukasi</a>
-<a href="komunitas.html">Komunitas</a>
-<a href="tentang.html">Tentang</a>
-</div>
-
-<div class="navbar-actions">
-<a href="login.html" class="navbar-btn navbar-btn-outline">Masuk</a>
-<a href="daftar.html" class="navbar-btn navbar-btn-solid">Daftar</a>
-</div>
-
-</div>
-</nav>
-
-<!-- HAMBURGER BUTTON - POJOK KANAN ATAS (HANYA MOBILE) -->
-    <button class="mobile-hamburger" id="mobileHamburger" aria-label="Toggle menu">
-        <div class="hamburger-icon">
-            <span></span>
-            <span></span>
-            <span></span>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="navbar-container">
+        <a href="index.html" class="navbar-logo"> Asa<span>Hub</span> </a>
+        <!-- Desktop Navigation Links -->
+        <div class="navbar-links">
+          <a href="index.html" class="active">Marketplace</a>
+          <a href="jasa.html">Jasa</a>
+          <a href="edukasi.html">Edukasi</a>
+          <a href="komunitas.html">Komunitas</a>
+          <a href="tentang.html">Tentang</a>
         </div>
+
+        <div class="navbar-actions">
+          <a href="login.html" class="navbar-btn navbar-btn-outline">Masuk</a>
+          <a href="daftar.html" class="navbar-btn navbar-btn-solid">Daftar</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HAMBURGER BUTTON - POJOK KANAN ATAS (HANYA MOBILE) -->
+    <button
+      class="mobile-hamburger"
+      id="mobileHamburger"
+      aria-label="Toggle menu"
+    >
+      <div class="hamburger-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </button>
 
-<!-- MOBILE NAVIGATION OVERLAY -->
-<div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+    <!-- MOBILE NAVIGATION OVERLAY -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
 
-<!-- MOBILE NAVIGATION MENU garis 3 pojok ats -->
-<div class="mobile-nav-menu" id="mobileNavMenu">
-    <div class="mobile-nav-header">
-        <div class="mobile-nav-logo">
-            <span>🛒</span> AsaHub
-        </div>
-        <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">
-            <i class="fas fa-times"></i>
+    <!-- MOBILE NAVIGATION MENU garis 3 pojok ats -->
+    <div class="mobile-nav-menu" id="mobileNavMenu">
+      <div class="mobile-nav-header">
+        <div class="mobile-nav-logo"><span>🛒</span> AsaHub</div>
+        <button
+          class="mobile-nav-close"
+          id="mobileNavClose"
+          aria-label="Close menu"
+        >
+          <i class="fas fa-times"></i>
         </button>
-    </div>
-    
-    <div class="mobile-nav-content">
+      </div>
+
+      <div class="mobile-nav-content">
         <div class="mobile-nav-links">
-            <a href="index.html">
-                <i class="fas fa-home"></i>
-                <span>Home</span>
-            </a>
-            <a href="jasa.html">
-                <i class="fas fa-briefcase"></i>
-                <span>Jasa</span>
-            </a>
-            <a href="edukasi.html">
-                <i class="fas fa-graduation-cap"></i>
-                <span>Edukasi</span>
-            </a>
-            <a href="komunitas.html">
-                <i class="fas fa-users"></i>
-                <span>Komunitas</span>
-            </a>
-            <a href="tentang.html">
-                <i class="fas fa-info-circle"></i>
-                <span>Tentang</span>
-            </a>
+          <a href="index.html">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+          </a>
+          <a href="jasa.html">
+            <i class="fas fa-briefcase"></i>
+            <span>Jasa</span>
+          </a>
+          <a href="edukasi.html">
+            <i class="fas fa-graduation-cap"></i>
+            <span>Edukasi</span>
+          </a>
+          <a href="komunitas.html">
+            <i class="fas fa-users"></i>
+            <span>Komunitas</span>
+          </a>
+          <a href="tentang.html">
+            <i class="fas fa-info-circle"></i>
+            <span>Tentang</span>
+          </a>
         </div>
-        
+
         <div class="mobile-nav-actions">
-            <a href="login.html" class="btn btn-outline">
-                <i class="fas fa-sign-in-alt"></i> Masuk
-            </a>
-            <a href="daftar.html" class="btn btn-solid">
-                <i class="fas fa-user-plus"></i> Daftar
-            </a>
+          <a href="login.html" class="btn btn-outline">
+            <i class="fas fa-sign-in-alt"></i> Masuk
+          </a>
+          <a href="daftar.html" class="btn btn-solid">
+            <i class="fas fa-user-plus"></i> Daftar
+          </a>
         </div>
+      </div>
     </div>
-</div>
-<section class="section">
+    <section class="section">
+      <h1>Marketplace Jasa & Produk</h1>
 
-    <h1>Marketplace Jasa & Produk</h1>
-
-    <!-- Search -->
-    <div class="search-box">
+      <!-- Search -->
+      <div class="search-box">
         <i class="fas fa-search"></i>
-        <input type="text" placeholder="Cari produk atau jasa...">
-    </div>
+        <input type="text" placeholder="Cari produk atau jasa..." />
+      </div>
 
-    <!-- Grid Produk -->
-    <div class="grid-auto-fit">
-
+      <!-- Grid Produk -->
+      <div class="grid-auto-fit">
         <!-- Card 1 -->
         <div class="card">
-            <h3>Desain Logo Profesional</h3>
-            <p>Layanan desain logo modern dan elegan untuk bisnis startup maupun perusahaan.</p>
-            <em>Maaf banget pelayanan ini belum ada</em>
-            <div class="card-price">Rp ...</div>
-            <a href="#" class="btn btn-primary">Pesan Sekarang</a>
+          <h3>Desain Logo Profesional</h3>
+          <p>
+            Layanan desain logo modern dan elegan untuk bisnis startup maupun
+            perusahaan.
+          </p>
+          <em>Maaf banget pelayanan ini belum ada</em>
+          <div class="card-price">Rp ...</div>
+          <a href="#" class="btn btn-primary">Pesan Sekarang</a>
         </div>
 
         <!-- Card 2 -->
         <div class="card">
-            <h3>Website Company Profile</h3>
-            <p>Pembuatan website profesional dengan desain premium dan responsive.</p>
-            <em>Maaf banget pelayanan ini belum ada</em>
-            <div class="card-price">Rp ...</div>
-            <a href="#" class="btn btn-primary">Pesan Sekarang</a>
+          <h3>Website Company Profile</h3>
+          <p>
+            Pembuatan website profesional dengan desain premium dan responsive.
+          </p>
+          <em>Maaf banget pelayanan ini belum ada</em>
+          <div class="card-price">Rp ...</div>
+          <a href="#" class="btn btn-primary">Pesan Sekarang</a>
         </div>
 
         <!-- Card 3 -->
         <div class="card">
-            <h3>Jasa Social Media Management</h3>
-            <p>Kelola Instagram & TikTok bisnis Anda secara profesional dan terjadwal.</p>
-            <em>Maaf banget pelayanan ini belum ada</em>
-             <div class="card-price">Rp ...</div>
-            <a href="#" class="btn btn-primary">Pesan Sekarang</a>
+          <h3>Jasa Social Media Management</h3>
+          <p>
+            Kelola Instagram & TikTok bisnis Anda secara profesional dan
+            terjadwal.
+          </p>
+          <em>Maaf banget pelayanan ini belum ada</em>
+          <div class="card-price">Rp ...</div>
+          <a href="#" class="btn btn-primary">Pesan Sekarang</a>
         </div>
 
         <!-- Card 4 -->
         <div class="card">
-            <h3>Editing Video Promosi</h3>
-            <p>Video promosi cinematic untuk meningkatkan branding bisnis Anda.</p>
-            <em>Maaf banget pelayanan ini belum ada</em>
-             <div class="card-price">Rp ...</div>
+          <h3>Editing Video Promosi</h3>
+          <p>
+            Video promosi cinematic untuk meningkatkan branding bisnis Anda.
+          </p>
+          <em>Maaf banget pelayanan ini belum ada</em>
+          <div class="card-price">Rp ...</div>
 
-            <a href="#" class="btn btn-primary">Pesan Sekarang</a>
+          <a href="#" class="btn btn-primary">Pesan Sekarang</a>
         </div>
+      </div>
+    </section>
 
-    </div>
+    <!-- Mobile Bottom Navigation -->
+    <!-- MOBILE NAV -->
+    <nav class="mobile-nav">
+      <a href="index.html">
+        <i class="fas fa-home"></i>
+      </a>
 
-</section>
+      <a href="jasa.html" class="active">
+        <i class="fas fa-briefcase"></i>
+      </a>
 
-<!-- Mobile Bottom Navigation -->
-<!-- MOBILE NAV -->
-<nav class="mobile-nav">
+      <a href="edukasi.html">
+        <i class="fas fa-graduation-cap"></i>
+      </a>
 
-<a href="index.html">
-<i class="fas fa-home"></i>
-</a>
+      <a href="komunitas.html">
+        <i class="fas fa-users"></i>
+      </a>
 
-<a href="jasa.html" class="active">
-<i class="fas fa-briefcase"></i>
-</a>
+      <a href="tentang.html">
+        <i class="fas fa-info-circle"></i>
+      </a>
 
-<a href="edukasi.html">
-<i class="fas fa-graduation-cap"></i>
-</a>
+      <a href="login.html">
+        <i class="fas fa-user"></i>
+      </a>
+    </nav>
 
-<a href="komunitas.html">
-<i class="fas fa-users"></i>
-</a>
+    <script>
+      // Mobile Navigation
+      const mobileHamburger = document.getElementById("mobileHamburger");
+      const mobileNavOverlay = document.getElementById("mobileNavOverlay");
+      const mobileNavMenu = document.getElementById("mobileNavMenu");
+      const mobileNavClose = document.getElementById("mobileNavClose");
 
-<a href="tentang.html">
-<i class="fas fa-info-circle"></i>
-</a>
+      if (
+        mobileHamburger &&
+        mobileNavOverlay &&
+        mobileNavMenu &&
+        mobileNavClose
+      ) {
+        mobileHamburger.addEventListener("click", () => {
+          mobileNavOverlay.style.display = "block";
+          mobileNavMenu.style.right = "0";
+        });
 
-<a href="login.html">
-<i class="fas fa-user"></i>
-</a>
+        mobileNavClose.addEventListener("click", () => {
+          mobileNavOverlay.style.display = "none";
+          mobileNavMenu.style.right = "-280px";
+        });
 
-</nav>
-
-<script>
-// Mobile Navigation
-const mobileHamburger = document.getElementById('mobileHamburger');
-const mobileNavOverlay = document.getElementById('mobileNavOverlay');
-const mobileNavMenu = document.getElementById('mobileNavMenu');
-const mobileNavClose = document.getElementById('mobileNavClose');
-
-if (mobileHamburger && mobileNavOverlay && mobileNavMenu && mobileNavClose) {
-    mobileHamburger.addEventListener('click', () => {
-        mobileNavOverlay.style.display = 'block';
-        mobileNavMenu.style.right = '0';
-    });
-
-    mobileNavClose.addEventListener('click', () => {
-        mobileNavOverlay.style.display = 'none';
-        mobileNavMenu.style.right = '-280px';
-    });
-
-    mobileNavOverlay.addEventListener('click', () => {
-        mobileNavOverlay.style.display = 'none';
-        mobileNavMenu.style.right = '-280px';
-    });
-}
-</script>
-
-</body>
+        mobileNavOverlay.addEventListener("click", () => {
+          mobileNavOverlay.style.display = "none";
+          mobileNavMenu.style.right = "-280px";
+        });
+      }
+    </script>
+  </body>
 </html>

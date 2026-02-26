@@ -6,15 +6,22 @@
   box-sizing: border-box;
 }
 
-html, body {
-  background-color:#000000 !important;
+html,
+body {
+  background-color: #000000 !important;
   color: #ffffff;
   margin: 0;
   padding: 0;
 }
 
 body {
-  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family:
+    "DM Sans",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
   background: #000000 !important; /* Background hitam global */
   color: #ffffff; /* Teks putih untuk kontras */
   line-height: 1.6;
@@ -30,21 +37,21 @@ html {
 /* ---------- COLOR PHILOSOPHY ---------- */
 :root {
   /* Warna Utama - Filosofi Dark Theme */
-  --primary-black: #000000;      /* Hitam pekat - warna body utama */
-  --sky-blue: #2196F3;          /* Biru langit - kepercayaan & profesional */
-  --earth-green: #4CAF50;       /* Hijau rumput - pertumbuhan & keseimbangan */
-  --light-white: #FFFFFF;        /* Putih cerah - kebersihan & kejelasan */
-  --dark-black: #000000;         /* Hitam gelap - ketegasan & kekuatan */
-  
+  --primary-black: #000000; /* Hitam pekat - warna body utama */
+  --sky-blue: #2196f3; /* Biru langit - kepercayaan & profesional */
+  --earth-green: #4caf50; /* Hijau rumput - pertumbuhan & keseimbangan */
+  --light-white: #ffffff; /* Putih cerah - kebersihan & kejelasan */
+  --dark-black: #000000; /* Hitam gelap - ketegasan & kekuatan */
+
   /* ========== ASA HUB BRAND VARIABLES ========== */
-  --brand-primary: #FFC107;      /* Kuning AsaHub - identitas visual utama */
-  --brand-text: #ffffff;          /* Teks putih untuk kontras dengan kuning */
-  
+  --brand-primary: #ffc107; /* Kuning AsaHub - identitas visual utama */
+  --brand-text: #ffffff; /* Teks putih untuk kontras dengan kuning */
+
   /* Variasi Warna Dark Theme */
-  --primary: #FFB300;          /* Kuning emas untuk aksen */
-  --primary-dark: #FF8F00;     /* Kuning gelap untuk hover */
-  --secondary: #ffffff;        /* Putih untuk teks */
-  --muted: #cccccc;           /* Abu-abu terang untuk teks sekunder */
+  --primary: #ffb300; /* Kuning emas untuk aksen */
+  --primary-dark: #ff8f00; /* Kuning gelap untuk hover */
+  --secondary: #ffffff; /* Putih untuk teks */
+  --muted: #cccccc; /* Abu-abu terang untuk teks sekunder */
   --gray-50: #1a1a1a;
   --gray-100: #2d2d2d;
   --gray-200: #404040;
@@ -54,20 +61,25 @@ html {
   --gray-600: #a6a6a6;
   --gray-700: #bfbfbf;
   --gray-800: #d9d9d9;
-  
+
   /* Semantic Colors */
   --success: var(--earth-green);
-  --warning: #FF9800;
-  --error: #F44336;
+  --warning: #ff9800;
+  --error: #f44336;
   --info: var(--sky-blue);
-  
+
   /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgba(255, 255, 255, 0.1);
-  --shadow: 0 1px 3px 0 rgba(255, 255, 255, 0.1), 0 1px 2px 0 rgba(255, 255, 255, 0.06);
-  --shadow-md: 0 4px 6px -1px rgba(255, 255, 255, 0.1), 0 2px 4px -1px rgba(255, 255, 255, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  
+  --shadow:
+    0 1px 3px 0 rgba(255, 255, 255, 0.1), 0 1px 2px 0 rgba(255, 255, 255, 0.06);
+  --shadow-md:
+    0 4px 6px -1px rgba(255, 255, 255, 0.1),
+    0 2px 4px -1px rgba(255, 255, 255, 0.06);
+  --shadow-lg:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
   /* Border Radius */
   --radius-sm: 4px;
   --radius: 8px;
@@ -75,7 +87,7 @@ html {
   --radius-lg: 16px;
   --radius-xl: 24px;
   --radius-full: 9999px;
-  
+
   /* Spacing */
   --spacing-xs: 0.25rem;
   --spacing-sm: 0.5rem;
@@ -84,7 +96,7 @@ html {
   --spacing-lg: 2rem;
   --spacing-xl: 3rem;
   --spacing-2xl: 4rem;
-  
+
   /* Typography */
   --font-xs: 0.75rem;
   --font-sm: 0.875rem;
@@ -98,20 +110,41 @@ html {
 }
 
 /* Typography */
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Syne', -apple-system, BlinkMacSystemFont, sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family:
+    "Syne",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
   font-weight: 700;
   color: var(--secondary);
   line-height: 1.2;
   margin-bottom: var(--spacing);
 }
 
-h1 { font-size: var(--font-4xl); }
-h2 { font-size: var(--font-3xl); }
-h3 { font-size: var(--font-2xl); }
-h4 { font-size: var(--font-xl); }
-h5 { font-size: var(--font-lg); }
-h6 { font-size: var(--font); }
+h1 {
+  font-size: var(--font-4xl);
+}
+h2 {
+  font-size: var(--font-3xl);
+}
+h3 {
+  font-size: var(--font-2xl);
+}
+h4 {
+  font-size: var(--font-xl);
+}
+h5 {
+  font-size: var(--font-lg);
+}
+h6 {
+  font-size: var(--font);
+}
 
 p {
   margin-bottom: var(--spacing);
@@ -129,7 +162,8 @@ a:hover {
 }
 
 /* Lists */
-ul, ol {
+ul,
+ol {
   margin-bottom: var(--spacing);
   padding-left: var(--spacing-lg);
 }
@@ -146,7 +180,9 @@ img {
 }
 
 /* Forms */
-input, textarea, select {
+input,
+textarea,
+select {
   font-family: inherit;
   font-size: var(--font);
   border: 1px solid var(--gray-300);
@@ -154,10 +190,14 @@ input, textarea, select {
   padding: var(--spacing-sm) var(--spacing);
   background: var(--light-white);
   color: var(--secondary);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-input:focus, textarea:focus, select:focus {
+input:focus,
+textarea:focus,
+select:focus {
   outline: none;
   border-color: var(--primary);
   box-shadow: 0 0 0 3px rgba(255, 179, 0, 0.1);
@@ -182,38 +222,92 @@ button {
   padding: 0 var(--spacing);
 }
 
-.text-center { text-align: center; }
-.text-left { text-align: left; }
-.text-right { text-align: right; }
+.text-center {
+  text-align: center;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
 
-.hidden { display: none; }
-.block { display: block; }
-.flex { display: flex; }
-.grid { display: grid; }
+.hidden {
+  display: none;
+}
+.block {
+  display: block;
+}
+.flex {
+  display: flex;
+}
+.grid {
+  display: grid;
+}
 
-.w-full { width: 100%; }
-.h-full { height: 100%; }
+.w-full {
+  width: 100%;
+}
+.h-full {
+  height: 100%;
+}
 
-.mb-0 { margin-bottom: 0; }
-.mb-1 { margin-bottom: var(--spacing-xs); }
-.mb-2 { margin-bottom: var(--spacing-sm); }
-.mb-3 { margin-bottom: var(--spacing); }
-.mb-4 { margin-bottom: var(--spacing-md); }
-.mb-5 { margin-bottom: var(--spacing-lg); }
+.mb-0 {
+  margin-bottom: 0;
+}
+.mb-1 {
+  margin-bottom: var(--spacing-xs);
+}
+.mb-2 {
+  margin-bottom: var(--spacing-sm);
+}
+.mb-3 {
+  margin-bottom: var(--spacing);
+}
+.mb-4 {
+  margin-bottom: var(--spacing-md);
+}
+.mb-5 {
+  margin-bottom: var(--spacing-lg);
+}
 
-.mt-0 { margin-top: 0; }
-.mt-1 { margin-top: var(--spacing-xs); }
-.mt-2 { margin-top: var(--spacing-sm); }
-.mt-3 { margin-top: var(--spacing); }
-.mt-4 { margin-top: var(--spacing-md); }
-.mt-5 { margin-top: var(--spacing-lg); }
+.mt-0 {
+  margin-top: 0;
+}
+.mt-1 {
+  margin-top: var(--spacing-xs);
+}
+.mt-2 {
+  margin-top: var(--spacing-sm);
+}
+.mt-3 {
+  margin-top: var(--spacing);
+}
+.mt-4 {
+  margin-top: var(--spacing-md);
+}
+.mt-5 {
+  margin-top: var(--spacing-lg);
+}
 
-.p-0 { padding: 0; }
-.p-1 { padding: var(--spacing-xs); }
-.p-2 { padding: var(--spacing-sm); }
-.p-3 { padding: var(--spacing); }
-.p-4 { padding: var(--spacing-md); }
-.p-5 { padding: var(--spacing-lg); }
+.p-0 {
+  padding: 0;
+}
+.p-1 {
+  padding: var(--spacing-xs);
+}
+.p-2 {
+  padding: var(--spacing-sm);
+}
+.p-3 {
+  padding: var(--spacing);
+}
+.p-4 {
+  padding: var(--spacing-md);
+}
+.p-5 {
+  padding: var(--spacing-lg);
+}
 
 /* Accessibility */
 .sr-only {
@@ -242,11 +336,12 @@ button {
     box-shadow: none !important;
     text-shadow: none !important;
   }
-  
-  a, a:visited {
+
+  a,
+  a:visited {
     text-decoration: underline;
   }
-  
+
   .no-print {
     display: none !important;
   }

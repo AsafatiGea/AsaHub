@@ -1,104 +1,100 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Seller Dashboard — AsaHub</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seller Dashboard — AsaHub</title>
 
-<link rel="icon" type="image/png" href="../img/logo.png">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="../img/logo.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
 
-<link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/layout.css">
-<link rel="stylesheet" href="css/components.css">
-<link rel="stylesheet" href="css/seller-dashboard.css">
-<link rel="stylesheet" href="css/responsive-mobile.css">
-<link rel="stylesheet" href="css/responsive-desktop.css">
-</head>
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/seller-dashboard.css" />
+    <link rel="stylesheet" href="css/responsive-mobile.css" />
+    <link rel="stylesheet" href="css/responsive-desktop.css" />
+  </head>
 
-<body>
-
-<div class="dashboard-wrapper">
-
-    <!-- SIDEBAR -->
-    <aside id="sidebar" class="sidebar">
-
+  <body>
+    <div class="dashboard-wrapper">
+      <!-- SIDEBAR -->
+      <aside id="sidebar" class="sidebar">
         <div class="sidebar-header">
-            <a href="index.html" class="logo">
-                <span>🛒</span>
-                <span>AsaHub</span>
-            </a>
-            <button id="sidebarClose" class="sidebar-close">×</button>
+          <a href="index.html" class="logo">
+            <span>🛒</span>
+            <span>AsaHub</span>
+          </a>
+          <button id="sidebarClose" class="sidebar-close">×</button>
         </div>
 
         <nav class="sidebar-nav">
-            <a href="#" class="sidebar-link active">📊 Dashboard</a>
-            <a href="#" class="sidebar-link">📦 Produk Saya</a>
-            <a href="#" class="sidebar-link">➕ Tambah Produk</a>
-            <a href="#" class="sidebar-link">📋 Pesanan</a>
+          <a href="#" class="sidebar-link active">📊 Dashboard</a>
+          <a href="#" class="sidebar-link">📦 Produk Saya</a>
+          <a href="#" class="sidebar-link">➕ Tambah Produk</a>
+          <a href="#" class="sidebar-link">📋 Pesanan</a>
         </nav>
+      </aside>
 
-    </aside>
-
-    <!-- MAIN -->
-    <main class="main-content">
-
+      <!-- MAIN -->
+      <main class="main-content">
         <!-- TOPBAR -->
         <header class="topbar">
+          <div class="topbar-left">
+            <button id="sidebarToggle" class="sidebar-toggle">☰</button>
+            <h1>Dashboard</h1>
+          </div>
 
-            <div class="topbar-left">
-                <button id="sidebarToggle" class="sidebar-toggle">☰</button>
-                <h1>Dashboard</h1>
-            </div>
-
-            <div class="profile-box">
-                <div class="profile-avatar">S</div>
-                <span>Seller</span>
-            </div>
-
+          <div class="profile-box">
+            <div class="profile-avatar">S</div>
+            <span>Seller</span>
+          </div>
         </header>
 
         <!-- CONTENT -->
         <div class="content">
-
-            <div class="welcome-card">
-                <h3>Selamat Datang Seller! 🎉</h3>
-                <p>Mulai jual produk Anda</p>
-            </div>
-
+          <div class="welcome-card">
+            <h3>Selamat Datang Seller! 🎉</h3>
+            <p>Mulai jual produk Anda</p>
+          </div>
         </div>
+      </main>
+    </div>
 
-    </main>
+    <!-- MOBILE NAV -->
+    <nav id="mobileNav" class="mobile-nav">
+      <a href="#">📊</a>
+      <a href="#">📦</a>
+      <a href="#">➕</a>
+      <a href="#">📋</a>
+    </nav>
 
-</div>
+    <script>
+      if (window.innerWidth <= 768) {
+        document.getElementById("mobileNav").style.display = "flex";
+        document.getElementById("sidebar").classList.add("hidden");
+      }
 
-<!-- MOBILE NAV -->
-<nav id="mobileNav" class="mobile-nav">
-    <a href="#">📊</a>
-    <a href="#">📦</a>
-    <a href="#">➕</a>
-    <a href="#">📋</a>
-</nav>
+      const sidebar = document.getElementById("sidebar");
 
-<script>
-if(window.innerWidth<=768){
-document.getElementById('mobileNav').style.display='flex';
-document.getElementById('sidebar').classList.add('hidden');
-}
+      document
+        .getElementById("sidebarToggle")
+        ?.addEventListener("click", () => {
+          sidebar.classList.remove("hidden");
+        });
 
-const sidebar=document.getElementById('sidebar');
-
-document.getElementById('sidebarToggle')?.addEventListener('click',()=>{
-sidebar.classList.remove('hidden');
-});
-
-document.getElementById('sidebarClose')?.addEventListener('click',()=>{
-if(window.innerWidth<=768){
-sidebar.classList.add('hidden');
-}
-});
-</script>
-
-</body>
+      document.getElementById("sidebarClose")?.addEventListener("click", () => {
+        if (window.innerWidth <= 768) {
+          sidebar.classList.add("hidden");
+        }
+      });
+    </script>
+  </body>
 </html>

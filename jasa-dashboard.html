@@ -1,128 +1,125 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard Jasa — AsaHub</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Jasa — AsaHub</title>
 
-<link rel="icon" type="image/png" href="../img/logo.png">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="../img/logo.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
 
-<link rel="stylesheet" href="css/jasa-dashboard.css">
-</head>
+    <link rel="stylesheet" href="css/jasa-dashboard.css" />
+  </head>
 
-<body>
+  <body>
+    <div class="dashboard-wrapper">
+      <!-- SIDEBAR -->
+      <aside id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+          <a href="index.html" class="sidebar-logo"> 🛠️ AsaHub </a>
 
-<div class="dashboard-wrapper">
+          <button id="sidebarClose" class="sidebar-close">×</button>
+        </div>
 
-<!-- SIDEBAR -->
-<aside id="sidebar" class="sidebar">
+        <nav class="sidebar-nav">
+          <a href="#" data-section="dashboard" class="nav-link active"
+            >📊 Dashboard</a
+          >
+          <a href="#" data-section="services" class="nav-link"
+            >🛠️ Kelola Layanan</a
+          >
+          <a href="#" data-section="orders" class="nav-link"
+            >📋 Pesanan Masuk</a
+          >
+          <a href="#" data-section="history" class="nav-link">📜 Riwayat</a>
+          <a href="#" data-section="profile" class="nav-link">👤 Profil</a>
+        </nav>
 
-<div class="sidebar-header">
-<a href="index.html" class="sidebar-logo">
-🛠️ AsaHub
-</a>
+        <div class="sidebar-footer">
+          <a href="login.html" class="btn-outline">🚪 Keluar</a>
+        </div>
+      </aside>
 
-<button id="sidebarClose" class="sidebar-close">×</button>
-</div>
+      <!-- MAIN -->
+      <main class="main-content">
+        <header class="top-navbar">
+          <div class="top-left">
+            <button id="sidebarToggle" class="sidebar-toggle">☰</button>
 
-<nav class="sidebar-nav">
-<a href="#" data-section="dashboard" class="nav-link active">📊 Dashboard</a>
-<a href="#" data-section="services" class="nav-link">🛠️ Kelola Layanan</a>
-<a href="#" data-section="orders" class="nav-link">📋 Pesanan Masuk</a>
-<a href="#" data-section="history" class="nav-link">📜 Riwayat</a>
-<a href="#" data-section="profile" class="nav-link">👤 Profil</a>
-</nav>
+            <h1 class="page-title">Dashboard Penyedia Jasa</h1>
+          </div>
 
-<div class="sidebar-footer">
-<a href="login.html" class="btn-outline">🚪 Keluar</a>
-</div>
+          <div class="user-badge">
+            <div class="avatar">P</div>
+            <span>Penyedia Jasa</span>
+          </div>
+        </header>
 
-</aside>
+        <div class="content-area">
+          <section id="dashboard" class="dashboard-section">
+            <div class="welcome-box">
+              <h3>Selamat Datang Penyedia Jasa! 🎉</h3>
+              <p>Kelola layanan Anda dan raih kesuksesan di AsaHub</p>
+            </div>
 
-<!-- MAIN -->
-<main class="main-content">
+            <div class="stats-grid">
+              <div class="stat-card">
+                <div id="totalOrders" class="stat-value">0</div>
+                <div class="stat-label">Total Pesanan Masuk</div>
+              </div>
 
-<header class="top-navbar">
+              <div class="stat-card">
+                <div id="activeOrders" class="stat-value">0</div>
+                <div class="stat-label">Pesanan Aktif</div>
+              </div>
 
-<div class="top-left">
-<button id="sidebarToggle" class="sidebar-toggle">☰</button>
+              <div class="stat-card">
+                <div id="monthlyRevenue" class="stat-value">Rp 0</div>
+                <div class="stat-label">Pendapatan Bulan Ini</div>
+              </div>
 
-<h1 class="page-title">
-Dashboard Penyedia Jasa
-</h1>
-</div>
+              <div class="stat-card">
+                <div id="rating" class="stat-value">0.0</div>
+                <div class="stat-label">Rating</div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
 
-<div class="user-badge">
-<div class="avatar">P</div>
-<span>Penyedia Jasa</span>
-</div>
+    <nav class="mobile-nav">
+      <a href="#"><i class="fas fa-home"></i></a>
+      <a href="#"><i class="fas fa-tools"></i></a>
+      <a href="#"><i class="fas fa-list"></i></a>
+      <a href="#"><i class="fas fa-user"></i></a>
+    </nav>
 
-</header>
+    <script>
+      if (window.innerWidth <= 768) {
+        document.querySelector(".mobile-nav").style.display = "flex";
+        document.getElementById("sidebarToggle").style.display = "block";
+        document.getElementById("sidebar").style.transform =
+          "translateX(-100%)";
+      }
 
-<div class="content-area">
+      document
+        .getElementById("sidebarToggle")
+        ?.addEventListener("click", () => {
+          document.getElementById("sidebar").style.transform = "translateX(0)";
+        });
 
-<section id="dashboard" class="dashboard-section">
-
-<div class="welcome-box">
-<h3>Selamat Datang Penyedia Jasa! 🎉</h3>
-<p>Kelola layanan Anda dan raih kesuksesan di AsaHub</p>
-</div>
-
-<div class="stats-grid">
-
-<div class="stat-card">
-<div id="totalOrders" class="stat-value">0</div>
-<div class="stat-label">Total Pesanan Masuk</div>
-</div>
-
-<div class="stat-card">
-<div id="activeOrders" class="stat-value">0</div>
-<div class="stat-label">Pesanan Aktif</div>
-</div>
-
-<div class="stat-card">
-<div id="monthlyRevenue" class="stat-value">Rp 0</div>
-<div class="stat-label">Pendapatan Bulan Ini</div>
-</div>
-
-<div class="stat-card">
-<div id="rating" class="stat-value">0.0</div>
-<div class="stat-label">Rating</div>
-</div>
-
-</div>
-
-</section>
-
-</div>
-
-</main>
-</div>
-
-<nav class="mobile-nav">
-<a href="#"><i class="fas fa-home"></i></a>
-<a href="#"><i class="fas fa-tools"></i></a>
-<a href="#"><i class="fas fa-list"></i></a>
-<a href="#"><i class="fas fa-user"></i></a>
-</nav>
-
-<script>
-if(window.innerWidth<=768){
-document.querySelector('.mobile-nav').style.display='flex';
-document.getElementById('sidebarToggle').style.display='block';
-document.getElementById('sidebar').style.transform='translateX(-100%)';
-}
-
-document.getElementById('sidebarToggle')?.addEventListener('click',()=>{
-document.getElementById('sidebar').style.transform='translateX(0)';
-});
-
-document.getElementById('sidebarClose')?.addEventListener('click',()=>{
-document.getElementById('sidebar').style.transform='translateX(-100%)';
-});
-</script>
-
-</body>
+      document.getElementById("sidebarClose")?.addEventListener("click", () => {
+        document.getElementById("sidebar").style.transform =
+          "translateX(-100%)";
+      });
+    </script>
+  </body>
 </html>

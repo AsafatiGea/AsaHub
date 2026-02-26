@@ -82,8 +82,8 @@
 }
 
 .btn-success:hover:not(:disabled) {
-  background: #388E3C;
-  border-color: #388E3C;
+  background: #388e3c;
+  border-color: #388e3c;
   transform: translateY(-1px);
   box-shadow: var(--shadow-md);
 }
@@ -95,8 +95,8 @@
 }
 
 .btn-danger:hover:not(:disabled) {
-  background: #D32F2F;
-  border-color: #D32F2F;
+  background: #d32f2f;
+  border-color: #d32f2f;
   transform: translateY(-1px);
   box-shadow: var(--shadow-md);
 }
@@ -254,7 +254,7 @@
   font-size: var(--font-lg);
   font-weight: 700;
   color: var(--primary);
-  font-family: 'Syne', sans-serif;
+  font-family: "Syne", sans-serif;
 }
 
 .price-original {
@@ -551,8 +551,12 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Empty States */
@@ -605,7 +609,7 @@
 }
 
 .tooltip::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 100%;
   left: 50%;

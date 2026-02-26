@@ -1,197 +1,217 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Daftar - AsaHub</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daftar - AsaHub</title>
 
-<link rel="icon" type="image/png" href="../img/logo.png">
+    <link rel="icon" type="image/png" href="../img/logo.png" />
 
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
 
-<link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/layout.css">
-<link rel="stylesheet" href="css/components.css">
-<link rel="stylesheet" href="css/daftar.css">
-<link rel="stylesheet" href="css/responsive-mobile.css">
-<link rel="stylesheet" href="css/responsive-desktop.css">
-<link rel="stylesheet" href="style.css">
-</head>
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/daftar.css" />
+    <link rel="stylesheet" href="css/responsive-mobile.css" />
+    <link rel="stylesheet" href="css/responsive-desktop.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body class="daftar-page">
-
-<!-- NAVBAR -->
-<nav class="navbar">
-    <div class="navbar-container">
-
-        <a href="index.html" class="navbar-logo">
-            Asa<span>Hub</span>
-        </a>
+  <body class="daftar-page">
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div class="navbar-container">
+        <a href="index.html" class="navbar-logo"> Asa<span>Hub</span> </a>
 
         <div class="navbar-links">
-            <a href="index.html">Marketplace</a>
-            <a href="jasa.html">Jasa</a>
-            <a href="edukasi.html">Edukasi</a>
-            <a href="komunitas.html">Komunitas</a>
-            <a href="tentang.html">Tentang</a>
+          <a href="index.html">Marketplace</a>
+          <a href="jasa.html">Jasa</a>
+          <a href="edukasi.html">Edukasi</a>
+          <a href="komunitas.html">Komunitas</a>
+          <a href="tentang.html">Tentang</a>
         </div>
 
         <div class="navbar-actions">
-            <a href="login.html" class="btn-login">Masuk</a>
-            <a href="daftar.html" class="btn-daftar">Daftar</a>
+          <a href="login.html" class="btn-login">Masuk</a>
+          <a href="daftar.html" class="btn-daftar">Daftar</a>
         </div>
+      </div>
+    </nav>
 
-    </div>
-</nav>
-
-<!-- HAMBURGER BUTTON - POJOK KANAN ATAS (HANYA MOBILE) -->
-<button class="mobile-hamburger" id="mobileHamburger" aria-label="Toggle menu">
-    <div class="hamburger-icon">
+    <!-- HAMBURGER BUTTON - POJOK KANAN ATAS (HANYA MOBILE) -->
+    <button
+      class="mobile-hamburger"
+      id="mobileHamburger"
+      aria-label="Toggle menu"
+    >
+      <div class="hamburger-icon">
         <span></span>
         <span></span>
         <span></span>
-    </div>
-</button>
+      </div>
+    </button>
 
-<!-- MOBILE NAVIGATION OVERLAY -->
-<div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+    <!-- MOBILE NAVIGATION OVERLAY -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
 
-<!-- MOBILE NAVIGATION MENU -->
-<div class="mobile-nav-menu" id="mobileNavMenu">
-    <div class="mobile-nav-header">
-        <div class="mobile-nav-logo">
-            <span>🛒</span> AsaHub
-        </div>
-        <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">
-            <i class="fas fa-times"></i>
+    <!-- MOBILE NAVIGATION MENU -->
+    <div class="mobile-nav-menu" id="mobileNavMenu">
+      <div class="mobile-nav-header">
+        <div class="mobile-nav-logo"><span>🛒</span> AsaHub</div>
+        <button
+          class="mobile-nav-close"
+          id="mobileNavClose"
+          aria-label="Close menu"
+        >
+          <i class="fas fa-times"></i>
         </button>
-    </div>
-    
-    <div class="mobile-nav-content">
+      </div>
+
+      <div class="mobile-nav-content">
         <div class="mobile-nav-links">
-            <a href="index.html">
-                <i class="fas fa-home"></i>
-                <span>Home</span>
-            </a>
-            <a href="jasa.html">
-                <i class="fas fa-briefcase"></i>
-                <span>Jasa</span>
-            </a>
-            <a href="edukasi.html">
-                <i class="fas fa-graduation-cap"></i>
-                <span>Edukasi</span>
-            </a>
-            <a href="komunitas.html">
-                <i class="fas fa-users"></i>
-                <span>Komunitas</span>
-            </a>
-            <a href="tentang.html">
-                <i class="fas fa-info-circle"></i>
-                <span>Tentang</span>
-            </a>
+          <a href="index.html">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+          </a>
+          <a href="jasa.html">
+            <i class="fas fa-briefcase"></i>
+            <span>Jasa</span>
+          </a>
+          <a href="edukasi.html">
+            <i class="fas fa-graduation-cap"></i>
+            <span>Edukasi</span>
+          </a>
+          <a href="komunitas.html">
+            <i class="fas fa-users"></i>
+            <span>Komunitas</span>
+          </a>
+          <a href="tentang.html">
+            <i class="fas fa-info-circle"></i>
+            <span>Tentang</span>
+          </a>
         </div>
-        
+
         <div class="mobile-nav-actions">
-            <a href="login.html" class="btn btn-outline">
-                <i class="fas fa-sign-in-alt"></i> Masuk
-            </a>
-            <a href="daftar.html" class="btn btn-solid">
-                <i class="fas fa-user-plus"></i> Daftar
-            </a>
+          <a href="login.html" class="btn btn-outline">
+            <i class="fas fa-sign-in-alt"></i> Masuk
+          </a>
+          <a href="daftar.html" class="btn btn-solid">
+            <i class="fas fa-user-plus"></i> Daftar
+          </a>
         </div>
+      </div>
     </div>
-</div>
 
-<script>
-// Mobile Navigation
-const mobileHamburger = document.getElementById('mobileHamburger');
-const mobileNavOverlay = document.getElementById('mobileNavOverlay');
-const mobileNavMenu = document.getElementById('mobileNavMenu');
-const mobileNavClose = document.getElementById('mobileNavClose');
+    <script>
+      // Mobile Navigation
+      const mobileHamburger = document.getElementById("mobileHamburger");
+      const mobileNavOverlay = document.getElementById("mobileNavOverlay");
+      const mobileNavMenu = document.getElementById("mobileNavMenu");
+      const mobileNavClose = document.getElementById("mobileNavClose");
 
-function toggleMobileNavMenu(show) {
-    if (show) {
-        mobileNavMenu.classList.add('active');
-        mobileNavOverlay.classList.add('active');
-        mobileHamburger.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    } else {
-        mobileNavMenu.classList.remove('active');
-        mobileNavOverlay.classList.remove('active');
-        mobileHamburger.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-}
+      function toggleMobileNavMenu(show) {
+        if (show) {
+          mobileNavMenu.classList.add("active");
+          mobileNavOverlay.classList.add("active");
+          mobileHamburger.classList.add("active");
+          document.body.style.overflow = "hidden";
+        } else {
+          mobileNavMenu.classList.remove("active");
+          mobileNavOverlay.classList.remove("active");
+          mobileHamburger.classList.remove("active");
+          document.body.style.overflow = "";
+        }
+      }
 
-mobileHamburger?.addEventListener('click', () => {
-    const isActive = mobileNavMenu.classList.contains('active');
-    toggleMobileNavMenu(!isActive);
-});
-mobileNavClose?.addEventListener('click', () => toggleMobileNavMenu(false));
-mobileNavOverlay?.addEventListener('click', () => toggleMobileNavMenu(false));
+      mobileHamburger?.addEventListener("click", () => {
+        const isActive = mobileNavMenu.classList.contains("active");
+        toggleMobileNavMenu(!isActive);
+      });
+      mobileNavClose?.addEventListener("click", () =>
+        toggleMobileNavMenu(false),
+      );
+      mobileNavOverlay?.addEventListener("click", () =>
+        toggleMobileNavMenu(false),
+      );
 
-// Close menu when clicking on links
-mobileNavMenu?.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => toggleMobileNavMenu(false));
-});
+      // Close menu when clicking on links
+      mobileNavMenu?.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => toggleMobileNavMenu(false));
+      });
 
-// Show mobile nav on small screens
-if(window.innerWidth<=768){
-document.querySelector('.mobile-nav').style.display='flex';
-}
-</script>
+      // Show mobile nav on small screens
+      if (window.innerWidth <= 768) {
+        document.querySelector(".mobile-nav").style.display = "flex";
+      }
+    </script>
 
-<!-- HERO -->
-<section class="hero-section">
-    <h1>Daftar Akun Baru</h1>
-    <p>Pilih jenis akun yang sesuai dengan kebutuhan Anda</p>
-</section>
+    <!-- HERO -->
+    <section class="hero-section">
+      <h1>Daftar Akun Baru</h1>
+      <p>Pilih jenis akun yang sesuai dengan kebutuhan Anda</p>
+    </section>
 
-<!-- REGISTER OPTIONS -->
-<section class="register-section">
-    <div class="register-grid">
-
+    <!-- REGISTER OPTIONS -->
+    <section class="register-section">
+      <div class="register-grid">
         <a href="user-registrasi.html" class="register-card">
-            <div class="register-card-icon">👤</div>
-            <h3>User</h3>
-            <p>Pengguna umum marketplace</p>
-            <div class="cta">Daftar →</div>
+          <div class="register-card-icon">👤</div>
+          <h3>User</h3>
+          <p>Pengguna umum marketplace</p>
+          <div class="cta">Daftar →</div>
         </a>
 
         <a href="seller-registrasi.html" class="register-card">
-            <div class="register-card-icon">🏪</div>
-            <h3>Seller</h3>
-            <p>Penjual produk</p>
-            <div class="cta">Daftar →</div>
+          <div class="register-card-icon">🏪</div>
+          <h3>Seller</h3>
+          <p>Penjual produk</p>
+          <div class="cta">Daftar →</div>
         </a>
 
         <a href="jasa-registrasi.html" class="register-card">
-            <div class="register-card-icon">🛠️</div>
-            <h3>Penyedia Jasa</h3>
-            <p>Profesional jasa</p>
-            <div class="cta">Daftar →</div>
+          <div class="register-card-icon">🛠️</div>
+          <h3>Penyedia Jasa</h3>
+          <p>Profesional jasa</p>
+          <div class="cta">Daftar →</div>
         </a>
 
         <a href="edukasi-registrasi.html" class="register-card">
-            <div class="register-card-icon">🎓</div>
-            <h3>Mentor Edukasi</h3>
-            <p>Pengajar & mentor</p>
-            <div class="cta">Daftar →</div>
+          <div class="register-card-icon">🎓</div>
+          <h3>Mentor Edukasi</h3>
+          <p>Pengajar & mentor</p>
+          <div class="cta">Daftar →</div>
         </a>
+      </div>
+    </section>
 
-    </div>
-</section>
-
-<!-- MOBILE NAV -->
-<nav class="mobile-nav">
-    <a href="index.html" class="mobile-nav-item"><i class="fas fa-home"></i></a>
-    <a href="jasa.html" class="mobile-nav-item"><i class="fas fa-briefcase"></i></a>
-    <a href="edukasi.html" class="mobile-nav-item"><i class="fas fa-graduation-cap"></i></a>
-    <a href="komunitas.html" class="mobile-nav-item"><i class="fas fa-users"></i></a>
-    <a href="tentang.html" class="mobile-nav-item"><i class="fas fa-info-circle"></i></a>
-    <a href="daftar.html" class="mobile-nav-item active"><i class="fas fa-user"></i></a>
-</nav>
-
-</body>
+    <!-- MOBILE NAV -->
+    <nav class="mobile-nav">
+      <a href="index.html" class="mobile-nav-item"
+        ><i class="fas fa-home"></i
+      ></a>
+      <a href="jasa.html" class="mobile-nav-item"
+        ><i class="fas fa-briefcase"></i
+      ></a>
+      <a href="edukasi.html" class="mobile-nav-item"
+        ><i class="fas fa-graduation-cap"></i
+      ></a>
+      <a href="komunitas.html" class="mobile-nav-item"
+        ><i class="fas fa-users"></i
+      ></a>
+      <a href="tentang.html" class="mobile-nav-item"
+        ><i class="fas fa-info-circle"></i
+      ></a>
+      <a href="daftar.html" class="mobile-nav-item active"
+        ><i class="fas fa-user"></i
+      ></a>
+    </nav>
+  </body>
 </html>

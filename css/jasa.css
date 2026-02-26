@@ -11,7 +11,7 @@
 }
 
 .jasa-hero::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -34,7 +34,7 @@
   font-size: var(--font-4xl);
   font-weight: 800;
   margin-bottom: var(--spacing);
-  font-family: 'Syne', sans-serif;
+  font-family: "Syne", sans-serif;
   line-height: 1.1;
 }
 
@@ -338,7 +338,7 @@
   font-size: var(--font-xl);
   font-weight: 700;
   color: var(--primary);
-  font-family: 'Syne', sans-serif;
+  font-family: "Syne", sans-serif;
 }
 
 .service-rating {
@@ -385,7 +385,7 @@
 }
 
 .btn-primary-service:hover {
-  background: #1976D2;
+  background: #1976d2;
   transform: translateY(-1px);
 }
 
@@ -441,7 +441,7 @@
 }
 
 .no-services-action:hover {
-  background: #1976D2;
+  background: #1976d2;
   transform: translateY(-1px);
   text-decoration: none;
   color: var(--light-white);
@@ -454,12 +454,12 @@
     gap: var(--spacing);
     padding: var(--spacing);
   }
-  
+
   .services-sidebar {
     position: static;
     order: -1;
   }
-  
+
   .services-grid {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: var(--spacing);
@@ -470,40 +470,40 @@
   .jasa-hero {
     padding: var(--spacing-xl) 0;
   }
-  
+
   .jasa-title {
     font-size: var(--font-2xl);
   }
-  
+
   .jasa-subtitle {
     font-size: var(--font);
   }
-  
+
   .jasa-categories {
     padding: var(--spacing-xl) 0;
   }
-  
+
   .jasa-categories-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: var(--spacing);
   }
-  
+
   .services-header {
     flex-direction: column;
     gap: var(--spacing);
     text-align: center;
   }
-  
+
   .services-controls {
     width: 100%;
     justify-content: center;
   }
-  
+
   .services-search {
     min-width: none;
     flex: 1;
   }
-  
+
   .services-grid {
     grid-template-columns: 1fr;
     gap: var(--spacing);
@@ -514,79 +514,79 @@
   .jasa-hero {
     padding: var(--spacing-lg) 0;
   }
-  
+
   .jasa-hero-content {
     padding: 0 var(--spacing-sm);
   }
-  
+
   .jasa-title {
     font-size: var(--font-xl);
   }
-  
+
   .jasa-subtitle {
     font-size: var(--font-sm);
   }
-  
+
   .jasa-categories,
   .services-layout {
     padding: var(--spacing) var(--spacing-sm);
   }
-  
+
   .jasa-categories-grid {
     grid-template-columns: 1fr;
     gap: var(--spacing-sm);
   }
-  
+
   .jasa-category-card {
     padding: var(--spacing);
   }
-  
+
   .services-sidebar {
     padding: var(--spacing);
   }
-  
+
   .services-header {
     padding-bottom: var(--spacing);
   }
-  
+
   .services-title {
     font-size: var(--font-xl);
   }
-  
+
   .service-card {
     border-radius: var(--radius);
   }
-  
+
   .service-header {
     padding: var(--spacing);
   }
-  
+
   .service-icon {
     width: 48px;
     height: 48px;
     font-size: var(--font-xl);
   }
-  
+
   .service-title {
     font-size: var(--font-lg);
   }
-  
+
   .service-body {
     padding: var(--spacing);
   }
-  
+
   .service-footer {
     padding: var(--spacing);
     flex-direction: column;
     gap: var(--spacing);
     text-align: center;
   }
-  
+
   .service-actions {
     flex-direction: column;
     margin-top: var(--spacing);
   }
-  
+
   .service-button {
     width: 100%;
   }
@@ -608,11 +608,11 @@
 }
 
 .navbar-links a:hover {
-  background: rgba(0,0,0,0.1);
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .navbar-links a.active {
-  background: rgba(0,0,0,0.15);
+  background: rgba(0, 0, 0, 0.15);
 }
 
 .navbar-actions {
@@ -635,7 +635,7 @@
 }
 
 .navbar-btn-outline:hover {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .navbar-btn-solid {
@@ -654,11 +654,11 @@
   left: 0;
   right: 0;
   height: 64px;
-  background: #FFC107;
+  background: #ffc107;
   display: flex;
   align-items: center;
   z-index: 1000;
-  box-shadow: 0 2px 20px rgba(0,0,0,.3);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
 }
 
 .main-navbar-container {
@@ -697,24 +697,24 @@
 }
 
 .hero p {
-  opacity: .8;
+  opacity: 0.8;
   margin-bottom: 28px;
 }
 
 .hero .cta-btn {
-  background: #FFC107;
+  background: #ffc107;
   color: #000;
   padding: 14px 28px;
   border-radius: 10px;
   font-weight: 700;
   text-decoration: none;
   display: inline-block;
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .hero .cta-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(255,193,7,0.3);
+  box-shadow: 0 4px 20px rgba(255, 193, 7, 0.3);
 }
 
 /* ---------- SERVICES GRID STYLES ---------- */
@@ -731,13 +731,13 @@
   background: #111;
   border-radius: 18px;
   padding: 24px;
-  border: 1px solid rgba(255,255,255,.05);
-  transition: .3s;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: 0.3s;
 }
 
 .service-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
 }
 
 .service-card h3 {
@@ -745,14 +745,14 @@
 }
 
 .service-card p {
-  opacity: .8;
+  opacity: 0.8;
   line-height: 1.5;
 }
 
 .service-price {
   margin-top: 16px;
   font-weight: 700;
-  color: #FFC107;
+  color: #ffc107;
 }
 
 /* ---------- MOBILE NAV STYLES ---------- */
@@ -766,7 +766,7 @@
   background: #1e1c15;
   align-items: center;
   justify-content: space-around;
-  box-shadow: 0 -4px 20px rgba(0,0,0,.3);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
   z-index: 1000;
 }
 

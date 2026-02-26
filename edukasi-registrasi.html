@@ -1,322 +1,357 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Registrasi Mentor Edukasi - AsaHub</title>
 
-    <link rel="icon" type="image/png" href="../img/logo.png">
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="../img/logo.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
 
     <!-- Global CSS -->
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/layout.css">
-    <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/edukasi-register.css">
-    <link rel="stylesheet" href="css/responsive-mobile.css">
-    <link rel="stylesheet" href="css/responsive-desktop.css">
-    <link rel="stylesheet" href="css/mobile-navigation.css">
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/edukasi-register.css" />
+    <link rel="stylesheet" href="css/responsive-mobile.css" />
+    <link rel="stylesheet" href="css/responsive-desktop.css" />
+    <link rel="stylesheet" href="css/mobile-navigation.css" />
 
     <!-- Page CSS -->
-    <link rel="stylesheet" href="css/edukasi-register.css">
-</head>
-<body>
-
-<!-- NAVBAR -->
-<nav class="navbar">
-    <div class="nav-container">
+    <link rel="stylesheet" href="css/edukasi-register.css" />
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div class="nav-container">
         <a href="index.html" class="nav-logo">Asa<span>Hub</span></a>
 
         <div class="nav-links">
-            <a href="index.html">Marketplace</a>
-            <a href="jasa.html">Jasa</a>
-            <a href="edukasi.html">Edukasi</a>
-            <a href="komunitas.html">Komunitas</a>
-            <a href="tentang.html">Tentang</a>
+          <a href="index.html">Marketplace</a>
+          <a href="jasa.html">Jasa</a>
+          <a href="edukasi.html">Edukasi</a>
+          <a href="komunitas.html">Komunitas</a>
+          <a href="tentang.html">Tentang</a>
         </div>
-    </div>
-</nav>
+      </div>
+    </nav>
 
-<!-- HAMBURGER BUTTON - POJOK KANAN ATAS (HANYA MOBILE) -->
-<button class="mobile-hamburger" id="mobileHamburger" aria-label="Toggle menu">
-    <div class="hamburger-icon">
+    <!-- HAMBURGER BUTTON - POJOK KANAN ATAS (HANYA MOBILE) -->
+    <button
+      class="mobile-hamburger"
+      id="mobileHamburger"
+      aria-label="Toggle menu"
+    >
+      <div class="hamburger-icon">
         <span></span>
         <span></span>
         <span></span>
-    </div>
-</button>
+      </div>
+    </button>
 
-<!-- MOBILE NAVIGATION OVERLAY -->
-<div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+    <!-- MOBILE NAVIGATION OVERLAY -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
 
-<!-- MOBILE NAVIGATION MENU -->
-<div class="mobile-nav-menu" id="mobileNavMenu">
-    <div class="mobile-nav-header">
-        <div class="mobile-nav-logo">
-            <span>🛒</span> AsaHub
-        </div>
-        <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">
-            <i class="fas fa-times"></i>
+    <!-- MOBILE NAVIGATION MENU -->
+    <div class="mobile-nav-menu" id="mobileNavMenu">
+      <div class="mobile-nav-header">
+        <div class="mobile-nav-logo"><span>🛒</span> AsaHub</div>
+        <button
+          class="mobile-nav-close"
+          id="mobileNavClose"
+          aria-label="Close menu"
+        >
+          <i class="fas fa-times"></i>
         </button>
-    </div>
-    
-    <div class="mobile-nav-content">
+      </div>
+
+      <div class="mobile-nav-content">
         <div class="mobile-nav-links">
-            <a href="index.html">
-                <i class="fas fa-home"></i>
-                <span>Home</span>
-            </a>
-            <a href="jasa.html">
-                <i class="fas fa-briefcase"></i>
-                <span>Jasa</span>
-            </a>
-            <a href="edukasi.html">
-                <i class="fas fa-graduation-cap"></i>
-                <span>Edukasi</span>
-            </a>
-            <a href="komunitas.html">
-                <i class="fas fa-users"></i>
-                <span>Komunitas</span>
-            </a>
-            <a href="tentang.html">
-                <i class="fas fa-info-circle"></i>
-                <span>Tentang</span>
-            </a>
+          <a href="index.html">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+          </a>
+          <a href="jasa.html">
+            <i class="fas fa-briefcase"></i>
+            <span>Jasa</span>
+          </a>
+          <a href="edukasi.html">
+            <i class="fas fa-graduation-cap"></i>
+            <span>Edukasi</span>
+          </a>
+          <a href="komunitas.html">
+            <i class="fas fa-users"></i>
+            <span>Komunitas</span>
+          </a>
+          <a href="tentang.html">
+            <i class="fas fa-info-circle"></i>
+            <span>Tentang</span>
+          </a>
         </div>
-        
+
         <div class="mobile-nav-actions">
-            <a href="login.html" class="btn btn-outline">
-                <i class="fas fa-sign-in-alt"></i> Masuk
-            </a>
-            <a href="daftar.html" class="btn btn-solid">
-                <i class="fas fa-user-plus"></i> Daftar
-            </a>
+          <a href="login.html" class="btn btn-outline">
+            <i class="fas fa-sign-in-alt"></i> Masuk
+          </a>
+          <a href="daftar.html" class="btn btn-solid">
+            <i class="fas fa-user-plus"></i> Daftar
+          </a>
         </div>
+      </div>
     </div>
-</div>
 
-<!-- REGISTRATION CONTAINER -->
-<div class="registration-container">
-    <div class="registration-card">
-
+    <!-- REGISTRATION CONTAINER -->
+    <div class="registration-container">
+      <div class="registration-card">
         <!-- HEADER -->
         <div class="registration-header">
-            <div class="registration-logo">Asa<span>Hub</span></div>
-            <div class="registration-subtitle">Registrasi Mentor Edukasi</div>
+          <div class="registration-logo">Asa<span>Hub</span></div>
+          <div class="registration-subtitle">Registrasi Mentor Edukasi</div>
         </div>
 
         <!-- PROGRESS -->
         <div class="progress-indicator">
-            <div class="progress-step completed">
-                <div class="progress-number">1</div>
-                <span>Pilih Akun</span>
-            </div>
-            <div class="progress-line"></div>
-            <div class="progress-step active">
-                <div class="progress-number">2</div>
-                <span>Isi Form</span>
-            </div>
+          <div class="progress-step completed">
+            <div class="progress-number">1</div>
+            <span>Pilih Akun</span>
+          </div>
+          <div class="progress-line"></div>
+          <div class="progress-step active">
+            <div class="progress-number">2</div>
+            <span>Isi Form</span>
+          </div>
         </div>
 
         <div class="error-message" id="errorMessage"></div>
 
         <form id="registrationForm">
+          <!-- INFORMASI AKUN -->
+          <div class="form-section">
+            <h3 class="section-title">Informasi Akun</h3>
 
-            <!-- INFORMASI AKUN -->
-            <div class="form-section">
-                <h3 class="section-title">Informasi Akun</h3>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label class="form-label">Nama Lengkap *</label>
-                        <input type="text" class="form-input" id="fullName" required>
-                        <div class="field-error" id="fullNameError">Nama wajib diisi</div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Email *</label>
-                        <input type="email" class="form-input" id="email" required>
-                        <div class="field-error" id="emailError">Email wajib diisi</div>
-                    </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Nama Lengkap *</label>
+                <input type="text" class="form-input" id="fullName" required />
+                <div class="field-error" id="fullNameError">
+                  Nama wajib diisi
                 </div>
+              </div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label class="form-label">No. WhatsApp *</label>
-                        <input type="tel" class="form-input" id="phone" required>
-                        <div class="field-error" id="phoneError">Nomor wajib diisi</div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Password *</label>
-                        <input type="password" class="form-input" id="password" required>
-                        <div class="field-error" id="passwordError">Password wajib diisi</div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Konfirmasi Password *</label>
-                    <input type="password" class="form-input" id="confirmPassword" required>
-                    <div class="field-error" id="confirmPasswordError">Konfirmasi wajib diisi</div>
-                </div>
+              <div class="form-group">
+                <label class="form-label">Email *</label>
+                <input type="email" class="form-input" id="email" required />
+                <div class="field-error" id="emailError">Email wajib diisi</div>
+              </div>
             </div>
 
-            <!-- INFORMASI PROFESIONAL -->
-            <div class="form-section">
-                <h3 class="section-title">Informasi Profesional</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">No. WhatsApp *</label>
+                <input type="tel" class="form-input" id="phone" required />
+                <div class="field-error" id="phoneError">Nomor wajib diisi</div>
+              </div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label class="form-label">Gelar/Profesi *</label>
-                        <input type="text" class="form-input" id="title" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Bidang Keahlian *</label>
-                        <select class="form-select" id="expertise" required>
-                            <option value="">Pilih Bidang</option>
-                            <option value="teknologi">Teknologi</option>
-                            <option value="bisnis">Bisnis</option>
-                            <option value="sains">Sains</option>
-                            <option value="bahasa">Bahasa</option>
-                        </select>
-                    </div>
+              <div class="form-group">
+                <label class="form-label">Password *</label>
+                <input
+                  type="password"
+                  class="form-input"
+                  id="password"
+                  required
+                />
+                <div class="field-error" id="passwordError">
+                  Password wajib diisi
                 </div>
+              </div>
             </div>
 
-            <!-- INFORMASI KURSUS -->
-            <div class="form-section">
-                <h3 class="section-title">Informasi Kursus</h3>
+            <div class="form-group">
+              <label class="form-label">Konfirmasi Password *</label>
+              <input
+                type="password"
+                class="form-input"
+                id="confirmPassword"
+                required
+              />
+              <div class="field-error" id="confirmPasswordError">
+                Konfirmasi wajib diisi
+              </div>
+            </div>
+          </div>
 
-                <div class="form-group">
-                    <label class="form-label">Judul Kelas *</label>
-                    <input type="text" class="form-input" id="courseTitle" required>
-                </div>
+          <!-- INFORMASI PROFESIONAL -->
+          <div class="form-section">
+            <h3 class="section-title">Informasi Profesional</h3>
 
-                <div class="form-group">
-                    <label class="form-label">Deskripsi Materi *</label>
-                    <textarea class="form-textarea" id="courseDescription" required></textarea>
-                </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Gelar/Profesi *</label>
+                <input type="text" class="form-input" id="title" required />
+              </div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label class="form-label">Durasi *</label>
-                        <input type="text" class="form-input" id="duration" required>
-                    </div>
+              <div class="form-group">
+                <label class="form-label">Bidang Keahlian *</label>
+                <select class="form-select" id="expertise" required>
+                  <option value="">Pilih Bidang</option>
+                  <option value="teknologi">Teknologi</option>
+                  <option value="bisnis">Bisnis</option>
+                  <option value="sains">Sains</option>
+                  <option value="bahasa">Bahasa</option>
+                </select>
+              </div>
+            </div>
+          </div>
 
-                    <div class="form-group">
-                        <label class="form-label">Harga *</label>
-                        <input type="number" class="form-input" id="price" required>
-                    </div>
-                </div>
+          <!-- INFORMASI KURSUS -->
+          <div class="form-section">
+            <h3 class="section-title">Informasi Kursus</h3>
+
+            <div class="form-group">
+              <label class="form-label">Judul Kelas *</label>
+              <input type="text" class="form-input" id="courseTitle" required />
             </div>
 
-            <!-- KOMITMEN -->
-            <div class="form-section">
-                <h3 class="section-title">Komitmen Profesional</h3>
-
-                <div class="checkbox-group">
-                    <input type="checkbox" id="commitment1" required>
-                    <label for="commitment1" class="checkbox-label">
-                        Saya berkomitmen memberikan pengajaran profesional
-                    </label>
-                </div>
+            <div class="form-group">
+              <label class="form-label">Deskripsi Materi *</label>
+              <textarea
+                class="form-textarea"
+                id="courseDescription"
+                required
+              ></textarea>
             </div>
 
-            <div class="btn-container">
-                <a href="daftar.html" class="btn-back">
-                    <i class="fas fa-arrow-left"></i> Kembali
-                </a>
-                <button type="submit" class="btn-register">
-                    <i class="fas fa-graduation-cap"></i> DAFTAR
-                </button>
-            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Durasi *</label>
+                <input type="text" class="form-input" id="duration" required />
+              </div>
 
+              <div class="form-group">
+                <label class="form-label">Harga *</label>
+                <input type="number" class="form-input" id="price" required />
+              </div>
+            </div>
+          </div>
+
+          <!-- KOMITMEN -->
+          <div class="form-section">
+            <h3 class="section-title">Komitmen Profesional</h3>
+
+            <div class="checkbox-group">
+              <input type="checkbox" id="commitment1" required />
+              <label for="commitment1" class="checkbox-label">
+                Saya berkomitmen memberikan pengajaran profesional
+              </label>
+            </div>
+          </div>
+
+          <div class="btn-container">
+            <a href="daftar.html" class="btn-back">
+              <i class="fas fa-arrow-left"></i> Kembali
+            </a>
+            <button type="submit" class="btn-register">
+              <i class="fas fa-graduation-cap"></i> DAFTAR
+            </button>
+          </div>
         </form>
+      </div>
     </div>
-</div>
 
-<!-- SUCCESS MODAL -->
-<div class="success-modal" id="successModal">
-    <div class="success-content">
+    <!-- SUCCESS MODAL -->
+    <div class="success-modal" id="successModal">
+      <div class="success-content">
         <div class="success-icon">✅</div>
         <h2>Pendaftaran Berhasil!</h2>
         <p>Akun sedang diverifikasi.</p>
-        <button class="btn-register" onclick="window.location.href='index.html'">
-            Kembali ke Beranda
+        <button
+          class="btn-register"
+          onclick="window.location.href = 'index.html'"
+        >
+          Kembali ke Beranda
         </button>
+      </div>
     </div>
-</div>
 
-<script src="../js/mobile-navigation.js"></script>
+    <script src="../js/mobile-navigation.js"></script>
 
-<script>
-document.getElementById('registrationForm').addEventListener('submit', function(e){
-    e.preventDefault();
-    document.getElementById('successModal').style.display = 'flex';
-});
-</script>
+    <script>
+      document
+        .getElementById("registrationForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          document.getElementById("successModal").style.display = "flex";
+        });
+    </script>
 
-<!-- Mobile Bottom Navigation -->
-<!-- MOBILE NAV -->
-<nav class="mobile-nav">
+    <!-- Mobile Bottom Navigation -->
+    <!-- MOBILE NAV -->
+    <nav class="mobile-nav">
+      <a href="index.html">
+        <i class="fas fa-home"></i>
+      </a>
 
-<a href="index.html">
-<i class="fas fa-home"></i>
-</a>
+      <a href="jasa.html">
+        <i class="fas fa-briefcase"></i>
+      </a>
 
-<a href="jasa.html">
-<i class="fas fa-briefcase"></i>
-</a>
+      <a href="edukasi.html" class="active">
+        <i class="fas fa-graduation-cap"></i>
+      </a>
 
-<a href="edukasi.html" class="active">
-<i class="fas fa-graduation-cap"></i>
-</a>
+      <a href="komunitas.html">
+        <i class="fas fa-users"></i>
+      </a>
 
-<a href="komunitas.html">
-<i class="fas fa-users"></i>
-</a>
+      <a href="tentang.html">
+        <i class="fas fa-info-circle"></i>
+      </a>
 
-<a href="tentang.html">
-<i class="fas fa-info-circle"></i>
-</a>
+      <a href="login.html">
+        <i class="fas fa-user"></i>
+      </a>
+    </nav>
 
-<a href="login.html">
-<i class="fas fa-user"></i>
-</a>
+    <script>
+      // Mobile Navigation
+      const mobileHamburger = document.getElementById("mobileHamburger");
+      const mobileNavOverlay = document.getElementById("mobileNavOverlay");
+      const mobileNavMenu = document.getElementById("mobileNavMenu");
+      const mobileNavClose = document.getElementById("mobileNavClose");
 
-</nav>
+      if (
+        mobileHamburger &&
+        mobileNavOverlay &&
+        mobileNavMenu &&
+        mobileNavClose
+      ) {
+        mobileHamburger.addEventListener("click", () => {
+          mobileNavOverlay.style.display = "block";
+          mobileNavMenu.style.right = "0";
+        });
 
-<script>
-// Mobile Navigation
-const mobileHamburger = document.getElementById('mobileHamburger');
-const mobileNavOverlay = document.getElementById('mobileNavOverlay');
-const mobileNavMenu = document.getElementById('mobileNavMenu');
-const mobileNavClose = document.getElementById('mobileNavClose');
+        mobileNavClose.addEventListener("click", () => {
+          mobileNavOverlay.style.display = "none";
+          mobileNavMenu.style.right = "-280px";
+        });
 
-if (mobileHamburger && mobileNavOverlay && mobileNavMenu && mobileNavClose) {
-    mobileHamburger.addEventListener('click', () => {
-        mobileNavOverlay.style.display = 'block';
-        mobileNavMenu.style.right = '0';
-    });
+        mobileNavOverlay.addEventListener("click", () => {
+          mobileNavOverlay.style.display = "none";
+          mobileNavMenu.style.right = "-280px";
+        });
+      }
 
-    mobileNavClose.addEventListener('click', () => {
-        mobileNavOverlay.style.display = 'none';
-        mobileNavMenu.style.right = '-280px';
-    });
-
-    mobileNavOverlay.addEventListener('click', () => {
-        mobileNavOverlay.style.display = 'none';
-        mobileNavMenu.style.right = '-280px';
-    });
-}
-
-// Show mobile nav on small screens
-if(window.innerWidth<=768){
-document.querySelector('.mobile-nav').style.display='flex';
-}
-</script>
-
-</body>
+      // Show mobile nav on small screens
+      if (window.innerWidth <= 768) {
+        document.querySelector(".mobile-nav").style.display = "flex";
+      }
+    </script>
+  </body>
 </html>

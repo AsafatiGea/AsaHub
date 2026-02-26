@@ -1,226 +1,230 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Registrasi User - AsaHub</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registrasi User - AsaHub</title>
 
-<link rel="icon" type="image/png" href="../img/logo.png">
+    <link rel="icon" type="image/png" href="../img/logo.png" />
 
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
 
-<link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/layout.css">
-<link rel="stylesheet" href="css/components.css">
-<link rel="stylesheet" href="css/user.register.css">
-<link rel="stylesheet" href="css/responsive-mobile.css">
-<link rel="stylesheet" href="css/responsive-desktop.css">
-<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/user.register.css" />
+    <link rel="stylesheet" href="css/responsive-mobile.css" />
+    <link rel="stylesheet" href="css/responsive-desktop.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="navbar-container">
+        <a href="index.html" class="navbar-logo"> Asa<span>Hub</span> </a>
 
-</head>
-<body>
-<!-- Navbar -->
-<nav class="navbar">
-
-<div class="navbar-container">
-
-<a href="index.html" class="navbar-logo">
-Asa<span>Hub</span>
-</a>
-
-<div class="navbar-links">
-<a href="index.html" class="active">Marketplace</a>
-<a href="jasa.html">Jasa</a>
-<a href="edukasi.html">Edukasi</a>
-<a href="komunitas.html">Komunitas</a>
-<a href="tentang.html">Tentang</a>
-</div>
-
-<div class="navbar-actions">
-<a href="login.html" class="navbar-btn navbar-btn-outline">Masuk</a>
-<a href="daftar.html" class="navbar-btn navbar-btn-solid">Daftar</a>
-</div>
-
-</div>
-</nav>
-
-<!-- HAMBURGER BUTTON - POJOK KANAN ATAS (HANYA MOBILE) -->
-<button class="mobile-hamburger" id="mobileHamburger" aria-label="Toggle menu">
-    <div class="hamburger-icon">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-</button>
-
-<!-- MOBILE NAVIGATION OVERLAY -->
-<div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
-
-<!-- MOBILE NAVIGATION MENU garis 3 pojok ats -->
-<div class="mobile-nav-menu" id="mobileNavMenu">
-    <div class="mobile-nav-header">
-        <div class="mobile-nav-logo">
-            <span>🛒</span> AsaHub
+        <div class="navbar-links">
+          <a href="index.html" class="active">Marketplace</a>
+          <a href="jasa.html">Jasa</a>
+          <a href="edukasi.html">Edukasi</a>
+          <a href="komunitas.html">Komunitas</a>
+          <a href="tentang.html">Tentang</a>
         </div>
-        <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">
-            <i class="fas fa-times"></i>
+
+        <div class="navbar-actions">
+          <a href="login.html" class="navbar-btn navbar-btn-outline">Masuk</a>
+          <a href="daftar.html" class="navbar-btn navbar-btn-solid">Daftar</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HAMBURGER BUTTON - POJOK KANAN ATAS (HANYA MOBILE) -->
+    <button
+      class="mobile-hamburger"
+      id="mobileHamburger"
+      aria-label="Toggle menu"
+    >
+      <div class="hamburger-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </button>
+
+    <!-- MOBILE NAVIGATION OVERLAY -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+
+    <!-- MOBILE NAVIGATION MENU garis 3 pojok ats -->
+    <div class="mobile-nav-menu" id="mobileNavMenu">
+      <div class="mobile-nav-header">
+        <div class="mobile-nav-logo"><span>🛒</span> AsaHub</div>
+        <button
+          class="mobile-nav-close"
+          id="mobileNavClose"
+          aria-label="Close menu"
+        >
+          <i class="fas fa-times"></i>
         </button>
-    </div>
-    
-    <div class="mobile-nav-content">
+      </div>
+
+      <div class="mobile-nav-content">
         <div class="mobile-nav-links">
-            <a href="index.html">
-                <i class="fas fa-home"></i>
-                <span>Home</span>
-            </a>
-            <a href="jasa.html">
-                <i class="fas fa-briefcase"></i>
-                <span>Jasa</span>
-            </a>
-            <a href="edukasi.html">
-                <i class="fas fa-graduation-cap"></i>
-                <span>Edukasi</span>
-            </a>
-            <a href="komunitas.html">
-                <i class="fas fa-users"></i>
-                <span>Komunitas</span>
-            </a>
-            <a href="tentang.html">
-                <i class="fas fa-info-circle"></i>
-                <span>Tentang</span>
-            </a>
+          <a href="index.html">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+          </a>
+          <a href="jasa.html">
+            <i class="fas fa-briefcase"></i>
+            <span>Jasa</span>
+          </a>
+          <a href="edukasi.html">
+            <i class="fas fa-graduation-cap"></i>
+            <span>Edukasi</span>
+          </a>
+          <a href="komunitas.html">
+            <i class="fas fa-users"></i>
+            <span>Komunitas</span>
+          </a>
+          <a href="tentang.html">
+            <i class="fas fa-info-circle"></i>
+            <span>Tentang</span>
+          </a>
         </div>
-        
+
         <div class="mobile-nav-actions">
-            <a href="login.html" class="btn btn-outline">
-                <i class="fas fa-sign-in-alt"></i> Masuk
-            </a>
-            <a href="daftar.html" class="btn btn-solid">
-                <i class="fas fa-user-plus"></i> Daftar
-            </a>
+          <a href="login.html" class="btn btn-outline">
+            <i class="fas fa-sign-in-alt"></i> Masuk
+          </a>
+          <a href="daftar.html" class="btn btn-solid">
+            <i class="fas fa-user-plus"></i> Daftar
+          </a>
         </div>
+      </div>
     </div>
-</div>
 
-<!-- REGISTRATION -->
-<div class="registration-container">
-    <div class="registration-card">
-
+    <!-- REGISTRATION -->
+    <div class="registration-container">
+      <div class="registration-card">
         <div class="registration-header">
-            <div class="registration-logo">Asa<span>Hub</span></div>
-            <div class="registration-subtitle">Registrasi User</div>
+          <div class="registration-logo">Asa<span>Hub</span></div>
+          <div class="registration-subtitle">Registrasi User</div>
         </div>
 
         <div class="progress-indicator">
-            <div class="progress-step completed">
-                <div class="progress-number">1</div>
-                <span>Pilih Akun</span>
-            </div>
-            <div class="progress-line"></div>
-            <div class="progress-step active">
-                <div class="progress-number">2</div>
-                <span>Isi Form</span>
-            </div>
+          <div class="progress-step completed">
+            <div class="progress-number">1</div>
+            <span>Pilih Akun</span>
+          </div>
+          <div class="progress-line"></div>
+          <div class="progress-step active">
+            <div class="progress-number">2</div>
+            <span>Isi Form</span>
+          </div>
         </div>
 
         <form id="registrationForm">
+          <div class="form-section">
+            <h3 class="section-title">Informasi Akun</h3>
 
-            <div class="form-section">
-                <h3 class="section-title">Informasi Akun</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Nama Lengkap *</label>
+                <input type="text" class="form-input" required />
+              </div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label class="form-label">Nama Lengkap *</label>
-                        <input type="text" class="form-input" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Email *</label>
-                        <input type="email" class="form-input" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Password *</label>
-                    <input type="password" class="form-input" required>
-                </div>
+              <div class="form-group">
+                <label class="form-label">Email *</label>
+                <input type="email" class="form-input" required />
+              </div>
             </div>
 
-            <div class="btn-container">
-                <a href="daftar.html" class="btn-back">
-                    <i class="fas fa-arrow-left"></i> Kembali
-                </a>
-
-                <button type="submit" class="btn-register">
-                    <i class="fas fa-user-plus"></i> DAFTAR
-                </button>
+            <div class="form-group">
+              <label class="form-label">Password *</label>
+              <input type="password" class="form-input" required />
             </div>
+          </div>
 
+          <div class="btn-container">
+            <a href="daftar.html" class="btn-back">
+              <i class="fas fa-arrow-left"></i> Kembali
+            </a>
+
+            <button type="submit" class="btn-register">
+              <i class="fas fa-user-plus"></i> DAFTAR
+            </button>
+          </div>
         </form>
+      </div>
     </div>
-</div>
 
-<!-- Mobile Bottom Navigation -->
-<!-- MOBILE NAV -->
-<nav class="mobile-nav">
+    <!-- Mobile Bottom Navigation -->
+    <!-- MOBILE NAV -->
+    <nav class="mobile-nav">
+      <a href="index.html">
+        <i class="fas fa-home"></i>
+      </a>
 
-<a href="index.html">
-<i class="fas fa-home"></i>
-</a>
+      <a href="jasa.html">
+        <i class="fas fa-briefcase"></i>
+      </a>
 
-<a href="jasa.html">
-<i class="fas fa-briefcase"></i>
-</a>
+      <a href="edukasi.html">
+        <i class="fas fa-graduation-cap"></i>
+      </a>
 
-<a href="edukasi.html">
-<i class="fas fa-graduation-cap"></i>
-</a>
+      <a href="komunitas.html">
+        <i class="fas fa-users"></i>
+      </a>
 
-<a href="komunitas.html">
-<i class="fas fa-users"></i>
-</a>
+      <a href="tentang.html">
+        <i class="fas fa-info-circle"></i>
+      </a>
 
-<a href="tentang.html">
-<i class="fas fa-info-circle"></i>
-</a>
+      <a href="login.html">
+        <i class="fas fa-user"></i>
+      </a>
+    </nav>
 
-<a href="login.html">
-<i class="fas fa-user"></i>
-</a>
+    <script>
+      // Mobile Navigation
+      const mobileHamburger = document.getElementById("mobileHamburger");
+      const mobileNavOverlay = document.getElementById("mobileNavOverlay");
+      const mobileNavMenu = document.getElementById("mobileNavMenu");
+      const mobileNavClose = document.getElementById("mobileNavClose");
 
-</nav>
+      if (
+        mobileHamburger &&
+        mobileNavOverlay &&
+        mobileNavMenu &&
+        mobileNavClose
+      ) {
+        mobileHamburger.addEventListener("click", () => {
+          mobileNavOverlay.style.display = "block";
+          mobileNavMenu.style.right = "0";
+        });
 
+        mobileNavClose.addEventListener("click", () => {
+          mobileNavOverlay.style.display = "none";
+          mobileNavMenu.style.right = "-280px";
+        });
 
-<script>
-// Mobile Navigation
-const mobileHamburger = document.getElementById('mobileHamburger');
-const mobileNavOverlay = document.getElementById('mobileNavOverlay');
-const mobileNavMenu = document.getElementById('mobileNavMenu');
-const mobileNavClose = document.getElementById('mobileNavClose');
+        mobileNavOverlay.addEventListener("click", () => {
+          mobileNavOverlay.style.display = "none";
+          mobileNavMenu.style.right = "-280px";
+        });
+      }
 
-if (mobileHamburger && mobileNavOverlay && mobileNavMenu && mobileNavClose) {
-    mobileHamburger.addEventListener('click', () => {
-        mobileNavOverlay.style.display = 'block';
-        mobileNavMenu.style.right = '0';
-    });
-
-    mobileNavClose.addEventListener('click', () => {
-        mobileNavOverlay.style.display = 'none';
-        mobileNavMenu.style.right = '-280px';
-    });
-
-    mobileNavOverlay.addEventListener('click', () => {
-        mobileNavOverlay.style.display = 'none';
-        mobileNavMenu.style.right = '-280px';
-    });
-}
-
-// Show mobile nav on small screens
-if(window.innerWidth<=768){
-document.querySelector('.mobile-nav').style.display='flex';
-}
-</script>
-
-</body>
+      // Show mobile nav on small screens
+      if (window.innerWidth <= 768) {
+        document.querySelector(".mobile-nav").style.display = "flex";
+      }
+    </script>
+  </body>
 </html>
