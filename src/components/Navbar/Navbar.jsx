@@ -9,8 +9,9 @@ export default function Navbar() {
 
         <div className="hidden md:flex gap-6 text-gray-600">
 
-          <Link to="#">Marketplace</Link>
-          <Link to="#">Dashboard</Link>
+          <Link to="/marketplace">Marketplace</Link>
+          <Link to="/edukasi">Edukasi</Link>
+          <Link to="/karir">Karir</Link>
           <Link to="/">Home</Link>
         </div>
 

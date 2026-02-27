@@ -4,7 +4,7 @@ export default function Home() {
       {/* HERO SECTION */}
       <section className="relative overflow-hidden">
         {/* Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-indigo-100 -z-10"></div>
+        <div className="absolute inset-0  from-blue-50 via-white to-indigo-100 -z-10"></div>
 
         <div className="max-w-6xl mx-auto px-6 pt-32 pb-32 text-center">
           <h1 className="text-4xl md:text-6xl font-bold leading-tight max-w-4xl mx-auto">
