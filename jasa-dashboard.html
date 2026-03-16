@@ -14,7 +14,6 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-
     <link rel="stylesheet" href="css/jasa-dashboard.css" />
   </head>
 
@@ -23,21 +22,14 @@
       <!-- SIDEBAR -->
       <aside id="sidebar" class="sidebar">
         <div class="sidebar-header">
-          <a href="index.html" class="sidebar-logo"> 🛠️ AsaHub </a>
-
-          <button id="sidebarClose" class="sidebar-close">×</button>
+          <a href="index.html" class="sidebar-logo">🛠️ AsaHub</a>
+          <button id="sidebarClose" class="sidebar-close"><i class="fas fa-times"></i></button>
         </div>
 
         <nav class="sidebar-nav">
-          <a href="#" data-section="dashboard" class="nav-link active"
-            >📊 Dashboard</a
-          >
-          <a href="#" data-section="services" class="nav-link"
-            >🛠️ Kelola Layanan</a
-          >
-          <a href="#" data-section="orders" class="nav-link"
-            >📋 Pesanan Masuk</a
-          >
+          <a href="#" data-section="dashboard" class="nav-link active">📊 Dashboard</a>
+          <a href="#" data-section="services" class="nav-link">🛠️ Kelola Layanan</a>
+          <a href="#" data-section="orders" class="nav-link">📋 Pesanan Masuk</a>
           <a href="#" data-section="history" class="nav-link">📜 Riwayat</a>
           <a href="#" data-section="profile" class="nav-link">👤 Profil</a>
         </nav>
@@ -47,15 +39,13 @@
         </div>
       </aside>
 
-      <!-- MAIN -->
+      <!-- MAIN CONTENT -->
       <main class="main-content">
         <header class="top-navbar">
           <div class="top-left">
-            <button id="sidebarToggle" class="sidebar-toggle">☰</button>
-
+            <button id="sidebarToggle" class="sidebar-toggle"><i class="fas fa-bars"></i></button>
             <h1 class="page-title">Dashboard Penyedia Jasa</h1>
           </div>
-
           <div class="user-badge">
             <div class="avatar">P</div>
             <span>Penyedia Jasa</span>
@@ -95,6 +85,7 @@
       </main>
     </div>
 
+    <!-- MOBILE NAV -->
     <nav class="mobile-nav">
       <a href="#"><i class="fas fa-home"></i></a>
       <a href="#"><i class="fas fa-tools"></i></a>
@@ -102,24 +93,6 @@
       <a href="#"><i class="fas fa-user"></i></a>
     </nav>
 
-    <script>
-      if (window.innerWidth <= 768) {
-        document.querySelector(".mobile-nav").style.display = "flex";
-        document.getElementById("sidebarToggle").style.display = "block";
-        document.getElementById("sidebar").style.transform =
-          "translateX(-100%)";
-      }
-
-      document
-        .getElementById("sidebarToggle")
-        ?.addEventListener("click", () => {
-          document.getElementById("sidebar").style.transform = "translateX(0)";
-        });
-
-      document.getElementById("sidebarClose")?.addEventListener("click", () => {
-        document.getElementById("sidebar").style.transform =
-          "translateX(-100%)";
-      });
-    </script>
+    <script src="js/jasa-dashboard.js"></script>
   </body>
 </html>
